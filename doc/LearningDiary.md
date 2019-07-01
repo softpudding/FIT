@@ -8,3 +8,9 @@
 今天又学了啥呢test1
 
 ### 2019/7/1 杨宣慧
+
+安装Andriod Studio, 成功创建一个project并在模拟器上运行
+
+搜索了一些UI框架，进行了简单尝试
+
+阅读Andriod Studio官网的文档进行学习
