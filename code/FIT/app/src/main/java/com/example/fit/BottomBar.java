@@ -1,4 +1,4 @@
-package com.example.fit;
+package com.example.FIT;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -311,3 +311,5 @@ public class BottomBar extends View {
         }
     }
 }
+
+// 引用https://github.com/xubinhong/BottomBar.git

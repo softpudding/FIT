@@ -1,12 +1,12 @@
-package com.example.fit;
+package com.example.FIT;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.fit.fragment.Fragment_mainpage;
-import com.example.fit.fragment.Fragment_me;
-import com.example.fit.fragment.Fragment_social;
-import com.example.fit.fragment.Fragment_friends;
+import com.example.FIT.fragment.Fragment_mainpage;
+import com.example.FIT.fragment.Fragment_me;
+import com.example.FIT.fragment.Fragment_social;
+import com.example.FIT.fragment.Fragment_friends;
 
 public class MainActivity extends AppCompatActivity {
 
