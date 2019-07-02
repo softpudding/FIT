@@ -1,4 +1,4 @@
-package com.example.bottombar.fragment;
+package com.example.fit.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bottombar.R;
+import com.example.fit.R;
 
 
-public class Fragment3 extends Fragment {
+public class Fragment_social extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment3, container, false);
+        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_social, container, false);
     }
 }

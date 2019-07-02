@@ -1,4 +1,4 @@
-package com.example.bottombar;
+package com.example.fit;
 
 import org.junit.Test;
 

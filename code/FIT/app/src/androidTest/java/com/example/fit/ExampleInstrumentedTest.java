@@ -1,4 +1,4 @@
-package com.example.bottombar;
+package com.example.fit;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.bottombar", appContext.getPackageName());
+        assertEquals("com.example.fit", appContext.getPackageName());
     }
 }

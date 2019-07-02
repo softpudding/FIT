@@ -12,10 +12,10 @@
 
     </FrameLayout>
 
-    <com.example.bottombar.BottomBar
-        android:background="#FFFFFF"
+    <com.example.fit.BottomBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_gravity="bottom" />
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF" />
 </LinearLayout>
