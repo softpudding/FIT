@@ -56,10 +56,10 @@ public class BottomBar extends View {
     private int titleColorBefore = Color.parseColor("#999999");
     private int titleColorAfter = Color.parseColor("#ff5d5e");
 
-    private int titleSizeInDp = 10;
-    private int iconWidth = 35;
-    private int iconHeight = 35;
-    private int titleIconMargin = 5;
+    private int iconWidth;
+    private int iconHeight;
+    private int titleIconMargin;
+    private int titleHeight;
 
     public BottomBar setContainer(int containerId) {
         this.containerId = containerId;
@@ -71,27 +71,6 @@ public class BottomBar extends View {
         titleColorAfter = Color.parseColor(AfterResCode);
         return this;
     }
-
-    public BottomBar setTitleSize(int titleSizeInDp) {
-        this.titleSizeInDp = titleSizeInDp;
-        return this;
-    }
-
-    public BottomBar setIconWidth(int iconWidth) {
-        this.iconWidth = iconWidth;
-        return this;
-    }
-
-    public BottomBar setTitleIconMargin(int titleIconMargin) {
-        this.titleIconMargin = titleIconMargin;
-        return this;
-    }
-
-    public BottomBar setIconHeight(int iconHeight) {
-        this.iconHeight = iconHeight;
-        return this;
-    }
-
     public BottomBar addItem(Class fragmentClass, String title, int iconResBefore, int iconResAfter) {
         fragmentClassList.add(fragmentClass);
         titleList.add(title);
@@ -99,11 +78,12 @@ public class BottomBar extends View {
         iconResAfterList.add(iconResAfter);
         return this;
     }
-
+    /*
     public BottomBar setFirstChecked(int firstCheckedIndex) {//从0开始
         this.firstCheckedIndex = firstCheckedIndex;
         return this;
     }
+    */
 
     public void build() {
         itemCount = fragmentClassList.size();
@@ -149,47 +129,27 @@ public class BottomBar extends View {
         initParam();
     }
 
-    private int titleBaseLine;
     private List<Integer> titleXList = new ArrayList<>();
 
     private int parentItemWidth;
 
     private void initParam() {
         if (itemCount != 0) {
+            // 初始化参数
+            int titleSizeInDp = 10;
+            iconWidth = 35;
+            iconHeight = 35;
+            titleIconMargin = 5;
             //单个item宽高
             parentItemWidth = getWidth() / itemCount;
-            int parentItemHeight = getHeight();
-
-            //图标边长
-            int iconWidth = dp2px(this.iconWidth);//先指定20dp
-            int iconHeight = dp2px(this.iconHeight);
-
-            //图标文字margin
-            int textIconMargin = dp2px(((float)titleIconMargin)/2);//先指定5dp，这里除以一半才是正常的margin，不知道为啥，可能是图片的原因
 
             //标题高度
             int titleSize = dp2px(titleSizeInDp);//这里先指定10dp
             paint.setTextSize(titleSize);
+
             Rect rect = new Rect();
             paint.getTextBounds(titleList.get(0), 0, titleList.get(0).length(), rect);
-            int titleHeight = rect.height();
-
-            //从而计算得出图标的起始top坐标、文本的baseLine
-            int iconTop = (parentItemHeight - iconHeight - textIconMargin - titleHeight)/2;
-            titleBaseLine = parentItemHeight - iconTop;
-
-            //对icon的rect的参数进行赋值
-            int firstRectX = (parentItemWidth - iconWidth) / 2;//第一个icon的左
-            for (int i = 0; i < itemCount; i++) {
-                int rectX = i * parentItemWidth + firstRectX;
-
-                Rect temp = iconRectList.get(i);
-
-                temp.left = rectX;
-                temp.top = iconTop ;
-                temp.right = rectX + iconWidth;
-                temp.bottom = iconTop + iconHeight;
-            }
+            titleHeight = rect.height();
 
             //标题（单位是个问题）
             for (int i = 0; i < itemCount; i ++) {
@@ -197,10 +157,12 @@ public class BottomBar extends View {
                 paint.getTextBounds(title, 0, title.length(), rect);
                 titleXList.add((parentItemWidth - rect.width()) / 2 + parentItemWidth * i);
             }
+
+            firstCheckedIndex = 0;
         }
     }
 
-    private int dp2px(float dpValue) {
+    public int dp2px(float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
@@ -214,12 +176,48 @@ public class BottomBar extends View {
         super.onDraw(canvas);//这里让view自身替我们画背景 如果指定的话
 
         if (itemCount != 0) {
+            //单个item宽高
+            int parentItemHeight = getHeight();
+
+            //图标边长
+            int iconWidth = dp2px(this.iconWidth);//先指定35dp
+            int iconHeight = dp2px(this.iconHeight);
+
+            //图标文字margin
+            int textIconMargin = dp2px(((float)titleIconMargin)/2);//先指定5dp，这里除以一半才是正常的margin，不知道为啥，可能是图片的原因
+
+            //从而计算得出图标的起始top坐标、文本的baseLine
+            int iconTop = (parentItemHeight - iconHeight - textIconMargin - titleHeight)/2;
+            int titleBaseLine = parentItemHeight - iconTop;
+
+            //对icon的rect的参数进行赋值
+            int firstRectX = (parentItemWidth - iconWidth) / 2;//第一个icon的左
+            for (int i = 0; i < itemCount; i++) {
+                int rectX = i * parentItemWidth + firstRectX;
+
+                Rect temp = iconRectList.get(i);
+
+                temp.left = rectX;
+                temp.top = iconTop ;
+                temp.right = rectX + iconWidth;
+                temp.bottom = iconTop + iconHeight;
+                if (i == currentCheckedIndex) {
+                    // 放大图标
+                    temp.left -= 7;
+                    temp.right += 7;
+                    temp.top -= 7;
+                    temp.bottom += 7;
+
+                }
+            }
+
             //画背景
             paint.setAntiAlias(false);
             for (int i = 0; i < itemCount; i++) {
-                Bitmap bitmap = null;
+                Bitmap bitmap;
                 if (i == currentCheckedIndex) {
                     bitmap = iconBitmapAfterList.get(i);
+
                 } else {
                     bitmap = iconBitmapBeforeList.get(i);
                 }
@@ -286,7 +284,7 @@ public class BottomBar extends View {
     //////////////////////////////////////////////////
     private Fragment currentFragment;
 
-    //注意 这里是只支持AppCompatActivity 需要支持其他老版的 自行修改
+    //注意 这里是只支持AppCompatActivity
     protected void switchFragment(int whichFragment) {
         Fragment fragment = fragmentList.get(whichFragment);
         int frameLayoutId = containerId;
@@ -312,4 +310,4 @@ public class BottomBar extends View {
     }
 }
 
-// 引用https://github.com/xubinhong/BottomBar.git
+// 源代码 https://github.com/xubinhong/BottomBar.git

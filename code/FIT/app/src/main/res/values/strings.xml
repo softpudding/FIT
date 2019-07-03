@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FIT</string>
+    <string name="button_msg">消息</string>
+    <string name="button_frd">好友</string>
 </resources>
