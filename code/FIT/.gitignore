@@ -1,13 +1,7 @@
 *.iml
 .gradle
-.idea
 /local.properties
-<<<<<<< HEAD
-/.idea/workspace.xml
-/.idea/libraries
-=======
 /.idea
->>>>>>> master
 .DS_Store
 /build
 /captures
