@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(MainActivity.this, Mainuser.class);
         startActivity(intent);
     }
+    public void toregister(View view){
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this,registerActivity.class);
+        startActivity(intent);
+    }
 }
