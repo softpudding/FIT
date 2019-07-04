@@ -1,4 +1,4 @@
-package com.example.fit.fragment;
+package com.example.FIT.fragment;
 
 
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fit.R;
+import com.example.FIT.R;
 
 
 public class Fragment_me extends Fragment {
