@@ -6,17 +6,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="216dp"
-        android:layout_marginEnd="8dp"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="316dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#E91E63"
+        android:clickable="true"
+        android:focusable="auto"
+        app:backgroundTint="#E91E63"
+        app:layout_anchorGravity="end|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/rcyc_record"
+        app:layout_constraintEnd_toStartOf="@+id/rcyc_record"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calCircle"
+        app:srcCompat="@drawable/photo" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcyc_record"
+        android:layout_width="412dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="1dp"
         android:layout_marginBottom="8dp"
-        android:text="mainpage"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calCircle">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.example.FIT.draw.CalorieCircle
+        android:id="@+id/calCircle"
+        android:layout_width="403dp"
+        android:layout_height="249dp"
+        android:layout_gravity="bottom|center|fill"
+        android:layout_marginTop="124dp"
+        android:background="#3F51B5"
+        app:layout_constraintBottom_toTopOf="@id/rcyc_record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

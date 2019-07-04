@@ -1,4 +1,4 @@
-package com.example.FIT;
+package com.example.FIT.draw;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -285,7 +285,7 @@ public class BottomBar extends View {
     private Fragment currentFragment;
 
     //注意 这里是只支持AppCompatActivity
-    protected void switchFragment(int whichFragment) {
+    public void switchFragment(int whichFragment) {
         Fragment fragment = fragmentList.get(whichFragment);
         int frameLayoutId = containerId;
 

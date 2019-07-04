@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.FIT"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -31,4 +31,6 @@ dependencies {
         //不导入依赖中的support-annotations，避免出现依赖冲突，会使用用户自己导入的包
     })
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
 }

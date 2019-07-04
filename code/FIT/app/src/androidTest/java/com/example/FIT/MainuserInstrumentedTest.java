@@ -2,6 +2,9 @@ package com.example.FIT;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.rule.ActivityTestRule;
+
+import com.example.FIT.activity.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class MainuserInstrumentedTest {
     @Rule
-    public ActivityTestRule<Mainuser> rule = new ActivityTestRule<>(Mainuser.class);
+    public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void BottomBarTest(){

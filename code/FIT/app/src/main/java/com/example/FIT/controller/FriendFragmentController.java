@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.example.FIT.fragment.Fragment_frdlist;
-import com.example.FIT.fragment.Fragment_msg;
+import com.example.FIT.fragment.FragmentFrdList;
+import com.example.FIT.fragment.FragmentMsg;
 
 import java.util.ArrayList;
 
@@ -34,8 +34,8 @@ public class FriendFragmentController {
 
     private void initFragment() {
         fragments = new ArrayList<Fragment>();
-        fragments.add(new Fragment_msg());
-        fragments.add(new Fragment_frdlist());
+        fragments.add(new FragmentMsg());
+        fragments.add(new FragmentFrdList());
 
         FragmentTransaction ft = fm.beginTransaction();
         for(Fragment fragment : fragments) {

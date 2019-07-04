@@ -10,11 +10,10 @@ import android.view.ViewGroup;
 import com.example.FIT.R;
 
 
-public class Fragment_me extends Fragment {
+public class FragmentMsg extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_me, container, false);
+        return LayoutInflater.from(getActivity()).inflate(R.layout.layout_message, container, false);
     }
-
 }
