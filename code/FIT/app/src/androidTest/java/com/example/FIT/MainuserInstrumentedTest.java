@@ -18,7 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 public class MainuserInstrumentedTest {
     @Rule
-    public ActivityTestRule<Mainuser> rule = new ActivityTestRule<>(Mainuser.class);
+    public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
     public void BottomBarTest(){

@@ -1,91 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="139dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="316dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#E91E63"
         android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_anchor="@+id/appbar"
+        android:focusable="auto"
+        app:backgroundTint="#E91E63"
         app:layout_anchorGravity="end|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/rcyc_record"
+        app:layout_constraintEnd_toStartOf="@+id/rcyc_record"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calCircle"
         app:srcCompat="@drawable/photo" />
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="252dp">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcyc_record"
+        android:layout_width="412dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calCircle">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="388dp"
-            android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+    </android.support.v7.widget.RecyclerView>
 
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="381dp"
-                android:layout_height="173dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="200dp"
-                android:layout_marginBottom="200dp"
-                android:visibility="visible" />
+    <com.example.FIT.draw.CalorieCircle
+        android:id="@+id/calCircle"
+        android:layout_width="403dp"
+        android:layout_height="249dp"
+        android:layout_gravity="bottom|center|fill"
+        android:layout_marginTop="124dp"
+        android:background="#3F51B5"
+        app:layout_constraintBottom_toTopOf="@id/rcyc_record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="366dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/calorie"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="480dp"
-        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rcyc_record"
-                android:layout_width="402dp"
-                android:layout_height="473dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:scrollbars="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>

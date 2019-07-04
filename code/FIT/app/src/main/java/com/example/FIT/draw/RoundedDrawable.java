@@ -1,4 +1,4 @@
-package com.example.FIT;
+package com.example.FIT.draw;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

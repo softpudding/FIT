@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
-import com.example.FIT.BottomBar;
 import com.example.FIT.R;
 import com.example.FIT.controller.FriendFragmentController;
 
 
-public class Fragment_friends extends Fragment {
+public class FragmentFriend extends Fragment {
 
     private RadioGroup rg_tab;
     private FriendFragmentController controller;
 
-    public Fragment_friends() {
+    public FragmentFriend() {
         // Required empty public constructor
     }
 

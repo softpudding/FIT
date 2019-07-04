@@ -9,17 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.FIT.R;
 import com.example.FIT.activity.RecordDetailActivity;
 import com.example.FIT.adapter.BaseAdapter;
+import com.example.FIT.draw.CalorieCircle;
 import com.example.FIT.item.RecordItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment_mainpage extends Fragment {
+public class FragmentMainpage extends Fragment {
 
     // 样例数据，后续需要从数据库中获得
     private List<RecordItem> data;
@@ -45,6 +47,9 @@ public class Fragment_mainpage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mainpage, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rcyc_record);
 
+        CalorieCircle calorieCircle = view.findViewById(R.id.calCircle);
+        // 设置热量值
+        calorieCircle.setCurProgress(300);
         // 设置layout方式
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);

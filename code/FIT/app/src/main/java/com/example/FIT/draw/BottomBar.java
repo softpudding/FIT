@@ -1,4 +1,4 @@
-package com.example.FIT;
+package com.example.FIT.draw;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
