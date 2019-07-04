@@ -1,6 +1,6 @@
 package com.example.FIT.item;
 
-public class RecordItem {
+public class RecordItem{
     private Integer image;
     private String title;
     private String text;

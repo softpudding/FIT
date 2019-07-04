@@ -1,5 +1,6 @@
 package com.example.FIT.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.FIT.R;
+import com.example.FIT.activity.RecordDetailActivity;
 import com.example.FIT.adapter.BaseAdapter;
 import com.example.FIT.item.RecordItem;
 
@@ -64,6 +66,15 @@ public class Fragment_mainpage extends Fragment {
                 holder.setHight(380);
             }
         };
+
+        // 设置Adapter的事件监听
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), RecordDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         // 设置adapter
         recyclerView.setAdapter(adapter);
 

@@ -1,21 +1,25 @@
-package com.example.FIT;
+package com.example.FIT.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.FIT.BottomBar;
+import com.example.FIT.R;
 import com.example.FIT.fragment.Fragment_mainpage;
 import com.example.FIT.fragment.Fragment_me;
 import com.example.FIT.fragment.Fragment_social;
 import com.example.FIT.fragment.Fragment_friends;
 
 public class MainActivity extends AppCompatActivity {
+    private BottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomBar bottomBar = findViewById(R.id.bottom_bar);
+        bottomBar = findViewById(R.id.bottom_bar);
         bottomBar.setContainer(R.id.fl_container)
                 .setTitleBeforeAndAfterColor("#999999", "#ff5d5e")
                 // 这里希望选中前后的icon大小不同，但是用不同大小的png没有效果
@@ -36,5 +40,14 @@ public class MainActivity extends AppCompatActivity {
                         R.drawable.item_me,
                         R.drawable.item_me)
                 .build();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        int id = getIntent().getIntExtra("id", 0);
+        // 跳转到对应的fragment
+        // 0-mainpage, 1-socail, 2-friends, 3-me
+        bottomBar.switchFragment(id);
     }
 }

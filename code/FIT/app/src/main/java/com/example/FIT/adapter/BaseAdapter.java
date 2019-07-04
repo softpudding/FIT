@@ -13,11 +13,26 @@ import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.MyHolder>{
     private List<T> dataList;
+    // 事件回调监听
+    private BaseAdapter.OnItemClickListener onItemClickListener;
+
     public BaseAdapter(List<T> datas){
         this.dataList = datas;
     }
 
     public abstract int getLayoutId(int viewType);
+
+
+    // 定义点击回调接口
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+        // void onItemLongClick(View view, int position);
+    }
+
+    // 定义一个设置点击监听器的方法
+    public void setOnItemClickListener(BaseAdapter.OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,14 +40,39 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         convert(holder, dataList.get(position), position);
+        // 对RecyclerView的每一个itemView设置点击事件
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                if(onItemClickListener != null) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView, pos);
+                }
+            }
+        });
+
+        /*
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(onItemClickListener != null) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.itemView, pos);
+                }
+                //表示此事件已经消费，不会触发单击事件
+                return true;
+            }
+        });
+        */
     }
 
     @Override
     public int getItemCount() {
         return dataList.size();
     }
+
 
     public abstract void convert(MyHolder holder, T data, int position);
 
