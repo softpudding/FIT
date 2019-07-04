@@ -1,6 +1,5 @@
 package com.example.FIT.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,4 +16,5 @@ public class Fragment_me extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return LayoutInflater.from(getActivity()).inflate(R.layout.fragment_me, container, false);
     }
+
 }
