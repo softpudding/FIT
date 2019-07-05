@@ -1,6 +1,8 @@
 package com.example.FIT.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.example.FIT.R;
 import com.example.FIT.activity.RecordDetailActivity;
@@ -40,6 +41,8 @@ public class FragmentMainpage extends Fragment {
         data = new ArrayList<>();
         data.add(item1);
         data.add(item2);
+        data.add(item1);
+        data.add(item2);
     }
     @Nullable
     @Override
@@ -48,8 +51,9 @@ public class FragmentMainpage extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.rcyc_record);
 
         CalorieCircle calorieCircle = view.findViewById(R.id.calCircle);
-        // 设置热量值
-        calorieCircle.setCurProgress(300);
+        // 设置热量值，需要根据个人设置来设定
+        calorieCircle.setCurProgress(1500);
+        calorieCircle.setTargetProgress(2000);
         // 设置layout方式
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -77,6 +81,12 @@ public class FragmentMainpage extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), RecordDetailActivity.class);
+                // 传参
+                RecordItem item = data.get(position);
+                intent.putExtra("title",item.getTitle());
+                intent.putExtra("text",item.getText());
+                // 传项目中图片
+                intent.putExtra("image", item.getImage());
                 startActivity(intent);
             }
         });
