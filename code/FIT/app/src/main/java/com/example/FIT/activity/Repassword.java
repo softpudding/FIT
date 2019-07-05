@@ -8,16 +8,14 @@ import android.view.View;
 import com.example.FIT.R;
 
 public class Repassword extends AppCompatActivity {
-    public class RegisterActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.register);
+            setContentView(R.layout.repassword);
         }
-        public void toLogin(View view){
-            Intent intent = new Intent();
-            intent.setClass(Repassword.this, LoginActivity.class);
-            startActivity(intent);
-        }
+    public void toLogin(View view){
+        Intent intent = new Intent();
+        intent.setClass(Repassword.this, LoginActivity.class);
+        startActivity(intent);
     }
 }

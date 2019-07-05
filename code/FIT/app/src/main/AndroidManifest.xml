@@ -20,6 +20,7 @@
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.Repassword"></activity>
     </application>
 
 </manifest>
