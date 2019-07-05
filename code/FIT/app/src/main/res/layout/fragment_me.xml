@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/setting_button"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginStart="60dp"
@@ -48,7 +48,7 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="#F9F9F9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
+        app:layout_constraintTop_toBottomOf="@+id/setting_button"
         app:srcCompat="@drawable/me_collection" />
 
     <TextView

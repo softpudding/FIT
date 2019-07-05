@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="69dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="272dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_setting" />
@@ -21,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="92dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="原用户名"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,14 +36,13 @@
         android:layout_marginTop="412dp"
         android:text="确认修改"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="backToMe"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="248dp"
         android:layout_height="71dp"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="用户信息设置"
         android:textSize="32sp"
@@ -109,17 +108,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <ImageButton
-        android:id="@+id/imageButton7"
+    <Button
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#F9F9F9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="backToMe"
-        app:srcCompat="@drawable/back" />
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="412dp"
+        android:text="密码更改"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!--<NumberPicker-->
