@@ -126,4 +126,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intent.setClass(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+    public void toRepassword(View view){
+        Intent intent = new Intent();
+        intent.setClass(LoginActivity.this, Repassword.class);
+        startActivity(intent);
+    }
 }
