@@ -21,5 +21,7 @@
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
     </application>
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

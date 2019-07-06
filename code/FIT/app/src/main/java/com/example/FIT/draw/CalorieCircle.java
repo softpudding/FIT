@@ -12,6 +12,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.example.FIT.R;
+
 // 绘制首页热量记录的环形图
 public class CalorieCircle extends View {
     private Context context;
@@ -39,7 +41,7 @@ public class CalorieCircle extends View {
 
     // 进度
     private int curProgress;
-    // private int targetProgress = 88;
+    private int targetProgress;
     // private boolean complete;
 
     // 构造函数
@@ -61,12 +63,16 @@ public class CalorieCircle extends View {
         curProgress = value;
     }
 
+    public void setTargetProgress(int value){
+        targetProgress = value;
+    }
+
     // 初始化
     private void initialize() {
 
         // 底环画笔
         defaultPaint = new Paint();
-        defaultPaint.setColor(Color.argb(0xEE, 0x8E, 0x8E, 0x8E));
+        defaultPaint.setColor(getResources().getColor(R.color.circleBg));
         defaultPaint.setStyle(Paint.Style.STROKE);
         defaultPaint.setStrokeWidth(paintWidth);
         defaultPaint.setAntiAlias(true);
@@ -91,14 +97,14 @@ public class CalorieCircle extends View {
 
         // 绘制区域的宽高
         float scale = context.getResources().getDisplayMetrics().density;
-        //boundsWidth = getWidth();
-        //boundsHeigh = getHeight();
-        boundsWidth = 412 * scale + 0.5f;
-        boundsHeigh = 216 * scale + 0.5f;
+        // boundsWidth = getWidth();
+        // boundsHeigh = getHeight();
+        boundsWidth = 386 * scale + 0.5f;
+        boundsHeigh = 250 * scale + 0.5f;
         centerPoint.x = boundsWidth / 2;
         centerPoint.y = boundsHeigh / 2;
 
-        radius = boundsHeigh * 1 / 3;
+        radius = boundsHeigh * 1 / 3.5f;
         paintWidth = 50;
         genPaintWidth = paintWidth / 2;
         initialize();
@@ -117,14 +123,23 @@ public class CalorieCircle extends View {
         // 环的外层半径
         float sroundRadius = radius + paintWidth / 2 - genPaintWidth / 2;
 
-        // 卡路里量（红色）
-        genPaint.setColor(Color.argb(0xEE, 0xFF, 0x35, 0x9A));
-        RectF oval1 = new RectF(centerPoint.x - sroundRadius, centerPoint.y
+
+        RectF oval = new RectF(centerPoint.x - sroundRadius, centerPoint.y
                 - sroundRadius, centerPoint.x + sroundRadius, centerPoint.y
                 + sroundRadius);
-        // 固定角度的弧
-        // 应该改为弧长根据数值动态变化
-        canvas.drawArc(oval1, -90, 300, false, genPaint);
+        // 卡路里量
+        // 小于目标值时弧长根据目标值和当前值比例动态变化
+        if (curProgress <= targetProgress) {
+            genPaint.setColor(getResources().getColor(R.color.circleGreen));
+            int sweepAngle = 360 * curProgress / targetProgress;
+            canvas.drawArc(oval, 135, sweepAngle, false, genPaint);
+        }
+        // 大于目标值后更换弧线颜色为粉红色
+        else {
+            genPaint.setColor(getResources().getColor(R.color.circleRed));
+            canvas.drawArc(oval, 135, 360, false, genPaint);
+        }
+
 
         // 环中心数值文本（动态迭加的）
         int curValue = curProgress;
@@ -132,68 +147,6 @@ public class CalorieCircle extends View {
         float ww = progressTextPaint.measureText(curValue + " CAL");
         canvas.drawText(curValue + " CAL", centerPoint.x - ww / 2,
                 centerPoint.y, progressTextPaint);
-
-        /*
-        // 评级提示
-        progressTextPaint.setTextSize(25);
-        float w = 0;
-        String text = "";
-        if (curValue == 0) {
-            text = "没有记录";
-            w = progressTextPaint.measureText(text);
-            complete = false;
-        } else if (curValue < targetProgress) {
-            // 这里不知道写什么比较好
-            text = "...";
-            w = progressTextPaint.measureText(text);
-        } else if (curValue >= targetProgress) {
-            text = "热量摄入有点多啦";
-            w = progressTextPaint.measureText(text);
-            complete = true;
-            postInvalidate();
-        }
-        canvas.drawText(text, centerPoint.x - w / 2, centerPoint.y + 40,
-                progressTextPaint);
-         */
-
     }
-
-    /*
-    //启动进度动画
-
-    public void start() {
-        curProgress = 0;
-        if (targetProgress == 0) {
-            targetProgress = 88;
-        }
-        final Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                curProgress++;
-                if (curProgress == targetProgress) {
-                    timer.cancel();
-                }
-                postInvalidate();
-            }
-        };
-        timer.schedule(timerTask, 0, 20);
-    }
-
-    // 点击评分区域，进行评分
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        float x = event.getX();
-        float y = event.getY();
-
-        if (x > centerPoint.x - radius && x < centerPoint.x + radius
-                && y > centerPoint.y - radius && y < centerPoint.y + radius) {
-            Log.i(TAG, ">>>");
-            start();
-        }
-        return super.onTouchEvent(event);
-    }
-    */
 
 }
