@@ -34,7 +34,8 @@ public class UsersController {
     public @ResponseBody String login(@RequestBody JSONObject data) {
         String tel = data.getString("account");
         String pwd = data.getString("password");
-
+        return userService.Login(tel,pwd);
+        /*
         User user = userService.findByTel(tel);
         if (user == null) {
             return "101";       // 账号不存在
@@ -50,6 +51,36 @@ public class UsersController {
             }
 
         }
+
+     */
+
+    }
+
+    @CrossOrigin(origins = "*" ,maxAge = 3600)
+    @PostMapping(path = "/test")
+    public @ResponseBody String test(@RequestBody JSONObject data) {
+        String tel = data.getString("account");
+        String pwd = data.getString("password");
+        System.out.println("tel is :  " + tel);
+        return "100100100";
+        /*
+        User user = userService.findByTel(tel);
+        if (user == null) {
+            return "101";       // 账号不存在
+        } else {
+            if (user.getIsactive()) {
+                return "103";                   // 账号被禁用
+            } else {
+                if (user.getPassword().equals(pwd)) {
+                    return "100";
+                } else {
+                    return "102";
+                }
+            }
+
+        }
+
+     */
 
     }
 }
