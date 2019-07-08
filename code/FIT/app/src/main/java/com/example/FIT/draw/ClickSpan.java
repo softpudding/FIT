@@ -3,7 +3,7 @@ package com.example.FIT.draw;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
-
+//
 //public class ClickSpan extends ClickableSpan {
 //    private onTextViewClickListener mListener;
 //

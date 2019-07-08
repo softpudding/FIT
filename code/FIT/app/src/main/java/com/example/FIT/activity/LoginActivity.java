@@ -1,16 +1,20 @@
 package com.example.FIT.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.FIT.R;
 
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -36,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pwText = findViewById(R.id.text_pw);
         loginButton = findViewById(R.id.button_login);
         loginButton.setOnClickListener(this);
+//        View tv=(TextView)findViewById(R.id.forget);
+//        tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     @Override
@@ -131,4 +137,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intent.setClass(LoginActivity.this, Repassword.class);
         startActivity(intent);
     }
+
+
 }
