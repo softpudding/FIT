@@ -6,14 +6,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.FIT.R;
+import com.example.FIT.User;
+import com.example.FIT.network.NetWorkManager;
+import com.example.FIT.network.Response;
+import com.example.FIT.network.UserService;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import org.reactivestreams.Subscriber;
+
 import java.io.IOException;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+/*
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -21,6 +33,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+*/
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -46,74 +63,81 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String password = pwText.getText().toString();
                 Log.d("Click login","acount="+account);
                 Log.d("Click login","ps = "+password);
-                login(account,password);
+                login2(account,password);
         }
     }
-    private void login(String account,String password){
-        // 发送http POST请求
-        OkHttpClient okHttpClient = new OkHttpClient();
-        RequestBody requestBody = new FormBody.Builder().add("account",account)
-                                                        .add("password",password)
-                                                        .build();
-        Request request = new Request.Builder().url("http://202.120.40.8:30231/usr/login")
-                                                .post(requestBody).build();
-        Call call = okHttpClient.newCall(request);
-        // 请求加入调度,重写回调方法
-        call.enqueue(new Callback() {
+    private void login2(String accout,String password){
+        // 创建实例
+        NetWorkManager.getInstance().init();
+        Retrofit retrofit = NetWorkManager.getInstance().getRetrofit();
+        UserService request = retrofit.create(UserService.class);
 
-            AlertDialog.Builder builder  = new AlertDialog.Builder(LoginActivity.this);
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("fail",e.getMessage());
-                builder.setTitle("错误" ) ;
-                builder.setMessage("发送登录请求失败" ) ;
-                builder.setPositiveButton("是" ,  null );
-                builder.show();
-            }
+        // 创建网络请求接口实例
+        Observable<String> observable = request.login(accout,password);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())//最后在主线程中执行
+                .subscribe(new Observer<String>(){
+                    private Disposable disposable;
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String flag = response.body().string();
-                if(flag!=null){
-                    if(flag.equals("100")){
-                        Intent intent = new Intent();
-                        intent.setClass(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("id",0);
-                        startActivity(intent);
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
                     }
-                    else if(flag.equals("101")){
+
+                    @Override
+                    public void onComplete() {
+                        System.out.println("onCompleted");
+                    }
+
+                    private AlertDialog.Builder builder  = new AlertDialog.Builder(LoginActivity.this);
+                    @Override
+                    public void onError(Throwable e) {
+                        System.err.println("onError");
                         builder.setTitle("错误" ) ;
-                        builder.setMessage("账号不存在" ) ;
+                        builder.setMessage("get response null") ;
                         builder.setPositiveButton("是" ,  null );
                         builder.show();
                     }
-                    else if(flag.equals("102")){
-                        builder.setTitle("错误" ) ;
-                        builder.setMessage("密码错误" ) ;
-                        builder.setPositiveButton("是" ,  null );
-                        builder.show();
+
+                    @Override
+                    public void onNext(String flag) {
+                        System.out.println(flag);
+
+                        switch(flag){
+                            case "100":
+                                Intent intent = new Intent();
+                                intent.setClass(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("id",0);
+                                startActivity(intent);
+                                break;
+                            case "101":
+                                builder.setTitle("错误" ) ;
+                                builder.setMessage("账号不存在" ) ;
+                                builder.setPositiveButton("是" ,  null );
+                                builder.show();
+                                break;
+                            case "102":
+                                builder.setTitle("错误" ) ;
+                                builder.setMessage("密码错误" ) ;
+                                builder.setPositiveButton("是" ,  null );
+                                builder.show();
+                                break;
+                            case "103":
+                                builder.setTitle("错误" ) ;
+                                builder.setMessage("账号被禁用" ) ;
+                                builder.setPositiveButton("是" ,  null );
+                                builder.show();
+                                break;
+                            default:
+                                builder.setTitle("错误" ) ;
+                                builder.setMessage("response: " + flag) ;
+                                builder.setPositiveButton("是" ,  null );
+                                builder.show();
+                                break;
+                        }
                     }
-                    else if(flag.equals("103")){
-                        builder.setTitle("错误" ) ;
-                        builder.setMessage("账号被禁用" ) ;
-                        builder.setPositiveButton("是" ,  null );
-                        builder.show();
-                    }
-                    else{
-                        builder.setTitle("错误" ) ;
-                        builder.setMessage("response: " + flag) ;
-                        builder.setPositiveButton("是" ,  null );
-                        builder.show();
-                    }
-                }
-                else{
-                    builder.setTitle("错误" ) ;
-                    builder.setMessage("get response null") ;
-                    builder.setPositiveButton("是" ,  null );
-                    builder.show();
-                }
-            }
-        });
+
+                });
     }
     public void toMain(View view){
         Intent intent = new Intent();
