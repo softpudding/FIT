@@ -74,10 +74,12 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="80dp"
         android:onClick="toMain"
         android:text="ToMain"
-        tools:layout_editor_absoluteX="277dp"
-        tools:layout_editor_absoluteY="56dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/button5"
         android:layout_width="77dp"
