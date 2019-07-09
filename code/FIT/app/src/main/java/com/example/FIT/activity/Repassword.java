@@ -1,5 +1,6 @@
 package com.example.FIT.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -25,19 +26,18 @@ public class Repassword extends AppCompatActivity  implements View.OnClickListen
     private EditText tPhone;
     private EditText tPsw;
     private EditText tPswc;
-    private EditText tName;
-    private EditText tVer;
+    //private EditText tVer;
     private ImageButton repswButton;
-    private Button gainVeri;
+  //  private Button gainVeri;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.repassword);
             tPhone = findViewById(R.id.rp_tel);
-            tVer=findViewById(R.id.rp_veri);
+          //  tVer=findViewById(R.id.rp_veri);
             tPsw=findViewById(R.id.rp_psw);
             tPswc=findViewById(R.id.rp_pswc);
-            gainVeri=findViewById(R.id.rp_button);
+          //  gainVeri=findViewById(R.id.rp_button);
             repswButton=findViewById(R.id.rp_imageButton);
             repswButton.setOnClickListener(this);
         }
@@ -45,14 +45,14 @@ public class Repassword extends AppCompatActivity  implements View.OnClickListen
     @Override
     public void onClick(View view){
         String tel = tPhone.getText().toString();
-        String veri = tVer.getText().toString();
+       // String veri = tVer.getText().toString();
         String password=tPsw.getText().toString();
         String pswc=tPswc.getText().toString();
         switch (view.getId()){
-            case R.id.rp_button:
-                if(tel.equals("")){
-                    Log.d("no phone","gainVerification");
-                }
+//            case R.id.rp_button:
+//                if(tel.equals("")){
+//                    Log.d("no phone","gainVerification");
+//                }
             case R.id.rp_imageButton:
                 if(tel.equals("")){
                     new AlertDialog.Builder(Repassword.this).
@@ -69,14 +69,14 @@ public class Repassword extends AppCompatActivity  implements View.OnClickListen
                             setTitle("提示").setMessage("请确认密码").setNegativeButton("OK",null)
                             .show();
                 }
-                else if(!veri.equals("1")){
-                    new AlertDialog.Builder(Repassword.this).
-                            setTitle("提示").setMessage("验证码错误").setNegativeButton("OK",null)
-                            .show();
-                }
+//                else if(!veri.equals("1")){
+//                    new AlertDialog.Builder(Repassword.this).
+//                            setTitle("提示").setMessage("验证码错误").setNegativeButton("OK",null)
+//                            .show();
+//                }
                 else {
-                    Log.d("Click regis","tel="+tel);
-                    Log.d("Click regis","psw = "+password);
+                    Log.d("Click repsw","tel="+tel);
+                    Log.d("Click repsw","psw = "+password);
                     repsw(tel,password);}
         }
     }
@@ -117,7 +117,11 @@ public class Repassword extends AppCompatActivity  implements View.OnClickListen
                             case "1":
                                 builder.setTitle("提示" ) ;
                                 builder.setMessage("修改成功，请登录" ) ;
-                                builder.setPositiveButton("是" ,  null );
+                                builder.setPositiveButton("是" ,  new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(Repassword.this, LoginActivity.class);
+                                        startActivity(intent);
+                                    }});
                                 builder.show();
 //
 //                                Intent intent = new Intent();

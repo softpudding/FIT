@@ -1,5 +1,6 @@
 package com.example.FIT.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -27,19 +28,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText tPsw;
     private EditText tPswc;
     private EditText tName;
-    private EditText tVer;
+   // private EditText tVer;
     private ImageButton regisButton;
-    private Button gainVeri;
+ //   private Button gainVeri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         tPhone = findViewById(R.id.r_phone);
-        tVer=findViewById(R.id.r_verify);
+    //    tVer=findViewById(R.id.r_verify);
         tName=findViewById(R.id.r_name);
         tPsw=findViewById(R.id.r_psw);
         tPswc=findViewById(R.id.r_pswc);
-        gainVeri=findViewById(R.id.gain_veri);
+     //   gainVeri=findViewById(R.id.gain_veri);
         regisButton=findViewById(R.id.button_regis);
         regisButton.setOnClickListener(this);
     }
@@ -47,15 +48,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view){
         String tel = tPhone.getText().toString();
-        String veri = tVer.getText().toString();
+        //String veri = tVer.getText().toString();
         String nickName=tName.getText().toString();
         String password=tPsw.getText().toString();
         String pswc=tPswc.getText().toString();
         switch (view.getId()){
-            case R.id.gain_veri:
-                if(tel.equals("")){
-                    Log.d("no phone","gainVerification");
-                }
+//            case R.id.gain_veri:
+//                if(tel.equals("")){
+//                    Log.d("no phone","gainVerification");
+//                }
             case R.id.button_regis:
                 if(tel.equals("")){
                     new AlertDialog.Builder(RegisterActivity.this).
@@ -72,11 +73,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             setTitle("提示").setMessage("请确认密码").setNegativeButton("OK",null)
                             .show();
                 }
-                else if(!veri.equals("1")){
-                    new AlertDialog.Builder(RegisterActivity.this).
-                            setTitle("提示").setMessage("验证码错误").setNegativeButton("OK",null)
-                            .show();
-                }
+//                else if(!veri.equals("1")){
+//                    new AlertDialog.Builder(RegisterActivity.this).
+//                            setTitle("提示").setMessage("验证码错误").setNegativeButton("OK",null)
+//                            .show();
+//                }
                 else {
                     Log.d("Click regis","tel="+tel);
                     Log.d("Click regis","psw = "+password);
@@ -121,12 +122,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             case "1":
                                 builder.setTitle("提示" ) ;
                                 builder.setMessage("注册成功，请登录" ) ;
-                                builder.setPositiveButton("是" ,  null );
+                                builder.setPositiveButton("是" ,  new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                    }} );
                                 builder.show();
                                 //这里需要加个延时，还没写
-                                Intent intent = new Intent();
-                                intent.setClass(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intent);
+//                                Intent intent = new Intent();
+//                                intent.setClass(RegisterActivity.this, LoginActivity.class);
+//                                startActivity(intent);
 //                                intent.setClass(RegisterActivity.this, LoginActivity.class);
 //                                intent.putExtra("id",0);
 //                                startActivity(intent);
