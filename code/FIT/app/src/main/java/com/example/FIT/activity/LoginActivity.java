@@ -63,13 +63,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view){
+        String account = accountText.getText().toString();
+        String password = pwText.getText().toString();
         switch (view.getId()){
             case R.id.button_login:
-                String account = accountText.getText().toString();
-                String password = pwText.getText().toString();
                 Log.d("Click login","acount="+account);
                 Log.d("Click login","ps = "+password);
-                login2(account,password);
+                if(account.equals("")){
+                    new AlertDialog.Builder(LoginActivity.this).
+                            setTitle("提示").setMessage("请输入手机号").setNegativeButton("OK",null)
+                            .show();
+                }
+                else if(password.equals("")){
+                    new AlertDialog.Builder(LoginActivity.this).
+                            setTitle("提示").setMessage("请输入密码").setNegativeButton("OK",null)
+                            .show();
+                }
+                else{
+                    login2(account,password);
+                }
+
         }
     }
     private void login2(String accout,String password){
