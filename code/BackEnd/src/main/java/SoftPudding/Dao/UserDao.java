@@ -14,4 +14,5 @@ public class UserDao {
         return userRepository.findByTel(tel);
     }
 
+    public void save(User user) { userRepository.save(user); }
 }

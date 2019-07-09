@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String Login(String tel, String pwd) {
-        User user = userDao.findByTel(tel);
+        User user = findByTel(tel);
         if (user == null) {
             return "101";       // 账号不存在
         }
@@ -32,4 +32,15 @@ public class UserServiceImpl implements UserService {
         return "100";           // 登录正常
     }
 
+    @Override
+    public boolean register(User user) {
+        User test = findByTel(user.getTel());
+        if (test == null) {
+            userDao.save(user);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
