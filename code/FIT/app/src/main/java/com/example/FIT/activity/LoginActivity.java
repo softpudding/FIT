@@ -1,6 +1,8 @@
 package com.example.FIT.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +13,12 @@ import com.example.FIT.network.NetWorkManager;
 import com.example.FIT.network.Response;
 import com.example.FIT.network.UserService;
 
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.reactivestreams.Subscriber;
 
@@ -53,17 +57,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pwText = findViewById(R.id.text_pw);
         loginButton = findViewById(R.id.button_login);
         loginButton.setOnClickListener(this);
+//        View tv=(TextView)findViewById(R.id.forget);
+//        tv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
     @Override
     public void onClick(View view){
+        String account = accountText.getText().toString();
+        String password = pwText.getText().toString();
         switch (view.getId()){
             case R.id.button_login:
-                String account = accountText.getText().toString();
-                String password = pwText.getText().toString();
                 Log.d("Click login","acount="+account);
                 Log.d("Click login","ps = "+password);
-                login2(account,password);
+                if(account.equals("")){
+                    new AlertDialog.Builder(LoginActivity.this).
+                            setTitle("提示").setMessage("请输入手机号").setNegativeButton("OK",null)
+                            .show();
+                }
+                else if(password.equals("")){
+                    new AlertDialog.Builder(LoginActivity.this).
+                            setTitle("提示").setMessage("请输入密码").setNegativeButton("OK",null)
+                            .show();
+                }
+                else{
+                    login2(account,password);
+                }
+
         }
     }
     private void login2(String accout,String password){
@@ -150,4 +169,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         intent.setClass(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+    public void toRepassword(View view){
+        Intent intent = new Intent();
+        intent.setClass(LoginActivity.this, Repassword.class);
+        startActivity(intent);
+    }
+
+
 }

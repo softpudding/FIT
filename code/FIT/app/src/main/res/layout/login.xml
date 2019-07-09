@@ -32,8 +32,8 @@
         android:layout_marginStart="72dp"
         android:layout_marginBottom="212dp"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:hint="Telephone"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -67,6 +67,30 @@
         android:layout_marginBottom="260dp"
         android:onClick="toRegister"
         android:text="没有账号？注册！"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="80dp"
+        android:onClick="toMain"
+        android:text="ToMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="136dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="108dp"
+        android:onClick="toRepassword"
+        android:text="忘记密码？点击这里"
+        android:textColor="#B89EB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
