@@ -47,24 +47,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/gain_veri"
-        android:layout_width="57dp"
-        android:layout_height="37dp"
-        android:text="获取"
-        app:layout_constraintBottom_toBottomOf="@id/r_verify"
-        app:layout_constraintStart_toEndOf="@id/r_verify" />
+    <!--<Button-->
+        <!--android:id="@+id/gain_veri"-->
+        <!--android:layout_width="57dp"-->
+        <!--android:layout_height="37dp"-->
+        <!--android:text="获取"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/r_verify"-->
+        <!--app:layout_constraintStart_toEndOf="@id/r_verify" />-->
 
-    <EditText
-        android:id="@+id/r_verify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:ems="10"
-        android:hint="输入验证码"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/r_phone" />
+    <!--<EditText-->
+        <!--android:id="@+id/r_verify"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="84dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="输入验证码"-->
+        <!--android:inputType="number"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/r_phone" />-->
 
     <EditText
         android:id="@+id/r_name"
@@ -76,7 +76,7 @@
         android:hint="输入用户名"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/r_verify" />
+        app:layout_constraintTop_toBottomOf="@id/r_phone" />
 
     <EditText
         android:id="@+id/r_psw"

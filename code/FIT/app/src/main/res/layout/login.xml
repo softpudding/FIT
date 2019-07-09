@@ -86,11 +86,12 @@
         android:id="@+id/forget"
         android:layout_width="136dp"
         android:layout_height="45dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="108dp"
         android:onClick="toRepassword"
-        android:text="忘记密码？"
-    app:layout_constraintBottom_toBottomOf="parent"
+        android:text="忘记密码？点击这里"
+        android:textColor="#B89EB7"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
