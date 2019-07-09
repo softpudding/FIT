@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/loginBg"
+            android:id="@+id/registerBg"
             android:layout_width="550dp"
             android:layout_height="854dp"
             android:contentDescription="login background"
@@ -23,11 +23,11 @@
             app:srcCompat="@drawable/login_back" />
 
         <ImageView
-            android:id="@+id/loginIcon"
+            android:id="@+id/registerIcon"
             android:layout_width="0dp"
             android:layout_height="391dp"
             android:foregroundGravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/registerLinearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,10 +35,10 @@
             app:srcCompat="@drawable/icon" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/registerLinearLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="220dp"
             android:layout_marginBottom="30dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -48,54 +48,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/button_toRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="16dp"
-                android:text="@string/to_register" />
-
             <EditText
                 android:id="@+id/input_phone"
                 android:layout_width="230dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="@string/account"
+                android:hint="@string/input_phone"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/input_password"
+                android:id="@+id/input_name"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="@string/input_name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/input_pwd"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:hint="@string/input_pwd"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/input_pwd_again"
                 android:layout_width="230dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
                 android:ems="10"
-                android:hint="@string/password"
+                android:hint="@string/input_pwd_again"
                 android:inputType="textPassword" />
 
             <Button
-                android:id="@+id/button_login"
+                android:id="@+id/button_register"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/check" />
-
-            <TextView
-                android:id="@+id/toRepassword"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/forget_pwd"
-                android:textAlignment="center" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="debug_tomain" />
 
         </LinearLayout>
 

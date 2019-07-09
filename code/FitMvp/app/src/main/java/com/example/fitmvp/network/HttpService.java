@@ -11,4 +11,14 @@ public interface HttpService {
     @POST("/user/login")
     @FormUrlEncoded
     Observable<String> login(@Field("account") String account, @Field("password") String password);
+
+    // 注册
+    @POST("/user/register")
+    @FormUrlEncoded
+    Observable<String> register(@Field("tel") String tel,@Field("nickName") String nickName,@Field("password") String password);
+
+    // 修改密码
+    @POST("/user/changePassword")
+    @FormUrlEncoded
+    Observable<String> reps(@Field("tel") String tel,@Field("password") String password);
 }
