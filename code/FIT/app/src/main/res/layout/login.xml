@@ -32,8 +32,8 @@
         android:layout_marginStart="72dp"
         android:layout_marginBottom="212dp"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:hint="Telephone"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
