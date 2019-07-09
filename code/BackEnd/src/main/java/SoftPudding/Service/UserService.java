@@ -8,5 +8,7 @@ public interface UserService{
 
     String Login(String tel, String pwd);
 
-    boolean register(User user);
+    String register(User user);
+
+    String changePwd(String tel, String pwd);
 }

@@ -22,12 +22,12 @@ public class UserDaoTest {
 
     @Test
     public void findByTel() {
-        assertEquals("Test UserDao.findByTel","Axe",userDao.findByTel("102").getNickName());
+        assertEquals("Axe",userDao.findByTel("102").getNickName());
     }
 
     @Test
     public void findByTel2() {
-        assertEquals("Test UserDao.findByTel","Axe",userRepository.findByTel("102").getNickName());
+        assertEquals("Axe",userRepository.findByTel("102").getNickName());
     }
 
     @Test

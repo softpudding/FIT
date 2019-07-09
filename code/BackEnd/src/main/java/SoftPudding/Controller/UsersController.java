@@ -24,12 +24,19 @@ public class UsersController {
 
     @CrossOrigin(origins = "*" ,maxAge = 3600)
     @PostMapping(path = "/register")
-    public @ResponseBody boolean login(@RequestBody JSONObject data) {
+    public @ResponseBody String register(@RequestParam String tel, @RequestParam String password, @RequestParam String nickName) {
         User user = new User();
-        user.setTel(data.getString("tel"));
-        user.setPassword(data.getString("password"));
-        user.setNickName(data.getString("nickName"));
-        //user.setIsactive(true);
+        user.setTel(tel);
+        user.setPassword(password);
+        user.setNickName(nickName);
+        user.setIsactive(true);
         return userService.register(user);
+    }
+
+    @CrossOrigin(origins = "*" ,maxAge = 3600)
+    @PostMapping(path = "/changePassword")
+    public @ResponseBody String loginTest(@RequestParam String tel, @RequestParam String password) {
+
+        return userService.changePwd(tel, password);
     }
 }
