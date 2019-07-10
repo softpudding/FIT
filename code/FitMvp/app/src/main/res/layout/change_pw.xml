@@ -1,52 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/changePwBg"
-            android:layout_width="550dp"
-            android:layout_height="854dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.336"
-            app:srcCompat="@drawable/login_back" />
 
         <ImageView
             android:id="@+id/changePwIcon"
-            android:layout_width="0dp"
-            android:layout_height="391dp"
-            android:foregroundGravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/pwLinearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.308"
-            app:srcCompat="@drawable/icon" />
+        android:layout_width="154dp"
+        android:layout_height="179dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/icon1" />
 
         <LinearLayout
-            android:id="@+id/pwLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="220dp"
-            android:layout_marginBottom="30dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                 android:id="@+id/change_hint"
@@ -54,7 +32,7 @@
                 android:layout_height="50dp"
                 android:text="@string/change_pw"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="#02576C"
                 android:textSize="18sp" />
 
             <EditText
@@ -84,13 +62,17 @@
                 android:hint="@string/input_pwd_again"
                 android:inputType="textPassword" />
 
-            <Button
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/button_change"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/check" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginBottom="16dp"
+                app:backgroundTint="#BDEDE6"
+                app:srcCompat="@drawable/gou" />
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+</RelativeLayout>

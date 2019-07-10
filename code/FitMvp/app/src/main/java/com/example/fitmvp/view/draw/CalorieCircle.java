@@ -99,8 +99,8 @@ public class CalorieCircle extends View {
         float scale = context.getResources().getDisplayMetrics().density;
         // boundsWidth = getWidth();
         // boundsHeigh = getHeight();
-        boundsWidth = 386 * scale + 0.5f;
-        boundsHeigh = 250 * scale + 0.5f;
+        boundsWidth = 360 * scale + 0.5f;
+        boundsHeigh = 200 * scale + 0.5f;
         centerPoint.x = boundsWidth / 2;
         centerPoint.y = boundsHeigh / 2;
 

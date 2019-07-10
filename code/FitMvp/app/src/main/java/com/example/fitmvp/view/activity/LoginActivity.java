@@ -12,6 +12,7 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.presenter.LoginPresenter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -22,7 +23,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @InjectView(R.id.input_password)
     EditText inputPassword;
     @InjectView(R.id.button_login)
-    Button login;
+    FloatingActionButton login;
     @InjectView(R.id.button_toRegister)
     Button buttonToRegister;
     @InjectView(R.id.toRepassword)
