@@ -1,5 +1,7 @@
 package com.example.fitmvp.presenter;
 
+import android.text.TextUtils;
+
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.model.LoginModel;
@@ -22,9 +24,22 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
         return map;
     }
 
+    public boolean checkNull() {
+        boolean isNull = false;
+        if (TextUtils.isEmpty(getIView().getAccount())) {
+            getIView().setAccountError("账号不能为空");
+            isNull = true;
+        }
+        else if (TextUtils.isEmpty(getIView().getPassword())) {
+            getIView().setPwError("密码不能为空");
+            isNull = true;
+        }
+        return isNull;
+    }
+
     @Override
     public void login(String account,String password){
-        if (!getIView().checkNull()) {
+        if (!checkNull()) {
             ((LoginModel) getiModelMap().get("login"))
                     .login(account, password, new LoginContract.Model.InfoHint() {
                 @Override

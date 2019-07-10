@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         int id = getIntent().getIntExtra("id", 0);
         // 跳转到对应的fragment
-        // 0-mainpage, 1-socail, 2-friends, 3-me
+        // 0-mainpage, 1-socail, 2-friendold, 3-me
         bottomBar.switchFragment(id);
     }
 }
