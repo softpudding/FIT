@@ -15,13 +15,14 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.RegisterContract;
 import com.example.fitmvp.presenter.RegisterPresenter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View{
     @InjectView(R.id.button_register)
-    Button register;
+    FloatingActionButton register;
     @InjectView(R.id.input_phone)
     EditText inputPhone;
     @InjectView(R.id.input_name)
