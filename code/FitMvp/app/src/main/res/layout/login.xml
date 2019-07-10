@@ -22,7 +22,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/login_back" />
 
-        <ImageView
+        <ImageViewi
             android:id="@+id/loginIcon"
             android:layout_width="0dp"
             android:layout_height="391dp"
