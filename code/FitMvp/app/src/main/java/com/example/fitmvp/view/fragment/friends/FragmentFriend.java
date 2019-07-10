@@ -5,17 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.fitmvp.R;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.InjectView;
 
 public class FragmentFriend extends Fragment {
-
-    private RadioGroup rg_tab;
-    private FriendFragmentController controller;
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     public FragmentFriend() {
         // Required empty public constructor
@@ -24,32 +30,20 @@ public class FragmentFriend extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.friends, container, false);
-
-        controller = FriendFragmentController.getInstance(this, R.id.id_fragment);
-        controller.showFragment(0);
-        rg_tab = (RadioGroup) view.findViewById(R.id.rg_tab);
-        rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioButton_msg:
-                        controller.showFragment(0);
-                        break;
-                    case R.id.radioButton_frdlist:
-                        controller.showFragment(1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+        viewPager = view.findViewById(R.id.friend_pager);
+        tabLayout = view.findViewById(R.id.tab_friend);
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new FragmentMsg());
+        fragments.add(new FragmentFrdList());
+        FragmentPagerAdapter adapter = new FragmentOrderListAdapter(getActivity().getSupportFragmentManager(),fragments, new String[]{"消息","好友"});
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
     }
