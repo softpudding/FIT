@@ -23,6 +23,7 @@ public abstract class CommonObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable e) {
         System.err.println("onError");
+        System.err.println(e.getMessage());
     }
 
     protected abstract void onError(ApiException e);

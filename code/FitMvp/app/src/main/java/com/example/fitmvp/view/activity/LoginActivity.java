@@ -31,6 +31,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     Button toMain;
 
     @Override
+    protected void setBar(){
+    }
+    @Override
     protected LoginPresenter loadPresenter() {
         return new LoginPresenter();
     }
@@ -69,6 +72,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             case R.id.toRepassword:
                 toRePassword();
                 break;
+            // 直接去主页，调试用
             case R.id.button2:
                 loginSuccess();
                 break;

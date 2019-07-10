@@ -1,5 +1,6 @@
 package com.example.fitmvp.view.activity;
 
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +8,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
@@ -28,6 +30,19 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     EditText inputPwd;
     @InjectView(R.id.input_pwd_again)
     EditText inputPwdAgain;
+
+    @Override
+    protected void setBar(){
+        ActionBar actionbar = getSupportActionBar();
+        //显示返回箭头默认是不显示的
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        //显示左侧的返回箭头，并且返回箭头和title一直设置返回箭头才能显示
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setDisplayUseLogoEnabled(true);
+        //显示标题
+        actionbar.setDisplayShowTitleEnabled(true);
+        actionbar.setTitle("注册");
+    }
 
     @Override
     protected RegisterPresenter loadPresenter() {
@@ -97,15 +112,16 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         }
         else if(!getPassword().equals(getPwdAgain())){
             inputPwdAgain.setError("两次密码不一致，请确认密码");
+            flag = false;
         }
         return flag;
     }
 
     @Override
-    public void registerSuccess(){
+    public void registerSuccess(String str){
         AlertDialog.Builder builder  = new AlertDialog.Builder(RegisterActivity.this);
         builder.setTitle("提示" ) ;
-        builder.setMessage("注册成功，请登录" ) ;
+        builder.setMessage(str) ;
         builder.setPositiveButton("是" ,  new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

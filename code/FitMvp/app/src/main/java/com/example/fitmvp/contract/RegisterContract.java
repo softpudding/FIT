@@ -1,7 +1,16 @@
 package com.example.fitmvp.contract;
 
+import androidx.annotation.NonNull;
+
 public interface RegisterContract {
     interface Model {
+        Boolean register(@NonNull String tel, @NonNull String nickName, @NonNull String password, @NonNull final InfoHint
+                infoHint);
+        //通过接口产生信息回调
+        interface InfoHint {
+            void successInfo(String str);
+            void errorInfo(String str);
+        }
     }
 
     interface View {
@@ -10,7 +19,7 @@ public interface RegisterContract {
         String getPassword();
         String getPwdAgain();
         Boolean check();
-        void registerSuccess();
+        void registerSuccess(String str);
         void registerFail(String title,String msg);
     }
 

@@ -25,8 +25,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
     @Override
     public void login(String account,String password){
         if (!getIView().checkNull()) {
-            ((LoginModel) getiModelMap().get("login")).login(account, password, new LoginModel
-                    .InfoHint() {
+            ((LoginModel) getiModelMap().get("login"))
+                    .login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
                 public void successInfo() {
                     getIView().loginSuccess();  //成功

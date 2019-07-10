@@ -20,5 +20,5 @@ public interface HttpService {
     // 修改密码
     @POST("/user/changePassword")
     @FormUrlEncoded
-    Observable<String> reps(@Field("tel") String tel,@Field("password") String password);
+    Observable<String> changePw(@Field("tel") String tel,@Field("password") String password);
 }

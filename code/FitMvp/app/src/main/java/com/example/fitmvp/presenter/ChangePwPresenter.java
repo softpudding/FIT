@@ -1,41 +1,41 @@
 package com.example.fitmvp.presenter;
 
 import com.example.fitmvp.base.BasePresenter;
-import com.example.fitmvp.contract.RegisterContract;
-import com.example.fitmvp.model.RegisterModel;
+import com.example.fitmvp.contract.ChangePwContract;
+import com.example.fitmvp.model.ChangePwModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
-import com.example.fitmvp.view.activity.RegisterActivity;
+import com.example.fitmvp.view.activity.ChangePwActivity;
 
 import java.util.HashMap;
 
-public class RegisterPresenter extends BasePresenter<RegisterActivity> implements RegisterContract.Presenter {
+public class ChangePwPresenter extends BasePresenter<ChangePwActivity> implements ChangePwContract.Presenter {
     @Override
     public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new RegisterModel());
+        return loadModelMap(new ChangePwModel());
     }
 
     @Override
     public HashMap<String, IModel> loadModelMap(IModel... models) {
         HashMap<String, IModel> map = new HashMap<>();
-        map.put("register", models[0]);
+        map.put("changePw", models[0]);
         return map;
     }
 
     @Override
-    public void register(String tel,String nickName,String password){
-        if (getIView().check()) {
-            ((RegisterModel) getiModelMap().get("register"))
-                    .register(tel, nickName, password, new RegisterContract.Model.InfoHint() {
+    public void changePw(String tel,String password){
+        if(getIView().check()) {
+            ((ChangePwModel) getiModelMap().get("changePw"))
+                    .changePw(tel, password, new ChangePwContract.Model.InfoHint() {
                         @Override
                         public void successInfo(String str) {
-                            getIView().registerSuccess(str);  //成功
+                            getIView().changeSuccess(str);
                         }
 
                         @Override
                         public void errorInfo(String str) {
                             LogUtils.e("LoginPresenter.failInfo", str);
-                            getIView().registerFail("错误", str); // 错误
+                            getIView().changeFail("错误", str); // 错误
                         }
                     });
         }

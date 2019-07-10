@@ -1,6 +1,7 @@
 package com.example.fitmvp.base;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getView());
+        setBar();
         mPresenter = loadPresenter();
         initCommonData();
         initView();
@@ -24,6 +26,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initData();
     }
 
+    protected abstract void setBar();
     protected abstract P loadPresenter();
 
     private void initCommonData() {
@@ -83,5 +86,16 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
         if (mPresenter != null)
             mPresenter.detachView();
+    }
+
+    // ActionBar 功能
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home://actionbar的左侧图标的点击事件处理
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
