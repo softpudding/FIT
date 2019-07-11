@@ -35,8 +35,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String register(User user) {
         User test = findByTel(user.getTel());
-        // 这里应该有一步验证 用户输入验证码是否正确的值。
-        // 如果不正确返回“2”   不过为了效率放在前端还是后端，这个待商榷
         if (test == null) {
             userDao.save(user);
             return "1";         // 注册成功

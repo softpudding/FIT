@@ -14,6 +14,7 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.ChangePwContract;
 import com.example.fitmvp.presenter.ChangePwPresenter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -26,7 +27,7 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
     @InjectView(R.id.change_pwd_again)
     EditText pwAgain;
     @InjectView(R.id.button_change)
-    Button change;
+    FloatingActionButton change;
 
     @Override
     protected void setBar(){

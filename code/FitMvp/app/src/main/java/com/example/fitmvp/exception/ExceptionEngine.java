@@ -62,11 +62,6 @@ public class ExceptionEngine {
                     break;
             }
             return ex;
-        } else if (e instanceof ServerException) {    //服务器返回的错误
-            ServerException resultException = (ServerException) e;
-            ex = new ApiException(resultException, resultException.code);
-            ex.message = resultException.message;
-            return ex;
         } else if (e instanceof JSONException
                 || e instanceof ParseException) {
             ex = new ApiException(e, ErrorType.PARSE_ERROR);
@@ -75,9 +70,11 @@ public class ExceptionEngine {
         } else if (e instanceof ConnectException || e instanceof SocketTimeoutException || e
                 instanceof ConnectTimeoutException) {
             ex = new ApiException(e, ErrorType.NETWORK_ERROR);
-            ex.message = "连接失败";  //均视为网络错误
+            ex.message = "服务器连接失败，请检查网络";  //均视为网络错误
             return ex;
-        } else if (e instanceof HttpException) {
+        }
+        /*
+        else if (e instanceof HttpException) {
             if ("HTTP 404 Not Found".equals(e.getMessage())) {
                 ex = new ApiException(e, ErrorType.NETWORK_ERROR);
                 ex.message = "没有连接服务器";
@@ -87,7 +84,8 @@ public class ExceptionEngine {
             }
             return ex;
 
-        } else {
+        } */
+        else {
             ex = new ApiException(e, ErrorType.UNKONW);
             ex.message = "未知错误";          //未知错误
             return ex;
