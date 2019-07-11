@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.bean.RecordItem;
+import com.example.fitmvp.view.activity.PhotoTake;
 import com.example.fitmvp.view.activity.RecordDetailActivity;
 import com.example.fitmvp.view.draw.CalorieCircle;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,4 +96,18 @@ public class FragmentMainpage extends Fragment {
 
         return view;
     }
+
+    public void onActivityCreated(Bundle bundle){
+        super.onActivityCreated(bundle);
+        FloatingActionButton takePhoto = getActivity().findViewById(R.id.takePhoto);
+        takePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PhotoTake.class);
+                // intent.setClass(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

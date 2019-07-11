@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.view.draw.BottomBar;
@@ -13,6 +14,8 @@ import com.example.fitmvp.view.fragment.FragmentSocial;
 import com.example.fitmvp.view.fragment.FragmentMainpage;
 
 public class MainActivity extends AppCompatActivity {
+
+
     private BottomBar bottomBar;
 
     @Override
@@ -51,4 +54,6 @@ public class MainActivity extends AppCompatActivity {
         // 0-mainpage, 1-socail, 2-friendold, 3-me
         bottomBar.switchFragment(id);
     }
+
+
 }

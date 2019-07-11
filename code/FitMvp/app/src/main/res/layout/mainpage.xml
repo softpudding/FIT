@@ -6,12 +6,11 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/takePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:backgroundTint="#E91E63"
-        android:clickable="true"
         android:focusable="auto"
         app:backgroundTint="#E91E63"
         android:layout_marginTop="175dp"

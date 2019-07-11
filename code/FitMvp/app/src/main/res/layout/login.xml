@@ -39,7 +39,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:hint="@string/account"
-            android:inputType="phone" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/input_password"

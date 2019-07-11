@@ -20,7 +20,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
         android:ems="10"
-        android:hint="原用户名"
+        android:hint="昵称"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

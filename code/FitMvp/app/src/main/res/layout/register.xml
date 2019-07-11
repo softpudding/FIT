@@ -33,7 +33,7 @@
             android:layout_gravity="center_horizontal"
             android:ems="10"
             android:hint="@string/input_phone"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/input_name"
