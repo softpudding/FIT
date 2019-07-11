@@ -27,7 +27,7 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
                                 isRegister = true;
                                 break;
                             case "0":
-                                infoHint.errorInfo("注册失败");
+                                infoHint.errorInfo("注册失败，手机号已被注册");
                                 isRegister = false;
                                 break;
                             default:

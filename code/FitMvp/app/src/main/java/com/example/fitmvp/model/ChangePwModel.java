@@ -28,7 +28,7 @@ public class ChangePwModel extends BaseModel implements ChangePwContract.Model {
                                 isSuccess = true;
                                 break;
                             case "0":
-                                infoHint.errorInfo("修改失败");
+                                infoHint.errorInfo("修改失败，账号不存在");
                                 break;
                             default:
                                 infoHint.errorInfo(flag);

@@ -34,7 +34,7 @@
             android:text="@string/to_register" />
 
         <EditText
-            android:id="@+id/input_phone"
+            android:id="@+id/input_account"
             android:layout_width="230dp"
             android:layout_height="50dp"
             android:ems="10"
