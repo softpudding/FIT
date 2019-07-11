@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
-    @InjectView(R.id.input_phone)
+    @InjectView(R.id.input_account)
     EditText inputAccount;
     @InjectView(R.id.input_password)
     EditText inputPassword;
@@ -27,7 +27,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @InjectView(R.id.button_toRegister)
     Button buttonToRegister;
     @InjectView(R.id.toRepassword)
-    TextView rePassword;
+    TextView changePassword;
     @InjectView(R.id.button2)
     Button toMain;
 
@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void initListener() {
         login.setOnClickListener(this);
         buttonToRegister.setOnClickListener(this);
-        rePassword.setOnClickListener(this);
+        changePassword.setOnClickListener(this);
         toMain.setOnClickListener(this);
     }
 
