@@ -43,7 +43,7 @@ public class Http {
         return httpService;
     }
 
-    public static Retrofit getRetrofit() {
+    private static Retrofit getRetrofit() {
         if (retrofit == null) {
             synchronized (Http.class) {
                 if (retrofit == null) {

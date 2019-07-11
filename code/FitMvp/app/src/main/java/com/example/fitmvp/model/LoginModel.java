@@ -47,8 +47,8 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
 
                     @Override
                     public void onError(ApiException e){
-                        isLogin = false;
                         infoHint.errorInfo(e.message);
+                        System.err.println("onError: "+ e.getMessage());
                     }
                 });
         return isLogin;
