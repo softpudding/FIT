@@ -3,6 +3,7 @@ package com.example.fitmvp.observer;
 import android.content.Intent;
 
 import com.example.fitmvp.exception.ApiException;
+import com.example.fitmvp.exception.ExceptionEngine;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -22,8 +23,8 @@ public abstract class CommonObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-        System.err.println("onError");
-        System.err.println(e.getMessage());
+        System.err.println("onError: "+e.getMessage());
+        onError(ExceptionEngine.handleException(e));
     }
 
     protected abstract void onError(ApiException e);

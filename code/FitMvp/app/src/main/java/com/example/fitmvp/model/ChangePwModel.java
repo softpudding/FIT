@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.contract.ChangePwContract;
+import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
@@ -38,6 +39,7 @@ public class ChangePwModel extends BaseModel implements ChangePwContract.Model {
                     @Override
                     public void onError(ApiException e){
                         infoHint.errorInfo(e.message);
+                        System.err.println("onError: "+ e.getMessage());
                     }
                 });
         return isSuccess;

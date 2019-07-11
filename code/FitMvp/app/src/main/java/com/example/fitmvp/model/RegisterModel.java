@@ -39,8 +39,8 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
 
                     @Override
                     public void onError(ApiException e){
-                        isRegister = false;
                         infoHint.errorInfo(e.message);
+                        System.err.println("onError: "+ e.getMessage());
                     }
                 });
         return isRegister;
