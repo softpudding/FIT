@@ -34,7 +34,7 @@ public class NetworkUtil {
         if (null == manager)
             return false;
         NetworkInfo info = manager.getActiveNetworkInfo();
-        if (null == info || !info.isAvailable())
+        if (null == info)
             return false;
         return true;
     }
@@ -77,7 +77,7 @@ public class NetworkUtil {
             if (connectivity != null) {
                 NetworkInfo networkinfo = connectivity.getActiveNetworkInfo();
                 if (networkinfo != null) {
-                    if (networkinfo.isAvailable() && networkinfo.isConnected()) {
+                    if (networkinfo.isConnected()) {
                         if (!connectionNetwork())
                             return NET_CNNT_BAIDU_TIMEOUT;
                         else
@@ -88,7 +88,8 @@ public class NetworkUtil {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return NET_ERROR;
     }
