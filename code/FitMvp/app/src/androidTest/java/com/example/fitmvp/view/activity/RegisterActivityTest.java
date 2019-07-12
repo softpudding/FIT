@@ -95,7 +95,7 @@ public class RegisterActivityTest {
         // password again "password"
         onView(withId(R.id.input_pwd_again)).perform(clearText())
                 .perform(typeText("password\n"), closeSoftKeyboard())
-                .check(matches(withText("")));
+                .check(matches(withText("password")));
         // 点击登录按钮
         onView(withId(R.id.button_register)).perform(click());
         // 手机号已被注册，注册失败

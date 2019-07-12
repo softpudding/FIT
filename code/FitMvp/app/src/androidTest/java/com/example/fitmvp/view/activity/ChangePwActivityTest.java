@@ -70,10 +70,10 @@ public class ChangePwActivityTest {
     @Test
     public void testChangeFail(){
         // 输入
-        // phone "123456"
+        // phone "01234567890"
         onView(withId(R.id.change_phone)).perform(clearText())
-                .perform(typeText("123456\n"), closeSoftKeyboard())
-                .check(matches(withText("123456")));
+                .perform(typeText("01234567890\n"), closeSoftKeyboard())
+                .check(matches(withText("01234567890")));
         // password "password"
         onView(withId(R.id.change_pwd)).perform(clearText())
                 .perform(typeText("password\n"), closeSoftKeyboard())
