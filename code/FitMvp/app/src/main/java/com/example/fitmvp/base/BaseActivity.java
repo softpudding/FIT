@@ -18,6 +18,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getView());
+        // 设置actionBar内容
         setBar();
         mPresenter = loadPresenter();
         initCommonData();

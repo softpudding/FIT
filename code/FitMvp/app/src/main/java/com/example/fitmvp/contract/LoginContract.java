@@ -18,6 +18,8 @@ public interface LoginContract {
         String getPassword();
         void loginSuccess();
         void loginFail(String title, String msg);
+        void setAccountError(String str);
+        void setPwError(String str);
     }
 
     interface Presenter {

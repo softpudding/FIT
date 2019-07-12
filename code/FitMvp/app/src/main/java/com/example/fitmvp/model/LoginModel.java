@@ -7,6 +7,7 @@ import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.SpUtils;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
@@ -19,11 +20,14 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         httpService.login(account, password)
                 .compose(new ThreadTransformer<String>())
                 .subscribe(new CommonObserver<String>() {
+                    // 请求成功返回后检查登录结果
                     @Override
                     public void onNext(String flag) {
                         switch(flag){
                             case "100":
                                 infoHint.successInfo();
+                                // 将登录后获取的用户信息存入内存（SharedPreferences）
+                                saveUser();
                                 isLogin = true;
                                 break;
                             case "101":
@@ -52,5 +56,11 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                     }
                 });
         return isLogin;
+    }
+
+    private void saveUser(){
+        // 登录状态设为true
+        SpUtils.put("isLogin",true);
+        // 保存账号、昵称、头像、生日、身高、体重、性别信息
     }
 }

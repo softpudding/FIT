@@ -2,7 +2,6 @@ package com.example.fitmvp.view.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -128,24 +127,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         startActivity(intent);
     }
 
+    @Override
     public void setAccountError(String str){
         inputAccount.setError(str);
     }
+    @Override
     public void setPwError(String str){
         inputPassword.setError(str);
     }
-
-//    public boolean checkNull() {
-//        boolean isNull = false;
-//        if (TextUtils.isEmpty(getAccount())) {
-//            inputAccount.setError("账号不能为空");
-//            isNull = true;
-//        }
-//        else if (TextUtils.isEmpty(getPassword())) {
-//            inputPassword.setError("密码不能为空");
-//            isNull = true;
-//        }
-//        return isNull;
-//    }
-
 }

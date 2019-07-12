@@ -6,19 +6,20 @@ package com.example.fitmvp.base;
  */
 
 public class BaseHttpResult<T> {
-    // private int status;
+    private Integer code;
     // private String message;
     private T data;
 
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
     /*
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public String getMessage() {
         return message;
     }
