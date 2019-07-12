@@ -9,7 +9,7 @@ steps:
       - mvn test
     when:
       event: 
-        - pull_request
+        - push
   - name: test frontend
     image: openjdk:8-jre-alpine
     image: gradle
@@ -18,4 +18,4 @@ steps:
       - gradle test
     when:
       event: 
-        - pull_request
+        - push
