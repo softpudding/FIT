@@ -8,7 +8,7 @@ steps:
       - cd code/BackEnd
       - mvn test
     when:
-      event: pull_request_closed
+      event: pull_request
   - name: test frontend
     image: openjdk:8-jre-alpine
     image: gradle
@@ -16,4 +16,4 @@ steps:
       - cd code/FitMvp
       - gradle test
     when:
-      event: pull_request_closed
+      event: pull_request
