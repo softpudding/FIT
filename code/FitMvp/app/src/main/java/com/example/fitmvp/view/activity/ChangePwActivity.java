@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
-
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.ChangePwContract;
