@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
     <com.example.fitmvp.view.activity.AutoFitTextureView
         android:id="@+id/texture"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp"/>

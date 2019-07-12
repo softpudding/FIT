@@ -20,6 +20,8 @@ import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
 import android.os.Bundle;
+//import android.annotation.RequiresApi;
+//import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -29,6 +31,8 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
@@ -46,7 +50,7 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class PhotoTake extends Activity implements View.OnClickListener{
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "PhotoTake";
 
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -71,15 +75,13 @@ public class PhotoTake extends Activity implements View.OnClickListener{
     private final TextureView.SurfaceTextureListener mSurfaceTextureListener
             = new TextureView.SurfaceTextureListener() {
         @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture texture
-                , int width, int height) {
+        public void onSurfaceTextureAvailable(SurfaceTexture texture, int width, int height) {
             // 当TextureView可用时，打开摄像头
             openCamera(width, height);
         }
 
         @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture texture
-                , int width, int height) {
+        public void onSurfaceTextureSizeChanged(SurfaceTexture texture, int width, int height) {
         }
 
         @Override
@@ -94,10 +96,10 @@ public class PhotoTake extends Activity implements View.OnClickListener{
     private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
         //  摄像头被打开时激发该方法
         @Override
-        public void onOpened(CameraDevice cameraDevice) {
+        public void onOpened(@Nullable CameraDevice cameraDevice) {
             PhotoTake.this.cameraDevice = cameraDevice;
             // 开始预览
-            createCameraPreviewSession();  // ②
+            createCameraPreviewSession();  //
         }
 
         // 摄像头断开连接时激发该方法
@@ -115,13 +117,13 @@ public class PhotoTake extends Activity implements View.OnClickListener{
             PhotoTake.this.finish();
         }
     };
-
+//点击时操作
     @Override
     public void onClick(View view) {
         captureStillPicture();
     }
-
-    private void captureStillPicture() {
+//点击操作函数
+ private void captureStillPicture() {
         try {
             if (cameraDevice == null) {
                 return;
@@ -145,13 +147,11 @@ public class PhotoTake extends Activity implements View.OnClickListener{
             // 停止连续取景
             captureSession.stopRepeating();
             // 捕获静态图像
-            captureSession.capture(captureRequestBuilder.build()
-                    , new CameraCaptureSession.CaptureCallback()  // ⑤
+            captureSession.capture(captureRequestBuilder.build(), new CameraCaptureSession.CaptureCallback()
                     {
                         // 拍照完成时激发该方法
                         @Override
-                        public void onCaptureCompleted(CameraCaptureSession session
-                                , CaptureRequest request, TotalCaptureResult result) {
+                        public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
                             try {
                                 // 重设自动对焦模式
                                 previewRequestBuilder.set(CaptureRequest.CONTROL_AF_TRIGGER,
@@ -162,12 +162,14 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                                 // 打开连续取景模式
                                 captureSession.setRepeatingRequest(previewRequest, null,
                                         null);
-                            } catch (CameraAccessException e) {
+                            }
+                            catch (CameraAccessException e) {
                                 e.printStackTrace();
                             }
                         }
                     }, null);
-        } catch (CameraAccessException e) {
+        }
+        catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
@@ -179,7 +181,7 @@ public class PhotoTake extends Activity implements View.OnClickListener{
         try {
             // 打开摄像头
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
+//                Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding
                 //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -188,8 +190,9 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            manager.openCamera(mCameraId, stateCallback, null); // ①
-        } catch (CameraAccessException e) {
+            manager.openCamera(mCameraId, stateCallback, null);
+        }
+        catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
@@ -209,7 +212,7 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                     , imageReader.getSurface()), new CameraCaptureSession.StateCallback() // ③
                     {
                         @Override
-                        public void onConfigured(CameraCaptureSession cameraCaptureSession) {
+                        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                             // 如果摄像头为null，直接结束方法
                             if (null == cameraDevice) {
                                 return;
@@ -235,13 +238,14 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                         }
 
                         @Override
-                        public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
+                        public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
                             Toast.makeText(PhotoTake.this, "配置失败！"
                                     , Toast.LENGTH_SHORT).show();
                         }
                     }, null
             );
-        } catch (CameraAccessException e) {
+        }
+        catch (CameraAccessException e) {
             e.printStackTrace();
         }
     }
@@ -288,8 +292,7 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                     }, null);
 
             // 获取最佳的预览尺寸
-            previewSize = chooseOptimalSize(map.getOutputSizes(
-                    SurfaceTexture.class), width, height, largest);
+            previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class), width, height, largest);
             // 根据选中的预览尺寸来调整预览组件（TextureView的）的长宽比
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -299,9 +302,11 @@ public class PhotoTake extends Activity implements View.OnClickListener{
                 textureView.setAspectRatio(
                         previewSize.getHeight(), previewSize.getWidth());
             }
-        } catch (CameraAccessException e) {
+        }
+        catch (CameraAccessException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             Log.d(TAG, "出现错误");
         }
     }
@@ -338,13 +343,14 @@ public class PhotoTake extends Activity implements View.OnClickListener{
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_pass);
-
+        textureView = (AutoFitTextureView) findViewById(R.id.texture);
+        // 为该组件设置监听器
+        textureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        findViewById(R.id.capture).setOnClickListener(this);
     }
 
     @Override
