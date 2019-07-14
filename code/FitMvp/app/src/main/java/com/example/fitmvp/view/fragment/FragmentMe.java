@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -18,14 +19,12 @@ public class FragmentMe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.me, container, false);
-
-
         return view;
     }
     @Override
     public void onActivityCreated(Bundle bundle){
         super.onActivityCreated(bundle);
-        ImageButton toSetting = getActivity().findViewById(R.id.setting_button);
+        Button toSetting = getActivity().findViewById(R.id.button_setting);
         toSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
