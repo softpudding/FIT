@@ -7,9 +7,13 @@ import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.model.LoginModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.LoginActivity;
 
 import java.util.HashMap;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.api.BasicCallback;
 
 public class LoginPresenter extends BasePresenter<LoginActivity> implements LoginContract.Presenter {
     @Override
@@ -38,13 +42,28 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
     }
 
     @Override
-    public void login(String account,String password){
+    public void login(final String account,final String password){
         if (!checkNull()) {
-            ((LoginModel) getiModelMap().get("login"))
-                    .login(account, password, new LoginContract.Model.InfoHint() {
+            final LoginModel loginModel = (LoginModel) getiModelMap().get("login");
+            loginModel.login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
                 public void successInfo() {
-                    getIView().loginSuccess();  //成功
+                    // 登录成功后在JMessage中也进行登录
+                    JMessageClient.login(account, password, new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            if (responseCode == 0){
+                                // 登录成功，在本地保存用户信息
+                                loginModel.saveUser();
+                                // 页面跳转
+                                ToastUtil.setToast("登录成功");
+                                getIView().loginSuccess();
+                            }
+                            else{
+                                getIView().loginFail("登录失败",responseMessage);
+                            }
+                        }
+                    });
                 }
 
                 @Override

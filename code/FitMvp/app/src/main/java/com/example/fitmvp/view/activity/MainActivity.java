@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         bottomBar = findViewById(R.id.bottom_bar);
         bottomBar.setContainer(R.id.fl_container)
                 .setTitleBeforeAndAfterColor("#999999", "#ff5d5e")
-                // 这里希望选中前后的icon大小不同，但是用不同大小的png没有效果
                 .addItem(FragmentMainpage.class,
                         "首页",
                         R.drawable.item_home,
