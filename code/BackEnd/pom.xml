@@ -5,7 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>fit</artifactId>
-    <version>0.0.0</version>
+    <version>1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -64,6 +64,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- For Sending message -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
 
     </dependencies>
 

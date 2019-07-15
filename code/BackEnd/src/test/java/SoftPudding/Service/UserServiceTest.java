@@ -28,10 +28,10 @@ public class UserServiceTest {
 
     @Test
     public void login() {
-        assertEquals("100",userService.Login("101","a"));
-        assertEquals("101",userService.Login("MakeAmericaGreatAgain","a"));
-        assertEquals("102",userService.Login("102","a"));
-        assertEquals("103",userService.Login("104","a"));
+        assertEquals("100",userService.login("101","a"));
+        assertEquals("101",userService.login("MakeAmericaGreatAgain","a"));
+        assertEquals("102",userService.login("102","a"));
+        assertEquals("103",userService.login("104","a"));
     }
 
     @Test
