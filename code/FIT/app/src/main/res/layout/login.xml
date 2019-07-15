@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="479dp"
-        android:layout_height="778dp"
-        android:background="#27326A"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/login_back" />
+            android:id="@+id/imageView8"
+            android:layout_width="479dp"
+            android:layout_height="778dp"
+            android:background="#27326A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/login_back"/>
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="330dp"
-        android:layout_height="453dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="136dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon" />
+            android:id="@+id/imageView9"
+            android:layout_width="330dp"
+            android:layout_height="453dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="136dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/icon"/>
 
     <EditText
-        android:id="@+id/text_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="212dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/text_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginBottom="212dp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
-        android:id="@+id/text_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_account" />
+            android:id="@+id/text_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_account"/>
 
     <ImageButton
-        android:id="@+id/button_login"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_pw"
-        app:srcCompat="@drawable/check" />
+            android:id="@+id/button_login"
+            android:layout_width="48dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_pw"
+            app:srcCompat="@drawable/check"/>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="260dp"
-        android:onClick="toRegister"
-        android:text="没有账号？注册！"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="116dp"
+            android:layout_marginBottom="260dp"
+            android:onClick="toRegister"
+            android:text="没有账号？注册！"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toMain"
-        android:text="ToMain"
-        tools:layout_editor_absoluteX="277dp"
-        tools:layout_editor_absoluteY="56dp" />
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="toMain"
+            android:text="ToMain"
+            tools:layout_editor_absoluteX="277dp"
+            tools:layout_editor_absoluteY="56dp"/>
     <Button
-        android:id="@+id/button5"
-        android:layout_width="77dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="152dp"
-        android:text="忘记密码？"
-        android:textSize="8dp"
-        android:onClick="toRepassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            android:id="@+id/button5"
+            android:layout_width="77dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="152dp"
+            android:text="忘记密码？"
+            android:textSize="8dp"
+            android:onClick="toRepassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText2"/>
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="136dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="44dp"
-        android:text="忘记密码？"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/textView"
+            android:layout_width="136dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="44dp"
+            android:text="忘记密码？"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -21,23 +21,99 @@ public class User {
     @Column(name = "isactive")
     private boolean isactive;
 
-    public Integer getId() { return id; }
+    @Column(name = "birthday")
+    private String birthday;
 
-    public void setId(Integer id) { this.id = id; }
+    @Column(name = "avatar")
+    private String avatar;
 
-    public String getTel() { return tel; }
+    @Column(name = "height")
+    private Integer height;
 
-    public void setTel(String tel) { this.tel = tel; }
+    @Column(name = "weight")
+    private Float weight;
 
-    public String getPassword() { return password; }
+    @Column(name = "gender")
+    private Integer gender;
 
-    public void setPassword(String password) {this.password = password; }
+    public Integer getId() {
+        return id;
+    }
 
-    public String getNickName() { return nickName; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public void setNickName(String nickName) { this.nickName = nickName; }
+    public String getTel() {
+        return tel;
+    }
 
-    public boolean getIsactive() { return isactive; }
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
-    public void setIsactive(boolean isactive) { this.isactive = isactive; }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public boolean getIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(boolean isactive) {
+        this.isactive = isactive;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
+    }
+
+    public Float getWeight() {
+        return weight;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
 }

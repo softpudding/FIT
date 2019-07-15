@@ -14,8 +14,9 @@ public class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
+
     @Test
     public void findByTel() {
-        assertEquals("Test UserDao.findByTel","Axe",userRepository.findByTel("102").getNickName());
+        assertEquals("Test UserDao.findByTel", "Axe", userRepository.findByTel("102").getNickName());
     }
 }

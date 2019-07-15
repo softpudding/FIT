@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -19,11 +20,11 @@ public class UserTest {
         user.setPassword("10086");
         user.setNickName("LianTong");
         user.setIsactive(true);
-        assertEquals(10086,user.getId().intValue());
-        assertEquals("10086",user.getTel());
-        assertEquals("10086",user.getPassword());
-        assertEquals("LianTong",user.getNickName());
-        assertEquals(true,user.getIsactive());
+        assertEquals(10086, user.getId().intValue());
+        assertEquals("10086", user.getTel());
+        assertEquals("10086", user.getPassword());
+        assertEquals("LianTong", user.getNickName());
+        assertEquals(true, user.getIsactive());
 
 
     }

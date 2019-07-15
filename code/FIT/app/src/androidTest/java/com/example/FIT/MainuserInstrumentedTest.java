@@ -21,7 +21,7 @@ public class MainuserInstrumentedTest {
     public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void BottomBarTest(){
+    public void BottomBarTest() {
         onView(withId(R.id.bottom_bar))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.fl_container))

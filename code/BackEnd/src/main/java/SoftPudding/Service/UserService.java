@@ -1,11 +1,12 @@
 package SoftPudding.Service;
 
 import SoftPudding.Entity.User;
+import com.alibaba.fastjson.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface UserService{
+public interface UserService {
 
     User findByTel(String tel);
 
@@ -18,4 +19,6 @@ public interface UserService{
     boolean logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
     Integer sendMessage(String tel);
+
+    boolean changeUserInfo(JSONObject data);
 }

@@ -40,19 +40,19 @@ public class UsersControllerTest {
 
     @Test
     public void loginTest() throws Exception {
-         mvc.perform(MockMvcRequestBuilders.post("/user/login")
-                 .param("account","101")
-                 .param("password","a")
-                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                 .andExpect(MockMvcResultMatchers.status().isOk())
-                 .andDo(MockMvcResultHandlers.print());
+        mvc.perform(MockMvcRequestBuilders.post("/user/login")
+                .param("account", "101")
+                .param("password", "a")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
     public void registerTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/user/register")
-                .param("tel","101")
-                .param("password","a").param("nickName","a")
+                .param("tel", "101")
+                .param("password", "a").param("nickName", "a")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -61,8 +61,8 @@ public class UsersControllerTest {
     @Test
     public void changePwdTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/user/changePassword")
-                .param("tel","101")
-                .param("password","a")
+                .param("tel", "101")
+                .param("password", "a")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

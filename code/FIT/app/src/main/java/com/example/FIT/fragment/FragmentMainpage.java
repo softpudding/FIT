@@ -27,7 +27,7 @@ public class FragmentMainpage extends Fragment {
     // 样例数据，后续需要从数据库中获得
     private List<RecordItem> data;
 
-    private void initData(){
+    private void initData() {
         RecordItem item1 = new RecordItem();
         item1.setImage(R.drawable.item_friends);
         item1.setTitle("草莓");
@@ -44,6 +44,7 @@ public class FragmentMainpage extends Fragment {
         data.add(item1);
         data.add(item2);
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,9 +70,9 @@ public class FragmentMainpage extends Fragment {
 
             @Override
             public void convert(BaseAdapter.MyHolder holder, RecordItem data, int position) {
-                holder.setText(R.id.record_text,data.getText());
-                holder.setText(R.id.record_title,data.getTitle());
-                holder.setImage(R.id.record_img,data.getImage());
+                holder.setText(R.id.record_text, data.getText());
+                holder.setText(R.id.record_title, data.getTitle());
+                holder.setImage(R.id.record_img, data.getImage());
                 holder.setHight(380);
             }
         };
@@ -83,8 +84,8 @@ public class FragmentMainpage extends Fragment {
                 Intent intent = new Intent(getActivity(), RecordDetailActivity.class);
                 // 传参
                 RecordItem item = data.get(position);
-                intent.putExtra("title",item.getTitle());
-                intent.putExtra("text",item.getText());
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("text", item.getText());
                 // 传项目中图片
                 intent.putExtra("image", item.getImage());
                 startActivity(intent);

@@ -28,12 +28,12 @@ public class UserDaoTest {
 
     @Test
     public void findByTel() {
-        assertEquals("Axe",userDao.findByTel("102").getNickName());
+        assertEquals("Axe", userDao.findByTel("102").getNickName());
     }
 
     @Test
     public void findByTel2() {
-        assertEquals("Axe",userRepository.findByTel("102").getNickName());
+        assertEquals("Axe", userRepository.findByTel("102").getNickName());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class UserDaoTest {
         User user1 = userDao.findByTel("103");
         String nowName;
         nowName = user1.getNickName();
-        assertEquals("看看你到底变没变",nowName);
+        assertEquals("看看你到底变没变", nowName);
     }
 
 }

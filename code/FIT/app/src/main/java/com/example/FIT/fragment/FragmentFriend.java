@@ -37,7 +37,8 @@ public class FragmentFriend extends Fragment {
         controller.showFragment(0);
         rg_tab = (RadioGroup) view.findViewById(R.id.rg_tab);
         rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(RadioGroup group, int checkedId) {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radioButton_msg:
                         controller.showFragment(0);

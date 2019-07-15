@@ -49,7 +49,7 @@ public class CalorieCircle extends View {
         this(context, null);
     }
 
-    public CalorieCircle(Context context,  @Nullable AttributeSet attrs) {
+    public CalorieCircle(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
     }
@@ -59,11 +59,11 @@ public class CalorieCircle extends View {
         this.initialize();
     }
 
-    public void setCurProgress(int value){
+    public void setCurProgress(int value) {
         curProgress = value;
     }
 
-    public void setTargetProgress(int value){
+    public void setTargetProgress(int value) {
         targetProgress = value;
     }
 
@@ -109,7 +109,6 @@ public class CalorieCircle extends View {
         genPaintWidth = paintWidth / 2;
         initialize();
     }
-
 
 
     @SuppressLint("DrawAllocation")

@@ -3,6 +3,7 @@ package SoftPudding.Service.Implment;
 import SoftPudding.Dao.UserDao;
 import SoftPudding.Entity.User;
 import SoftPudding.Service.UserService;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,9 @@ public class UserServiceImpl implements UserService {
         User user = findByTel(tel);
         if (user == null) {
             return "101";       // 账号不存在
-        }
-        else if (!user.getIsactive()) {
+        } else if (!user.getIsactive()) {
             return "103";       // 账号被禁用
-        }
-        else if (!user.getPassword().equals(pwd)) {
+        } else if (!user.getPassword().equals(pwd)) {
             return "102";       // 密码不正确
         }
         return "100";           // 登录正常
@@ -56,8 +55,7 @@ public class UserServiceImpl implements UserService {
         if (test == null) {
             userDao.save(user);
             return "1";         // 注册成功
-        }
-        else {
+        } else {
             return "0";         // 注册失败
         }
     }
@@ -69,21 +67,19 @@ public class UserServiceImpl implements UserService {
             test.setPassword(pwd);
             userDao.save(test);
             return "1";
-        }
-        else {
+        } else {
             return "0";
         }
     }
 
     @Override
-    public boolean logout(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public boolean logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
-        if (session.getAttribute("USERID" ) == null) {
+        if (session.getAttribute("USERID") == null) {
             System.err.println("没有session啊！");
             throw new Exception("Throw Exception!");
-        }
-        else {
-            session.setAttribute("USERID",null);
+        } else {
+            session.setAttribute("USERID", null);
             System.out.println(session.getId());
             System.out.println(session.getAttribute("USERID"));
             return true;
@@ -95,7 +91,7 @@ public class UserServiceImpl implements UserService {
     public Integer sendMessage(String tel) {        // tel 就应该是给用户的tel
         String Url = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
         //System.out.println("发短信了啊！！！！");
-        HttpClient client = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
+        HttpClient client = new HttpClient(new HttpClientParams(), new SimpleHttpConnectionManager(true));
         PostMethod method = new PostMethod(Url);
 
         client.getParams().setContentCharset("GBK");
@@ -110,7 +106,7 @@ public class UserServiceImpl implements UserService {
                 new NameValuePair("account", "C35851249"), // 查看用户名是登录用户中心->验证码短信->产品总览->APIID
                 new NameValuePair("password", "14227d803ba627befcad8fbbfb269a3d"), // 查看密码请登录用户中心->验证码短信->产品总览->APIKEY
                 // new NameValuePair("password", util.StringUtil.MD5Encode("密码")),
-                new NameValuePair("mobile", tel), new NameValuePair("content", content), };
+                new NameValuePair("mobile", tel), new NameValuePair("content", content),};
         method.setRequestBody(data);
 
         try {
@@ -149,6 +145,23 @@ public class UserServiceImpl implements UserService {
             method.releaseConnection();
         }
         return null;
+    }
+
+    @Override
+    public boolean changeUserInfo(JSONObject data) {
+        User user = userDao.findByTel(data.getString("tel"));
+        if (user == null) {
+            return false;
+        } else {
+            user.setAvatar(data.getString("avatar"));
+            user.setNickName(data.getString("nickName"));
+            user.setBirthday(data.getString("birthday"));       // 前端直接传yyyy-mm-dd类型的？ 前端设置好输入类型
+            user.setGender(data.getInteger("gender"));
+            user.setHeight(data.getInteger("height"));
+            user.setWeight(data.getFloat("weight"));
+            userDao.save(user);
+            return true;
+        }
     }
 
 
