@@ -9,6 +9,10 @@ import com.example.fitmvp.view.activity.RegisterActivity;
 
 import java.util.HashMap;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.options.RegisterOptionalUserInfo;
+import cn.jpush.im.api.BasicCallback;
+
 public class RegisterPresenter extends BasePresenter<RegisterActivity> implements RegisterContract.Presenter {
     @Override
     public HashMap<String, IModel> getiModelMap() {
@@ -23,19 +27,35 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
     }
 
     @Override
-    public void register(String tel,String nickName,String password){
+    public void register(final String tel, final String nickName, final String password){
         if (getIView().check()) {
             ((RegisterModel) getiModelMap().get("register"))
                     .register(tel, nickName, password, new RegisterContract.Model.InfoHint() {
                         @Override
                         public void successInfo(String str) {
-                            getIView().registerSuccess(str);  //成功
+                            // 注册成功后，用同样的账号密码在JMessage上注册
+                            final String message = str;
+                            RegisterOptionalUserInfo optionalUserInfo = new RegisterOptionalUserInfo();
+                            optionalUserInfo.setNickname(nickName);
+                            JMessageClient.register(tel, password, optionalUserInfo, new BasicCallback() {
+                                @Override
+                                public void gotResult(int i, String s) {
+                                    // 注册成功
+                                    if(i==0){
+                                        getIView().registerSuccess(message);
+                                    }
+                                    // 注册失败
+                                    else{
+                                        getIView().registerFail("注册失败",s);
+                                    }
+                                }
+                            });
                         }
 
                         @Override
                         public void errorInfo(String str) {
                             LogUtils.e("LoginPresenter.failInfo", str);
-                            getIView().registerFail("错误", str); // 错误
+                            getIView().registerFail("注册失败", str); // 错误
                         }
                     });
         }

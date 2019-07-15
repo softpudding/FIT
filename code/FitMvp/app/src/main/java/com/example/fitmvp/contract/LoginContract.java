@@ -11,6 +11,7 @@ public interface LoginContract {
             void errorInfo(String str);
             void failInfo(String str);
         }
+        Boolean logout();
     }
 
     interface View {
