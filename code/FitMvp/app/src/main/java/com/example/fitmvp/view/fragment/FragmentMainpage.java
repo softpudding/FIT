@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.bean.RecordItem;
+import com.example.fitmvp.view.activity.PhotoPass;
 import com.example.fitmvp.view.activity.PhotoTake;
 import com.example.fitmvp.view.activity.RecordDetailActivity;
 import com.example.fitmvp.view.draw.CalorieCircle;
