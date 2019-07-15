@@ -104,7 +104,7 @@ public class FragmentMainpage extends Fragment {
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PhotoTake.class);
+                Intent intent = new Intent(getActivity(), PhotoPass.class);
                 // intent.setClass(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }

@@ -14,6 +14,8 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.view.activity.SettingActivity;
 
 public class FragmentMe extends Fragment {
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
