@@ -1,0 +1,19 @@
+kind: pipeline
+name: default
+steps:
+  - name: test backend
+    image: openjdk:8-jre-alpine
+    image: maven
+    commands:
+      - cd code/BackEnd
+      - mvn test
+    when:
+      event: push
+  - name: test frontend
+    image: openjdk:8-jre-alpine
+    image: gradle
+    commands:
+      - cd code/FitMvp
+      - gradle test
+    when:
+      event: push
