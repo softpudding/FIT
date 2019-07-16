@@ -68,7 +68,7 @@ public class User {
         this.nickName = nickName;
     }
 
-    public boolean getIsactive() {
+    public boolean isIsactive() {
         return isactive;
     }
 

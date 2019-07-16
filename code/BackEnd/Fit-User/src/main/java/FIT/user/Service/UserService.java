@@ -10,7 +10,7 @@ public interface UserService {
 
     User findByTel(String tel);
 
-    void save(User user);
+    String save(User user);
 
     String login(String tel, String pwd);
 
@@ -23,4 +23,6 @@ public interface UserService {
     Integer sendMessage(String tel);
 
     boolean changeUserInfo(JSONObject data);
+
+    Iterable<User> findAll();
 }

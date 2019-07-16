@@ -37,14 +37,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) { userDao.save(user); }
+    public String save(User user) { userDao.save(user);
+        return null;
+    }
 
     @Override
     public String login(String tel, String pwd) {
         User user = findByTel(tel);
         if (user == null) {
             return "101";       // 账号不存在
-        } else if (!user.getIsactive()) {
+        } else if (!user.isIsactive()) {
             return "103";       // 账号被禁用
         } else if (!user.getPassword().equals(pwd)) {
             return "102";       // 密码不正确
@@ -165,6 +167,11 @@ public class UserServiceImpl implements UserService {
             userDao.save(user);
             return true;
         }
+    }
+
+    @Override
+    public Iterable<User> findAll() {
+        return userDao.findAll();
     }
 
 

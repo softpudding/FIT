@@ -5,6 +5,8 @@ import FIT.user.Entity.User;
 import FIT.user.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 @org.springframework.stereotype.Service
 public class Service {
 
@@ -13,6 +15,10 @@ public class Service {
 
     @Autowired
     private Repo repo;
+
+    public Iterable<User> findAll() {
+        return userService.findAll();
+    }
 
     public void ban(User user) {
         user.setIsactive(false);
@@ -25,11 +31,11 @@ public class Service {
     }
 
     public String login( Integer id, String pwd) {
-        Administer administer = repo.getOne(id);
-        if (administer == null) {
+        Optional <Administer> administer = repo.findById(id);
+        if (!administer.isPresent()) {
             return "101";       // 账号不存在
         }
-        else if (!administer.getPassword().equals(pwd)) {
+        else if (!administer.get().getPassword().equals(pwd)) {
             return "102";       // 密码不正确
         }
         return "100";           // 登录正常

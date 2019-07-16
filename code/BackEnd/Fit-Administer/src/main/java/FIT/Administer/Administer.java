@@ -1,12 +1,9 @@
 package FIT.Administer;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@javax.persistence.Entity
+@Entity
 public class Administer {
 
     @Id

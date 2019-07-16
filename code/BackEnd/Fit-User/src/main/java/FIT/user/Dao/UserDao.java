@@ -18,4 +18,6 @@ public class UserDao {
         userRepository.saveAndFlush(user);
     }
 
+    public Iterable<User> findAll() { return userRepository.findAll();}
+
 }

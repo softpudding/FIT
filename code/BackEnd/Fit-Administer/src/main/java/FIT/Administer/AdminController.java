@@ -4,12 +4,14 @@ import FIT.user.Entity.User;
 import FIT.user.Service.UserService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@org.springframework.stereotype.Controller
+@Controller
 @RequestMapping(path = "/admin")
-public class Controller {
+
+public class AdminController {
 
     @Autowired
     private Service service;
@@ -17,9 +19,10 @@ public class Controller {
     @Autowired
     private UserService userService;
 
-    @GetMapping(path = "/test")
-    public @ResponseBody String test() {
-        return "test success";
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/getAll")
+    public @ResponseBody Iterable<User> getAllUser() {
+        return userService.findAll();
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,9 +32,10 @@ public class Controller {
                 data.getString("pwd"));
     }
 
+
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/ban")
-    public @ResponseBody boolean banUser(@RequestBody String tel) {
+    public @ResponseBody boolean banUser(@RequestParam String tel) {
         User user = userService.findByTel(tel);
         if (user == null) { return false; }
         else {
@@ -42,7 +46,7 @@ public class Controller {
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/relieve")
-    public @ResponseBody boolean relieveUser(@RequestBody String tel) {
+    public @ResponseBody boolean relieveUser(@RequestParam String tel) {
         User user = userService.findByTel(tel);
         if (user == null) { return false; }
         else {
