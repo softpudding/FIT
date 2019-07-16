@@ -5,16 +5,15 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.Observable;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,23 +23,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.exception.ApiException;
+import com.example.fitmvp.network.Http;
+import com.example.fitmvp.network.HttpService;
+import com.example.fitmvp.observer.CommonObserver;
+import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.PictureUtil;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Timestamp;
 
 public class PhotoPass extends AppCompatActivity {
     /* 头像文件 */
-    private static final String IMAGE_FILE_NAME = "temp_head_image.jpg";
-    private static final String CROP_IMAGE_FILE_NAME = "userphoto.jpg";
-    /* 请求识别码 */
+    private static final String IMAGE_FILE_NAME = "icon1.png";
+    private static final String CROP_IMAGE_FILE_NAME = "icon1.png";
+//    /* 请求识别码 */
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
     private static final int CODE_RESULT_REQUEST = 0xa2;
-
-    // 裁剪后图片的宽(X)和高(Y),480 X 480的正方形。
-    private static int output_X = 480;
-    private static int output_Y = 480;
+Bitmap bitmap;
+    // 裁剪后图片的宽(X)和高(Y),的正方形。
+    private static int output_X = 450;
+    private static int output_Y = 450;
     //改变头像的标记位
     private int new_icon=0xa3;
     private ImageView headImage = null;
@@ -57,29 +64,18 @@ public class PhotoPass extends AppCompatActivity {
         headImage = (ImageView) findViewById(R.id.imageView);
         ImageButton buttonLocal = (ImageButton) findViewById(R.id.openfile);
         buttonLocal.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-//                choseHeadImageFromGallery();
                 checkReadPermission();
             }
         });
-
     }
-
 
     // 从本地相册选取图片作为头像
     private void choseHeadImageFromGallery() {
-        // 设置文件类型    （在华为手机中不能获取图片，要替换代码）
-        /*Intent intentFromGallery = new Intent();
-        intentFromGallery.setType("image*//*");
-        intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);*/
-
         Intent intentFromGallery = new Intent(Intent.ACTION_PICK, null);
         intentFromGallery.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
-
     }
 
     public Uri getImageContentUri(File imageFile) {
@@ -95,7 +91,8 @@ public class PhotoPass extends AppCompatActivity {
                     .getColumnIndex(MediaStore.MediaColumns._ID));
             Uri baseUri = Uri.parse("content://media/external/images/media");
             return Uri.withAppendedPath(baseUri, "" + id);
-        } else {
+        }
+        else {
             if (imageFile.exists()) {
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.Images.Media.DATA, filePath);
@@ -110,7 +107,6 @@ public class PhotoPass extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
-
         // 用户没有进行有效的设置操作，返回
         if (resultCode == RESULT_CANCELED) {
             Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
@@ -224,36 +220,18 @@ public class PhotoPass extends AppCompatActivity {
     }
 
     /**
-     * 提取保存裁剪之后的图片数据，并设置头像部分的View
+     * 提取保存裁剪之后的图片数据，并设置原图像的View
      */
     private void setImageToHeadView(Intent intent,Bitmap b) {
-        /*Bundle extras = intent.getExtras();
-        if (extras != null) {
-            Bitmap photo = extras.getParcelable("data");
-            headImage.setImageBitmap(photo);
-        }*/
         try {
             if (intent != null) {
-
-//                Bitmap bitmap = imageZoom(b);//看个人需求，可以不压缩
                 headImage.setImageBitmap(b);
-//                long millis = System.currentTimeMillis();
-                /*File file = FileUtil.saveFile(mExtStorDir, millis+CROP_IMAGE_FILE_NAME, bitmap);
-                if (file!=null){
-                    //传递新的头像信息给我的界面
-                    Intent ii = new Intent();
-                    setResult(new_icon,ii);
-                    Glide.with(this).load(file).apply(RequestOptions.circleCropTransform())
-//                                .apply(RequestOptions.fitCenterTransform())
-                            .apply(RequestOptions.placeholderOf(R.mipmap.user_logo)).apply(RequestOptions.errorOf(R.mipmap.user_logo))
-                            .into(mIvTouxiangPersonal);
-//                uploadImg(mExtStorDir,millis+CROP_IMAGE_FILE_NAME);
-                    uploadImg(mExtStorDir,millis+CROP_IMAGE_FILE_NAME);
-                }*/
-
+                System.out.println(1);
+                passphoto(b);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(2);
         }
     }
 
@@ -309,6 +287,41 @@ public class PhotoPass extends AppCompatActivity {
         matrix.postScale(scaleWidth, scaleHeight);
         Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width,
                 (int) height, matrix, true);
+
         return bitmap;
     }
+
+
+    public void passphoto(Bitmap bitmap){
+        String tel="456";
+        //String pic= PictureUtil.bitmapToBase64(bitmap);
+        String pic = "123";
+        Integer photoType=1;
+       Timestamp times = new Timestamp(System.currentTimeMillis());
+        System.out.println(122121212);
+        System.out.println(times);
+        System.out.println(pic);
+        Http.getHttpService().photoSend(tel,pic,photoType,times)
+                .compose(new ThreadTransformer<String>())
+                .subscribe(new CommonObserver<String>() {
+                    @Override
+                    public void onNext(String flag) {
+                        System.out.println(flag);
+//                        switch(flag){
+//                            case "100":;
+//                                break;
+//
+//                            default:
+//
+//                                break;
+//                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: hello");
+                    }
+                });
+    }
+
 }

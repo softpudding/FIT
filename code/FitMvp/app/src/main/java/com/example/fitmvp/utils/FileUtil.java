@@ -1,4 +1,4 @@
-package com.example.fitmvp.view.activity;
+package com.example.fitmvp.utils;
 
 import android.graphics.Bitmap;
 

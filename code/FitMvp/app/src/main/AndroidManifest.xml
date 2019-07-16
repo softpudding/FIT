@@ -54,7 +54,8 @@
         <activity android:name=".view.activity.ChangePwActivity"></activity>
         <activity android:name=".view.activity.RecordDetailActivity"></activity>
         <activity android:name=".view.activity.SettingActivity"></activity>
-        <activity android:name=".view.activity.PhotoTake"></activity>
+        <!--<activity android:name=".view.activity.P"></activity>-->
+        <activity android:name=".view.activity.PhotoPass"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
@@ -66,11 +67,10 @@
                 <action android:name="cn.jiguang.user.service.action"/>
             </intent-filter>
         </service>
-    </application>
 
 
 
-        <activity android:name=".view.activity.PhotoPass"></activity>
+
 
     </application>
 

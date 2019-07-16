@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseFragment;
-import com.example.fitmvp.contract.MeContract;
 import com.example.fitmvp.mvp.IView;
 import com.example.fitmvp.presenter.MePresenter;
 import com.example.fitmvp.utils.ToastUtil;
@@ -21,15 +20,8 @@ import com.example.fitmvp.view.activity.LoginActivity;
 import com.example.fitmvp.view.activity.SettingActivity;
 
 import butterknife.ButterKnife;
-public class FragmentMe extends Fragment {
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.me, container, false);
-
 public class FragmentMe extends BaseFragment<MePresenter> implements IView,View.OnClickListener {
+
    @Override
    protected Integer getLayoutId(){
        return R.layout.me;
