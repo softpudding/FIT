@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back">
+
+    <ImageView
+        android:id="@+id/loginIcon"
+        android:layout_width="154dp"
+        android:layout_height="179dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/icon1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/button_toRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:text="@string/to_register" />
+
+        <EditText
+            android:id="@+id/input_account"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="@string/account"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="#BDEDE6"
+            app:srcCompat="@drawable/gou" />
+
+        <TextView
+            android:id="@+id/toRepassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/forget_pwd"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginBottom="8dp"
+            android:text="debug_tomain" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

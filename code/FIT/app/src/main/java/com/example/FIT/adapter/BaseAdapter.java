@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.MyHolder> {
+public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.MyHolder>{
     private List<T> dataList;
     // 事件回调监听
     private BaseAdapter.OnItemClickListener onItemClickListener;
 
-    public BaseAdapter(List<T> datas) {
+    public BaseAdapter(List<T> datas){
         this.dataList = datas;
     }
 
@@ -36,7 +36,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return MyHolder.get(parent, getLayoutId(viewType));
+        return MyHolder.get(parent,getLayoutId(viewType));
     }
 
     @Override
@@ -46,7 +46,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                if (onItemClickListener != null) {
+                if(onItemClickListener != null) {
                     int pos = holder.getLayoutPosition();
                     onItemClickListener.onItemClick(holder.itemView, pos);
                 }
@@ -76,45 +76,44 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
 
     public abstract void convert(MyHolder holder, T data, int position);
 
-    public static class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder{
         private SparseArray<View> mViews;
         private View mConvertView;
 
-        private MyHolder(View v) {
+        private MyHolder(View v){
             super(v);
             mConvertView = v;
             mViews = new SparseArray<>();
         }
 
-        public static MyHolder get(ViewGroup parent, int layoutId) {
+        public static MyHolder get(ViewGroup parent, int layoutId){
             View convertView = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
             return new MyHolder(convertView);
         }
 
-        public <T extends View> T getView(int id) {
+        public <T extends View> T getView(int id){
             View v = mViews.get(id);
-            if (v == null) {
+            if(v == null){
                 v = mConvertView.findViewById(id);
                 mViews.put(id, v);
             }
-            return (T) v;
+            return (T)v;
         }
 
         // 设置部件高度
-        public void setHight(int height) {
+        public void setHight(int height){
             ViewGroup.LayoutParams layoutParams = mConvertView.getLayoutParams();
             layoutParams.height = height;
             mConvertView.setLayoutParams(layoutParams);
 
         }
-
-        public void setText(int id, String value) {
+        public void setText(int id, String value){
             TextView view = getView(id);
             view.setText(value);
         }
 
         // 设置的图片在项目中
-        public void setImage(int id, Integer value) {
+        public void setImage(int id, Integer value){
             ImageView view = getView(id);
             view.setImageResource(value);
         }

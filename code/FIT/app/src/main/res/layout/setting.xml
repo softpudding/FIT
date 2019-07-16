@@ -1,122 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="39dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="232dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_setting"/>
+        android:id="@+id/imageView10"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_setting" />
 
     <EditText
-            android:id="@+id/editText9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="92dp"
-            android:ems="10"
-            android:hint="原用户名"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="原用户名"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="412dp"
-            android:text="确认修改"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="412dp"
+        android:text="确认修改"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/textView3"
-            android:layout_width="248dp"
-            android:layout_height="71dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="用户信息设置"
-            android:textSize="32sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/textView3"
+        android:layout_width="248dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="用户信息设置"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="309dp"
+        android:id="@+id/radioGroup"
+        android:layout_width="309dp"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="68dp"
             android:layout_height="36dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.156"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+
+            android:text="男" />
 
         <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="68dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="2dp"
-
-                android:text="男"/>
-
-        <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="68dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:text="女"/>
+            android:id="@+id/radioButton3"
+            android:layout_width="68dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:text="女" />
 
         <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="68dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="2dp"
-                android:text="其他"/>
+            android:id="@+id/radioButton4"
+            android:layout_width="68dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="2dp"
+            android:text="其他" />
     </RadioGroup>
 
     <TextView
-            android:id="@+id/textView6"
-            android:layout_width="69dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
-            android:text="性别选择"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText9"/>
+        android:id="@+id/textView6"
+        android:layout_width="69dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="性别选择"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
     <EditText
-            android:id="@+id/editText8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:hint="体重"
-            android:textSize="16sp"
-            android:inputType="number|numberDecimal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="体重"
+        android:textSize="16sp"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="412dp"
-            android:text="密码更改"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="196dp"
+        android:layout_marginBottom="8dp"
+        android:text="kg"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText8"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <!--<NumberPicker-->

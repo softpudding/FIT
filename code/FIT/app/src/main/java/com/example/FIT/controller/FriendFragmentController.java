@@ -38,7 +38,7 @@ public class FriendFragmentController {
         fragments.add(new FragmentFrdList());
 
         FragmentTransaction ft = fm.beginTransaction();
-        for (Fragment fragment : fragments) {
+        for(Fragment fragment : fragments) {
             ft.add(containerId, fragment);
         }
         ft.commit();
@@ -54,8 +54,8 @@ public class FriendFragmentController {
 
     public void hideFragments() {
         FragmentTransaction ft = fm.beginTransaction();
-        for (Fragment fragment : fragments) {
-            if (fragment != null) {
+        for(Fragment fragment : fragments) {
+            if(fragment != null) {
                 ft.hide(fragment);
             }
         }

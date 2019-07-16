@@ -13,7 +13,6 @@ public class RecordDetailActivity extends AppCompatActivity {
     TextView titleView;
     TextView textView;
     ImageView imageView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,7 @@ public class RecordDetailActivity extends AppCompatActivity {
         // 获取参数
         String title = intent.getStringExtra("title");
         String text = intent.getStringExtra("text");
-        int image = intent.getIntExtra("image", R.drawable.icon);
+        int image = intent.getIntExtra("image",R.drawable.icon);
 
 
         // 设置参数
@@ -36,7 +35,6 @@ public class RecordDetailActivity extends AppCompatActivity {
         textView.setText(text);
         imageView.setImageResource(image);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

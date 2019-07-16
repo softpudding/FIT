@@ -23,9 +23,8 @@ public class FragmentMe extends Fragment {
 
         return view;
     }
-
     @Override
-    public void onActivityCreated(Bundle bundle) {
+    public void onActivityCreated(Bundle bundle){
         super.onActivityCreated(bundle);
         ImageButton toSetting = getActivity().findViewById(R.id.setting_button);
         toSetting.setOnClickListener(new View.OnClickListener() {

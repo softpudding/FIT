@@ -5,19 +5,16 @@ public class User {
     private String password;
     // adding...
 
-    public String getAccount() {
+    public String getAccount(){
         return account;
     }
-
-    public void setAccount(String value) {
+    public void setAccount(String value){
         account = value;
     }
-
-    public String getPassword() {
+    public String getPassword(){
         return password;
     }
-
-    public void setPassword(String value) {
+    public void setPassword(String value){
         password = value;
     }
-}
+ }

@@ -27,7 +27,7 @@ public class RoundedDrawable extends Drawable {
         this.margin = margin;
 
         bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        mBitmapRect = new RectF(margin, margin, bitmap.getWidth() - margin, bitmap.getHeight() - margin);
+        mBitmapRect = new RectF (margin, margin, bitmap.getWidth() - margin, bitmap.getHeight() - margin);
 
         paint = new Paint();
         paint.setAntiAlias(true);
