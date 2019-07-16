@@ -14,10 +14,13 @@ public class UserDao {
         return userRepository.findByTel(tel);
     }
 
+    // asasd
     public void save(User user) {
         userRepository.saveAndFlush(user);
     }
 
-    public Iterable<User> findAll() { return userRepository.findAll();}
+    public Iterable<User> findAll() {
+        return userRepository.findAll();
+    }
 
 }
