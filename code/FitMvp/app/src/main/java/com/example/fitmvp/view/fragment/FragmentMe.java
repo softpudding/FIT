@@ -21,6 +21,13 @@ import com.example.fitmvp.view.activity.LoginActivity;
 import com.example.fitmvp.view.activity.SettingActivity;
 
 import butterknife.ButterKnife;
+public class FragmentMe extends Fragment {
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.me, container, false);
 
 public class FragmentMe extends BaseFragment<MePresenter> implements IView,View.OnClickListener {
    @Override

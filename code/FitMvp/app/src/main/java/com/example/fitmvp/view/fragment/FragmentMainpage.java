@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.bean.RecordItem;
+import com.example.fitmvp.view.activity.PhotoPass;
 import com.example.fitmvp.view.activity.PhotoTake;
 import com.example.fitmvp.view.activity.RecordDetailActivity;
 import com.example.fitmvp.view.draw.CalorieCircle;
@@ -103,7 +104,7 @@ public class FragmentMainpage extends Fragment {
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PhotoTake.class);
+                Intent intent = new Intent(getActivity(), PhotoPass.class);
                 // intent.setClass(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
