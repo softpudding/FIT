@@ -44,7 +44,6 @@ public class FragmentFriend extends Fragment {
         FragmentPagerAdapter adapter = new FragmentOrderListAdapter(getActivity().getSupportFragmentManager(),fragments, new String[]{"消息","好友"});
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
         return view;
     }
 }

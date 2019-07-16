@@ -8,6 +8,7 @@
     <string name="input_name">请输入用户名</string>
     <string name="input_pwd">请输入密码</string>
     <string name="input_pwd_again">请确认密码</string>
+    <string name="input_msg">输入验证码</string>
     <string name="change_pw">重新设置密码</string>
     <string name="button_msg">消息</string>
     <string name="button_frd">好友</string>

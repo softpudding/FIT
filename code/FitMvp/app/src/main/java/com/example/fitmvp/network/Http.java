@@ -2,6 +2,7 @@ package com.example.fitmvp.network;
 
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.utils.NetworkUtil;
+import com.example.fitmvp.utils.SpUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -47,17 +49,16 @@ public class Http {
         if (retrofit == null) {
             synchronized (Http.class) {
                 if (retrofit == null) {
-                    /*
                     //添加一个log拦截器,打印所有的log
                     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                     //可以设置请求过滤的水平,body,basic,headers
                     httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
                     //设置 请求的缓存的大小跟位置
-                    File cacheFile = new File(ProApplication.getmContext().getCacheDir(), "cache");
+                    File cacheFile = new File(BaseApplication.getmContext().getCacheDir(), "cache");
                     Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb 缓存的大小
 
-                    client = new OkHttpClient
+                    OkHttpClient client = new OkHttpClient
                             .Builder()
                             .addInterceptor(addQueryParameterInterceptor())  //参数添加
                             .addInterceptor(addHeaderInterceptor()) // token过滤
@@ -67,10 +68,9 @@ public class Http {
                             .readTimeout(60l, TimeUnit.SECONDS)
                             .writeTimeout(60l, TimeUnit.SECONDS)
                             .build();
-                    */
-                    OkHttpClient client = new OkHttpClient
-                            .Builder()
-                            .build();
+//                    OkHttpClient client = new OkHttpClient
+//                            .Builder()
+//                            .build();
                     String baseUrl = "http://202.120.40.8:30231/";
                     // 获取retrofit的实例
                     retrofit = new Retrofit
@@ -86,9 +86,7 @@ public class Http {
         return retrofit;
     }
 
-    // 暂时不设置参数
-    /**
-     * 设置公共参数
+    // 设置公共参数
     private static Interceptor addQueryParameterInterceptor() {
         Interceptor addQueryParameterInterceptor = new Interceptor() {
             @Override
@@ -106,10 +104,8 @@ public class Http {
         };
         return addQueryParameterInterceptor;
     }
-     */
 
-    /**
-     * 设置头
+    // 设置头
     private static Interceptor addHeaderInterceptor() {
         Interceptor headerInterceptor = new Interceptor() {
             @Override
@@ -125,10 +121,8 @@ public class Http {
         };
         return headerInterceptor;
     }
-     */
 
-    /**
-     * 设置缓存
+    // 设置缓存
     private static Interceptor addCacheInterceptor() {
         Interceptor cacheInterceptor = new Interceptor() {
             @Override
@@ -161,5 +155,4 @@ public class Http {
         };
         return cacheInterceptor;
     }
-     */
 }

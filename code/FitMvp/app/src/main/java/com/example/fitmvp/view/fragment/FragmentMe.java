@@ -22,7 +22,10 @@ import com.example.fitmvp.view.activity.SettingActivity;
 
 import butterknife.ButterKnife;
 
-public class FragmentMe extends BaseFragment<MePresenter> implements IView,View.OnClickListener {
+public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.View{
+    private Button logout;
+    private Button toSetting;
+
    @Override
    protected Integer getLayoutId(){
        return R.layout.me;
@@ -37,9 +40,13 @@ public class FragmentMe extends BaseFragment<MePresenter> implements IView,View.
    protected void initData(){}
 
    @Override
+   protected void initView(){
+      logout = ButterKnife.findById(view,R.id.button_logout);
+      toSetting = ButterKnife.findById(view,R.id.button_setting);
+   }
+
+   @Override
    protected void initListener(){
-       Button logout = ButterKnife.findById(view,R.id.button_logout);
-       Button toSetting = ButterKnife.findById(view,R.id.button_setting);
        logout.setOnClickListener(this);
        toSetting.setOnClickListener(this);
    }
@@ -60,10 +67,11 @@ public class FragmentMe extends BaseFragment<MePresenter> implements IView,View.
         startActivity(intent);
     }
 
+    @Override
     public void toLogin(){
         ToastUtil.setToast("成功退出当前账号");
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
-        // getActivity().finish();
+        getActivity().finish();
     }
 }
