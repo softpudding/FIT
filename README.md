@@ -4,7 +4,7 @@
 组内成员：
 1. 陈婧心 VillardL
 2. 杨宣慧 Yang-Xuanhui
-3. 苑齐超 Icyfrog
+3. 苑齐超 Icyfrog               // 有个问题：目前后端的开发是完全按照e-book的模式去开发的，是否需要在项目后期改为微服务呢？
 4. 杨逍 llIllIllIlllIll
 
 ### 每日例会 早上8:45-9:00
