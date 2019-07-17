@@ -38,14 +38,14 @@ public class Http {
     }
 
     // retrofit的底层利用反射的方式, 获取所有的api接口的类
-    public static HttpService getHttpService() {
+    public static HttpService getHttpService(Integer integer) {
         if (httpService == null) {
-            httpService = getRetrofit().create(HttpService.class);
+            httpService = getRetrofit(integer).create(HttpService.class);
         }
         return httpService;
     }
 
-    private static Retrofit getRetrofit() {
+    private static Retrofit getRetrofit(Integer integer) {
         if (retrofit == null) {
             synchronized (Http.class) {
                 if (retrofit == null) {
@@ -71,9 +71,10 @@ public class Http {
 //                    OkHttpClient client = new OkHttpClient
 //                            .Builder()
 //                            .build();
-//                  String baseUrl = "http://202.120.40.8:30231/";
-                
-                    String baseUrl = "http://202.120.40.8";
+                    String baseUrl;
+                    if(integer==1){baseUrl = "http://202.120.40.8:30231/";}
+                    else {baseUrl="http://202.120.40.8:30232/";}
+//                    String baseUrl = "http://202.120.40.8";
                     // 获取retrofit的实例
                     retrofit = new Retrofit
                             .Builder()
@@ -87,6 +88,7 @@ public class Http {
         }
         return retrofit;
     }
+
 
     // 设置公共参数
     private static Interceptor addQueryParameterInterceptor() {

@@ -22,6 +22,14 @@ public class PhotoType extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button type2=findViewById(R.id.type_whole);
+        type2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PhotoType.this,PhotoPassm.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

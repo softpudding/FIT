@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.util.Base64;
 
 import com.example.fitmvp.bean.PhotoType1Bean;
+import com.example.fitmvp.bean.TypeOne;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.network.PhotoService;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -65,9 +67,12 @@ public class PictureUtil {
     //图片传送接口
     public static void passPhoto1(Bitmap bitmap){
         int obj_type=1;
+        System.out.println(233333);
         String pic= PictureUtil.bitmapToBase64(bitmap);
         System.out.println(obj_type);
-        System.out.println(pic);
+        TypeOne one= new TypeOne();
+        one.setObj_type(obj_type);
+        one.setImg(pic);
 //        Retrofit retrofit=new Retrofit.Builder()
 //                .baseUrl("http://202.120.40.8:30232/")
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -86,20 +91,24 @@ public class PictureUtil {
 //                t.printStackTrace();
 //            }
 //        });
-        Http.getHttpService().photoSend(obj_type, pic)
+        Http.getHttpService(2).photoSend(one)
                 .compose(new ThreadTransformer<PhotoType1Bean>())
                 .subscribe(new CommonObserver<PhotoType1Bean>() {
                     // 请求成功返回后检查登录结果
                     @Override
                     public void onNext(PhotoType1Bean response) {
-
+                        System.out.println(response.getFoodname());
+                        System.out.println(response.getProbsbility());
                         }
-
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
                     }
                 });
+
+    }
+
+    public static void passPhoto2(Bitmap bitmap){
 
     }
 }

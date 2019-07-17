@@ -5,10 +5,11 @@ import com.example.fitmvp.network.Http;
 import com.example.fitmvp.network.HttpService;
 
 public class BaseModel implements IModel {
-    protected static HttpService httpService;
+    protected static HttpService httpService1;
+    protected static HttpService httpService2;
 
-    //初始化httpService
-    static {
-        httpService = Http.getHttpService();
+    static{
+        httpService1 = Http.getHttpService(1);
+        httpService2 = Http.getHttpService(2);
     }
 }

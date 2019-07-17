@@ -22,7 +22,7 @@
                 android:layout_marginRight="60dp"
                 android:background="@drawable/round_button"
                 android:drawableTop="@drawable/type2"
-                android:text="套餐食物" />
+                android:text="多种食物" />
 
 
 </RelativeLayout>

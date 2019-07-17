@@ -21,7 +21,7 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
         if (infoHint == null)
             throw new RuntimeException("InfoHint不能为空");
 
-        httpService.register(tel,nickName,password)
+        httpService1.register(tel,nickName,password)
                 .compose(new ThreadTransformer<MyResponse<RegisterUserBean>>())
                 .subscribe(new CommonObserver<MyResponse<RegisterUserBean>>() {
                     @Override
@@ -53,7 +53,7 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
 
     @Override
     public String getMessage(String tel){
-        httpService.sendMessage(tel)
+        httpService1.sendMessage(tel)
                 .compose(new ThreadTransformer<String>())
                 .subscribe(new CommonObserver<String>() {
                     @Override
