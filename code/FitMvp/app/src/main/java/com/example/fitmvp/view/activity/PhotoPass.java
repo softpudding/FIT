@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.bean.PhotoType1Bean;
+import com.example.fitmvp.exception.ApiException;
+import com.example.fitmvp.network.Http;
+import com.example.fitmvp.observer.CommonObserver;
+import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.SpUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,6 +38,7 @@ import java.io.FileNotFoundException;
 
 
 public class PhotoPass extends AppCompatActivity {
+    TextView titleView;
     /* 头像文件 */
     private static final String IMAGE_FILE_NAME = "icon1.png";
     private static final String CROP_IMAGE_FILE_NAME = "icon1.png";
@@ -38,7 +46,7 @@ public class PhotoPass extends AppCompatActivity {
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
     private static final int CODE_RESULT_REQUEST = 0xa2;
-Bitmap bitmap;
+    Bitmap bitmap;
     // 裁剪后图片的宽(X)和高(Y),的正方形。
     private static int output_X = 450;
     private static int output_Y = 450;
@@ -222,12 +230,42 @@ Bitmap bitmap;
                 headImage.setImageBitmap(b);
                 System.out.println(1);
                 //剪裁后传输图像
-                PictureUtil.passPhoto1(b);
+                passPhoto1(b);
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(2);
         }
+    }
+
+    //图片传送接口
+    public void passPhoto1(Bitmap bitmap){
+        Integer obj_type=1;
+        System.out.println(233333);
+        String pic= PictureUtil.bitmapToBase64(bitmap);
+        System.out.println(obj_type);
+//        TypeOne one= new TypeOne();
+//        one.setObjtype(obj_type);
+//        one.setImg(pic);
+        String tel=(String) SpUtils.get("phone","");
+        Http.getHttpService(2).photoSend(tel,obj_type,pic)
+                .compose(new ThreadTransformer<PhotoType1Bean>())
+                .subscribe(new CommonObserver<PhotoType1Bean>() {
+                    // 请求成功返回后检查登录结果
+                    @Override
+                    public void onNext(PhotoType1Bean response) {
+                        System.out.println(response.getFoodname());
+                        System.out.println(response.getProbsbility());
+                        String foodname=response.getFoodname();
+                        titleView = findViewById(R.id.foodn);
+                        titleView.setText(foodname);
+                    }
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                    }
+                });
+
     }
 
     /**
@@ -285,5 +323,6 @@ Bitmap bitmap;
 
         return bitmap;
     }
+
 
 }

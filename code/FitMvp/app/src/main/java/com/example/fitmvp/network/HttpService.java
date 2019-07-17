@@ -47,5 +47,5 @@ public interface HttpService {
     //图片传输
     @POST("classify/")
     @FormUrlEncoded
-    Observable<PhotoType1Bean> photoSend(@Field("obj_type")Integer obj_type,@Field("img")String img);
+    Observable<PhotoType1Bean> photoSend(@Field("tel")String tel,@Field("obj_type")Integer obj_type,@Field("img")String img);
 }

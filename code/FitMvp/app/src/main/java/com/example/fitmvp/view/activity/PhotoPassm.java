@@ -38,8 +38,8 @@ public class PhotoPassm extends AppCompatActivity {
     private static final int CODE_RESULT_REQUEST = 0xa2;
     Bitmap bitmap;
     // 裁剪后图片的宽(X)和高(Y),的正方形。
-    private static int output_X = 450;
-    private static int output_Y = 450;
+//    private static int output_X = 450;
+//    private static int output_Y = 450;
     //改变头像的标记位
     private int new_icon=0xa3;
     private ImageView headImage = null;
@@ -191,9 +191,9 @@ public class PhotoPassm extends AppCompatActivity {
 //        intent.putExtra("aspectY", 1);
 
         // outputX , outputY : 裁剪图片宽高
-        intent.putExtra("outputX", output_X);
-        intent.putExtra("outputY", output_Y);
-        intent.putExtra("return-data", true);
+//        intent.putExtra("outputX", output_X);
+//        intent.putExtra("outputY", output_Y);
+//        intent.putExtra("return-data", true);
 
         //startActivityForResult(intent, CODE_RESULT_REQUEST); //直接调用此代码在小米手机有异常，换以下代码
         String mLinshi = System.currentTimeMillis() + CROP_IMAGE_FILE_NAME;

@@ -143,6 +143,7 @@ public class Http {
                 Request.Builder requestBuilder = originalRequest.newBuilder()
                         // Provide your custom header here
                         .header("token", (String) SpUtils.get("token", ""))
+//                        .header("phone",(String)SpUtils.get("phone",""))
                         .method(originalRequest.method(), originalRequest.body());
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

@@ -54,4 +54,11 @@
         android:layout_marginTop="30dp"
         android:backgroundTint="#00FDFDFD"
         app:srcCompat="@drawable/gou" />
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/foodn"
+        android:layout_width="134dp"
+        android:layout_height="41dp"
+        android:text="这里有菜名" />
 </RelativeLayout>

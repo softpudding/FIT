@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 public class PhotoType1Bean {
     @SerializedName("class")
     private String foodname;
-    private Double probsbility;
+    private Float probsbility;
 
     public String getFoodname() {
         return foodname;
     }
 
-    public Double getProbsbility() {
+    public Float getProbsbility() {
         return probsbility;
     }
 
@@ -20,7 +20,7 @@ public class PhotoType1Bean {
         this.foodname = foodname;
     }
 
-    public void setProbsbility(Double probsbility) {
+    public void setProbsbility(Float probsbility) {
         this.probsbility = probsbility;
     }
 }
