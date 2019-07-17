@@ -1,20 +1,19 @@
 import numpy as np
 import tensorflow as tf
-from skimage import transform
 from PIL import Image
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
 import json
 from django.http import HttpResponse
-from django.core.files.storage import FileSystemStorage
 from django.views.decorators.csrf import csrf_exempt
 import requests
 from skimage.color import rgb2gray
 from skimage import transform
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-from scipy import ndimage
 from sklearn.cluster import KMeans
+import base64
 import cv2
+import io
 
 INPUT_DROPOUT = 0.8
 CONV1_DROPOUT = 0.9
@@ -22,7 +21,7 @@ CONV2_DROPOUT = 0.9
 BATCH_SIZE = 16
 SAMPLE_TYPES = 18
 LEARNING_RATE = 0.001
-MODEL_PATH = "/home/centos/TF/BestM" #保存模型的path
+MODEL_PATH = "C:/Users/11570/Desktop/trainedModel/acc0.84steps58320" #保存模型的path
 UNITS = SAMPLE_TYPES # 此数据应该与参与训练的种类数量相同
 
 label_converters=["菠萝咕老肉","蛋饺","番茄炒蛋","咖喱鸡块","贡丸汤",
@@ -272,7 +271,7 @@ def region_proposal(plate_type,pic):
 
 @csrf_exempt
 def index(request):
-    if request.method == 'POST' and request.FILES.get('img') is not None and request.POST.get('token') is not None:
+    if request.method == 'POST' and request.POST.get('img') is not None :
         # object type confirmation
         obj_type = 0
         if request.POST.get('obj_type') is not None:
@@ -282,7 +281,7 @@ def index(request):
         if obj_type != 1 and obj_type != 2:
             return HttpResponse("obj_type must be 1 (single object) or 2 (multiple object)")
         # security authorization
-        token = str(request.POST.get('token'))
+        token = str(request.META['HTTP_TOKEN'])
         url = 'http://202.120.40.8:30231/user/recoTest/'
         headers = {'token':str(token)}
         response = requests.post(url,headers,headers=headers)
@@ -293,9 +292,11 @@ def index(request):
         #deal with pic
         if obj_type == 1:
             # obj_type 1
-            img = request.FILES['img']
-            img = Image.open(img)
+            base64_string = request.POST.get('img')
+            imgdata = base64.b64decode(str(base64_string))
+            img = Image.open(io.BytesIO(imgdata))
             img = np.array(img)
+            print(img.shape)
             res = model_predict(img)
             if res.probability <= 0.5:
                 return HttpResponse("苑琪超没有见过这种吃的...")
@@ -303,8 +304,9 @@ def index(request):
                 return HttpResponse(json.dumps(res,default=Predict2Json))
         elif obj_type == 2:
             # get img
-            img = request.FILES['img']
-            img = Image.open(img)
+            base64_string = request.POST.get('img')
+            imgdata = base64.b64decode(str(base64_string))
+            img = Image.open(io.BytesIO(imgdata))
             img = np.array(img)
             # multiple object
             plate_type = 0
