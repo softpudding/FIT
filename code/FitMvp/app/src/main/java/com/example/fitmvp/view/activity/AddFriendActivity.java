@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.base.BaseAdapter;
+import com.example.fitmvp.bean.FriendInfo;
 import com.example.fitmvp.bean.RecordItem;
 import com.example.fitmvp.contract.AddFriendContract;
 import com.example.fitmvp.presenter.AddFriendPresenter;
@@ -39,9 +40,9 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
     EditText inputPhone;
 
     // 查找结果为 0 or 1 个
-    private List<UserInfo> searchList = new ArrayList<>();
+    private List<FriendInfo> searchList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    private BaseAdapter<UserInfo> adapter;
+    private BaseAdapter<FriendInfo> adapter;
 
     @Override
     protected void setBar(){
@@ -90,18 +91,19 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
     }
 
     public void initAdapter(){
-        adapter = new BaseAdapter<UserInfo>(searchList){
+        adapter = new BaseAdapter<FriendInfo>(searchList){
             @Override
             public int getLayoutId(int viewType) {
                 return R.layout.friendlist_item;
             }
 
             @Override
-            public void convert(final MyHolder holder, UserInfo user, int position){
-                holder.setText(R.id.friend_name,user.getNickname());
-                holder.setText(R.id.friend_account,user.getUserName());
-                if(user.getAvatar() != null){
-                    user.getAvatarBitmap(new GetAvatarBitmapCallback() {
+            public void convert(final MyHolder holder, FriendInfo user, int position){
+                UserInfo info = user.getFriendInfo();
+                holder.setText(R.id.friend_name,info.getNickname());
+                holder.setText(R.id.friend_account,info.getUserName());
+                if(info.getAvatar() != null){
+                    info.getAvatarBitmap(new GetAvatarBitmapCallback() {
                         @Override
                         public void gotResult(int i, String s, Bitmap bitmap) {
                             if(i == 0){
@@ -117,7 +119,7 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(AddFriendActivity.this,FriendDetailActivity.class);
                 // 传参
-                UserInfo item = searchList.get(position);
+                FriendInfo item = searchList.get(position);
 //                intent.putExtra("title",item.getTitle());
 //                intent.putExtra("text",item.getText());
 //                // 传项目中图片
@@ -133,7 +135,7 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
     }
 
     @Override
-    public void setSearchList(List<UserInfo> list) {
+    public void setSearchList(List<FriendInfo> list) {
         searchList = list;
     }
 }
