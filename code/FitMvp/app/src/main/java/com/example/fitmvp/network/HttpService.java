@@ -45,6 +45,7 @@ public interface HttpService {
     Observable<String> changePw(@Field("tel") String tel, @Field("password") String password);
 
     //图片传输
-    @POST("classify")
-    Observable<PhotoType1Bean> photoSend(@Body TypeOne one);
+    @POST("classify/")
+    @FormUrlEncoded
+    Observable<PhotoType1Bean> photoSend(@Field("obj_type")Integer obj_type,@Field("img")String img);
 }

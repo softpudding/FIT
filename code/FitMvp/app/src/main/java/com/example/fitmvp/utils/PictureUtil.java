@@ -66,12 +66,12 @@ public class PictureUtil {
     }
     //图片传送接口
     public static void passPhoto1(Bitmap bitmap){
-        int obj_type=1;
+        Integer obj_type=1;
         System.out.println(233333);
         String pic= PictureUtil.bitmapToBase64(bitmap);
         System.out.println(obj_type);
         TypeOne one= new TypeOne();
-        one.setObj_type(obj_type);
+        one.setObjtype(obj_type);
         one.setImg(pic);
 //        Retrofit retrofit=new Retrofit.Builder()
 //                .baseUrl("http://202.120.40.8:30232/")
@@ -91,7 +91,7 @@ public class PictureUtil {
 //                t.printStackTrace();
 //            }
 //        });
-        Http.getHttpService(2).photoSend(one)
+        Http.getHttpService(2).photoSend(obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean>())
                 .subscribe(new CommonObserver<PhotoType1Bean>() {
                     // 请求成功返回后检查登录结果

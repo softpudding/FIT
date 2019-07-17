@@ -22,7 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Http {
     private static Http mInstance;
-    private static volatile HttpService httpService;
+    private static volatile HttpService httpService1;
+    private static volatile HttpService httpService2;
     private  static volatile Retrofit retrofit;
 
     // 单例
@@ -39,10 +40,18 @@ public class Http {
 
     // retrofit的底层利用反射的方式, 获取所有的api接口的类
     public static HttpService getHttpService(Integer integer) {
-        if (httpService == null) {
-            httpService = getRetrofit(integer).create(HttpService.class);
+        if(integer == 1){
+            if (httpService1 == null) {
+                httpService1 = getRetrofit(1).create(HttpService.class);
+            }
+            return httpService1;
         }
-        return httpService;
+        else{
+            if(httpService2==null) {
+                httpService2 = getRetrofit(2).create(HttpService.class);
+            }
+                return httpService2;
+        }
     }
 
     private static Retrofit getRetrofit(Integer integer) {
@@ -71,9 +80,10 @@ public class Http {
 //                    OkHttpClient client = new OkHttpClient
 //                            .Builder()
 //                            .build();
-                    String baseUrl;
-                    if(integer==1){baseUrl = "http://202.120.40.8:30231/";}
-                    else {baseUrl="http://202.120.40.8:30232/";}
+                    String baseUrl="http://202.120.40.8:30232/";
+//                    if(integer==1){baseUrl = "http://202.120.40.8:30231/";}
+//                    else {
+//                        baseUrl="http://202.120.40.8:30232/";}
 //                    String baseUrl = "http://202.120.40.8";
                     // 获取retrofit的实例
                     retrofit = new Retrofit
@@ -99,8 +109,8 @@ public class Http {
                 Request request;
                 HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                         // Provide your custom parameter here
-                        .addQueryParameter("phoneSystem", "")
-                        .addQueryParameter("phoneModel", "")
+                        //.addQueryParameter("phoneSystem", "")
+                        //.addQueryParameter("phoneModel", "")
                         .build();
                 request = originalRequest.newBuilder().url(modifiedUrl).build();
                 return chain.proceed(request);
