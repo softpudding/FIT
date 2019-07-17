@@ -2,6 +2,7 @@ package com.example.fitmvp.network;
 
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
+import com.example.fitmvp.bean.PhotoType1Bean;
 import com.example.fitmvp.bean.RegisterUserBean;
 import com.google.gson.JsonObject;
 
@@ -45,5 +46,5 @@ public interface HttpService {
     //图片传输
     @POST(":30232/classify")
     @FormUrlEncoded
-    Call<String> photoSend(@Field("obj_type") Integer obj_type, @Field("pic") String pic);
+    Observable<PhotoType1Bean> photoSend(@Field("obj_type") Integer obj_type, @Field("pic") String pic);
 }

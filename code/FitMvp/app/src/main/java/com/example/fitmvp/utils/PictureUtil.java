@@ -3,8 +3,12 @@ package com.example.fitmvp.utils;
 import android.graphics.Bitmap;
 import android.util.Base64;
 
+import com.example.fitmvp.bean.PhotoType1Bean;
+import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.network.PhotoService;
+import com.example.fitmvp.observer.CommonObserver;
+import com.example.fitmvp.transformer.ThreadTransformer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -70,18 +74,32 @@ public class PictureUtil {
 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .build();
 //        PhotoService photoService=retrofit.create(PhotoService.class);
-        Call<String> call=Http.getHttpService().photoSend(obj_type,pic);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                System.out.println(response);
-            }
+//        Call<String> call=Http.getHttpService().photoSend(obj_type,pic);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                System.out.println(response);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+        Http.getHttpService().photoSend(obj_type, pic)
+                .compose(new ThreadTransformer<PhotoType1Bean>())
+                .subscribe(new CommonObserver<PhotoType1Bean>() {
+                    // 请求成功返回后检查登录结果
+                    @Override
+                    public void onNext(PhotoType1Bean response) {
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
+                        }
+
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                    }
+                });
 
     }
 }
