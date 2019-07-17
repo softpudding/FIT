@@ -26,18 +26,17 @@
         app:srcCompat="@drawable/icon" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/button_regis"
         android:layout_width="48dp"
         android:layout_height="52dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="4dp"
-        android:onClick="tologin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7"
+        app:layout_constraintTop_toBottomOf="@id/r_pswc"
         app:srcCompat="@drawable/check" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/r_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -48,39 +47,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="57dp"
-        android:layout_height="37dp"
-        android:text="获取"
-        app:layout_constraintBottom_toBottomOf="@+id/editText5"
-        app:layout_constraintStart_toEndOf="@+id/editText5" />
+    <!--<Button-->
+        <!--android:id="@+id/gain_veri"-->
+        <!--android:layout_width="57dp"-->
+        <!--android:layout_height="37dp"-->
+        <!--android:text="获取"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/r_verify"-->
+        <!--app:layout_constraintStart_toEndOf="@id/r_verify" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/r_verify"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="84dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="输入验证码"-->
+        <!--android:inputType="number"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/r_phone" />-->
 
     <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:ems="10"
-        android:hint="输入验证码"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
-    <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/r_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="输入用户名"
-        android:inputType="text"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@id/r_phone" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/r_psw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -89,10 +88,10 @@
         android:hint="输入密码"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+        app:layout_constraintTop_toBottomOf="@id/r_name" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/r_pswc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -101,7 +100,7 @@
         android:hint="确认密码"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@id/r_psw" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -26,19 +26,19 @@
         app:srcCompat="@drawable/icon" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/text_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginBottom="212dp"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:hint="Telephone"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/text_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -47,17 +47,16 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/text_account" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/button_login"
         android:layout_width="48dp"
         android:layout_height="52dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="32dp"
-        android:onClick="tomain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/text_pw"
         app:srcCompat="@drawable/check" />
 
     <Button
@@ -66,8 +65,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginBottom="260dp"
-        android:onClick="toregister"
+        android:onClick="toRegister"
         android:text="没有账号？注册！"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="80dp"
+        android:onClick="toMain"
+        android:text="ToMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="136dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="108dp"
+        android:onClick="toRepassword"
+        android:text="忘记密码？点击这里"
+        android:textColor="#B89EB7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

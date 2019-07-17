@@ -1,10 +1,10 @@
 # FIT 暑期项目开发
 
 ### 2019年夏季学期项目开发 第八组 FIT项目 
-组内成员(按姓名字母排序)：
+组内成员：
 1. 陈婧心 VillardL
-2. 苑齐超 Icyfrog
-3. 杨宣慧 Yang-Xuanhui
+2. 杨宣慧 Yang-Xuanhui
+3. 苑齐超 Icyfrog
 4. 杨逍 llIllIllIlllIll
 
 ### 每日例会 早上8:45-9:00
