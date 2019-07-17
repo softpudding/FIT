@@ -40,4 +40,17 @@ public class RecongitionController {
         recognitionService.recognieFood(jsonObject);
         return null;
     }
+
+
+    /**
+     *
+     * @param test11
+     */
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/saveReco")
+    @UserLoginToken
+    public @ResponseBody
+    void saveReco(String test11) {
+        saveReco(null);
+    }
 }

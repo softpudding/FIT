@@ -26,12 +26,11 @@ public class AdminController {
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/login")
-    public @ResponseBody String login(@RequestBody JSONObject data) {
-        return service.login(data.getInteger("id"),
-                data.getString("pwd"));
+    @PostMapping(path = "/login")               //  这里的自动登录还没有搞好额...
+    public @ResponseBody
+    String login(@RequestBody JSONObject data) {
+        return service.login(data.getInteger("id"), data.getString("pwd"));
     }
-
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/ban")

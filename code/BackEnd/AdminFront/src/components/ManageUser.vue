@@ -46,6 +46,11 @@ export default {
     };
   },
   mounted() {
+    const data = JSON.parse(sessionStorage.getItem("login"));
+    if (data == null) {
+      alert("尚未登录");
+      this.$router.replace("/");
+    }
     http
       .post("/admin/getAll")
       .then(response => {
