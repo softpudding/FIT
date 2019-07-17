@@ -41,7 +41,7 @@ public class UserServiceTest {
         user.setNickName("Never use it");
         user.setPassword("Never use it");
         user.setTel("Never use it");
-        user.setIsactive(true);
+        user.setIsactive(1);
         assertEquals("1", userService.register(user));
         User user1 = userService.findByTel("101");
         assertEquals("0", userService.register(user1));

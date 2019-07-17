@@ -36,17 +36,20 @@ public class UserServiceImpl implements UserService {
         return userDao.findByTel(tel);
     }
 
+
     @Override
     public String save(User user) { userDao.save(user);
         return null;
     }
+
+
 
     @Override
     public String login(String tel, String pwd) {
         User user = findByTel(tel);
         if (user == null) {
             return "101";       // 账号不存在
-        } else if (!user.isIsactive()) {
+        } else if (user.getIsactive() == 0) {
             return "103";       // 账号被禁用
         } else if (!user.getPassword().equals(pwd)) {
             return "102";       // 密码不正确

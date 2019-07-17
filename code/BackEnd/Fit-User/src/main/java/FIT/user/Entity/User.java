@@ -19,7 +19,7 @@ public class User {
     private String nickName;
 
     @Column(name = "isactive")
-    private boolean isactive;
+    private Integer isactive;
 
     @Column(name = "birthday")
     private String birthday;
@@ -68,11 +68,12 @@ public class User {
         this.nickName = nickName;
     }
 
-    public boolean isIsactive() {
+
+    public Integer getIsactive() {
         return isactive;
     }
 
-    public void setIsactive(boolean isactive) {
+    public void setIsactive(Integer isactive) {
         this.isactive = isactive;
     }
 

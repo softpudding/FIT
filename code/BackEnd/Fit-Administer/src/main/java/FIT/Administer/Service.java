@@ -19,12 +19,12 @@ public class Service {
     }
 
     public void ban(User user) {
-        user.setIsactive(false);
+        user.setIsactive(0);
         userService.save(user);
     }
 
     public void relieve(User user) {
-        user.setIsactive(true);
+        user.setIsactive(1);
         userService.save(user);
     }
 

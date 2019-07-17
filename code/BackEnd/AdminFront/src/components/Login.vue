@@ -1,5 +1,5 @@
 <template>
-  <div>当我是瞎打的</div>
+  <div>当我是瞎的?</div>
 </template>
 
 <script>

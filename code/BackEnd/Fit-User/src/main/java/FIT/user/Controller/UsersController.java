@@ -67,7 +67,7 @@ public class UsersController {
         user.setTel(tel);
         user.setPassword(password);
         user.setNickName(nickName);
-        user.setIsactive(true);
+        user.setIsactive(1);
         String result = userService.register(user);
         JSONObject jsonObject = new JSONObject();
         if (result.equals("1")) {
@@ -130,6 +130,7 @@ public class UsersController {
     }
 
     ////////////////////// FOR TEST!
+    /*
     @CrossOrigin(origins = "*", maxAge = 3600)
     @UserLoginToken
     @PostMapping(path = "/infoTest")
@@ -138,6 +139,8 @@ public class UsersController {
         User u = userService.findByTel(tel);
         return u;
     }
+
+     */
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @UserLoginToken

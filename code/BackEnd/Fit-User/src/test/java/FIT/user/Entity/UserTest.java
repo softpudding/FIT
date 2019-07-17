@@ -19,12 +19,12 @@ public class UserTest {
         user.setTel("10086");
         user.setPassword("10086");
         user.setNickName("LianTong");
-        user.setIsactive(true);
+        user.setIsactive(1);
         assertEquals(10086, user.getId().intValue());
         assertEquals("10086", user.getTel());
         assertEquals("10086", user.getPassword());
         assertEquals("LianTong", user.getNickName());
-        assertEquals(true, user.isIsactive());
+        assertEquals(true, user.getIsactive());
 
 
     }

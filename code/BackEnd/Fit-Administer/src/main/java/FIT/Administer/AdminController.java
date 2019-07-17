@@ -35,7 +35,7 @@ public class AdminController {
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/ban")
-    public @ResponseBody boolean banUser(@RequestParam String tel) {
+    public @ResponseBody boolean banUser(@RequestBody String tel) {
         User user = userService.findByTel(tel);
         if (user == null) { return false; }
         else {
@@ -46,7 +46,7 @@ public class AdminController {
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/relieve")
-    public @ResponseBody boolean relieveUser(@RequestParam String tel) {
+    public @ResponseBody boolean relieveUser(@RequestBody String tel) {
         User user = userService.findByTel(tel);
         if (user == null) { return false; }
         else {

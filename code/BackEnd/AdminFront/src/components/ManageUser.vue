@@ -12,7 +12,7 @@
             <el-table-column prop="id" label="ID" width="180"></el-table-column>
             <el-table-column prop="tel" label="Telephone number" width="180"></el-table-column>
             <el-table-column prop="nickName" label="nick name" width="180"></el-table-column>
-            <el-table-column prop="isactive" label="If_active" width="180"></el-table-column>
+            <el-table-column prop="isactive" label="if active" width="180"></el-table-column>
             <el-table-column align="right">
               <template slot="header" slot-scope="scope"></template>
               <template slot-scope="scope">
@@ -61,10 +61,9 @@ export default {
   },
   methods: {
     setLock(index, row) {
-      var user_email = row.email;
-      console.log(user_email);
+      var tel = row.tel;
       http
-        .post("/user/lock", user_email)
+        .post("/admin/ban", tel)
         .then(response => {
           console.log(response.data);
           if (response.data) {
@@ -79,10 +78,9 @@ export default {
         });
     },
     setUnlock(index, row) {
-      var user_email = row.email;
-      console.log(user_email);
+      var tel = row.tel;
       http
-        .post("/user/unlock", user_email)
+        .post("/admin/relieve", tel)
         .then(response => {
           console.log(response.data);
           if (response.data) {
