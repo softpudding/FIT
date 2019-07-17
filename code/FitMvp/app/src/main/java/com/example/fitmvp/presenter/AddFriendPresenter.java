@@ -41,10 +41,11 @@ public class AddFriendPresenter extends BasePresenter<AddFriendActivity> impleme
                 if(i == 0){
                     FriendInfo friend = new FriendInfo();
                     friend.setFriendInfo(userInfo);
+                    friend.setIsFriend(false);
                     // 检查是否已经是好友
                     isFriend(friend);
                     List<FriendInfo> list = new ArrayList<>();
-
+                    list.add(friend);
                     getIView().setSearchList(list);
                     getIView().initAdapter();
                 }
@@ -60,7 +61,6 @@ public class AddFriendPresenter extends BasePresenter<AddFriendActivity> impleme
             @Override
             public void gotResult(int i, String s, List<UserInfo> list) {
                 if(i == 0){
-                    friend.setIsFriend(false);
                     for(UserInfo user : list){
                         if(friend.getFriendInfo()==user){
                             friend.setIsFriend(true);

@@ -22,8 +22,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Http {
     private static Http mInstance;
-    private static volatile HttpService httpService;
-    private  static volatile Retrofit retrofit;
+    private static volatile HttpService httpService1;
+    private static volatile HttpService httpService2;
+    private  static volatile Retrofit retrofit1;
+    private  static volatile Retrofit retrofit2;
 
     // 单例
     public static Http getInstance() {
@@ -39,44 +41,62 @@ public class Http {
 
     // retrofit的底层利用反射的方式, 获取所有的api接口的类
     public static HttpService getHttpService(Integer integer) {
-        if (httpService == null) {
-            httpService = getRetrofit(integer).create(HttpService.class);
+        switch (integer){
+            case 1:
+                if(httpService1 == null){
+                    httpService1 = getRetrofit(1).create(HttpService.class);
+                }
+                return httpService1;
+            case 2:
+                if(httpService2 == null){
+                    httpService2 = getRetrofit(2).create(HttpService.class);
+                }
+                return  httpService2;
+            default:
+                if(httpService1 == null){
+                    httpService1 = getRetrofit(1).create(HttpService.class);
+                }
+                return httpService1;
         }
-        return httpService;
     }
 
-    private static Retrofit getRetrofit(Integer integer) {
-        if (retrofit == null) {
+    private static Retrofit getRetrofit(Integer flag) {
+        if (retrofit1 == null || retrofit2 == null) {
             synchronized (Http.class) {
-                if (retrofit == null) {
-                    //添加一个log拦截器,打印所有的log
-                    HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-                    //可以设置请求过滤的水平,body,basic,headers
-                    httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                //添加一个log拦截器,打印所有的log
+                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+                //可以设置请求过滤的水平,body,basic,headers
+                httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-                    //设置 请求的缓存的大小跟位置
-                    File cacheFile = new File(BaseApplication.getmContext().getCacheDir(), "cache");
-                    Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb 缓存的大小
+                //设置 请求的缓存的大小跟位置
+                File cacheFile = new File(BaseApplication.getmContext().getCacheDir(), "cache");
+                Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb 缓存的大小
 
-                    OkHttpClient client = new OkHttpClient
-                            .Builder()
-                            .addInterceptor(addQueryParameterInterceptor())  //参数添加
-                            .addInterceptor(addHeaderInterceptor()) // token过滤
-                            .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
-                            .cache(cache)  //添加缓存
-                            .connectTimeout(60l, TimeUnit.SECONDS)
-                            .readTimeout(60l, TimeUnit.SECONDS)
-                            .writeTimeout(60l, TimeUnit.SECONDS)
-                            .build();
-//                    OkHttpClient client = new OkHttpClient
-//                            .Builder()
-//                            .build();
-                    String baseUrl;
-                    if(integer==1){baseUrl = "http://202.120.40.8:30231/";}
-                    else {baseUrl="http://202.120.40.8:30232/";}
-//                    String baseUrl = "http://202.120.40.8";
+                OkHttpClient client = new OkHttpClient
+                        .Builder()
+                        .addInterceptor(addQueryParameterInterceptor())  //参数添加
+                        .addInterceptor(addHeaderInterceptor()) // token过滤
+                        .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
+                        .cache(cache)  //添加缓存
+                        .connectTimeout(60l, TimeUnit.SECONDS)
+                        .readTimeout(60l, TimeUnit.SECONDS)
+                        .writeTimeout(60l, TimeUnit.SECONDS)
+                        .build();
+                if (retrofit1 == null) {
+                    String baseUrl = "http://202.120.40.8:30231/";
                     // 获取retrofit的实例
-                    retrofit = new Retrofit
+                    retrofit1 = new Retrofit
+                            .Builder()
+                            .baseUrl(baseUrl)
+                            .client(client)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .build();
+                }
+                if (retrofit2 == null){
+                    String baseUrl = "http://202.120.40.8:30232/";
+                    // 获取retrofit的实例
+                    retrofit2 = new Retrofit
                             .Builder()
                             .baseUrl(baseUrl)
                             .client(client)
@@ -86,7 +106,12 @@ public class Http {
                 }
             }
         }
-        return retrofit;
+        if(flag ==1){
+            return retrofit1;
+        }
+        else{
+            return retrofit2;
+        }
     }
 
 

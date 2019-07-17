@@ -120,10 +120,10 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
                 Intent intent = new Intent(AddFriendActivity.this,FriendDetailActivity.class);
                 // 传参
                 FriendInfo item = searchList.get(position);
-//                intent.putExtra("title",item.getTitle());
-//                intent.putExtra("text",item.getText());
-//                // 传项目中图片
-//                intent.putExtra("image", item.getImage());
+                intent.putExtra("isFriend",item.getIsFriend());
+                //intent.putExtra("friend",item);
+                // 传项目中图片
+                //intent.putExtra("image", item.getImage());
                 startActivity(intent);
             }
         });
