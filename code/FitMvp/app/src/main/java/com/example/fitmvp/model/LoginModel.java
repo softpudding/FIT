@@ -24,7 +24,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         if (infoHint == null)
             throw new RuntimeException("InfoHint不能为空");
 
-        httpService.login(account, password)
+        httpService1.login(account, password)
                 .compose(new ThreadTransformer<MyResponse<LoginUserBean>>())
                 .subscribe(new CommonObserver<MyResponse<LoginUserBean>>() {
                     // 请求成功返回后检查登录结果

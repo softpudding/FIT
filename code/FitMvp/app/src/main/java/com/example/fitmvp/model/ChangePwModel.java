@@ -17,7 +17,7 @@ public class ChangePwModel extends BaseModel implements ChangePwContract.Model {
         if (infoHint == null)
             throw new RuntimeException("InfoHint不能为空");
 
-        httpService.changePw(tel, password)
+        httpService1.changePw(tel, password)
                 .compose(new ThreadTransformer<String>())
                 .subscribe(new CommonObserver<String>() {
                     @Override
