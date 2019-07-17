@@ -11,7 +11,7 @@ classes 0~17 与下列食物一一对应
 6. "烤鸭饭"
 7. "麻辣香锅"
 8. "米饭" 
-9.  "面"
+9. "面" 
 10. "青菜" 
 11. "生煎"
 12. "酸汤肥牛" 
@@ -23,7 +23,7 @@ classes 0~17 与下列食物一一对应
 
 ```python
 # python 可以用的转换数组
-label_converters=["菠萝咕老肉","蛋饺","番茄炒蛋","咖喱鸡块","贡丸汤","黄焖鸡米饭","烤鸭饭","麻辣香锅","面","米饭","青菜","生煎","酸汤肥牛","糖醋里脊","土豆丝","油条","炸酱面","煮鸡蛋"]
+label_converters=['BoLuoGuLaoRou', 'DanJiao', 'FanQieChaoDan', 'GaLiJiKuai', 'GongWanTang', 'HuangMenJiMiFan', 'KaoYaFan', 'MaLaXiangGuo', 'MiFan', 'Mian', 'QingCai', 'ShengJian', 'SuanTangFeiNiu', 'TangCuLiJi', 'TuDouSi', 'YouTiao', 'ZhaJiangMian', 'ZhuJiDan']
 ```
 ## API
 API是不可能放在gayhub上给你们看的。
