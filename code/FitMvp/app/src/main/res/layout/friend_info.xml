@@ -19,8 +19,9 @@
 
             <ImageView
                 android:id="@+id/friend_info_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="8dp"
                 app:srcCompat="@drawable/default_portrait80" />
 
             <LinearLayout
@@ -31,7 +32,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/note_nick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="备注："
@@ -42,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="未知"
                     android:textAlignment="textStart" />
             </LinearLayout>
 
@@ -70,17 +71,17 @@
 
                 <TextView
                     android:id="@+id/phone"
-                    android:layout_width="240dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="手机号" />
 
                 <TextView
                     android:id="@+id/friend_info_phone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="0"
                     android:textAlignment="textEnd" />
             </LinearLayout>
 
@@ -108,17 +109,17 @@
 
                 <TextView
                     android:id="@+id/nickname"
-                    android:layout_width="240dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="昵称" />
 
                 <TextView
                     android:id="@+id/friend_info_nickname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="无"
                     android:textAlignment="textEnd" />
             </LinearLayout>
 
@@ -146,17 +147,17 @@
 
                 <TextView
                     android:id="@+id/gender"
-                    android:layout_width="240dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="性别" />
 
                 <TextView
                     android:id="@+id/friend_info_gender"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="未知"
                     android:textAlignment="textEnd" />
             </LinearLayout>
 
@@ -184,17 +185,17 @@
 
                 <TextView
                     android:id="@+id/birthday"
-                    android:layout_width="240dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:text="生日" />
 
                 <TextView
                     android:id="@+id/friend_info_birthday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="未知"
                     android:textAlignment="textEnd" />
             </LinearLayout>
 
@@ -221,8 +222,8 @@
         android:layout_marginEnd="115.5dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/round_button"
-        android:backgroundTint="#BA7C60AD"
+        android:backgroundTint="@color/colorButton"
+        android:text="加好友"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        tools:text="加好友" />
+        android:textSize="18sp" />
 </RelativeLayout>

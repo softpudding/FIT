@@ -1,21 +1,13 @@
 package com.example.fitmvp.contract;
 
-import com.example.fitmvp.bean.FriendInfo;
-
-import java.util.List;
-
-import cn.jpush.im.android.api.model.UserInfo;
-
 public interface AddFriendContract {
     interface Model {
     }
 
     interface View {
-        void setSearchList(List<FriendInfo> list);
-
     }
 
     interface Presenter {
-        void search(String phone);
+        void addFriend(String targetUser, String reason);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.fitmvp.utils;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import com.example.fitmvp.R;
@@ -26,7 +27,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PictureUtil {
-    public static byte[] getBitmapByte(Bitmap bitmap) {
+    public static byte[] Bitmap2Bytes(Bitmap bitmap) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
         try {
@@ -38,6 +39,12 @@ public class PictureUtil {
         }
         return out.toByteArray();
     }
+
+    public static Bitmap Bytes2Bitmap(byte[] buf){
+        Bitmap bm = BitmapFactory.decodeByteArray(buf, 0, buf.length);
+        return bm;
+    }
+
     public static String bitmapToBase64(Bitmap bitmap) {
         String result = null;
         ByteArrayOutputStream baos = null;

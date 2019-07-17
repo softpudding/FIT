@@ -13,6 +13,7 @@ import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
@@ -77,6 +78,13 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         SpUtils.put("token",token);
         // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
+        UserInfo userInfo = JMessageClient.getMyInfo();
+        if(userInfo!=null){
+            SpUtils.put("phone",userInfo.getUserName());
+            SpUtils.put("nickname",userInfo.getNickname());
+            SpUtils.put("gender",userInfo.getGender());
+            SpUtils.put("birthday",userInfo.getBirthday());
+        }
 
     }
 
