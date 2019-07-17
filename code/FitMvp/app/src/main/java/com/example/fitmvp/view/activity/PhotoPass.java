@@ -23,18 +23,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.fitmvp.R;
-import com.example.fitmvp.exception.ApiException;
-import com.example.fitmvp.network.Http;
-import com.example.fitmvp.network.HttpService;
-import com.example.fitmvp.observer.CommonObserver;
-import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
-import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.Timestamp;
+
 
 public class PhotoPass extends AppCompatActivity {
     /* 头像文件 */
@@ -227,7 +221,8 @@ Bitmap bitmap;
             if (intent != null) {
                 headImage.setImageBitmap(b);
                 System.out.println(1);
-                passphoto(b);
+                //剪裁后传输图像
+                PictureUtil.passPhoto1(b);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -289,39 +284,6 @@ Bitmap bitmap;
                 (int) height, matrix, true);
 
         return bitmap;
-    }
-
-
-    public void passphoto(Bitmap bitmap){
-        String tel="456";
-        //String pic= PictureUtil.bitmapToBase64(bitmap);
-        String pic = "123";
-        Integer photoType=1;
-       Timestamp times = new Timestamp(System.currentTimeMillis());
-        System.out.println(122121212);
-        System.out.println(times);
-        System.out.println(pic);
-        Http.getHttpService().photoSend(tel,pic,photoType,times)
-                .compose(new ThreadTransformer<String>())
-                .subscribe(new CommonObserver<String>() {
-                    @Override
-                    public void onNext(String flag) {
-                        System.out.println(flag);
-//                        switch(flag){
-//                            case "100":;
-//                                break;
-//
-//                            default:
-//
-//                                break;
-//                        }
-                    }
-
-                    @Override
-                    public void onError(ApiException e){
-                        System.err.println("onError: hello");
-                    }
-                });
     }
 
 }

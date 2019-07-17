@@ -20,23 +20,22 @@ import retrofit2.http.PartMap;
 // 所有网络请求接口
 public interface HttpService {
     // 登录
-    @POST("/user/login")
+    @POST(":30231/user/login")
     @FormUrlEncoded
     Observable<String> login(@Field("account") String account, @Field("password") String password);
 
     // 注册
-    @POST("/user/register")
+    @POST(":30231/user/register")
     @FormUrlEncoded
     Observable<String> register(@Field("tel") String tel, @Field("nickName") String nickName, @Field("password") String password);
 
     // 修改密码
-    @POST("/user/changePassword")
+    @POST(":30231/user/changePassword")
     @FormUrlEncoded
     Observable<String> changePw(@Field("tel") String tel, @Field("password") String password);
 
     //图片传输
-    @POST("/user/picTest")
+    @POST(":30232/classify")
     @FormUrlEncoded
-    Observable<String> photoSend(@Field("tel") String tel, @Field("pic") String pic,
-                                 @Field("photoType") Integer photoType,@Field("timestamp") Timestamp times);
+    Call<String> photoSend(@Field("obj_type") Integer obj_type, @Field("pic") String pic);
 }
