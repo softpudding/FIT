@@ -1,5 +1,7 @@
 package com.example.fitmvp.contract;
 
+import com.example.fitmvp.bean.FriendInfo;
+
 import java.util.List;
 
 import cn.jpush.im.android.api.model.UserInfo;
@@ -9,7 +11,7 @@ public interface AddFriendContract {
     }
 
     interface View {
-        void setSearchList(List<UserInfo> list);
+        void setSearchList(List<FriendInfo> list);
 
     }
 
