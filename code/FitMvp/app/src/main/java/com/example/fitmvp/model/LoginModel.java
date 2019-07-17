@@ -16,6 +16,8 @@ import cn.jpush.im.android.api.JMessageClient;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
+    private String token;
+
     @Override
     public Boolean login(@NonNull String account, @NonNull String password, @NonNull final InfoHint
             infoHint) {
@@ -36,6 +38,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                             switch(response.getResult()){
                                 case "100":
                                     infoHint.successInfo();
+                                    token = response.getToken();
                                     isLogin = true;
                                     break;
                                 case "101":
@@ -70,8 +73,10 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
     public void saveUser(){
         // 登录状态设为true
         SpUtils.put("isLogin",true);
+        // 保存token
+        SpUtils.put("token",token);
+        // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
-
 
     }
 

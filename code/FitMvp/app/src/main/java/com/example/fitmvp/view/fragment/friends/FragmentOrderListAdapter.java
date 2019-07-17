@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
+/*
+ * 控制页面切换（好友界面）
+ */
 public class FragmentOrderListAdapter extends FragmentPagerAdapter {
     private List<Fragment> list;
     private String[] titles;
