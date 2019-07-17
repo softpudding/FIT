@@ -23,4 +23,9 @@ public class BaseApplication extends Application {
     public static Context getmContext() {
         return mContext;
     }
+
+    @Override
+    public void onTerminate(){
+        super.onTerminate();
+    }
 }

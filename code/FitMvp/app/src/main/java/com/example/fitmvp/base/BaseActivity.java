@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitmvp.mvp.IView;
 import com.example.fitmvp.utils.LogUtils;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.event.LoginStateChangeEvent;
+
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity
         implements IView, View.OnClickListener {
     protected View view;
@@ -18,13 +21,15 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getView());
+        initView();
         // 设置actionBar内容
         setBar();
         mPresenter = loadPresenter();
         initCommonData();
-        initView();
         initListener();
         initData();
+        // 事件接收类注册,子类只要重写onEvent就能收到消息
+        JMessageClient.registerEventReceiver(this);
     }
 
     protected abstract void setBar();
@@ -84,6 +89,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     protected void onDestroy() {
+        //注销消息接收
+        JMessageClient.unRegisterEventReceiver(this);
         super.onDestroy();
         if (mPresenter != null)
             mPresenter.detachView();
@@ -98,5 +105,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onEventMainThread(LoginStateChangeEvent event){
+
     }
 }

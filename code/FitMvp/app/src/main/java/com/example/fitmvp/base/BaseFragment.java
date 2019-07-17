@@ -1,5 +1,6 @@
 package com.example.fitmvp.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,22 @@ import androidx.fragment.app.Fragment;
 import com.example.fitmvp.mvp.IView;
 
 import butterknife.ButterKnife;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.event.LoginStateChangeEvent;
 
 public abstract class BaseFragment <P extends BasePresenter> extends Fragment
         implements IView, View.OnClickListener  {
     protected View view;
     protected P mPresenter;
+    private Context mContext;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mContext = this.getActivity();
+        //订阅接收消息,子类只要重写onEvent就能收到消息
+        JMessageClient.registerEventReceiver(this);
+    }
 
     @Nullable
     @Override
@@ -51,8 +63,14 @@ public abstract class BaseFragment <P extends BasePresenter> extends Fragment
 
     @Override
     public void onDestroy() {
+        //注销消息接收
+        JMessageClient.unRegisterEventReceiver(this);
         super.onDestroy();
         if (mPresenter != null)
             mPresenter.detachView();
+    }
+
+    public void onEventMainThread(LoginStateChangeEvent event){
+
     }
 }

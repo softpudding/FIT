@@ -1,49 +1,30 @@
 package com.example.fitmvp.view.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
-import com.example.fitmvp.base.BaseAdapter;
-import com.example.fitmvp.bean.FriendInfo;
-import com.example.fitmvp.bean.RecordItem;
 import com.example.fitmvp.contract.AddFriendContract;
 import com.example.fitmvp.presenter.AddFriendPresenter;
-import com.example.fitmvp.utils.LogUtils;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
-import cn.jpush.im.android.api.model.UserInfo;
 
 public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implements AddFriendContract.View {
-    @InjectView(R.id.search)
-    TextView search;
-    @InjectView(R.id.search_result)
-    RecyclerView recyclerView;
-    @InjectView(R.id.input_search)
-    EditText inputPhone;
+    @InjectView(R.id.send_reason)
+    Button sendReason;
+    @InjectView(R.id.input_reason)
+    EditText inputReason;
 
-    // 查找结果为 0 or 1 个
-    private List<FriendInfo> searchList = new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    private BaseAdapter<FriendInfo> adapter;
-
+    private String targetUserPhone;
     @Override
     protected void setBar(){
         ActionBar actionbar = getSupportActionBar();
@@ -54,7 +35,7 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
         actionbar.setDisplayUseLogoEnabled(true);
         //显示标题
         actionbar.setDisplayShowTitleEnabled(true);
-        actionbar.setTitle("添加好友");
+        actionbar.setTitle("验证信息");
     }
 
     protected AddFriendPresenter loadPresenter() {
@@ -63,17 +44,20 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
 
     @Override
     protected void initData() {
+        Intent intent = getIntent();
+        targetUserPhone = intent.getStringExtra("targetUser");
     }
 
     @Override
     protected void initListener() {
-        search.setOnClickListener(this);
+        sendReason.setOnClickListener(this);
     }
 
     @Override
     protected void initView() {
         ButterKnife.inject(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        String myName = (String)SpUtils.get("nickname","");
+        inputReason.setText("我是"+myName);
     }
 
     @Override
@@ -83,59 +67,25 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
 
     @Override
     protected void otherViewClick(View view) {
-        String searchingPhone = getInputPhone();
+        String searchingPhone = getInputReason();
         // 输入不为空时进行查找
         if(!TextUtils.isEmpty(searchingPhone)){
-            mPresenter.search(searchingPhone);
+            mPresenter.addFriend(targetUserPhone,getInputReason());
+        }
+        else{
+            ToastUtil.setToast("验证信息不能为空");
         }
     }
 
-    public void initAdapter(){
-        adapter = new BaseAdapter<FriendInfo>(searchList){
-            @Override
-            public int getLayoutId(int viewType) {
-                return R.layout.friendlist_item;
-            }
-
-            @Override
-            public void convert(final MyHolder holder, FriendInfo user, int position){
-                UserInfo info = user.getFriendInfo();
-                holder.setText(R.id.friend_name,info.getNickname());
-                holder.setText(R.id.friend_account,info.getUserName());
-                if(info.getAvatar() != null){
-                    info.getAvatarBitmap(new GetAvatarBitmapCallback() {
-                        @Override
-                        public void gotResult(int i, String s, Bitmap bitmap) {
-                            if(i == 0){
-                                holder.setImage(R.id.friend_photo,bitmap);
-                            }
-                        }
-                    });
-                }
-            }
-        };
-        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(AddFriendActivity.this,FriendDetailActivity.class);
-                // 传参
-                FriendInfo item = searchList.get(position);
-                intent.putExtra("isFriend",item.getIsFriend());
-                //intent.putExtra("friend",item);
-                // 传项目中图片
-                //intent.putExtra("image", item.getImage());
-                startActivity(intent);
-            }
-        });
-        recyclerView.setAdapter(adapter);
+    private String getInputReason(){
+        return inputReason.getText().toString().trim();
     }
 
-    private String getInputPhone(){
-        return inputPhone.getText().toString().trim();
+    // 返回搜索界面
+    public void goBack(){
+        Intent intent = new Intent(this,SearchFriendActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
-    @Override
-    public void setSearchList(List<FriendInfo> list) {
-        searchList = list;
-    }
 }

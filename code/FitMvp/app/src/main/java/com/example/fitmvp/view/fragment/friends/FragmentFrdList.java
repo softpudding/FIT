@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.base.BaseFragment;
+import com.example.fitmvp.bean.FriendInfo;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.presenter.FriendPresenter;
-import com.example.fitmvp.view.activity.AddFriendActivity;
+import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.view.activity.FriendDetailActivity;
+import com.example.fitmvp.view.activity.SearchFriendActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -89,7 +92,33 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
             }
         };
         // 设置adapter监听事件
-
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            // 跳转至对应的好友详情页面
+            @Override
+            public void onItemClick(View view, int position) {
+                final Intent intent = new Intent(getActivity(), FriendDetailActivity.class);
+                // 传参
+                UserInfo friend = friendList.get(position);
+                intent.putExtra("isFriend",true);
+                intent.putExtra("phone",friend.getUserName());
+                intent.putExtra("nickname",friend.getNickname());
+                intent.putExtra("gender",friend.getGender());
+                intent.putExtra("birthday",friend.getBirthday());
+                intent.putExtra("notename",friend.getNotename());
+                friend.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                    @Override
+                    public void gotResult(int i, String s, Bitmap bitmap) {
+                        if(i == 0){
+                            if(bitmap != null){
+                                byte[] bytes = PictureUtil.Bitmap2Bytes(bitmap);
+                                intent.putExtra("avatar",bytes);
+                            }
+                        }
+                    }
+                });
+                startActivity(intent);
+            }
+        });
         // 设置adapter
         recyclerView.setAdapter(adapter);
     }
@@ -113,7 +142,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     }
 
     private void toAddFriend(){
-        Intent intent = new Intent(getActivity(), AddFriendActivity.class);
+        Intent intent = new Intent(getActivity(), SearchFriendActivity.class);
         startActivity(intent);
     }
 }
