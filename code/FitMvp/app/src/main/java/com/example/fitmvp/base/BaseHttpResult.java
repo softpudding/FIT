@@ -1,10 +1,5 @@
 package com.example.fitmvp.base;
 
-/**
- * Created by GaoSheng on 2016/10/21.
- * 抽取的一个基类的bean,直接在泛型中传data就行
- */
-
 public class BaseHttpResult<T> {
     private Integer code;
     // private String message;

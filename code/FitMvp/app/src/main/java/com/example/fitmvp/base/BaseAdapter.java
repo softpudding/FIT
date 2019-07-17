@@ -1,5 +1,6 @@
 package com.example.fitmvp.base;
 
+import android.graphics.Bitmap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,6 +117,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
         public void setImage(int id, Integer value){
             ImageView view = getView(id);
             view.setImageResource(value);
+        }
+
+        public void setImage(int id, Bitmap bitmap){
+            ImageView view = getView(id);
+            view.setImageBitmap(bitmap);
         }
     }
 }

@@ -22,6 +22,7 @@ public abstract class BaseFragment <P extends BasePresenter> extends Fragment
         view = inflater.inflate(getLayoutId(), container, false);
         mPresenter = loadPresenter();
         ButterKnife.inject(view);
+        initView();
         return view;
     }
 
@@ -41,6 +42,8 @@ public abstract class BaseFragment <P extends BasePresenter> extends Fragment
         if (mPresenter != null)
             mPresenter.attachView(this);
     }
+
+    protected abstract void initView();
 
     protected abstract void initData();
 

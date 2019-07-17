@@ -60,4 +60,14 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
                     });
         }
     }
+
+    @Override
+    public void sendMsg(String tel){
+        // 检查输入
+        if(getIView().checkMsg()){
+            RegisterModel registerModel = (RegisterModel) getiModelMap().get("register");
+            String targetMsg = registerModel.getMessage(tel);
+            getIView().setTargetMsg(targetMsg);
+        }
+    }
 }

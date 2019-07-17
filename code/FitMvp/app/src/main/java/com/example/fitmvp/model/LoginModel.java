@@ -3,6 +3,8 @@ package com.example.fitmvp.model;
 import androidx.annotation.NonNull;
 
 import com.example.fitmvp.base.BaseModel;
+import com.example.fitmvp.bean.LoginUserBean;
+import com.example.fitmvp.bean.MyResponse;
 import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
@@ -14,6 +16,8 @@ import cn.jpush.im.android.api.JMessageClient;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
+    private String token;
+
     @Override
     public Boolean login(@NonNull String account, @NonNull String password, @NonNull final InfoHint
             infoHint) {
@@ -21,33 +25,41 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
             throw new RuntimeException("InfoHint不能为空");
 
         httpService.login(account, password)
-                .compose(new ThreadTransformer<String>())
-                .subscribe(new CommonObserver<String>() {
+                .compose(new ThreadTransformer<MyResponse<LoginUserBean>>())
+                .subscribe(new CommonObserver<MyResponse<LoginUserBean>>() {
                     // 请求成功返回后检查登录结果
                     @Override
-                    public void onNext(String flag) {
-                        switch(flag){
-                            case "100":
-                                infoHint.successInfo();
-                                isLogin = true;
-                                break;
-                            case "101":
-                                infoHint.failInfo("账号不存在");
-                                isLogin = false;
-                                break;
-                            case "102":
-                                infoHint.failInfo("密码不正确");
-                                isLogin = false;
-                                break;
-                            case "103":
-                                infoHint.failInfo("账号被禁用");
-                                isLogin = false;
-                                break;
-                            default:
-                                infoHint.failInfo(flag);
-                                isLogin = false;
-                                break;
+                    public void onNext(MyResponse<LoginUserBean> response) {
+                        if(response!=null){
+                            if(response.getToken()==null){
+                                LogUtils.e("error","null");
+                                return;
+                            }
+                            switch(response.getResult()){
+                                case "100":
+                                    infoHint.successInfo();
+                                    token = response.getToken();
+                                    isLogin = true;
+                                    break;
+                                case "101":
+                                    infoHint.failInfo("账号不存在");
+                                    isLogin = false;
+                                    break;
+                                case "102":
+                                    infoHint.failInfo("密码不正确");
+                                    isLogin = false;
+                                    break;
+                                case "103":
+                                    infoHint.failInfo("账号被禁用");
+                                    isLogin = false;
+                                    break;
+                                default:
+                                    infoHint.failInfo(response.getResult());
+                                    isLogin = false;
+                                    break;
+                            }
                         }
+
                     }
 
                     @Override
@@ -61,6 +73,9 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
     public void saveUser(){
         // 登录状态设为true
         SpUtils.put("isLogin",true);
+        // 保存token
+        SpUtils.put("token",token);
+        // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
 
     }

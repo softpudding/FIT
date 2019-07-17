@@ -12,8 +12,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        JMessageClient.setDebugMode(true);
         JMessageClient.init(this);
+        JMessageClient.setDebugMode(true);
     }
 
     /**

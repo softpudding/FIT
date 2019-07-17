@@ -11,6 +11,7 @@ public interface RegisterContract {
             void successInfo(String str);
             void errorInfo(String str);
         }
+        String getMessage(String tel);
     }
 
     interface View {
@@ -19,11 +20,13 @@ public interface RegisterContract {
         String getPassword();
         String getPwdAgain();
         Boolean check();
+        Boolean checkMsg();
         void registerSuccess(String str);
         void registerFail(String title,String msg);
     }
 
     interface Presenter {
         void register(String tel,String nickName,String password);
+        void sendMsg(String tel);
     }
 }

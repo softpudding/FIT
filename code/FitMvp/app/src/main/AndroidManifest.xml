@@ -55,6 +55,8 @@
         <activity android:name=".view.activity.RecordDetailActivity"></activity>
         <activity android:name=".view.activity.SettingActivity"></activity>
         <activity android:name=".view.activity.PhotoTake"></activity>
+        <activity android:name=".view.activity.AddFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendDetailActivity"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service

@@ -31,7 +31,16 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     EditText inputPwd;
     @InjectView(R.id.input_pwd_again)
     EditText inputPwdAgain;
+    @InjectView(R.id.input_msg)
+    EditText inputMsg;
+    @InjectView(R.id.get_msg)
+    Button getMsg;
 
+    private String targetMsg;
+
+    public void setTargetMsg(String msg){
+        targetMsg = msg;
+    }
     @Override
     protected void setBar(){
         ActionBar actionbar = getSupportActionBar();
@@ -57,6 +66,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     protected void initListener() {
         register.setOnClickListener(this);
+        getMsg.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +79,17 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         return R.layout.register;
     }
 
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.button_register:
+                mPresenter.register(getPhone(),getName(),getPassword());
+                break;
+            case R.id.get_msg:
+                // 发送证码
+                mPresenter.sendMsg(getPhone());
+        }
+    }
     @Override
     protected void otherViewClick(View view) {
         mPresenter.register(getPhone(),getName(),getPassword());
@@ -89,6 +110,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     public String getPwdAgain(){
         return inputPwdAgain.getText().toString().trim();
+    }
+
+    public String getMsg(){
+        return inputMsg.getText().toString().trim();
     }
 
     // 检查输入
@@ -113,6 +138,24 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         }
         else if(!getPassword().equals(getPwdAgain())){
             inputPwdAgain.setError("两次密码不一致，请确认密码");
+            flag = false;
+        }
+        else if(TextUtils.isEmpty(getMsg())){
+            inputMsg.setError("请输入验证码");
+            flag = false;
+        }
+        else if(getMsg().equals(targetMsg)){
+            inputMsg.setError("验证码错误");
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkMsg(){
+        Boolean flag = true;
+        if (TextUtils.isEmpty(getPhone())) {
+            inputPhone.setError("手机号不能为空");
             flag = false;
         }
         return flag;
