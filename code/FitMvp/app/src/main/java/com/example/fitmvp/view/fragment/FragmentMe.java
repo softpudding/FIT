@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseFragment;
-import com.example.fitmvp.contract.MeContract;
 import com.example.fitmvp.mvp.IView;
 import com.example.fitmvp.presenter.MePresenter;
 import com.example.fitmvp.utils.ToastUtil;

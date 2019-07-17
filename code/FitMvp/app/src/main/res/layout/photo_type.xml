@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/type_single"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/round_button"
+            android:drawableTop="@drawable/type1"
+            android:text="单一食物" />
+            <Button
+                android:id="@+id/type_whole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/round_button"
+                android:drawableTop="@drawable/type2"
+                android:text="套餐食物" />
+
+
+</RelativeLayout>

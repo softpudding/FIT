@@ -71,7 +71,9 @@ public class Http {
 //                    OkHttpClient client = new OkHttpClient
 //                            .Builder()
 //                            .build();
-                    String baseUrl = "http://202.120.40.8:30231/";
+//                  String baseUrl = "http://202.120.40.8:30231/";
+                
+                    String baseUrl = "http://202.120.40.8";
                     // 获取retrofit的实例
                     retrofit = new Retrofit
                             .Builder()
