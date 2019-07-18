@@ -100,7 +100,13 @@ public class UserServiceTest {
     @Test
     public void sendMessageTest() {
 
+        /*
         userService.sendMessage("18621105309");
 
+        还有 catch语段怎么做测试。这个回头看百度这些东西，查一查教程
+
+        1. https://cloud.tencent.com/developer/ask/171070
+
+        */
     }
 }
