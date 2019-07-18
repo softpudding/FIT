@@ -3,6 +3,7 @@ package com.example.fitmvp.presenter;
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.bean.FriendInfo;
 import com.example.fitmvp.contract.SearchFriendContract;
+import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
@@ -12,10 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.jpush.im.android.api.ContactManager;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
-import cn.jpush.im.android.api.callback.GetUserInfoListCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class SearchFriendPresenter extends BasePresenter<SearchFriendActivity> implements SearchFriendContract.Presenter {
@@ -39,14 +38,8 @@ public class SearchFriendPresenter extends BasePresenter<SearchFriendActivity> i
                         ToastUtil.setToast("不能添加自己为好友");
                         return;
                     }
-                    FriendInfo friend = new FriendInfo();
-                    friend.setFriendInfo(userInfo);
-                    // 设置默认值为false
-                    friend.setIsFriend(false);
-                    // 检查是否已经是好友
-                    isFriend(friend);
-                    List<FriendInfo> list = new ArrayList<>();
-                    list.add(friend);
+                    List<UserInfo> list = new ArrayList<>();
+                    list.add(userInfo);
                     getIView().setSearchList(list);
                     getIView().initAdapter();
                 }
@@ -57,20 +50,14 @@ public class SearchFriendPresenter extends BasePresenter<SearchFriendActivity> i
         });
     }
 
-    private void isFriend(final FriendInfo friend){
-        ContactManager.getFriendList(new GetUserInfoListCallback() {
-            @Override
-            public void gotResult(int i, String s, List<UserInfo> list) {
-                if(i == 0){
-                    for(UserInfo user : list){
-                        // 如果在好友列表中，设为true
-                        if(friend.getFriendInfo()==user){
-                            friend.setIsFriend(true);
-                            return;
-                        }
-                    }
-                }
-            }
-        });
+    @Override
+    public Boolean isFriend(UserInfo friend){
+        FriendEntry friendEntry = FriendEntry.getFriend(friend.getUserID());
+        if(friendEntry == null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.example.fitmvp.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,10 @@ import com.example.fitmvp.utils.PictureUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> implements FriendContract.View {
     @InjectView(R.id.friend_info_photo)
@@ -25,15 +30,15 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     @InjectView(R.id.note_nick)
     TextView noteOrNick;
     @InjectView(R.id.friend_info_notename)
-    TextView notename;
+    TextView show_notename;
     @InjectView(R.id.friend_info_phone)
-    TextView phone;
+    TextView show_phone;
     @InjectView(R.id.friend_info_nickname)
-    TextView nickname;
+    TextView show_nickname;
     @InjectView(R.id.friend_info_gender)
-    TextView gender;
+    TextView show_gender;
     @InjectView(R.id.friend_info_birthday)
-    TextView birthday;
+    TextView show_birthday;
     @InjectView(R.id.button_add_chat)
     Button action;
 
@@ -45,54 +50,75 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         ButterKnife.inject(this);
         intent = getIntent();
         isFriend = intent.getBooleanExtra("isFriend",false);
-        // 显示头像
-        if(intent.getByteArrayExtra("avatar")!=null){
-            Bitmap avatar = PictureUtil.Bytes2Bitmap(intent.getByteArrayExtra("avatar"));
-            photo.setImageBitmap(avatar);
-        }
-        else {
-            photo.setImageResource(R.drawable.default_portrait80);
-        }
-
+        String phone = intent.getStringExtra("phone");
         String nickName = intent.getStringExtra("nickname");
         String noteName = intent.getStringExtra("notename");
+        String avatar = intent.getStringExtra("avatar");
+        String gender = intent.getStringExtra("gender");
+        String birthday = intent.getStringExtra("birthday");
+        // 显示头像
+        if(avatar!=null){
+            photo.setImageBitmap(BitmapFactory.decodeFile(avatar));
+        }
+        else{
+            JMessageClient.getUserInfo(phone, new GetUserInfoCallback() {
+                @Override
+                public void gotResult(int i, String s, UserInfo userInfo) {
+                    if(i == 0){
+                        userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                            @Override
+                            public void gotResult(int i, String s, Bitmap bitmap) {
+                                if (i == 0) {
+                                    photo.setImageBitmap(bitmap);
+                                }else {
+                                    // 设置为默认头像
+                                    photo.setImageResource(R.drawable.default_portrait80);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
         // 显示备注或昵称
         // button上的文字 加好友 or 发消息
         if(!isFriend){
             noteOrNick.setText("昵称: ");
             if(nickName!=null){
-                notename.setText(nickName);
+                show_notename.setText(nickName);
             }
             else{
-                notename.setText("未知");
+                show_notename.setText("未知");
             }
             action.setText("加好友");
         }
         else{
             noteOrNick.setText("备注: ");
-            if(noteName!=null){
-                notename.setText(noteName);
+            if(noteName!=null && !noteName.equals("")){
+                show_notename.setText(noteName);
             }
             else{
-                notename.setText("无备注");
+                show_notename.setText("无备注");
             }
             action.setText("发消息");
         }
         // 显示用户名（手机号）
-        if(intent.getStringExtra("phone")!=null){
-            phone.setText(intent.getStringExtra("phone"));
+        if(phone!=null && !phone.equals("")){
+            show_phone.setText(phone);
         }
         // 显示昵称
-        if(nickName!=null){
-            nickname.setText(nickName);
+        if(nickName!=null && !nickName.equals("")){
+            show_nickname.setText(nickName);
         }
         // 显示性别
-        if(intent.getStringExtra("gender")!=null){
-            gender.setText(intent.getStringExtra("gender"));
+        if(gender!=null && !gender.equals("")){
+            show_gender.setText(gender);
         }
         // 显示生日
-        Long birth = intent.getLongExtra("birthday",19900101);
-            birthday.setText(String.format("%d",birth));
+        if(birthday!=null && !birthday.equals("")){
+            show_birthday.setText(birthday);
+        }
     }
 
     @Override

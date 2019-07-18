@@ -88,6 +88,8 @@ dependencies {
     // JMessage
     implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以J
     implementation 'cn.jiguang.sdk:jcore:2.0.0'
+    // ActiveAndroid
+    implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 }
 
 List<String> dirs = [

@@ -2,6 +2,7 @@ package com.example.fitmvp.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -17,14 +18,16 @@ import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.bean.FriendInfo;
 import com.example.fitmvp.contract.SearchFriendContract;
 import com.example.fitmvp.presenter.SearchFriendPresenter;
-import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class SearchFriendActivity extends BaseActivity<SearchFriendPresenter> implements SearchFriendContract.View {
@@ -36,9 +39,9 @@ public class SearchFriendActivity extends BaseActivity<SearchFriendPresenter> im
     EditText inputPhone;
 
     // 查找结果为 0 or 1 个
-    private List<FriendInfo> searchList = new ArrayList<>();
+    private List<UserInfo> searchList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-    private BaseAdapter<FriendInfo> adapter;
+    private BaseAdapter<UserInfo> adapter;
 
     @Override
     protected void setBar(){
@@ -87,23 +90,36 @@ public class SearchFriendActivity extends BaseActivity<SearchFriendPresenter> im
     }
 
     public void initAdapter(){
-        adapter = new BaseAdapter<FriendInfo>(searchList){
+        adapter = new BaseAdapter<UserInfo>(searchList){
             @Override
             public int getLayoutId(int viewType) {
                 return R.layout.friendlist_item;
             }
 
             @Override
-            public void convert(final MyHolder holder, FriendInfo user, int position){
-                UserInfo info = user.getFriendInfo();
-                holder.setText(R.id.friend_name,info.getNickname());
-                holder.setText(R.id.friend_account,info.getUserName());
-                if(info.getAvatar() != null){
-                    info.getAvatarBitmap(new GetAvatarBitmapCallback() {
+            public void convert(final MyHolder holder, UserInfo user, int position){
+                holder.setText(R.id.friend_name,user.getNickname());
+                holder.setText(R.id.friend_account,user.getUserName());
+                // 设置头像
+                if(user.getAvatar()!=null){
+                    holder.setImage(R.id.friend_photo, BitmapFactory.decodeFile(user.getAvatar()));
+                }
+                else{
+                    JMessageClient.getUserInfo(user.getUserName(), new GetUserInfoCallback() {
                         @Override
-                        public void gotResult(int i, String s, Bitmap bitmap) {
+                        public void gotResult(int i, String s, UserInfo userInfo) {
                             if(i == 0){
-                                holder.setImage(R.id.friend_photo,bitmap);
+                                userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                                    @Override
+                                    public void gotResult(int i, String s, Bitmap bitmap) {
+                                        if (i == 0) {
+                                            holder.setImage(R.id.friend_photo,bitmap);
+                                        }else {
+                                            // 设置为默认头像
+                                            holder.setImage(R.id.friend_photo,R.drawable.default_portrait36);
+                                        }
+                                    }
+                                });
                             }
                         }
                     });
@@ -115,25 +131,14 @@ public class SearchFriendActivity extends BaseActivity<SearchFriendPresenter> im
             public void onItemClick(View view, int position) {
                 final Intent intent = new Intent(SearchFriendActivity.this,FriendDetailActivity.class);
                 // 传参
-                FriendInfo item = searchList.get(position);
-                intent.putExtra("isFriend",item.getIsFriend());
-                UserInfo friend = item.getFriendInfo();
+                UserInfo friend = searchList.get(position);
+                intent.putExtra("isFriend",mPresenter.isFriend(friend));
                 intent.putExtra("phone",friend.getUserName());
                 intent.putExtra("nickname",friend.getNickname());
-                intent.putExtra("gender",friend.getGender().toString());
-                intent.putExtra("birthday",friend.getBirthday());
                 intent.putExtra("notename",friend.getNotename());
-                friend.getAvatarBitmap(new GetAvatarBitmapCallback() {
-                    @Override
-                    public void gotResult(int i, String s, Bitmap bitmap) {
-                        if(i == 0){
-                            if(bitmap != null){
-                                byte[] bytes = PictureUtil.Bitmap2Bytes(bitmap);
-                                intent.putExtra("avatar",bytes);
-                            }
-                        }
-                    }
-                });
+                intent.putExtra("avatar",friend.getAvatar());
+                intent.putExtra("gender", UserUtils.getGender(friend));
+                intent.putExtra("birthday",UserUtils.getBirthday(friend));
                 startActivity(intent);
                 SearchFriendActivity.this.finish();
             }
@@ -146,7 +151,7 @@ public class SearchFriendActivity extends BaseActivity<SearchFriendPresenter> im
     }
 
     @Override
-    public void setSearchList(List<FriendInfo> list) {
+    public void setSearchList(List<UserInfo> list) {
         searchList = list;
     }
 }

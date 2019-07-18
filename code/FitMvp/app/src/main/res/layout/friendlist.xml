@@ -30,6 +30,7 @@
             android:background="@color/circleBg" />
 
         <LinearLayout
+            android:id="@+id/frie"
             android:layout_width="fill_parent"
             android:layout_height="52dp"
             android:orientation="horizontal">
