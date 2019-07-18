@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendPresenter;
+import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
 import com.example.fitmvp.view.activity.FriendSearchActivity;
@@ -27,6 +29,7 @@ import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FragmentFrdList extends BaseFragment<FriendPresenter>
@@ -37,6 +40,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
     private FloatingActionButton addFriend;
     private LinearLayout recommends;
+    private TextView cachedNewFriendNum;
 
     @Override
     protected Integer getLayoutId(){
@@ -54,6 +58,15 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         recyclerView.setLayoutManager(linearLayoutManager);
         addFriend = ButterKnife.findById(view,R.id.add_friend);
         recommends = ButterKnife.findById(view,R.id.friend_recommend);
+        cachedNewFriendNum = ButterKnife.findById(view,R.id.friend_unread_msg);
+        Integer num = SpUtils.getCachedNewFriendNum();
+        if(num>0){
+            cachedNewFriendNum.setText(num);
+            cachedNewFriendNum.setVisibility(View.VISIBLE);
+        }
+        else{
+            cachedNewFriendNum.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -146,6 +159,14 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private void toRecommend(){
         Intent intent = new Intent(getActivity(), FriendRecommendActivity.class);
         startActivity(intent);
+        cachedNewFriendNum.setVisibility(View.INVISIBLE);
+        SpUtils.setCachedNewFriendNum(0);
     }
 
+    public void onEvent(ContactNotifyEvent event){
+        String reason = event.getReason();
+        String fromUsername = event.getFromUsername();
+        ContactNotifyEvent.Type type = event.getType();
+        mPresenter.handleEvent(fromUsername,reason,type);
+    }
 }

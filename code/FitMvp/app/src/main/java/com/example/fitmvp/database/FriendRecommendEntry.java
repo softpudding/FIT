@@ -42,15 +42,13 @@ public class FriendRecommendEntry extends Model {
     @Column(name = "User")
     public UserEntry user;
 
-    @Column(name = "BtnState")
-    public int btnState;
 
     public FriendRecommendEntry() {
         super();
     }
 
     public FriendRecommendEntry(Long uid, String username, String noteName, String nickName, String appKey, String avatar,
-                                String displayName, String reason, String state, UserEntry user, int btnState) {
+                                String displayName, String reason, String state, UserEntry user) {
         super();
         this.uid = uid;
         this.username = username;
@@ -62,7 +60,6 @@ public class FriendRecommendEntry extends Model {
         this.reason = reason;
         this.state = state;
         this.user = user;
-        this.btnState = btnState;
     }
 
     public static FriendRecommendEntry getEntry(UserEntry user, String username, String appKey) {

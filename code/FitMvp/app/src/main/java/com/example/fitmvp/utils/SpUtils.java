@@ -100,6 +100,19 @@ public class SpUtils {
         SharedPreferencesCompat.apply(editor);
     }
 
+    private static final String CACHED_NEW_FRIEND = "CachedNewFriend";
+
+    public static void setCachedNewFriendNum(int num) {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+                Context.MODE_PRIVATE);
+        sp.edit().putInt(CACHED_NEW_FRIEND, num).apply();
+    }
+
+    public static int getCachedNewFriendNum() {
+        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
+                Context.MODE_PRIVATE);
+        return sp.getInt(CACHED_NEW_FRIEND, 0);
+    }
 
     public static void setObject(String key, Object object) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME,

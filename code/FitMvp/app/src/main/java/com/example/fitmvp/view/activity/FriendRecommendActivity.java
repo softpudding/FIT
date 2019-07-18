@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,12 +29,15 @@ import butterknife.InjectView;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresenter>
         implements FriendRecommendContract.View{
     @InjectView(R.id.recommend_list)
     RecyclerView recyclerView;
+    @InjectView(R.id.recommend_hint)
+    TextView hint;
 
     private List<FriendRecommendEntry> recommendList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -60,8 +64,14 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     protected void initData() {
         // 获取列表数据
         mPresenter.getRecommendList();
-        // 初始化adapter
-        initAdapter();
+        if(recommendList.size()==0){
+            hint.setVisibility(View.VISIBLE);
+        }
+        else{
+            hint.setVisibility(View.GONE);
+            // 初始化adapter
+            initAdapter();
+        }
     }
 
     @Override
@@ -71,6 +81,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     protected void initView() {
         ButterKnife.inject(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        hint.setVisibility(View.GONE);
     }
 
     @Override
@@ -92,6 +103,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
             public void convert(final MyHolder holder, FriendRecommendEntry user, int position) {
                 holder.setText(R.id.message_name, user.nickName);
                 holder.setText(R.id.message, user.reason);
+                holder.setText(R.id.message_time,user.state);
                 // 设置头像
                 if (user.avatar != null) {
                     holder.setImage(R.id.message_photo, BitmapFactory.decodeFile(user.avatar));
@@ -139,11 +151,28 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
                     birthday = friend.birthday;
                 }
                 else{
-                    isFriend = false;
-                    buttonType = 2;
-                    notename = "";
-                    gender = "";
-                    birthday = "";
+                    if(item.state.equals("请求加为好友")){
+                        isFriend = false;
+                        buttonType = 2;
+                        notename = "";
+                        gender = "";
+                        birthday = "";
+                    }
+                    // 应该在好友列表中 不会到这里
+                    else if(item.state.equals("对方已同意")){
+                        isFriend = true;
+                        buttonType = 1;
+                        notename = item.noteName;
+                        gender = "";
+                        birthday = "";
+                    }
+                    else{
+                        isFriend = false;
+                        buttonType = 0;
+                        notename = "";
+                        gender = "";
+                        birthday = "";
+                    }
                 }
                 intent.putExtra("isFriend",isFriend);
                 intent.putExtra("buttonType",buttonType);

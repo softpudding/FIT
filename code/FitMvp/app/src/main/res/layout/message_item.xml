@@ -55,6 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:textColor="#2196F3"
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>
