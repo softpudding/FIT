@@ -83,9 +83,7 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
 
     // 返回搜索界面
     public void goBack(){
-        Intent intent = new Intent(this,SearchFriendActivity.class);
-        startActivity(intent);
-        this.finish();
+        finish();
     }
 
 }

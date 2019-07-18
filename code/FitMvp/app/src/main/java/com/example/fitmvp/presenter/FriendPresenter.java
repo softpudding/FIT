@@ -2,8 +2,10 @@ package com.example.fitmvp.presenter;
 
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.FriendContract;
+import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.mvp.IModel;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
@@ -24,24 +26,13 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     @Override
     public HashMap<String, IModel> loadModelMap(IModel... models) {
         HashMap<String, IModel> map = new HashMap<>();
-        map.put("login", models[0]);
+        map.put("friend", models[0]);
         return map;
     }
 
     @Override
-    public void initFriendList(){
-        // List<UserInfo> friendList = new ArrayList<>();
-        ContactManager.getFriendList(new GetUserInfoListCallback() {
-            @Override
-            public void gotResult(int responseCode, String responseMessage, List<UserInfo> userInfoList) {
-                if (0 == responseCode) {
-                    //获取好友列表成功
-                    getIView().setFriendList(userInfoList);
-                } else {
-                    //获取好友列表失败
-                    ToastUtil.setToast(responseMessage);
-                }
-            }
-        });
+    public List<FriendEntry> getFriendList(){
+        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
+        return friendModel.getFriendList();
     }
 }

@@ -11,11 +11,12 @@ public interface SearchFriendContract {
     }
 
     interface View {
-        void setSearchList(List<FriendInfo> list);
+        void setSearchList(List<UserInfo> list);
 
     }
 
     interface Presenter {
         void search(String phone);
+        Boolean isFriend(UserInfo friend);
     }
 }
