@@ -31,8 +31,8 @@ public class UserServiceTest {
     public void login() {
         assertEquals("100", userService.login("101", "a"));
         assertEquals("101", userService.login("MakeAmericaGreatAgain", "a"));
-        assertEquals("102", userService.login("102", "a"));
-        assertEquals("103", userService.login("104", "a"));
+        assertEquals("103", userService.login("102", "a"));
+        assertEquals("102", userService.login("104", "a"));
     }
 
     @Test

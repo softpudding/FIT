@@ -24,7 +24,7 @@ public class UserTest {
         assertEquals("10086", user.getTel());
         assertEquals("10086", user.getPassword());
         assertEquals("LianTong", user.getNickName());
-        assertEquals(true, user.getIsactive());
+        assertEquals("1", user.getIsactive().toString());
 
 
     }
