@@ -166,7 +166,7 @@ public class UserServiceImpl implements UserService {
             user.setBirthday(data.getString("birthday"));       // 前端直接传yyyy-mm-dd类型的？ 前端设置好输入类型
             user.setGender(data.getInteger("gender"));
             user.setHeight(data.getInteger("height"));
-            user.setWeight(data.getFloat("weight"));
+            user.setWeight(data.getDouble("weight"));
             userDao.save(user);
             return true;
         }

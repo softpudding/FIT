@@ -31,10 +31,11 @@ public class User {
     private Integer height;
 
     @Column(name = "weight")
-    private Float weight;
+    private Double weight;
 
     @Column(name = "gender")
     private Integer gender;
+
 
     public Integer getId() {
         return id;
@@ -93,11 +94,11 @@ public class User {
         this.height = height;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public Float getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
