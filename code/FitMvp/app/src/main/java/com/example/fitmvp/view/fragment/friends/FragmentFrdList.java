@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,20 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.base.BaseFragment;
-import com.example.fitmvp.bean.FriendInfo;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendPresenter;
-import com.example.fitmvp.utils.PictureUtil;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
-import com.example.fitmvp.view.activity.SearchFriendActivity;
+import com.example.fitmvp.view.activity.FriendRecommendActivity;
+import com.example.fitmvp.view.activity.FriendSearchActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import cn.jpush.im.android.api.ContactManager;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
@@ -37,6 +36,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
     private FloatingActionButton addFriend;
+    private LinearLayout recommends;
 
     @Override
     protected Integer getLayoutId(){
@@ -53,6 +53,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         recyclerView = ButterKnife.findById(view,R.id.friend_list);
         recyclerView.setLayoutManager(linearLayoutManager);
         addFriend = ButterKnife.findById(view,R.id.add_friend);
+        recommends = ButterKnife.findById(view,R.id.friend_recommend);
     }
 
     @Override
@@ -112,6 +113,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                 intent.putExtra("avatar",friend.avatar);
                 intent.putExtra("gender",friend.gender);
                 intent.putExtra("birthday",friend.birthday);
+                intent.putExtra("buttonType",1);
                 startActivity(intent);
             }
         });
@@ -122,6 +124,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     @Override
     protected void initListener(){
         addFriend.setOnClickListener(this);
+        recommends.setOnClickListener(this);
     }
 
     @Override
@@ -130,11 +133,19 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
             case R.id.add_friend:
                 toAddFriend();
                 break;
+            case R.id.friend_recommend:
+                toRecommend();
+                break;
         }
     }
 
     private void toAddFriend(){
-        Intent intent = new Intent(getActivity(), SearchFriendActivity.class);
+        Intent intent = new Intent(getActivity(), FriendSearchActivity.class);
         startActivity(intent);
     }
+    private void toRecommend(){
+        Intent intent = new Intent(getActivity(), FriendRecommendActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.example.fitmvp.contract;
 
-public interface AddFriendContract {
+public interface FriendAddContract {
     interface Model {
     }
 

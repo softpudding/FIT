@@ -63,9 +63,10 @@
         <activity android:name=".view.activity.ChangePwActivity"></activity>
         <activity android:name=".view.activity.RecordDetailActivity"></activity>
         <activity android:name=".view.activity.SettingActivity"></activity>
-        <activity android:name=".view.activity.SearchFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendSearchActivity"></activity>
         <activity android:name=".view.activity.FriendDetailActivity"></activity>
-        <activity android:name=".view.activity.AddFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendAddActivity"></activity>
+        <activity android:name=".view.activity.FriendRecommendActivity"/>
         <!--<activity android:name=".view.activity.P"></activity>-->
         <activity android:name=".view.activity.PhotoPass"></activity>
         <activity android:name=".view.activity.PhotoType"></activity>

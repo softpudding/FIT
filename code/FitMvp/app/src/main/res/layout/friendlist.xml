@@ -30,7 +30,7 @@
             android:background="@color/circleBg" />
 
         <LinearLayout
-            android:id="@+id/frie"
+            android:id="@+id/friend_recommend"
             android:layout_width="fill_parent"
             android:layout_height="52dp"
             android:orientation="horizontal">
@@ -51,6 +51,13 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:text="验证消息" />
+
+            <TextView
+                android:id="@+id/friend_unread_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textEnd" />
 
         </LinearLayout>
 

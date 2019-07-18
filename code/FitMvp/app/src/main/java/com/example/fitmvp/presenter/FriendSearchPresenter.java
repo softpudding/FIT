@@ -1,13 +1,12 @@
 package com.example.fitmvp.presenter;
 
 import com.example.fitmvp.base.BasePresenter;
-import com.example.fitmvp.bean.FriendInfo;
-import com.example.fitmvp.contract.SearchFriendContract;
+import com.example.fitmvp.contract.FriendSearchContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
-import com.example.fitmvp.view.activity.SearchFriendActivity;
+import com.example.fitmvp.view.activity.FriendSearchActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +16,7 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
-public class SearchFriendPresenter extends BasePresenter<SearchFriendActivity> implements SearchFriendContract.Presenter {
+public class FriendSearchPresenter extends BasePresenter<FriendSearchActivity> implements FriendSearchContract.Presenter {
     @Override
     public HashMap<String, IModel> getiModelMap() {
         return null;

@@ -6,7 +6,7 @@ import java.util.List;
 
 import cn.jpush.im.android.api.model.UserInfo;
 
-public interface SearchFriendContract {
+public interface FriendSearchContract {
     interface Model {
     }
 

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -15,7 +16,6 @@ import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
-import com.example.fitmvp.utils.PictureUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -41,8 +41,21 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     TextView show_birthday;
     @InjectView(R.id.button_add_chat)
     Button action;
+    @InjectView(R.id.button_aggre_refuse)
+    LinearLayout linearLayout;
+    @InjectView(R.id.button_agree)
+    Button agree;
+    @InjectView(R.id.button_refuse)
+    Button refuse;
 
     private Boolean isFriend;
+    /*
+     * button_type
+     * 0 - add friend
+     * 1 - send message
+     * 2 - agree or refuse
+     */
+    private Integer button_type;
     Intent intent;
 
     @Override
@@ -56,6 +69,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         String avatar = intent.getStringExtra("avatar");
         String gender = intent.getStringExtra("gender");
         String birthday = intent.getStringExtra("birthday");
+        button_type = intent.getIntExtra("buttonType",0);
         // 显示头像
         if(avatar!=null){
             photo.setImageBitmap(BitmapFactory.decodeFile(avatar));
@@ -119,6 +133,15 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         if(birthday!=null && !birthday.equals("")){
             show_birthday.setText(birthday);
         }
+
+        if(button_type==0 || button_type==1){
+            linearLayout.setVisibility(View.INVISIBLE);
+            action.setVisibility(View.VISIBLE);
+        }
+        else{
+            linearLayout.setVisibility(View.VISIBLE);
+            action.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -152,11 +175,30 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     @Override
     protected void initListener() {
         action.setOnClickListener(this);
+        if(button_type==2){
+            agree.setOnClickListener(this);
+            refuse.setOnClickListener(this);
+        }
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.friend_info;
+    }
+
+    @Override
+    public void onClick(View view){
+        switch(view.getId()){
+            case R.id.button_add_chat:
+                otherViewClick(view);
+                break;
+            case R.id.button_agree:
+                // 同意好友请求
+                break;
+            case R.id.button_refuse:
+                // 拒绝好友请求
+                break;
+        }
     }
 
     @Override
@@ -166,10 +208,9 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         if(!isFriend){
             // 跳转至发送验证消息界面，传好友手机号
             Intent newIntent = new Intent();
-            newIntent.setClass(FriendDetailActivity.this, AddFriendActivity.class);
+            newIntent.setClass(FriendDetailActivity.this, FriendAddActivity.class);
             newIntent.putExtra("targetUser",intent.getStringExtra("phone"));
             startActivity(newIntent);
-            // this.finish();
         }
 //        // 发消息
 //        else{
