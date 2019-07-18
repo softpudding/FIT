@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.PhotoType1Bean;
@@ -40,8 +42,8 @@ import java.io.FileNotFoundException;
 public class PhotoPass extends AppCompatActivity {
     TextView titleView;
     /* 头像文件 */
-    private static final String IMAGE_FILE_NAME = "icon1.png";
-    private static final String CROP_IMAGE_FILE_NAME = "icon1.png";
+    private static final String IMAGE_FILE_NAME = "output_image.jpg";
+    private static final String CROP_IMAGE_FILE_NAME = "fit_crop.jpg";
 //    /* 请求识别码 */
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
@@ -71,6 +73,14 @@ public class PhotoPass extends AppCompatActivity {
                 checkReadPermission();
             }
         });
+        ImageButton buttonCamera=(ImageButton) findViewById(R.id.capture);
+        buttonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkStoragePermission();
+            }
+        });
+
     }
 
     // 从本地相册选取图片作为头像
@@ -78,6 +88,54 @@ public class PhotoPass extends AppCompatActivity {
         Intent intentFromGallery = new Intent(Intent.ACTION_PICK, null);
         intentFromGallery.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
+    }
+
+    // 启动手机相机拍摄照片作为头像
+    private void choseHeadImageFromCameraCapture() {
+        String savePath = mExtStorDir;
+        System.out.println("savePath: "+savePath);// /storage/emulated/0
+        Intent intent = null;
+        // 判断存储卡是否可以用，可用进行存储
+        if (hasSdcard()) {
+            //设定拍照存放到自己指定的目录,可以先建好
+            File file = new File(savePath);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            Uri pictureUri;
+            File pictureFile = new File(savePath, IMAGE_FILE_NAME);
+            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {//24
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                pictureUri = FileProvider.getUriForFile(this, getPackageName()+".fileProvider", pictureFile);
+                System.out.println("miaomiao");
+                System.out.println(intent.getAction());//android.media.action.IMAGE_CAPTURE
+                System.out.println(pictureUri);//content://portrait.bala.portrait.fileProvider/external_storage_root/temp_head_image.jpg
+    /*ContentValues contentValues = new ContentValues(1);
+    contentValues.put(MediaStore.Images.Media.DATA, pictureFile.getAbsolutePath());
+    pictureUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);*/
+            }
+            else {
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                pictureUri = Uri.fromFile(pictureFile);
+                System.out.println("2pictureUri: ");//
+                System.out.println(pictureUri);
+            }
+            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                ContentValues contentValues = new ContentValues(1);
+                contentValues.put(MediaStore.Images.Media.DATA, pictureFile.getAbsolutePath());
+                pictureUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            } else {
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                pictureUri = Uri.fromFile(pictureFile);
+            }*/
+            if (intent != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        pictureUri);
+                startActivityForResult(intent, CODE_CAMERA_REQUEST);
+            }
+        }
     }
 
     public Uri getImageContentUri(File imageFile) {
@@ -151,6 +209,19 @@ public class PhotoPass extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
+    private void checkStoragePermission() {
+        System.out.println("打印！！！！！！");
+        int result = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_DENIED) {
+            String[] permissions = {/*Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ,*/Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this, permissions, PERMISSION_READ_AND_CAMERA);
+        }
+        else {
+            choseHeadImageFromCameraCapture();
+        }
+    }
+
     private void checkReadPermission() {
         int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (permission==PackageManager.PERMISSION_DENIED){
@@ -192,7 +263,10 @@ public class PhotoPass extends AppCompatActivity {
 
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
-
+        //添加这一句表示对目标应用临时授权该Uri所代表的文件
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
         // 设置裁剪
         intent.putExtra("crop", "true");
 

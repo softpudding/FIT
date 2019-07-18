@@ -48,6 +48,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="com.example.fitmvp.fileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+</provider>
         <activity android:name=".view.activity.LoginActivity"></activity>
         <activity android:name=".view.activity.MainActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>

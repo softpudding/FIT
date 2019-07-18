@@ -9,6 +9,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,7 +50,11 @@ dependencies {
     implementation "com.android.support:support-v13:28.0.0"
     implementation "com.android.support:cardview-v7:28.0.0"
     implementation "com.android.support:appcompat-v7:28.0.0"
-
+//glide 图片加载
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //动态权限申请库
+    implementation 'pub.devrel:easypermissions:1.3.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28'
