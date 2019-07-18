@@ -147,7 +147,11 @@ public class UsersController {
     @PostMapping(path = "/recoTest")
     public @ResponseBody
     String recoTest () {
-        System.out.println("123");
+        System.out.println("/*");
+        System.out.println("*");
+        System.out.println("Token identified successfully!");
+        System.out.println("*");
+        System.out.println("*/");
         return "get!";
     }
 }
