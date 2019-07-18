@@ -26,7 +26,7 @@ UNITS = SAMPLE_TYPES # 此数据应该与参与训练的种类数量相同
 
 label_converters=["菠萝咕老肉","蛋饺","番茄炒蛋","咖喱鸡块","贡丸汤",
                   "黄焖鸡米饭","烤鸭饭","麻辣香锅","米饭","面","青菜",
-                  "生煎","酸汤肥牛","糖醋里脊","土豆丝","油条","炸酱面","煮鸡蛋"]
+                  "生煎","酸汤肥牛","糖醋里脊","土豆丝","油条","炸酱面","煮鸡蛋","苑齐超"]
 
 
 def cnn_model_fn(features, labels, mode):
@@ -88,14 +88,18 @@ food_classifier = tf.estimator.Estimator(
         model_fn=cnn_model_fn, model_dir=MODEL_PATH)
 
 
-def model_predict(img):
-    img = transform.resize(img, (128, 128, 3))
+def model_predict(images):
+    images = [transform.resize(image,(128,128,3)) for image in images]
+    images = np.array(images)
     predict_input_fn = tf.estimator.inputs.numpy_input_fn(
-        x={"x": img},
+        x={"x": images},
         shuffle=False)
     res = food_classifier.predict(predict_input_fn)
     res = list(res)
-    return Predict(int(res[0]['classes']),float(res[0]['probabilities'][int(res[0]['classes'])]))
+    predictions = list()
+    for prediction in res:
+        predictions.append(Predict(int(prediction['classes']),float(prediction['probabilities'][int(prediction['classes'])])))
+    return predictions
 
 
 
@@ -125,14 +129,19 @@ class Bbox:
         self.precision = pre
 
     """Over lap suuggerst you to use larger box to call smaller box as bbox2"""
-    def overlap(self,bbox2):
-        C_O = 5
-        w = max(self.w,bbox2.w)
-        h = max(self.h,bbox2.h)
-        if bbox2.x + w/C_O > self.x + self.w or\
-           bbox2.x + bbox2.w - w/C_O < self.x or\
-           bbox2.y + h/C_O > self.y + self.h or\
-           bbox2.y + bbox2.h - h/C_O < self.y:
+
+    def overlap(self, bbox2, wide_space=False):
+        C_O = 0
+        if wide_space:
+            C_O = -10
+        else:
+            C_O = -10
+        w = min(self.w, bbox2.w)
+        h = min(self.h, bbox2.h)
+        if bbox2.x + w / C_O > self.x + self.w or \
+                bbox2.x + bbox2.w - w / C_O < self.x or \
+                bbox2.y + h / C_O > self.y + self.h or \
+                bbox2.y + bbox2.h - h / C_O < self.y:
             return False
         else:
             return True
@@ -166,52 +175,41 @@ def Predict2Json(p):
     }
 
 
-def is_object(img,b_width,b_height,x,y,Bbox_list):
-    Del_list=list()
-    EFFE_PTG = 0.4
+def is_object(img,b_width,b_height,x,y,W,H,Bbox_list,do_repel=True,wide_space=False):
+    Del_list = list()
     tested = img[y:y+b_height,x:x+b_width]
     tested = tested.reshape(tested.shape[0]*tested.shape[1])
 
     if np.std(tested) > 2.0:
         return False
-
-    sum = b_width*b_height
-    tmp_dict = dict()
-    for i in tested:
-        if i not in tmp_dict:
-            tmp_dict.update({i:1})
-        else:
-            tmp_dict[i] = tmp_dict[i] + 1
-    for key in tmp_dict:
-        if tmp_dict[key] >= int(sum*EFFE_PTG):
-            sign = True
-            tmp_bbox = Bbox(x,y,b_width,b_height,np.std(tested))
-            for bbox in Bbox_list:
-                if bbox.overlap(tmp_bbox):
-                    if (tmp_bbox.precision < bbox.precision and tmp_bbox.w == bbox.w
-                            and tmp_bbox.h == bbox.h) or tmp_bbox.precision < bbox.precision-0.5:
-                        Del_list.append(bbox)
-                    else:
-                        sign = False
+    else:
+        sign = True
+        tmp_bbox = Bbox(x, y, b_width, b_height, np.std(tested))
+        for bbox in Bbox_list:
+            if bbox.overlap(tmp_bbox,wide_space):
+                if (tmp_bbox.precision < bbox.precision and tmp_bbox.w == bbox.w
+                and tmp_bbox.h == bbox.h) or (do_repel and tmp_bbox.precision < bbox.precision - 0.5):
+                    Del_list.append(bbox)
                 else:
-                    continue
-            if sign:
-                Bbox_list.append(tmp_bbox)
-                for del_obj in Del_list:
-                    Bbox_list.remove(del_obj)
-                return True
+                    sign = False
+                    break
+        if sign:
+            Bbox_list.append(tmp_bbox)
+            for del_obj in Del_list:
+                Bbox_list.remove(del_obj)
+            return True
     return False
 
 
-def apply_bbox(bbox_w,bbox_h,img,W,H,Bbox_list):
+def apply_bbox(bbox_w,bbox_h,img,W,H,Bbox_list,do_repel=True,wide_space=False):
     BOUND = 50
     bbox_x = int(W / BOUND)
     bbox_y = int(H / BOUND)
-    step_x = int(W / 10)
-    step_y = int(H / 10)
+    step_x = int(W / 25)
+    step_y = int(H / 25)
     while bbox_y + bbox_h < H - H/BOUND:
         while bbox_x + bbox_w < W - W/BOUND:
-            is_object(img, bbox_w, bbox_h, bbox_x, bbox_y,Bbox_list)
+            is_object(img, bbox_w, bbox_h, bbox_x, bbox_y, W, H, Bbox_list, do_repel = do_repel,wide_space=wide_space)
             bbox_x = bbox_x + step_x
         bbox_y = bbox_y + step_y
         bbox_x = int(W / BOUND)
@@ -246,34 +244,37 @@ def region_proposal(plate_type,pic):
         i = i + 1
     g_cluster_pic = tmp.reshape(H, W)
     if plate_type == 1:
-        apply_bbox(int(W * 0.6), int(H * 0.5), g_cluster_pic,W,H,Bbox_list)
-        apply_bbox(int(W * 0.3), int(H * 0.6), g_cluster_pic,W,H,Bbox_list)
-        apply_bbox(int(W * 0.3), int(H * 0.32), g_cluster_pic,W,H,Bbox_list)
+        apply_bbox(int(W * 0.5), int(H * 0.5), g_cluster_pic, W, H, Bbox_list)
+        apply_bbox(int(W * 0.25), int(H * 0.5), g_cluster_pic, W, H, Bbox_list)
+        apply_bbox(int(W * 0.3), int(H * 0.32), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
+        apply_bbox(int(W * 0.26), int(H * 0.26), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
+        apply_bbox(int(W * 0.22), int(H * 0.22), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
     elif plate_type == 2:
         apply_bbox(int(W * 0.75), int(H * 0.45), g_cluster_pic,W,H,Bbox_list)
         apply_bbox(int(W * 0.33), int(H * 0.33), g_cluster_pic,W,H,Bbox_list)
         apply_bbox(int(W * 0.25), int(H * 0.25), g_cluster_pic,W,H,Bbox_list)
     show_boxed_img(pic,Bbox_list)
-    Pred_list = list()
+    sub_images = list()
     for bbox in Bbox_list:
-        Pred_list.append(model_predict(pic[bbox.y:bbox.y+bbox.h,bbox.x:bbox.x+bbox.w]))
+        sub_images.append(pic[bbox.y:bbox.y+bbox.h,bbox.x:bbox.x+bbox.w])
+    Pred_list = model_predict(sub_images)
     Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
     Bbox_list = json.dumps(Bbox_list,default=Bbox2Json)
     res =  {
         "predictions":Pred_list,
         "boxes":Bbox_list
     }
-    res = json.dumps(res)
     return res
-
-
 
 
 @csrf_exempt
 def index(request):
-    if request.method == 'POST' and request.POST.get('img') is not None :
+    if request.method == 'POST' and request.POST.get('img') is not None and request.POST.get('tel') is not None:
         # object type confirmation
         obj_type = 0
+        url = 'http://202.120.40.8:30231/user/recoTest/'
+        url_2 = "http://202.120.40.8:30231/Reco/saveReco"
+        tel = request.POST.get("tel")
         if request.POST.get('obj_type') is not None:
             obj_type = int(request.POST.get('obj_type'))
         if obj_type == 0:
@@ -282,7 +283,6 @@ def index(request):
             return HttpResponse("obj_type must be 1 (single object) or 2 (multiple object)")
         # security authorization
         token = str(request.META['HTTP_TOKEN'])
-        url = 'http://202.120.40.8:30231/user/recoTest/'
         headers = {'token':str(token)}
         response = requests.post(url,headers,headers=headers)
         response = str(response.content)
@@ -290,24 +290,25 @@ def index(request):
             print(response)
             return HttpResponse("FAILED IN TOKEN AUTHORIZATIAN")
         #deal with pic
+        base64_string = request.POST.get('img')
+        imgdata = base64.b64decode(str(base64_string))
+        img = Image.open(io.BytesIO(imgdata))
+        img = np.array(img)
         if obj_type == 1:
             # obj_type 1
-            base64_string = request.POST.get('img')
-            imgdata = base64.b64decode(str(base64_string))
-            img = Image.open(io.BytesIO(imgdata))
-            img = np.array(img)
-            print(img.shape)
-            res = model_predict(img)
+            images = list()
+            images.append(img)
+            res = model_predict(images)
             if res.probability <= 0.5:
-                return HttpResponse("苑琪超没有见过这种吃的...")
-            else:
-                return HttpResponse(json.dumps(res,default=Predict2Json))
+                res = Predict(18,0.0)
+            Pred_list = list()
+            Pred_list.append(res)
+            Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
+            print(json.dumps({'tel':tel,'predictions':Pred_list}))
+            requests.post(url_2, json.dumps({'tel':tel,'predictions':Pred_list}),
+                          headers={'Content-Type': 'application/json'})
+            return HttpResponse(json.dumps(res, default=Predict2Json))
         elif obj_type == 2:
-            # get img
-            base64_string = request.POST.get('img')
-            imgdata = base64.b64decode(str(base64_string))
-            img = Image.open(io.BytesIO(imgdata))
-            img = np.array(img)
             # multiple object
             plate_type = 0
             if request.POST.get("plate_type") is not None:
@@ -316,7 +317,10 @@ def index(request):
                 plate_type = 1
             if plate_type !=1 and plate_type != 2:
                 return HttpResponse("plate_type must be 1 (square plate) or 2 (round plate)")
-            return HttpResponse(region_proposal(plate_type,img))
+            res=region_proposal(plate_type,img)
+            # also send result to YQC
+            requests.post(url_2, json.dumps({'tel':tel,'predictions':res['predictions']}),headers={'Content-Type':'application/json'})
+            return HttpResponse(json.dumps(res))
     return HttpResponse("INVALID REQUEST.")
 
 
