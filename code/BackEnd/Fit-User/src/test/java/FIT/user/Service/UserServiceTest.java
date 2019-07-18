@@ -1,6 +1,7 @@
 package FIT.user.Service;
 
 import FIT.user.Entity.User;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
+
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -54,5 +57,50 @@ public class UserServiceTest {
         User user = userService.findByTel("Never use it");
         assertEquals("0", userService.changePwd("Never use it", "Change!"));
         assertEquals("1", userService.changePwd("101", "succeed!"));
+    }
+
+    @Test
+    public void saveTest() {
+        User user = new User();
+        user.setNickName("Never use it");
+        user.setPassword("Never use it");
+        user.setTel("Never use it");
+        user.setIsactive(1);
+        userService.save(user);
+        User ut = userService.findByTel("Never use it");
+        assertNotNull(ut);
+    }
+
+    @Test
+    public void findAllTest() {
+        Iterator<User> ss = userService.findAll().iterator();
+        ss.next().getNickName();
+        //assertEquals("Invoker",ss.next().getNickName());
+    }
+
+    @Test
+    public void chanegInfoTest() {
+        JSONObject data_f = new JSONObject();
+        data_f.put("tel", "Never has it!");
+        /* assertEquals(false,userService.changeUserInfo(data_f)); */
+        assertFalse(userService.changeUserInfo(data_f));
+        JSONObject data_t = new JSONObject();
+        data_t.put("tel","101");
+        data_t.put("avatar","New AVATAR");
+        data_t.put("nickName","nn");
+        data_t.put("gender",1);
+        data_t.put("birthday","1895-7-5");
+        data_t.put("weight",55.5);
+        data_t.put("height",178);
+        assertTrue(userService.changeUserInfo(data_t));
+        /* assertEquals(true, userService.changeUserInfo(data_t)); */
+        assertEquals("nn",userService.findByTel("101").getNickName());
+    }
+
+    @Test
+    public void sendMessageTest() {
+
+        userService.sendMessage("18621105309");
+
     }
 }
