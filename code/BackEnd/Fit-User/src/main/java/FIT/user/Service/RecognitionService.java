@@ -1,8 +1,9 @@
 package FIT.user.Service;
 
+import FIT.user.Entity.Recognition;
 import com.alibaba.fastjson.JSONObject;
 
 public interface RecognitionService {
 
-    String recognieFood(JSONObject recoData);
+    void save(Recognition recognition);
 }
