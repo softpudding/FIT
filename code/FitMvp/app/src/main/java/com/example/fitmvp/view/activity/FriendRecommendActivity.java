@@ -69,9 +69,9 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
         }
         else{
             hint.setVisibility(View.GONE);
-            // 初始化adapter
-            initAdapter();
         }
+        // 初始化adapter
+        initAdapter();
     }
 
     @Override
@@ -186,6 +186,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
                 FriendRecommendActivity.this.finish();
             }
         });
+        recyclerView.setAdapter(adapter);
     }
 
     public void setRecommendList(List<FriendRecommendEntry> list){

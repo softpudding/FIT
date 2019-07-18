@@ -38,6 +38,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     public void handleEvent(String fromUsername, String reason, ContactNotifyEvent.Type type){
         FriendRecommendModel model = (FriendRecommendModel) getiModelMap().get("recommend");
         FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
+        LogUtils.d("handleEvent",fromUsername);
         model.addRecommend(fromUsername,reason,type);
         switch (type) {
             //收到好友邀请

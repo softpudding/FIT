@@ -53,6 +53,4 @@ public class MainActivity extends AppCompatActivity {
         // 0-mainpage, 1-socail, 2-friendold, 3-me
         bottomBar.switchFragment(id);
     }
-
-
 }
