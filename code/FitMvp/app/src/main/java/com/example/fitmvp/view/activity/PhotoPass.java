@@ -34,13 +34,14 @@ import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
 import com.example.fitmvp.utils.SpUtils;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 
 public class PhotoPass extends AppCompatActivity {
-    TextView titleView;
     /* 头像文件 */
     private static final String IMAGE_FILE_NAME = "output_image.jpg";
     private static final String CROP_IMAGE_FILE_NAME = "fit_crop.jpg";
@@ -57,6 +58,8 @@ public class PhotoPass extends AppCompatActivity {
     private ImageView headImage = null;
     private String mExtStorDir;
     private Uri mUriPath;
+    //提示跳转
+    private TextView titleView=null;
 
     private final int PERMISSION_READ_AND_CAMERA =0;//读和相机权限
     private final int PERMISSION_READ =1;//读取权限
@@ -66,6 +69,7 @@ public class PhotoPass extends AppCompatActivity {
         setContentView(R.layout.photo_pass);
         mExtStorDir = Environment.getExternalStorageDirectory().toString();
         headImage = (ImageView) findViewById(R.id.imageView);
+        titleView=(TextView)findViewById(R.id.foodn);
         ImageButton buttonLocal = (ImageButton) findViewById(R.id.openfile);
         buttonLocal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +114,6 @@ public class PhotoPass extends AppCompatActivity {
                 System.out.println("miaomiao");
                 System.out.println(intent.getAction());//android.media.action.IMAGE_CAPTURE
                 System.out.println(pictureUri);//content://portrait.bala.portrait.fileProvider/external_storage_root/temp_head_image.jpg
-    /*ContentValues contentValues = new ContentValues(1);
-    contentValues.put(MediaStore.Images.Media.DATA, pictureFile.getAbsolutePath());
-    pictureUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);*/
             }
             else {
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -303,7 +304,8 @@ public class PhotoPass extends AppCompatActivity {
             if (intent != null) {
                 headImage.setImageBitmap(b);
                 System.out.println(1);
-                //剪裁后传输图像
+                titleView.setText("识别中。。。");
+                //传输图像给后端,开始操作
                 passPhoto1(b);
             }
         } catch (Exception e) {
@@ -315,13 +317,9 @@ public class PhotoPass extends AppCompatActivity {
     //图片传送接口
     public void passPhoto1(Bitmap bitmap){
         Integer obj_type=1;
-        System.out.println(233333);
         String pic= PictureUtil.bitmapToBase64(bitmap);
-        System.out.println(obj_type);
-//        TypeOne one= new TypeOne();
-//        one.setObjtype(obj_type);
-//        one.setImg(pic);
-        String tel=(String) SpUtils.get("phone","");
+        String tel="123456";
+                //(String) SpUtils.get("phone","");
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean>())
                 .subscribe(new CommonObserver<PhotoType1Bean>() {
@@ -331,7 +329,6 @@ public class PhotoPass extends AppCompatActivity {
                         System.out.println(response.getFoodname());
                         System.out.println(response.getProbsbility());
                         String foodname=response.getFoodname();
-                        titleView = findViewById(R.id.foodn);
                         titleView.setText(foodname);
                     }
                     @Override
@@ -339,6 +336,14 @@ public class PhotoPass extends AppCompatActivity {
                         System.err.println("onError: "+ e.getMessage());
                     }
                 });
+        //跳转页面到PhotoShow
+        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+        // 传参
+        intent.putExtra("img",bitmap);
+        intent.putExtra("foodname",titleView.getText());
+        // 传项目中图片
+        //intent.putExtra("image", item.getImage());
+        startActivity(intent);
 
     }
 
