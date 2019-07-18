@@ -15,11 +15,23 @@ public class Recognition {
     @Column(name = "time_stamp")
     private String timeStamp;
 
-    @Column(name = "photo_type")
-    private Integer photoType;
+    @Column(name = "object_type")
+    private Integer objectType;
 
-    @Column(name = "food_kind")
-    private String foodKind;            //  如果是一次识别铁盘类型的食物，是不是会需要多个列去记录食物？
+    @Column(name = "food1")
+    private String foodK1;            //  如果是一次识别铁盘类型的食物，是不是会需要多个列去记录食物？
+
+    @Column(name = "food2")
+    private String foodK2;
+
+    @Column(name = "food3")
+    private String foodK3;
+
+    @Column(name = "food4")
+    private String foodK4;
+
+    @Column(name = "food5")
+    private String foodK5;
 
     public Integer getId() {
         return id;
@@ -37,20 +49,52 @@ public class Recognition {
         this.tel = tel;
     }
 
-    public Integer getPhotoType() {
-        return photoType;
+    public Integer getObjectType() {
+        return objectType;
     }
 
-    public void setPhotoType(Integer photoType) {
-        this.photoType = photoType;
+    public void setObjectType(Integer objectType) {
+        this.objectType = objectType;
     }
 
-    public String getFoodKind() {
-        return foodKind;
+    public String getFoodK1() {
+        return foodK1;
     }
 
-    public void setFoodKind(String foodKind) {
-        this.foodKind = foodKind;
+    public void setFoodK1(String foodK1) {
+        this.foodK1 = foodK1;
+    }
+
+    public String getFoodK2() {
+        return foodK2;
+    }
+
+    public String getFoodK3() {
+        return foodK3;
+    }
+
+    public String getFoodK4() {
+        return foodK4;
+    }
+
+    public void setFoodK2(String foodK2) {
+        this.foodK2 = foodK2;
+    }
+
+    public String getFoodK5() {
+        return foodK5;
+    }
+
+    public void setFoodK3(String foodK3) {
+        this.foodK3 = foodK3;
+    }
+
+    public void setFoodK5(String foodK5) {
+        this.foodK5 = foodK5;
+    }
+
+    public void setFoodK4(String foodK4) {
+        this.foodK4 = foodK4;
     }
 
     public String getTimeStamp() {

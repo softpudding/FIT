@@ -2,13 +2,17 @@ package FIT.user.Controller;
 
 
 import FIT.user.Annotation.UserLoginToken;
+import FIT.user.Entity.Recognition;
 import FIT.user.Service.RecognitionService;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
@@ -18,39 +22,23 @@ public class RecongitionController {
     @Autowired
     RecognitionService recognitionService;
 
-    /**
-     * This function is used to recieve request from front end
-     * and it will verify the token in http's header. If token
-     * is valid, post request to python backend and get the
-     * result. At last, return the result and save it in data-
-     * base.
-     */
-
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/sendPic")
-    @UserLoginToken
+    @PostMapping(path = "/saveReco", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    String picTest (@RequestParam String tel, @RequestParam String pic,      // 最好用JSONObject的，回头要跟前端说要改
-                    @RequestParam Integer photoType, @RequestParam Timestamp timestamp) {
-        /**
-         * 跟前后端调通，识别请求接受，发送，处理（存数据库）
-         */
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("key","value");
-        recognitionService.recognieFood(jsonObject);
-        return null;
-    }
-
-
-    /**
-     *
-     * @param test11
-     */
-    @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/saveReco")
-    @UserLoginToken
-    public @ResponseBody
-    void saveReco(String test11) {
-        saveReco(null);
+    void saveReco(@RequestBody JSONObject data) {
+        Recognition recognition = new Recognition();
+        System.out.println("接收中!");
+        System.out.println(data.getString("tel"));
+        System.out.println("下一个接收数组");
+        System.out.println(data.getString("predictions"));
+        System.out.println("下一个接收数组中的单个");
+        JSONArray jsonArray = data.getJSONArray("predictions");
+        System.out.println(jsonArray.get(0));
+        System.out.println(jsonArray.get(1));
+        System.out.println(jsonArray.get(2));
+        System.out.println(jsonArray.get(3));
+        System.out.println("4个已经够了，看看会不会报错");
+        System.out.println("看来多了的都会变成NULL");
+        //String js = jsonArray.get(0)
     }
 }
