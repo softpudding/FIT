@@ -3,24 +3,17 @@ package com.example.fitmvp.network;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
 import com.example.fitmvp.bean.PhotoType1Bean;
+import com.example.fitmvp.bean.PhotoTypetBean;
 import com.example.fitmvp.bean.RegisterUserBean;
-import com.example.fitmvp.bean.TypeOne;
-import com.google.gson.JsonObject;
 
-import java.sql.Timestamp;
-import java.util.Map;
+import com.alibaba.fastjson.JSONArray;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 
 // 所有网络请求接口
 public interface HttpService {
@@ -47,5 +40,11 @@ public interface HttpService {
     //图片传输
     @POST("classify/")
     @FormUrlEncoded
-    Observable<PhotoType1Bean> photoSend(@Field("tel")String tel,@Field("obj_type")Integer obj_type,@Field("img")String img);
+    Observable<PhotoType1Bean> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
+    //多种食物
+
+    @POST("classify/")
+    @FormUrlEncoded
+    Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
+                                         @Field("img")String img, @Field("plate_type")Integer ptype);
 }

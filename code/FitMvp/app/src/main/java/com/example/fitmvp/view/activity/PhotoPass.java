@@ -327,7 +327,7 @@ public class PhotoPass extends AppCompatActivity {
                     @Override
                     public void onNext(PhotoType1Bean response) {
                         System.out.println(response.getFoodname());
-                        System.out.println(response.getProbsbility());
+                        System.out.println(response.getProbability());
                         String foodname=response.getFoodname();
                         titleView.setText(foodname);
                         //跳转页面到PhotoShow
@@ -341,6 +341,7 @@ public class PhotoPass extends AppCompatActivity {
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
+                        System.out.println("嘎嘎嘎");
                     }
                 });
 

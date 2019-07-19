@@ -15,7 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +25,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.example.fitmvp.R;
-import com.example.fitmvp.bean.PhotoType1Bean;
+import com.example.fitmvp.bean.PhotoTypetBean;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
@@ -294,9 +293,9 @@ public class PhotoPassm extends AppCompatActivity {
         try {
             if (intent != null) {
                 String tyy=notes.getText().toString();
-                if(tyy.equals("方盘食物")){
+                if(tyy.equals("圆盘食物")){
                     passPhoto2(b,1); //传输图像给后端,开始操作
-                    System.out.println("方盘");
+                    System.out.println("圆盘");
                 }
                 else{
                     passPhoto2(b,2);
@@ -311,33 +310,33 @@ public class PhotoPassm extends AppCompatActivity {
 
     //图片传送接口
     public void passPhoto2(Bitmap bitmap,Integer integer){
-        Integer obj_type=1;
+        Integer obj_type=2;
         String pic= PictureUtil.bitmapToBase64(bitmap);
         String tel="123456";
         System.out.println("类型： ");
         System.out.println(integer);
         //(String) SpUtils.get("phone","");
-        Http.getHttpService(2).photoSend(tel,obj_type,pic)
-                .compose(new ThreadTransformer<PhotoType1Bean>())
-                .subscribe(new CommonObserver<PhotoType1Bean>() {
+        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
+                .compose(new ThreadTransformer<PhotoTypetBean>())
+                .subscribe(new CommonObserver<PhotoTypetBean>() {
                     // 请求成功返回后检查登录结果
                     @Override
-                    public void onNext(PhotoType1Bean response) {
-                        System.out.println(response.getFoodname());
-                        System.out.println(response.getProbsbility());
-                        String foodname=response.getFoodname();
+                    public void onNext(PhotoTypetBean response) {
+                        System.out.println(response.getBoxes());
+                        System.out.println(response.getPredictions());
                         //notes.setText(foodname);
                     }
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
+                        System.out.println("嘎嘎嘎");
                     }
                 });
         //跳转页面到PhotoShow
-        Intent intent = new Intent(PhotoPassm.this, PhotoShow.class);
+        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
         // 传参
         //intent.putExtra("img",bitmap);
-        intent.putExtra("foodname",notes.getText());
+     //   intent.putExtra("foodname",notes.getText());
         // 传项目中图片
         //intent.putExtra("image", item.getImage());
         startActivity(intent);
