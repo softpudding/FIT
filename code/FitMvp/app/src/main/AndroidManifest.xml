@@ -63,9 +63,10 @@
         <activity android:name=".view.activity.ChangePwActivity"></activity>
         <activity android:name=".view.activity.RecordDetailActivity"></activity>
         <activity android:name=".view.activity.SettingActivity"></activity>
-        <activity android:name=".view.activity.SearchFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendSearchActivity"></activity>
         <activity android:name=".view.activity.FriendDetailActivity"></activity>
-        <activity android:name=".view.activity.AddFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendAddActivity"></activity>
+        <activity android:name=".view.activity.FriendRecommendActivity"/>
         <!--<activity android:name=".view.activity.P"></activity>-->
         <activity android:name=".view.activity.PhotoPass"></activity>
         <activity android:name=".view.activity.PhotoType"></activity>
@@ -83,7 +84,22 @@
             </intent-filter>
         </service>
 
+        <!-- 数据库配置 -->
+        <meta-data android:name="AA_DB_NAME" android:value="fit.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.example.fitmvp.database.FriendEntry,
+                           com.example.fitmvp.database.FriendRecommendEntry,
+                           com.example.fitmvp.database.UserEntry"/>
 
+
+        <provider
+            android:name="com.activeandroid.content.ContentProvider"
+            android:authorities="com.example.fitmvp"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
 
 
 

@@ -1,17 +1,17 @@
 package com.example.fitmvp.presenter;
 
 import com.example.fitmvp.base.BasePresenter;
-import com.example.fitmvp.contract.AddFriendContract;
+import com.example.fitmvp.contract.FriendAddContract;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.ToastUtil;
-import com.example.fitmvp.view.activity.AddFriendActivity;
+import com.example.fitmvp.view.activity.FriendAddActivity;
 
 import java.util.HashMap;
 
 import cn.jpush.im.android.api.ContactManager;
 import cn.jpush.im.api.BasicCallback;
 
-public class AddFriendPresenter extends BasePresenter<AddFriendActivity> implements AddFriendContract.Presenter {
+public class FriendAddPresenter extends BasePresenter<FriendAddActivity> implements FriendAddContract.Presenter {
     @Override
     public HashMap<String, IModel> getiModelMap() {
         return null;

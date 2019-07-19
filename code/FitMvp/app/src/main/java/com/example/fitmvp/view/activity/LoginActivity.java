@@ -44,6 +44,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initListener() {
+        login.setEnabled(true);
         login.setOnClickListener(this);
         buttonToRegister.setOnClickListener(this);
         changePassword.setOnClickListener(this);
@@ -84,6 +85,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void otherViewClick(View view) {
+        // 点击登录后暂时不能再点击
+        login.setEnabled(false);
         mPresenter.login(getAccount(), getPassword());
     }
 
@@ -99,6 +102,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginSuccess(){
+        login.setEnabled(true);
         Intent intent = new Intent();
         intent.setClass(LoginActivity.this, MainActivity.class);
         intent.putExtra("id",0);
@@ -108,6 +112,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginFail(String title, String str){
+        login.setEnabled(true);
         AlertDialog.Builder builder  = new AlertDialog.Builder(LoginActivity.this);
         builder.setTitle(title) ;
         builder.setMessage(str) ;

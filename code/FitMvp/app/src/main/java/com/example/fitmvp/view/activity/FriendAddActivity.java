@@ -10,15 +10,15 @@ import androidx.appcompat.app.ActionBar;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
-import com.example.fitmvp.contract.AddFriendContract;
-import com.example.fitmvp.presenter.AddFriendPresenter;
+import com.example.fitmvp.contract.FriendAddContract;
+import com.example.fitmvp.presenter.FriendAddPresenter;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implements AddFriendContract.View {
+public class FriendAddActivity extends BaseActivity<FriendAddPresenter> implements FriendAddContract.View {
     @InjectView(R.id.send_reason)
     Button sendReason;
     @InjectView(R.id.input_reason)
@@ -38,8 +38,8 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
         actionbar.setTitle("验证信息");
     }
 
-    protected AddFriendPresenter loadPresenter() {
-        return new AddFriendPresenter();
+    protected FriendAddPresenter loadPresenter() {
+        return new FriendAddPresenter();
     }
 
     @Override
@@ -83,9 +83,7 @@ public class AddFriendActivity extends BaseActivity<AddFriendPresenter> implemen
 
     // 返回搜索界面
     public void goBack(){
-        Intent intent = new Intent(this,SearchFriendActivity.class);
-        startActivity(intent);
-        this.finish();
+        finish();
     }
 
 }

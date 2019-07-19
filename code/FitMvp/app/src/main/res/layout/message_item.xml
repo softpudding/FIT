@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/message_photo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
             app:srcCompat="@drawable/default_portrait36" />
@@ -55,7 +55,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
-            android:text="TextView"
             android:textAlignment="textEnd" />
     </LinearLayout>
 </LinearLayout>
