@@ -9,6 +9,10 @@ import cn.jpush.im.android.api.model.UserInfo;
 
 public interface FriendContract {
     interface Model {
+        void addFriend(String friendname, final InfoHint infoHint);
+        interface InfoHint {
+            void updateFriend();
+        }
     }
 
     interface View {

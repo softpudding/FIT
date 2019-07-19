@@ -69,9 +69,9 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
         }
         else{
             hint.setVisibility(View.GONE);
-            // 初始化adapter
-            initAdapter();
         }
+        // 初始化adapter
+        initAdapter();
     }
 
     @Override
@@ -159,7 +159,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
                         birthday = "";
                     }
                     // 应该在好友列表中 不会到这里
-                    else if(item.state.equals("对方已同意")){
+                    else if(item.state.equals("对方已同意") || item.state.equals("已同意")){
                         isFriend = true;
                         buttonType = 1;
                         notename = item.noteName;
@@ -183,9 +183,10 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
                 intent.putExtra("gender", gender);
                 intent.putExtra("birthday",birthday);
                 startActivity(intent);
-                FriendRecommendActivity.this.finish();
+                // FriendRecommendActivity.this.finish();
             }
         });
+        recyclerView.setAdapter(adapter);
     }
 
     public void setRecommendList(List<FriendRecommendEntry> list){

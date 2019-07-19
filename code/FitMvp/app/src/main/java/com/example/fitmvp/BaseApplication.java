@@ -10,6 +10,7 @@ import cn.jpush.im.android.api.JMessageClient;
 
 public class BaseApplication extends Application {
     private static Context mContext;
+    private String appKey;
 
     @Override
     public void onCreate() {
@@ -21,6 +22,8 @@ public class BaseApplication extends Application {
         // 初始化JMessage
         JMessageClient.init(this);
         JMessageClient.setDebugMode(true);
+        //注册Notification点击的接收器
+        new NotificationClickEventReceiver(getApplicationContext());
     }
 
     /**
@@ -39,5 +42,9 @@ public class BaseApplication extends Application {
 
     public static UserEntry getUserEntry() {
         return UserEntry.getUser(JMessageClient.getMyInfo().getUserName(), JMessageClient.getMyInfo().getAppKey());
+    }
+
+    public static String getAppKey(){
+        return JMessageClient.getMyInfo().getAppKey();
     }
 }

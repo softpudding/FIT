@@ -85,6 +85,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
         UserInfo userInfo = JMessageClient.getMyInfo();
         if(userInfo!=null){
+            LogUtils.e("save_info",userInfo.getUserName()+" "+userInfo.getNickname());
             String phone = userInfo.getUserName();
             String appKey = userInfo.getAppKey();
             SpUtils.put("phone",phone);

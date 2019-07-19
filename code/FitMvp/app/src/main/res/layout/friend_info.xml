@@ -9,14 +9,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/button_aggre_refuse"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal">
 
             <Button

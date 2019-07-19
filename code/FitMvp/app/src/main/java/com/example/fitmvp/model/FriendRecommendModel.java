@@ -8,6 +8,7 @@ import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
+import com.example.fitmvp.utils.UserUtils;
 
 import java.util.List;
 
@@ -18,52 +19,40 @@ import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendRecommendModel extends BaseModel implements FriendRecommendContract.Model {
     private UserEntry user = BaseApplication.getUserEntry();
-    private UserInfo friend;
-    private String invite_received = "请求加为好友";
-    private String invite_accepted = "对方已同意";
-    private String invite_declined = "对方已拒绝";
-    private String contact_deleted = "已被对方删除";
-
     /*
      * 根据事件种类修改或新增对应的验证消息记录
      * 更新数据库，更新未读消息数
      */
-    public void addRecommend(String fromUsername, String reason, ContactNotifyEvent.Type type){
-        String state;
-        switch (type){
-            //收到好友邀请
-            case invite_received:
-                state = invite_received;
-                break;
-            //对方接收了你的好友邀请
-            case invite_accepted:
-                state = invite_accepted;
-                break;
-            //对方拒绝了你的好友邀请
-            case invite_declined:
-                state = invite_declined;
-                break;
-            //对方将你从好友中删除
-            case contact_deleted:
-                state = contact_deleted;
-                break;
-            default:
-                state = "";
-                break;
-        }
+    public void addRecommend(String fromUsername, final String reason, final ContactNotifyEvent.Type type){
+        // 先从数据库中找记录
         FriendRecommendEntry recommendEntry = FriendRecommendEntry.getEntry(user,fromUsername,user.appKey);
-        // 更新消息记录
+        // 如果有，更新消息记录
         if(recommendEntry!=null){
+            LogUtils.e("handle_event","update recommendEntry "+recommendEntry.reason);
+            String state = UserUtils.getState(type);
             recommendEntry.state = state;
             recommendEntry.reason = reason;
             recommendEntry.save();
         }
+        // 如果没有，新增一条记录
         else{
+            LogUtils.e("handle_event","new recommendEntry from "+fromUsername);
             JMessageClient.getUserInfo(fromUsername, new GetUserInfoCallback() {
                 @Override
-                public void gotResult(int i, String s, UserInfo userInfo) {
+                public void gotResult(int i, String s, UserInfo friend) {
                     if(i==0){
-                        friend = userInfo;
+                        String otherState = UserUtils.getState(type);
+                        LogUtils.e("handle_event","new recommendEntry with user: "+friend.getNickname());
+                        FriendRecommendEntry newEntry = new FriendRecommendEntry(friend.getUserID(),
+                                friend.getUserName(), friend.getNotename(), friend.getNickname(),
+                                friend.getAppKey(), friend.getAvatar(), friend.getDisplayName(),
+                                reason, otherState ,user);
+                        newEntry.save();
+
+                        Integer cacheNum = SpUtils.getCachedNewFriendNum() + 1;
+                        LogUtils.e("cacheNum",cacheNum.toString());
+                        SpUtils.setCachedNewFriendNum(cacheNum);
+                        LogUtils.e("find_user",friend.getUserName());
                     }
                     else{
                         LogUtils.e("getUserInfo Fail",s);
@@ -71,15 +60,23 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
                     }
                 }
             });
-            if(friend != null){
-                FriendRecommendEntry newEntry = new FriendRecommendEntry(friend.getUserID(),
-                        friend.getUserName(), friend.getNotename(), friend.getNickname(),
-                        friend.getAppKey(), friend.getAvatar(), friend.getDisplayName(),
-                        reason, state ,user);
-                newEntry.save();
-                Integer cacheNum = SpUtils.getCachedNewFriendNum() + 1;
-                SpUtils.setCachedNewFriendNum(cacheNum);
-            }
+            LogUtils.e("onEvent","end");
+        }
+    }
+
+    /*
+     * 同意或拒绝好友请求后更新数据库中的记录
+     */
+    public void updateRecommend(String username,String state){
+
+        FriendRecommendEntry recommendEntry = FriendRecommendEntry.getEntry(user,username,user.appKey);
+        if(recommendEntry!=null){
+            LogUtils.d("find_recommend","got it");
+            recommendEntry.state = state;
+            recommendEntry.save();
+        }
+        else{
+            LogUtils.e("find_recommend","don't exist");
         }
     }
 }

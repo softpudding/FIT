@@ -7,4 +7,6 @@
     <color name="circleRed">#E91E63</color>
     <color name="circleBg">#D6D0D0</color>
     <color name="colorButton">#BA7C60AD</color>
+    <color name="colorTextTitle">#222831</color>
+    <color name="colorTextMsg">#393e46</color>
 </resources>

@@ -34,22 +34,27 @@ public class UserUtils {
         return dateFormat.format(date);
     }
 
-    public static String getState(ContactNotifyEvent.Type type){
-        switch (type) {
-            //收到好友邀请
-            case invite_received:
-               return "请求加为好友";
-            //对方接收了你的好友邀请
-            case invite_accepted:
-                return "对方已同意";
-            //对方拒绝了你的好友邀请
-            case invite_declined:
-                return "对方已拒绝";
-            //对方将你从好友中删除
-            case contact_deleted:
-                return "被对方删除";
-            default:
-                return "等待对方确认";
+    public static String getState(ContactNotifyEvent.Type type) {
+        if (type != null) {
+            switch (type) {
+                //收到好友邀请
+                case invite_received:
+                    return "请求加为好友";
+                //对方接收了你的好友邀请
+                case invite_accepted:
+                    return "对方已同意";
+                //对方拒绝了你的好友邀请
+                case invite_declined:
+                    return "对方已拒绝";
+                //对方将你从好友中删除
+                case contact_deleted:
+                    return "被对方删除";
+                default:
+                    return "等待对方确认";
+            }
+        }
+        else{
+            return "等待对方确认";
         }
     }
 }

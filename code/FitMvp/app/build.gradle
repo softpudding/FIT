@@ -5,7 +5,7 @@ android {
     // buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.example.fitmvp"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -90,6 +90,7 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:2.0.0'
     // ActiveAndroid
     implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
 
 List<String> dirs = [
