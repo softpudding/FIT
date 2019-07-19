@@ -330,20 +330,20 @@ public class PhotoPass extends AppCompatActivity {
                         System.out.println(response.getProbsbility());
                         String foodname=response.getFoodname();
                         titleView.setText(foodname);
+                        //跳转页面到PhotoShow
+                        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+                        // 传参
+                        intent.putExtra("foodname",titleView.getText());
+                        // 传项目中图片
+                        //intent.putExtra("image", item.getImage());
+                        startActivity(intent);
                     }
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
                     }
                 });
-        //跳转页面到PhotoShow
-        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
-        // 传参
-        intent.putExtra("img",bitmap);
-        intent.putExtra("foodname",titleView.getText());
-        // 传项目中图片
-        //intent.putExtra("image", item.getImage());
-        startActivity(intent);
+
 
     }
 
