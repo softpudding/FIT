@@ -98,18 +98,6 @@ public class UsersController {
         return userService.changePwd(tel, password);
     }
 
-    @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/logout")
-    public @ResponseBody
-    String logOut(HttpServletRequest request,
-                  HttpServletResponse response) {
-        try {
-            userService.logout(request, response);
-            return "登出成功啦";
-        } catch (Exception e) {
-            return "没有Session啦啦 \n 登出失败啦啦";
-        }
-    }
 
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -129,18 +117,6 @@ public class UsersController {
         return  sss;
     }
 
-    ////////////////////// FOR TEST!
-    /*
-    @CrossOrigin(origins = "*", maxAge = 3600)
-    @UserLoginToken
-    @PostMapping(path = "/infoTest")
-    public @ResponseBody
-    User infoTest (@RequestParam String tel) {
-        User u = userService.findByTel(tel);
-        return u;
-    }
-
-     */
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @UserLoginToken

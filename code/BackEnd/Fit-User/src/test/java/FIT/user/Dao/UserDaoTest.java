@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 @Rollback(value = true)
@@ -54,6 +56,12 @@ public class UserDaoTest {
         String nowName;
         nowName = user1.getNickName();
         assertEquals("看看你到底变没变", nowName);
+    }
+
+    @Test
+    public void findAllTest() {
+        Iterator<User> ss = userDao.findAll().iterator();
+        assertEquals("Invoker",ss.next().getNickName());
     }
 
 }

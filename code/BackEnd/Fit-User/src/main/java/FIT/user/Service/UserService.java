@@ -18,8 +18,6 @@ public interface UserService {
 
     String changePwd(String tel, String pwd);
 
-    boolean logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
     Integer sendMessage(String tel);
 
     boolean changeUserInfo(JSONObject data);
