@@ -18,6 +18,7 @@ import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendPresenter;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
@@ -166,6 +167,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     }
 
     public void onEvent(ContactNotifyEvent event){
+        LogUtils.e("onEvent","start");
         String reason = event.getReason();
         String fromUsername = event.getFromUsername();
         ContactNotifyEvent.Type type = event.getType();
