@@ -24,7 +24,8 @@ import javax.transaction.Transactional;
 import static org.junit.Assert.*;
 
 
-
+@Rollback(value = true)
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecongitionControllerTest {
@@ -42,35 +43,24 @@ public class RecongitionControllerTest {
     }
 
 
-
-
     @Test
-    public void test() throws Exception {
+    public void saveRecoFunctionTest_1() throws Exception {
         JSONObject data = new JSONObject();
-        data.put("1","a");
-        data.put("2","b");
-        data.put("3","c");
-        data.put("4","d");
+        JSONObject data_food = new JSONObject();
+        JSONArray food = new JSONArray();
+        data.put("tel","1110");
+        data_food.put("class","蒙牛");
+        food.add(data_food);
+        data.put("predictions",food);
         String jsonString = data.toJSONString();
-        mvc.perform(MockMvcRequestBuilders.post("/Reco/test")
+        System.out.println(data);
+        mvc.perform(MockMvcRequestBuilders.post("/Reco/saveReco")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonString))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    @Test
-    public void test2() throws Exception {
-        JSONObject data = new JSONObject();
-        data.put("1","a");
-        data.put("2","b");
-        String jsonString = data.toJSONString();
-        mvc.perform(MockMvcRequestBuilders.post("/Reco/test")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonString))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
 
     @Test
     public void saveRecoFunctionTest() throws Exception{
@@ -79,6 +69,7 @@ public class RecongitionControllerTest {
         JSONObject data_food2 = new JSONObject();
         JSONObject data_food3 = new JSONObject();
         JSONObject data_food4 = new JSONObject();
+        JSONObject data_food5 = new JSONObject();
         JSONArray food = new JSONArray();
         data.put("tel","1110");
         data_food.put("class","蒙牛");
@@ -89,6 +80,8 @@ public class RecongitionControllerTest {
         food.add(data_food3);
         data_food4.put("class","比利·海灵顿");
         food.add(data_food4);
+        data_food5.put("class","香蕉君");
+        food.add(data_food5);
         data.put("predictions",food);
         String jsonString = data.toJSONString();
         System.out.println(data);
@@ -98,5 +91,7 @@ public class RecongitionControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
+
+
 
 }

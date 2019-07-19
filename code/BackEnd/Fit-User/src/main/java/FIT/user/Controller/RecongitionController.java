@@ -6,6 +6,7 @@ import FIT.user.Entity.Recognition;
 import FIT.user.Service.RecognitionService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -31,22 +32,6 @@ public class RecongitionController {
     RecognitionService recognitionService;
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/test")
-    public @ResponseBody boolean test(@RequestBody JSONObject data) {
-        int ss = data.size();
-        if (ss >=3) {
-            System.out.println(">=3");
-            System.out.println(data.getString("1"));
-            return true;
-        }
-        else {
-            System.out.println("<3");
-            System.out.println(data.getString("1"));
-            return false;
-        }
-    }
-
-    @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/saveReco")
     public @ResponseBody
     boolean saveReco(@RequestBody JSONObject data) {
@@ -58,42 +43,44 @@ public class RecongitionController {
 
 
         JSONArray jsonArray = data.getJSONArray("predictions");
+        /*
+        JSONArray jsonArray2 = data.getJSONArray("pro");
+
+        */
         Integer js_size = jsonArray.size();
         System.out.println(js_size);
-        JSONObject js0= (JSONObject) jsonArray.get(0);
+        JSONObject js0= jsonArray.getJSONObject(0);
         recognition.setFoodK1(js0.getString("class"));
-        /*
+
         if (js_size >= 2) {
-            JSONObject js1 = (JSONObject) jsonArray.get(1);
+            JSONObject js1 = jsonArray.getJSONObject(1);
             recognition.setFoodK2(js1.getString("class"));
         }
-        else if (js_size >= 3) {
-            JSONObject js2 = (JSONObject) jsonArray.get(2);
+        if (js_size >= 3) {
+            JSONObject js2 =jsonArray.getJSONObject(2);
             recognition.setFoodK3(js2.getString("class"));
         }
-        else if (js_size >= 4) {
-            JSONObject js3 = (JSONObject) jsonArray.get(3);
+        if (js_size >= 4) {
+            JSONObject js3 = jsonArray.getJSONObject(3);
             recognition.setFoodK4(js3.getString("class"));
         }
-        else if (js_size >= 5) {
-            JSONObject js4 = (JSONObject) jsonArray.get(4);
+        if (js_size >= 5) {
+            JSONObject js4 = jsonArray.getJSONObject(4);
             recognition.setFoodK5(js4.getString("class"));
         }
 
-        /*else if(js_size >= 2) {
-            recognition.setObjectType(2);
+        if(js_size == 1) {
+            recognition.setObjectType(1);
         }
-
-
         else {
             recognition.setObjectType(1);
         }
-        */
 
 
          /*
             获取时间戳
          */
+
         SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
         sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");// a为am/pm的标记
         Date date = new Date();// 获取当前时间
@@ -103,4 +90,5 @@ public class RecongitionController {
 
         return recognitionService.save(recognition);
     }
+
 }
