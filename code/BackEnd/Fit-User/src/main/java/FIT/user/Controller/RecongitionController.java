@@ -43,10 +43,7 @@ public class RecongitionController {
 
 
         JSONArray jsonArray = data.getJSONArray("predictions");
-        /*
-        JSONArray jsonArray2 = data.getJSONArray("pro");
 
-        */
         Integer js_size = jsonArray.size();
         System.out.println(js_size);
         JSONObject js0= jsonArray.getJSONObject(0);
@@ -87,6 +84,9 @@ public class RecongitionController {
         String time = sdf.format(date.getTime());
         System.out.println(time);
         recognition.setTimeStamp(time);
+
+        System.out.println("看看记录会是啥：");
+        System.out.println(recognition.toString());
 
         return recognitionService.save(recognition);
     }

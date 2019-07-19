@@ -90,14 +90,9 @@ public class UsersController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/changePassword")    // 记得改回来 这是测试用的  改了已经
     public @ResponseBody
-    String changPwd(@RequestParam String tel, @RequestParam String password, HttpServletRequest request,
-                    HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        System.out.println("session 里面的USERID是：  " + session.getAttribute("USERID"));
-        //if (tel == )
+    String changPwd(@RequestParam String tel, @RequestParam String password) {
         return userService.changePwd(tel, password);
     }
-
 
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -105,16 +100,6 @@ public class UsersController {
     public @ResponseBody
     boolean changeUserInfo(@RequestBody JSONObject data) {
         return userService.changeUserInfo(data);
-    }
-
-    @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/picTest")
-    public @ResponseBody
-    String picTest (@RequestParam String tel, @RequestParam String pic,      // 最好用JSONObject的，回头要跟前端说要改
-                    @RequestParam Integer photoType, @RequestParam Timestamp timestamp) {
-        String ss = "Hello";
-        String sss = (ss + tel + pic + photoType + timestamp);
-        return  sss;
     }
 
 
@@ -130,4 +115,6 @@ public class UsersController {
         System.out.println("*/");
         return "get!";
     }
+
+
 }
