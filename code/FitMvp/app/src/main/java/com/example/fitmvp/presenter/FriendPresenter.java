@@ -1,5 +1,9 @@
 package com.example.fitmvp.presenter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
@@ -43,10 +47,16 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         switch (type) {
             //收到好友邀请
             case invite_received:
+                LogUtils.e("handelEvent","invite_received");
                 break;
             //对方接收了你的好友邀请
             case invite_accepted:
-                friendModel.addFriend(fromUsername);
+                friendModel.addFriend(fromUsername, new FriendContract.Model.InfoHint() {
+                    @Override
+                    public void updateFriend() {
+                        getIView().updateData();
+                    }
+                });
                 break;
 
             //对方拒绝了你的好友邀请

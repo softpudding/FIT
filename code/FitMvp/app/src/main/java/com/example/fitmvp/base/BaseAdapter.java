@@ -21,6 +21,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
         this.dataList = datas;
     }
 
+    public void setDataList(List<T> list){
+        dataList = list;
+    }
+
     public abstract int getLayoutId(int viewType);
 
 

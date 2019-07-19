@@ -8,6 +8,7 @@ import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.presenter.FriendPresenter;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
@@ -24,6 +25,7 @@ import cn.jpush.im.android.api.model.UserInfo;
 public class FriendModel extends BaseModel implements FriendContract.Model {
     private List<FriendEntry> mList = new ArrayList<>();
     private List<FriendEntry> forDelete = new ArrayList<>();
+    private FriendPresenter friendPresenter = new FriendPresenter();
 
     // 同步本地好友列表
     public void initFriendList(){
@@ -96,7 +98,8 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
     }
 
     // 添加好友
-    public void addFriend(String friendname){
+    @Override
+    public void addFriend(String friendname, final InfoHint infoHint){
         final UserEntry user = BaseApplication.getUserEntry();
         FriendEntry friendEntry = FriendEntry.getFriend(user, friendname, user.appKey);
         // 不在数据库中
@@ -112,6 +115,9 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                                 userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
                                 userInfo.getAvatar(), userInfo.getDisplayName(), "A", gender, birthday, user);
                         newFriend.save();
+                        // 更新页面
+                        LogUtils.e("update_list","start");
+                        infoHint.updateFriend();
                     }
                     else{
                         LogUtils.e("find user fail",s);
@@ -129,5 +135,7 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
         if(friendEntry!=null){
             friendEntry.delete();
         }
+        // 更新页面
+        // friendPresenter.updateFriendList();
     }
 }

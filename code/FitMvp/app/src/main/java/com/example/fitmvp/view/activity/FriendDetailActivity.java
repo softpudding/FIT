@@ -1,5 +1,6 @@
 package com.example.fitmvp.view.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,12 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -188,15 +193,20 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
 
     @Override
     public void onClick(View view){
+        String username = show_phone.getText().toString();
         switch(view.getId()){
             case R.id.button_add_chat:
                 otherViewClick(view);
                 break;
             case R.id.button_agree:
                 // 同意好友请求
+                LogUtils.e("accept start",username);
+                mPresenter.acceptInvite(username);
                 break;
             case R.id.button_refuse:
                 // 拒绝好友请求
+                LogUtils.e("refuse start",username);
+                mPresenter.refuseInvite(username);
                 break;
         }
     }
@@ -216,5 +226,14 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
 //        else{
 //
 //        }
+    }
+
+    //发送刷新数据的广播
+    public void updateFriendList(){
+        Intent friendIntent = new Intent("updateFriendList");
+        friendIntent.putExtra("refreshInfo", "yes");
+        LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(friendIntent);
+        this.setResult(Activity.RESULT_OK, friendIntent);//返回页面1
+        this.finish();
     }
 }

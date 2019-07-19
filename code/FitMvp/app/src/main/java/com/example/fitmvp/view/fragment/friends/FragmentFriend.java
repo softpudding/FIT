@@ -15,6 +15,9 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.utils.LogUtils;
 import com.google.android.material.tabs.TabLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +38,10 @@ public class FragmentFriend extends Fragment {
         super.onCreate(savedInstanceState);
         // 事件接收类注册
         JMessageClient.registerEventReceiver(this);
+        EventBus.getDefault().register(this);
     }
 
+    @Subscribe
     public void onEvent(ContactNotifyEvent event){
         String name = event.getFromUsername();
         String reason = event.getReason();

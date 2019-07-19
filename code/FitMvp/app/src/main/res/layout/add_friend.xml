@@ -15,6 +15,7 @@
         android:gravity="top"
         android:hint="输入验证信息"
         android:inputType="textPersonName"
+        android:maxLength="30"
         android:textAlignment="textStart" />
 
     <Button

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="64dp"
+        android:layout_height="80dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -20,8 +21,8 @@
             app:srcCompat="@drawable/default_portrait36" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -30,8 +31,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
+                android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                android:text="用户名" />
+                android:text="用户名"
+                android:textColor="@color/colorTextTitle"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/message"
@@ -39,15 +43,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="我是......"
+                android:textSize="12sp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/message_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/message_time"
@@ -57,6 +55,15 @@
             android:layout_weight="1"
             android:textAlignment="textEnd"
             android:textColor="#2196F3"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="..." />
     </LinearLayout>
+
+    <View
+        android:id="@+id/view11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/circleBg" />
 </LinearLayout>
