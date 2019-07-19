@@ -75,7 +75,7 @@ public class UserServiceTest {
     public void findAllTest() {
         Iterator<User> ss = userService.findAll().iterator();
         ss.next().getNickName();
-        //assertEquals("Invoker",ss.next().getNickName());
+        assertEquals("Axe",ss.next().getNickName());
     }
 
     @Test

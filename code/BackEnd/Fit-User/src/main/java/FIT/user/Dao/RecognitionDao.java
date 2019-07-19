@@ -16,7 +16,8 @@ public class RecognitionDao {
         return recognitionRepository.findAllByTel(tel);
     }
 
-    public void save(Recognition recognition) {
+    public boolean save(Recognition recognition) {
         recognitionRepository.saveAndFlush(recognition);
+        return true;
     }
 }
