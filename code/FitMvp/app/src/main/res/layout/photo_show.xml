@@ -5,21 +5,38 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/foodpic"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         app:srcCompat="@drawable/item_friends" />
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="30dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
     <TextView
-        android:id="@+id/textView2"
-
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+    android:id="@+id/show1_name"
+    android:layout_width="364dp"
+    android:layout_height="20dp"
+    android:textAlignment="center"
+    android:text="TextView" />
+    <TextView
+        android:id="@+id/show1_content"
+        android:layout_width="364dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
         android:text="TextView" />
+<ImageButton
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:backgroundTint="#00FFFFFF"
+    android:src="@drawable/share"
+    />
+</LinearLayout>
 </RelativeLayout>

@@ -11,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitmvp.R;
 
-public class PhotoShow extends AppCompatActivity {
+public class PhotoShowt extends AppCompatActivity{
     TextView titleView;
-    Bitmap bitmap;
-    ImageView foodpic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +20,8 @@ public class PhotoShow extends AppCompatActivity {
         // 返回键
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         titleView = findViewById(R.id.show1_name);
-        foodpic=findViewById(R.id.foodpic);
         Intent intent = getIntent();
-        // 获取参数
-        String show_name = intent.getStringExtra("foodname");
-        //图片还没收
-        // 设置参数
-        titleView.setText(show_name);
+        titleView.setText("多种食物");
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -39,4 +32,6 @@ public class PhotoShow extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

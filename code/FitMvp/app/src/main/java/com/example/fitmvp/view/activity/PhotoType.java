@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitmvp.R;
 
 public class PhotoType extends AppCompatActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_type);
@@ -26,7 +27,24 @@ public class PhotoType extends AppCompatActivity {
         type2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //跳出动画
+            }
+        });
+        Button plate_c=findViewById(R.id.plate_c);
+        plate_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(PhotoType.this,PhotoPassm.class);
+                intent.putExtra("plate_type","圆盘食物");
+                startActivity(intent);
+            }
+        });
+        Button plate_s=findViewById(R.id.plate_s);
+        plate_s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PhotoType.this,PhotoPassm.class);
+                intent.putExtra("plate_type","方盘食物");
                 startActivity(intent);
             }
         });
