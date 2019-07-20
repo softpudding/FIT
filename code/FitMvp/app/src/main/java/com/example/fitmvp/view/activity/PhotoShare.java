@@ -1,7 +1,8 @@
 package com.example.fitmvp.view.activity;
 
+import android.app.Application;
 import android.graphics.Bitmap;
 
-public class PhotoShare {
-    public static void photoShow (String s, Bitmap b){}
+public class PhotoShare extends Application {
+
 }

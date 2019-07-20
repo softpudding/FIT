@@ -26,4 +26,13 @@
         android:text="文件读取"
         />
 
+    <TextView
+        android:id="@+id/tishi"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp" />
+
 </RelativeLayout>
