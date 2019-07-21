@@ -4,6 +4,7 @@ package com.example.fitmvp;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.fitmvp.chat.activity.ChatActivity;
 import com.example.fitmvp.view.activity.MainActivity;
 
 import cn.jpush.im.android.api.JMessageClient;
@@ -35,21 +36,20 @@ public class NotificationClickEventReceiver {
             String appKey = msg.getFromAppKey();
             ConversationType type = msg.getTargetType();
             Conversation conv;
-            Intent notificationIntent = new Intent(mContext, MainActivity.class);
-            notificationIntent.putExtra("id",2);
+            Intent notificationIntent = new Intent(mContext, ChatActivity.class);
             if (type == ConversationType.single) {
                 conv = JMessageClient.getSingleConversation(targetId, appKey);
-                notificationIntent.putExtra("targtid", targetId);
-                notificationIntent.putExtra("targetappkey", appKey);
+                notificationIntent.putExtra(BaseApplication.TARGET_ID, targetId);
+                notificationIntent.putExtra(BaseApplication.TARGET_APP_KEY, appKey);
             }
             else {
                 conv = JMessageClient.getGroupConversation(Long.parseLong(targetId));
                 notificationIntent.putExtra("groupid", Long.parseLong(targetId));
             }
-            notificationIntent.putExtra("convtitle", conv.getTitle());
+            notificationIntent.putExtra(BaseApplication.CONV_TITLE, conv.getTitle());
             conv.resetUnreadCount();
 //        notificationIntent.setAction(Intent.ACTION_MAIN);
-            notificationIntent.putExtra("fromGroup", false);
+//            notificationIntent.putExtra("fromGroup", false);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mContext.startActivity(notificationIntent);

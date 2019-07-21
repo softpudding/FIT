@@ -117,6 +117,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
             view.setText(value);
         }
 
+        public void setVisible(int id, int type){
+            TextView view = getView(id);
+            view.setVisibility(type);
+        }
+
         // 设置的图片在项目中
         public void setImage(int id, Integer value){
             ImageView view = getView(id);

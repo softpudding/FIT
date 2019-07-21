@@ -21,7 +21,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.event.ContactNotifyEvent;
 
@@ -37,15 +36,8 @@ public class FragmentFriend extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 事件接收类注册
-        JMessageClient.registerEventReceiver(this);
-        EventBus.getDefault().register(this);
-    }
-
-    @Subscribe
-    public void onEvent(ContactNotifyEvent event){
-        String name = event.getFromUsername();
-        String reason = event.getReason();
-        LogUtils.e("onEvent","friend "+name);
+//        JMessageClient.registerEventReceiver(this);
+//        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -66,7 +58,7 @@ public class FragmentFriend extends Fragment {
     @Override
     public void onDestroy() {
         //注销消息接收
-        JMessageClient.unRegisterEventReceiver(this);
+//        JMessageClient.unRegisterEventReceiver(this);
         super.onDestroy();
     }
 }

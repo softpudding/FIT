@@ -17,23 +17,24 @@ import com.example.fitmvp.contract.RegisterContract;
 import com.example.fitmvp.presenter.RegisterPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 
 public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View{
-    @InjectView(R.id.button_register)
+    @Bind(R.id.button_register)
     FloatingActionButton register;
-    @InjectView(R.id.input_phone)
+    @Bind(R.id.input_phone)
     EditText inputPhone;
-    @InjectView(R.id.input_name)
+    @Bind(R.id.input_name)
     EditText inputName;
-    @InjectView(R.id.input_pwd)
+    @Bind(R.id.input_pwd)
     EditText inputPwd;
-    @InjectView(R.id.input_pwd_again)
+    @Bind(R.id.input_pwd_again)
     EditText inputPwdAgain;
-    @InjectView(R.id.input_msg)
+    @Bind(R.id.input_msg)
     EditText inputMsg;
-    @InjectView(R.id.get_msg)
+    @Bind(R.id.get_msg)
     Button getMsg;
 
     private String targetMsg;
@@ -71,7 +72,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override

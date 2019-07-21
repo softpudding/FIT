@@ -13,21 +13,21 @@ import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.presenter.LoginPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
-    @InjectView(R.id.input_account)
+    @Bind(R.id.input_account)
     EditText inputAccount;
-    @InjectView(R.id.input_password)
+    @Bind(R.id.input_password)
     EditText inputPassword;
-    @InjectView(R.id.button_login)
+    @Bind(R.id.button_login)
     FloatingActionButton login;
-    @InjectView(R.id.button_toRegister)
+    @Bind(R.id.button_toRegister)
     Button buttonToRegister;
-    @InjectView(R.id.toRepassword)
+    @Bind(R.id.toRepassword)
     TextView changePassword;
-    @InjectView(R.id.button2)
+    @Bind(R.id.button2)
     Button toMain;
 
     @Override
@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override

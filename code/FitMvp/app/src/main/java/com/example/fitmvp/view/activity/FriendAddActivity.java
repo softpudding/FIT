@@ -15,13 +15,14 @@ import com.example.fitmvp.presenter.FriendAddPresenter;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 
 public class FriendAddActivity extends BaseActivity<FriendAddPresenter> implements FriendAddContract.View {
-    @InjectView(R.id.send_reason)
+    @Bind(R.id.send_reason)
     Button sendReason;
-    @InjectView(R.id.input_reason)
+    @Bind(R.id.input_reason)
     EditText inputReason;
 
     private String targetUserPhone;
@@ -55,7 +56,7 @@ public class FriendAddActivity extends BaseActivity<FriendAddPresenter> implemen
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         String myName = (String)SpUtils.get("nickname","");
         inputReason.setText("我是"+myName);
     }

@@ -15,6 +15,8 @@ import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,6 +76,36 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     @Override
     public List<FriendEntry> getFriendList(){
         FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
-        return friendModel.getFriendList();
+        List<FriendEntry> list = friendModel.getFriendList();
+        Collections.sort(list, new Comparator<FriendEntry>() {
+            // 按显示的名字升序排序
+            @Override
+            public int compare(FriendEntry f1, FriendEntry f2) {
+                String name1,name2;
+                name1 = f1.noteName;
+                if(name1.equals("")){
+                    name1 = f1.nickName;
+                }
+                if(name1.equals("")){
+                    name1 = f1.username;
+                }
+                name2 = f2.noteName;
+                if(name2.equals("")){
+                    name2 = f2.nickName;
+                }
+                if(name2.equals("")){
+                    name2 = f2.username;
+                }
+                Integer diff = name1.compareTo(name2);
+                if (diff > 0) {
+                    return 1;
+                }
+                else if (diff < 0) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        return list;
     }
 }
