@@ -1,78 +1,166 @@
 package com.example.fitmvp.view.fragment.friends;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
+import com.example.fitmvp.base.BaseAdapter;
+import com.example.fitmvp.base.BaseFragment;
+import com.example.fitmvp.bean.ConversationEntity;
+import com.example.fitmvp.chat.activity.ChatActivity;
 import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.presenter.MessagePresenter;
 import com.example.fitmvp.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.event.OfflineMessageEvent;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
+import cn.jpush.im.android.api.model.UserInfo;
 
 
-public class FragmentMsg extends Fragment implements View.OnClickListener {
-    private Button test;
-    private Button receive;
-    @Nullable
+public class FragmentMsg extends BaseFragment<MessagePresenter>
+        implements View.OnClickListener {
+
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+
+    private List<ConversationEntity> convList = new ArrayList<>();
+    BaseAdapter<ConversationEntity> adapter;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.message, container, false);
-        test = ButterKnife.findById(view, R.id.test_event);
-        receive = ButterKnife.findById(view,R.id.receive_msg);
-        test.setOnClickListener(this);
-        receive.setOnClickListener(this);
-        return view;
+    protected Integer getLayoutId(){
+        return R.layout.message;
     }
 
     @Override
-    public void onClick(View view){
-        switch (view.getId()){
-            case R.id.test_event:
-                UserEntry user = BaseApplication.getUserEntry();
-                LogUtils.e("send_msg_to",user.username);
-                Message message = JMessageClient.createSingleTextMessage("15022265465",user.appKey,
-                        user.username+"发送了一条消息");
-                JMessageClient.sendMessage(message);
-                break;
-            case R.id.receive_msg:
-                Integer num = JMessageClient.getAllUnReadMsgCount();
-                LogUtils.e("unreadmsg",num.toString());
-                List<Conversation> list = JMessageClient.getConversationList();
-                if(list!=null && list.size() >0){
-                    LogUtils.e("conversation_list",String.format("%d",list.size()));
-                    Conversation conversation = list.get(0);
-                    String msg = conversation.toJsonString();
-                    LogUtils.e("content",msg);
+    protected MessagePresenter loadPresenter() {
+        return new MessagePresenter();
+    }
+
+    @Override
+    protected void initView(){
+        recyclerView = ButterKnife.findById(view,R.id.message_list);
+        recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    public void initData(){
+        convList = mPresenter.getConvList();
+        TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+        if(convList.size()==0 || convList==null){
+            emptyList.setVisibility(View.VISIBLE);
+        }
+        else {
+            emptyList.setVisibility(View.GONE);
+        }
+        adapter = new BaseAdapter<ConversationEntity>(convList) {
+            @Override
+            public int getLayoutId(int viewType) {
+                return R.layout.message_item;
+            }
+
+            @Override
+            public void convert(final MyHolder holder, ConversationEntity data, int position) {
+                holder.setText(R.id.message_name,data.getTitle());
+                holder.setText(R.id.message,data.getMessage());
+                holder.setText(R.id.message_time,data.getTime());
+                // 设置头像
+                if(data.getAvatar()!=null){
+                    holder.setImage(R.id.message_photo, BitmapFactory.decodeFile(data.getAvatar()));
                 }
                 else{
-                    LogUtils.e("conversation_list","no conversation");
+                    JMessageClient.getUserInfo(data.getUsername(), new GetUserInfoCallback() {
+                        @Override
+                        public void gotResult(int i, String s, UserInfo userInfo) {
+                            if(i == 0){
+                                userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                                    @Override
+                                    public void gotResult(int i, String s, Bitmap bitmap) {
+                                        if (i == 0) {
+                                            holder.setImage(R.id.message_photo,bitmap);
+                                        }else {
+                                            // 设置为默认头像
+                                            holder.setImage(R.id.message_photo,R.drawable.default_portrait80);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
                 }
-        }
+                // 设置未读信息
+                if(data.getNewMsgNum()>0){
+                    holder.setText(R.id.new_msg_number,String.format("%d",data.getNewMsgNum()));
+                    holder.setVisible(R.id.new_msg_number,View.VISIBLE);
+                }
+                else{
+                    holder.setVisible(R.id.new_msg_number,View.GONE);
+                }
+            }
+        };
+        adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ConversationEntity entity = convList.get(position);
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                intent.putExtra(BaseApplication.CONV_TITLE, entity.getTitle());
+                intent.putExtra(BaseApplication.TARGET_ID, entity.getUsername());
+                intent.putExtra(BaseApplication.TARGET_APP_KEY, BaseApplication.getAppKey());
+                startActivity(intent);
+                Conversation conversation = JMessageClient.getSingleConversation(entity.getUsername(), BaseApplication.getAppKey());
+                conversation.setUnReadMessageCnt(0);
+                updateData();
+            }
+        });
+        recyclerView.setAdapter(adapter);
     }
 
-    @Subscribe
+    private void updateData(){
+        convList = mPresenter.getConvList();
+        TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+        if(convList.size()==0 || convList==null){
+            emptyList.setVisibility(View.VISIBLE);
+        }
+        else {
+            emptyList.setVisibility(View.GONE);
+        }
+        adapter.notifyDataSetChanged();
+    }
+    @Override
+    protected void initListener(){}
+    @Override
+    public void onClick(View view){}
+
     public void onEvent(MessageEvent event) {
-        Message newMessage = event.getMessage();//获取此次离线期间会话收到的新消息列表
-        LogUtils.e("recieve_msg",String.format(Locale.SIMPLIFIED_CHINESE, "收到一条来自%s的在线消息。\n", newMessage.getFromUser()));
+        updateData();
+        LogUtils.e("接收在线消息","...");
     }
 
     /**
@@ -81,25 +169,8 @@ public class FragmentMsg extends Fragment implements View.OnClickListener {
      * @param event 离线消息事件
      */
     public void onEvent(OfflineMessageEvent event) {
-        Conversation conv = event.getConversation();
-        LogUtils.e("接收离线消息",conv.getMessage(0).toJson());
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // 事件接收类注册
-        JMessageClient.registerEventReceiver(this);
-        EventBus.getDefault().register(this);
-    }
-
-
-
-    @Override
-    public void onDestroy() {
-        //注销消息接收
-        JMessageClient.unRegisterEventReceiver(this);
-        super.onDestroy();
+        updateData();
+        LogUtils.e("接收离线消息","...");
     }
 
 }

@@ -22,19 +22,19 @@ import com.example.fitmvp.utils.UserUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendSearchActivity extends BaseActivity<FriendSearchPresenter> implements FriendSearchContract.View {
-    @InjectView(R.id.search)
+    @Bind(R.id.search)
     TextView search;
-    @InjectView(R.id.search_result)
+    @Bind(R.id.search_result)
     RecyclerView recyclerView;
-    @InjectView(R.id.input_search)
+    @Bind(R.id.input_search)
     EditText inputPhone;
 
     // 查找结果为 0 or 1 个
@@ -70,7 +70,7 @@ public class FriendSearchActivity extends BaseActivity<FriendSearchPresenter> im
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,42 +16,46 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
+import com.example.fitmvp.chat.activity.ChatActivity;
 import com.example.fitmvp.contract.FriendContract;
+import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> implements FriendContract.View {
-    @InjectView(R.id.friend_info_photo)
+    @Bind(R.id.friend_info_photo)
     ImageView photo;
-    @InjectView(R.id.note_nick)
+    @Bind(R.id.note_nick)
     TextView noteOrNick;
-    @InjectView(R.id.friend_info_notename)
+    @Bind(R.id.friend_info_notename)
     TextView show_notename;
-    @InjectView(R.id.friend_info_phone)
+    @Bind(R.id.friend_info_phone)
     TextView show_phone;
-    @InjectView(R.id.friend_info_nickname)
+    @Bind(R.id.friend_info_nickname)
     TextView show_nickname;
-    @InjectView(R.id.friend_info_gender)
+    @Bind(R.id.friend_info_gender)
     TextView show_gender;
-    @InjectView(R.id.friend_info_birthday)
+    @Bind(R.id.friend_info_birthday)
     TextView show_birthday;
-    @InjectView(R.id.button_add_chat)
+    @Bind(R.id.button_add_chat)
     Button action;
-    @InjectView(R.id.button_aggre_refuse)
+    @Bind(R.id.button_aggre_refuse)
     LinearLayout linearLayout;
-    @InjectView(R.id.button_agree)
+    @Bind(R.id.button_agree)
     Button agree;
-    @InjectView(R.id.button_refuse)
+    @Bind(R.id.button_refuse)
     Button refuse;
 
     private Boolean isFriend;
@@ -63,18 +68,46 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     private Integer button_type;
     Intent intent;
 
+    private String phone;
+    private String nickName;
+    private String noteName;
+    private String avatar;
+    private String gender;
+    private String birthday;
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         intent = getIntent();
         isFriend = intent.getBooleanExtra("isFriend",false);
-        String phone = intent.getStringExtra("phone");
-        String nickName = intent.getStringExtra("nickname");
-        String noteName = intent.getStringExtra("notename");
-        String avatar = intent.getStringExtra("avatar");
-        String gender = intent.getStringExtra("gender");
-        String birthday = intent.getStringExtra("birthday");
-        button_type = intent.getIntExtra("buttonType",0);
+        phone = intent.getStringExtra("phone");
+        // 所有需要的参数都被传入
+        if(phone != null){
+            nickName = intent.getStringExtra("nickname");
+            noteName = intent.getStringExtra("notename");
+            avatar = intent.getStringExtra("avatar");
+            gender = intent.getStringExtra("gender");
+            birthday = intent.getStringExtra("birthday");
+            button_type = intent.getIntExtra("buttonType",0);
+        }
+        // 只传入用户名，由聊天界面进入好友信息界面
+        else{
+            isFriend = true;
+            phone = intent.getStringExtra("TargetId");
+            FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),
+                    phone,BaseApplication.getAppKey());
+            if(friendEntry!=null){
+                nickName = friendEntry.nickName;
+                noteName = friendEntry.noteName;
+                avatar = friendEntry.avatar;
+                gender = friendEntry.gender;
+                birthday = friendEntry.birthday;
+                button_type = 1;
+            }
+            else {
+                // 不再是好友？
+            }
+        }
+
         // 显示头像
         if(avatar!=null){
             photo.setImageBitmap(BitmapFactory.decodeFile(avatar));
@@ -222,10 +255,21 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
             newIntent.putExtra("targetUser",intent.getStringExtra("phone"));
             startActivity(newIntent);
         }
-//        // 发消息
-//        else{
-//
-//        }
+        else{
+            // 跳转至聊天界面
+            Intent newIntent = new Intent(FriendDetailActivity.this, ChatActivity.class);
+            String title = noteName;
+            if (TextUtils.isEmpty(title)) {
+                title = nickName;
+                if (TextUtils.isEmpty(title)) {
+                    title = phone;
+                }
+            }
+            newIntent.putExtra(BaseApplication.CONV_TITLE, title);
+            newIntent.putExtra(BaseApplication.TARGET_ID, phone);
+            newIntent.putExtra(BaseApplication.TARGET_APP_KEY, BaseApplication.getAppKey());
+            startActivity(newIntent);
+        }
     }
 
     //发送刷新数据的广播

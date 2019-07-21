@@ -114,7 +114,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                                             holder.setImage(R.id.friend_photo,bitmap);
                                         }else {
                                             // 设置为默认头像
-                                            holder.setImage(R.id.friend_photo,R.drawable.default_portrait36);
+                                            holder.setImage(R.id.friend_photo,R.drawable.default_portrait80);
                                         }
                                     }
                                 });

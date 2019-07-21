@@ -15,17 +15,17 @@ import com.example.fitmvp.contract.ChangePwContract;
 import com.example.fitmvp.presenter.ChangePwPresenter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements ChangePwContract.View {
-    @InjectView(R.id.change_phone)
+    @Bind(R.id.change_phone)
     EditText inputPhone;
-    @InjectView(R.id.change_pwd)
+    @Bind(R.id.change_pwd)
     EditText changePw;
-    @InjectView(R.id.change_pwd_again)
+    @Bind(R.id.change_pwd_again)
     EditText pwAgain;
-    @InjectView(R.id.button_change)
+    @Bind(R.id.button_change)
     FloatingActionButton change;
 
     @Override
@@ -56,7 +56,7 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override

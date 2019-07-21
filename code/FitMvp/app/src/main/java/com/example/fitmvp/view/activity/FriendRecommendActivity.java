@@ -24,8 +24,9 @@ import com.example.fitmvp.utils.UserUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
@@ -34,9 +35,9 @@ import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresenter>
         implements FriendRecommendContract.View{
-    @InjectView(R.id.recommend_list)
+    @Bind(R.id.recommend_list)
     RecyclerView recyclerView;
-    @InjectView(R.id.recommend_hint)
+    @Bind(R.id.recommend_hint)
     TextView hint;
 
     private List<FriendRecommendEntry> recommendList = new ArrayList<>();
@@ -79,7 +80,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         hint.setVisibility(View.GONE);
     }

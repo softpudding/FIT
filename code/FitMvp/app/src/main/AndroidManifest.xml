@@ -67,6 +67,7 @@
         <activity android:name=".view.activity.FriendDetailActivity"></activity>
         <activity android:name=".view.activity.FriendAddActivity"></activity>
         <activity android:name=".view.activity.FriendRecommendActivity"/>
+        <activity android:name=".chat.activity.ChatActivity"></activity>
         <!--<activity android:name=".view.activity.P"></activity>-->
         <activity android:name=".view.activity.PhotoPass"></activity>
         <activity android:name=".view.activity.PhotoType"></activity>
