@@ -10,8 +10,7 @@
         android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        app:srcCompat="@drawable/item_friends" />
+        android:layout_marginTop="30dp" />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -33,6 +32,7 @@
         android:textAlignment="center"
         android:text="TextView" />
 <ImageButton
+    android:id="@+id/share"
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:backgroundTint="#00FFFFFF"

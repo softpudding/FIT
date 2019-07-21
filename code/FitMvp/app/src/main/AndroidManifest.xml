@@ -72,6 +72,7 @@
         <activity android:name=".view.activity.PhotoType"></activity>
         <activity android:name=".view.activity.PhotoPassm"></activity>
         <activity android:name=".view.activity.PhotoShow"></activity>
+        <activity android:name=".view.activity.PhotoShowt"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service

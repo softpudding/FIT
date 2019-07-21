@@ -2,18 +2,25 @@ package com.example.fitmvp.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.utils.PictureUtil;
+
+import java.io.File;
 
 public class PhotoShow extends AppCompatActivity {
     TextView titleView;
-    Bitmap bitmap;
     ImageView foodpic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +34,18 @@ public class PhotoShow extends AppCompatActivity {
         // 获取参数
         String show_name = intent.getStringExtra("foodname");
         //图片还没收
+        byte[] show_pic=intent.getByteArrayExtra("picb");
+        Bitmap bitmap= PictureUtil.Bytes2Bitmap(show_pic);
+        foodpic.setImageBitmap(bitmap);
         // 设置参数
         titleView.setText(show_name);
+        ImageButton share=(ImageButton)findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareFriends();
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -38,5 +55,9 @@ public class PhotoShow extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void shareFriends(){
+        
     }
 }

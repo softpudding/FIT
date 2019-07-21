@@ -13,19 +13,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.PhotoTypetBean;
+import com.example.fitmvp.bean.box;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
@@ -43,11 +47,11 @@ public class PhotoPassm extends AppCompatActivity {
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
     private static final int CODE_RESULT_REQUEST = 0xa2;
-    // 裁剪后图片的宽(X)和高(Y),的正方形。
+    // 裁剪后图片的宽(X)和高(Y),s是正方形，c是原型。
     private static int output_Xs = 450;
-    private static int output_Ys = 450;
-    private static int output_Xc = 440;
-    private static int output_Yc = 308;
+    private static int output_Ys = 315;
+    private static int output_Xc = 450;
+    private static int output_Yc = 450;
     //改变头像的标记位
     private ImageView headImage = null;
     private String mExtStorDir;
@@ -86,6 +90,17 @@ public class PhotoPassm extends AppCompatActivity {
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // 从本地相册选取图片作为头像
@@ -294,10 +309,13 @@ public class PhotoPassm extends AppCompatActivity {
             if (intent != null) {
                 String tyy=notes.getText().toString();
                 if(tyy.equals("圆盘食物")){
+                    notes.setText("识别中。。。");
                     passPhoto2(b,1); //传输图像给后端,开始操作
+
                     System.out.println("圆盘");
                 }
                 else{
+                    notes.setText("识别中。。。");
                     passPhoto2(b,2);
                     System.out.println("方盘");
                 }
@@ -309,32 +327,54 @@ public class PhotoPassm extends AppCompatActivity {
     }
 
     //图片传送接口
-    public void passPhoto2(Bitmap bitmap,Integer integer){
+    public void passPhoto2(Bitmap bitmap,final Integer integer){
         Integer obj_type=2;
         String pic= PictureUtil.bitmapToBase64(bitmap);
+        final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         String tel="123456";
         System.out.println("类型： ");
         System.out.println(integer);
         //(String) SpUtils.get("phone","");
-        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
-                .compose(new ThreadTransformer<PhotoTypetBean>())
-                .subscribe(new CommonObserver<PhotoTypetBean>() {
-                    // 请求成功返回后检查登录结果
-                    @Override
-                    public void onNext(PhotoTypetBean response) {
-                        System.out.println(response.getBoxes());
-                        System.out.println(response.getPredictions());
-                        //notes.setText(foodname);
-                    }
-                    @Override
-                    public void onError(ApiException e){
-                        System.err.println("onError: "+ e.getMessage());
-                        System.out.println("嘎嘎嘎");
-                    }
-                });
-        //跳转页面到PhotoShow
+//        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
+//                .compose(new ThreadTransformer<PhotoTypetBean>())
+//                .subscribe(new CommonObserver<PhotoTypetBean>() {
+//                    // 请求成功返回后检查登录结果
+//                    @Override
+//                    public void onNext(PhotoTypetBean response) {
+//                        System.out.println(response.getBoxes());
+//                        System.out.println(response.getPredictions());
+//                        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+//                        //JSONArray tbox =response.getBoxes();
+//                        JSONArray tpre=response.getPredictions();
+//                        JSONObject opre;
+//                        Integer listSize=tpre.size();
+//                        intent.putExtra("size",listSize);
+//                        for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
+//                                opre = tpre.getJSONObject(i);
+//                                String aa=opre.getString("class");
+//                                intent.putExtra("food"+i,aa);//把菜名放进
+//                        }
+//                        intent.putExtra("type",integer);
+//                        intent.putExtra("pic",picb);
+//                        startActivity(intent);
+//                    }
+//                    @Override
+//                    public void onError(ApiException e){
+//                        System.err.println("onError: "+ e.getMessage());
+//                        System.out.println("嘎嘎嘎");
+//                    }
+//                });
+        //页面到PhotoShow
         Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
         // 传参
+        intent.putExtra("size",5);
+        intent.putExtra("type",integer);
+        intent.putExtra("food1","food1s");
+        intent.putExtra("food2","food2s");
+        intent.putExtra("food3","food3s");
+        intent.putExtra("food4","food4s");
+        intent.putExtra("food5","food5s");
+        intent.putExtra("pic",picb);
         //intent.putExtra("img",bitmap);
      //   intent.putExtra("foodname",notes.getText());
         // 传项目中图片
