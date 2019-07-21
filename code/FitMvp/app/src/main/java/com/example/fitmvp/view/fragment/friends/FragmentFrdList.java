@@ -1,11 +1,17 @@
 package com.example.fitmvp.view.fragment.friends;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +21,8 @@ import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendPresenter;
+import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
 import com.example.fitmvp.view.activity.FriendSearchActivity;
@@ -27,6 +35,7 @@ import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FragmentFrdList extends BaseFragment<FriendPresenter>
@@ -35,8 +44,11 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private List<FriendEntry> friendList = new ArrayList<>();
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+    BaseAdapter<FriendEntry> adapter;
     private FloatingActionButton addFriend;
     private LinearLayout recommends;
+    private TextView cachedNewFriendNum;
+
 
     @Override
     protected Integer getLayoutId(){
@@ -52,16 +64,30 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     protected void initView(){
         recyclerView = ButterKnife.findById(view,R.id.friend_list);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         addFriend = ButterKnife.findById(view,R.id.add_friend);
         recommends = ButterKnife.findById(view,R.id.friend_recommend);
+        cachedNewFriendNum = ButterKnife.findById(view,R.id.friend_unread_msg);
+        Integer num = SpUtils.getCachedNewFriendNum();
+        if(num>0){
+            cachedNewFriendNum.setText(num);
+            cachedNewFriendNum.setVisibility(View.VISIBLE);
+        }
+        else{
+            cachedNewFriendNum.setVisibility(View.INVISIBLE);
+        }
+
+        //注册刷新Fragment数据的方法
+        registerReceiver();
     }
 
     @Override
-    protected void initData(){
+    public void initData(){
+
         // 获取好友列表
         friendList = mPresenter.getFriendList();
         // 创建adapter实例
-        BaseAdapter<FriendEntry> adapter = new BaseAdapter<FriendEntry>(friendList) {
+        adapter = new BaseAdapter<FriendEntry>(friendList) {
             @Override
             public int getLayoutId(int viewType) {
                 return R.layout.friendlist_item;
@@ -88,7 +114,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                                             holder.setImage(R.id.friend_photo,bitmap);
                                         }else {
                                             // 设置为默认头像
-                                            holder.setImage(R.id.friend_photo,R.drawable.default_portrait36);
+                                            holder.setImage(R.id.friend_photo,R.drawable.default_portrait80);
                                         }
                                     }
                                 });
@@ -117,7 +143,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                 startActivity(intent);
             }
         });
-        // 设置adapter
+        //设置adapter
         recyclerView.setAdapter(adapter);
     }
 
@@ -146,6 +172,56 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private void toRecommend(){
         Intent intent = new Intent(getActivity(), FriendRecommendActivity.class);
         startActivity(intent);
+        cachedNewFriendNum.setVisibility(View.INVISIBLE);
+        SpUtils.setCachedNewFriendNum(0);
     }
 
+    public void onEvent(ContactNotifyEvent event){
+        LogUtils.e("onEvent","start");
+        String reason = event.getReason();
+        String fromUsername = event.getFromUsername();
+        ContactNotifyEvent.Type type = event.getType();
+        mPresenter.handleEvent(fromUsername,reason,type);
+    }
+
+    public void updateData(){
+        LogUtils.e("update_list","update data");
+        // 获取好友列表
+        friendList = mPresenter.getFriendList();
+        adapter.setDataList(friendList);
+        adapter.notifyDataSetChanged();
+    }
+
+    private LocalBroadcastManager broadcastManager;
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateFriendList");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String refresh= intent.getStringExtra("refreshInfo");
+            if ("yes".equals(refresh)) {
+                // 在主线程中刷新UI，用Handler来实现
+                new Handler().post(new Runnable() {
+                    public void run() {
+                        //在这里来写你需要刷新的地方
+                        updateData();
+                    }
+                });
+            }
+        }
+    };
+
+    //注销广播
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
+    }
 }

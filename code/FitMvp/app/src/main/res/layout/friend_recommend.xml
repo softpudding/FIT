@@ -3,6 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/recommend_hint"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="没有验证消息"
+        android:textAlignment="center" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recommend_list"
         android:layout_width="match_parent"

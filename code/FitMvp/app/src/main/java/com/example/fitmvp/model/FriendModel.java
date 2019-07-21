@@ -8,6 +8,7 @@ import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.presenter.FriendPresenter;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
@@ -16,12 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.im.android.api.ContactManager;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoListCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendModel extends BaseModel implements FriendContract.Model {
     private List<FriendEntry> mList = new ArrayList<>();
     private List<FriendEntry> forDelete = new ArrayList<>();
+    private FriendPresenter friendPresenter = new FriendPresenter();
 
     // 同步本地好友列表
     public void initFriendList(){
@@ -88,7 +92,50 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
         });
     }
 
+    // 从数据库中获取好友列表
     public List<FriendEntry> getFriendList(){
         return BaseApplication.getUserEntry().getFriends();
+    }
+
+    // 添加好友
+    @Override
+    public void addFriend(String friendname, final InfoHint infoHint){
+        final UserEntry user = BaseApplication.getUserEntry();
+        FriendEntry friendEntry = FriendEntry.getFriend(user, friendname, user.appKey);
+        // 不在数据库中
+        if(friendEntry==null){
+            JMessageClient.getUserInfo(friendname, new GetUserInfoCallback() {
+                @Override
+                public void gotResult(int i, String s, UserInfo userInfo) {
+                    if(i==0){
+                        String gender = UserUtils.getGender(userInfo);
+                        String birthday = UserUtils.getBirthday(userInfo);
+                        // String letter = "A";
+                        FriendEntry newFriend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(),
+                                userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
+                                userInfo.getAvatar(), userInfo.getDisplayName(), "A", gender, birthday, user);
+                        newFriend.save();
+                        // 更新页面
+                        LogUtils.e("update_list","start");
+                        infoHint.updateFriend();
+                    }
+                    else{
+                        LogUtils.e("find user fail",s);
+                        ToastUtil.setToast(s);
+                    }
+                }
+            });
+        }
+    }
+
+    // 删除好友
+    public void deleteFriend(String friendname){
+        UserEntry user = BaseApplication.getUserEntry();
+        FriendEntry friendEntry = FriendEntry.getFriend(user, friendname, user.appKey);
+        if(friendEntry!=null){
+            friendEntry.delete();
+        }
+        // 更新页面
+        // friendPresenter.updateFriendList();
     }
 }
