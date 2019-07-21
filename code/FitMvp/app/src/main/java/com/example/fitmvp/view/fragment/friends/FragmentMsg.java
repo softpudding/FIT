@@ -28,6 +28,7 @@ import com.example.fitmvp.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,14 +130,16 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
             @Override
             public void onItemClick(View view, int position) {
                 ConversationEntity entity = convList.get(position);
+                Conversation conversation = JMessageClient.getSingleConversation(entity.getUsername(), BaseApplication.getAppKey());
+                conversation.setUnReadMessageCnt(0);
+                updateData();
+
                 Intent intent = new Intent(getActivity(), ChatActivity.class);
                 intent.putExtra(BaseApplication.CONV_TITLE, entity.getTitle());
                 intent.putExtra(BaseApplication.TARGET_ID, entity.getUsername());
                 intent.putExtra(BaseApplication.TARGET_APP_KEY, BaseApplication.getAppKey());
                 startActivity(intent);
-                Conversation conversation = JMessageClient.getSingleConversation(entity.getUsername(), BaseApplication.getAppKey());
-                conversation.setUnReadMessageCnt(0);
-                updateData();
+
             }
         });
         recyclerView.setAdapter(adapter);
@@ -158,6 +161,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     @Override
     public void onClick(View view){}
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(MessageEvent event) {
         updateData();
         LogUtils.e("接收在线消息","...");
@@ -168,6 +172,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
      *
      * @param event 离线消息事件
      */
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(OfflineMessageEvent event) {
         updateData();
         LogUtils.e("接收离线消息","...");
