@@ -126,7 +126,6 @@ public class PhotoPass extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {//24
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictureUri = FileProvider.getUriForFile(this, getPackageName()+".fileProvider", pictureFile);
-                System.out.println("miaomiao");
                 System.out.println(intent.getAction());//android.media.action.IMAGE_CAPTURE
                 System.out.println(pictureUri);//content://portrait.bala.portrait.fileProvider/external_storage_root/temp_head_image.jpg
             }
@@ -134,8 +133,6 @@ public class PhotoPass extends AppCompatActivity {
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 pictureUri = Uri.fromFile(pictureFile);
-                System.out.println("2pictureUri: ");//
-                System.out.println(pictureUri);
             }
             /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -336,36 +333,36 @@ public class PhotoPass extends AppCompatActivity {
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         String tel="123456";
                 //(String) SpUtils.get("phone","");
-//        Http.getHttpService(2).photoSend(tel,obj_type,pic)
-//                .compose(new ThreadTransformer<PhotoType1Bean>())
-//                .subscribe(new CommonObserver<PhotoType1Bean>() {
-//                    // 请求成功返回后检查登录结果
-//                    @Override
-//                    public void onNext(PhotoType1Bean response) {
-//                        System.out.println(response.getFoodname());
-//                        System.out.println(response.getProbability());
-//                        String foodname=response.getFoodname();
-//                        titleView.setText(foodname);
-//                        //跳转页面到PhotoShow
-//                        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
-//                        // 传参
-//                        intent.putExtra("foodname",titleView.getText());
-//                        // 传项目中图片
-//                        intent.putExtra("picb",picb);
-//                        startActivity(intent);
-//                    }
-//                    @Override
-//                    public void onError(ApiException e){
-//                        System.err.println("onError: "+ e.getMessage());
-//                        System.out.println("嘎嘎嘎");
-//                    }
-//                });
-        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
-        // 传参
-        intent.putExtra("foodname","传过来了");
-        // 传项目中图片
-        intent.putExtra("picb",picb);
-        startActivity(intent);
+        Http.getHttpService(2).photoSend(tel,obj_type,pic)
+                .compose(new ThreadTransformer<PhotoType1Bean>())
+                .subscribe(new CommonObserver<PhotoType1Bean>() {
+                    // 请求成功返回后检查登录结果
+                    @Override
+                    public void onNext(PhotoType1Bean response) {
+                        System.out.println(response.getFoodname());
+                        System.out.println(response.getProbability());
+                        String foodname=response.getFoodname();
+                        titleView.setText(foodname);
+                        //跳转页面到PhotoShow
+                        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+                        // 传参
+                        intent.putExtra("foodname",titleView.getText());
+                        // 传项目中图片
+                        intent.putExtra("picb",picb);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                        System.out.println("嘎嘎嘎");
+                    }
+                });
+//        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+//        // 传参
+//        intent.putExtra("foodname","传过来了");
+//        // 传项目中图片
+//        intent.putExtra("picb",picb);
+//        startActivity(intent);
 
     }
 

@@ -335,51 +335,57 @@ public class PhotoPassm extends AppCompatActivity {
         System.out.println("类型： ");
         System.out.println(integer);
         //(String) SpUtils.get("phone","");
-//        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
-//                .compose(new ThreadTransformer<PhotoTypetBean>())
-//                .subscribe(new CommonObserver<PhotoTypetBean>() {
-//                    // 请求成功返回后检查登录结果
-//                    @Override
-//                    public void onNext(PhotoTypetBean response) {
-//                        System.out.println(response.getBoxes());
-//                        System.out.println(response.getPredictions());
-//                        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
-//                        //JSONArray tbox =response.getBoxes();
-//                        JSONArray tpre=response.getPredictions();
-//                        JSONObject opre;
-//                        Integer listSize=tpre.size();
-//                        intent.putExtra("size",listSize);
-//                        for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
-//                                opre = tpre.getJSONObject(i);
-//                                String aa=opre.getString("class");
-//                                intent.putExtra("food"+i,aa);//把菜名放进
-//                        }
-//                        intent.putExtra("type",integer);
-//                        intent.putExtra("pic",picb);
-//                        startActivity(intent);
-//                    }
-//                    @Override
-//                    public void onError(ApiException e){
-//                        System.err.println("onError: "+ e.getMessage());
-//                        System.out.println("嘎嘎嘎");
-//                    }
-//                });
+        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
+                .compose(new ThreadTransformer<PhotoTypetBean>())
+                .subscribe(new CommonObserver<PhotoTypetBean>() {
+                    // 请求成功返回后检查登录结果
+                    @Override
+                    public void onNext(PhotoTypetBean response) {
+                        System.out.println(response.getBoxes());
+                        System.out.println(response.getPredictions());
+                        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+                        //JSONArray tbox =response.getBoxes();
+                        JSONArray tpre=response.getPredictions();
+                        JSONObject opre;
+                        Integer listSize=tpre.size();
+                        intent.putExtra("size",listSize);
+                        intent.putExtra("food1","");
+                        intent.putExtra("food2","");
+                        intent.putExtra("food3","");
+                        intent.putExtra("food4","");
+                        intent.putExtra("food5","");
+                        for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                                opre = tpre.getJSONObject(i);
+                                String aa=opre.getString("class");
+                                int j=i+1;
+                                intent.putExtra("food"+j,aa);//把菜名放进
+                        }
+                        intent.putExtra("type",integer);
+                        intent.putExtra("pic",picb);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                        System.out.println("嘎嘎嘎");
+                    }
+                });
         //页面到PhotoShow
-        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
-        // 传参
-        intent.putExtra("size",5);
-        intent.putExtra("type",integer);
-        intent.putExtra("food1","food1s");
-        intent.putExtra("food2","food2s");
-        intent.putExtra("food3","food3s");
-        intent.putExtra("food4","food4s");
-        intent.putExtra("food5","food5s");
-        intent.putExtra("pic",picb);
-        //intent.putExtra("img",bitmap);
-     //   intent.putExtra("foodname",notes.getText());
-        // 传项目中图片
-        //intent.putExtra("image", item.getImage());
-        startActivity(intent);
+//        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+//        // 传参
+//        intent.putExtra("size",5);
+//        intent.putExtra("type",integer);
+//        intent.putExtra("food1","food1s");
+//        intent.putExtra("food2","food2s");
+//        intent.putExtra("food3","food3s");
+//        intent.putExtra("food4","food4s");
+//        intent.putExtra("food5","food5s");
+//        intent.putExtra("pic",picb);
+//        //intent.putExtra("img",bitmap);
+//     //   intent.putExtra("foodname",notes.getText());
+//        // 传项目中图片
+//        //intent.putExtra("image", item.getImage());
+//        startActivity(intent);
 
     }
 
