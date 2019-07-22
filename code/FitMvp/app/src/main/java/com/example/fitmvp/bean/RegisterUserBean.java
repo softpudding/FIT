@@ -11,7 +11,7 @@ public class RegisterUserBean {
      */
 
     private int id;
-    private boolean isactive;
+    private Integer isactive;
     private String nickName;
     private String password;
     private String tel;
@@ -24,11 +24,11 @@ public class RegisterUserBean {
         this.id = id;
     }
 
-    public boolean isIsactive() {
+    public Integer isIsactive() {
         return isactive;
     }
 
-    public void setIsactive(boolean isactive) {
+    public void setIsactive(Integer isactive) {
         this.isactive = isactive;
     }
 
