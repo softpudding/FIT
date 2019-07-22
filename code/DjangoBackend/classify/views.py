@@ -19,77 +19,138 @@ INPUT_DROPOUT = 0.8
 CONV1_DROPOUT = 0.9
 CONV2_DROPOUT = 0.9
 BATCH_SIZE = 16
-SAMPLE_TYPES = 18
+SAMPLE_TYPES = 25
 LEARNING_RATE = 0.001
-MODEL_PATH = "C:/Users/11570/Desktop/trainedModel/acc0.84steps58320" #保存模型的path
+MODEL_PATH = "/home/centos/TF/BestM/multi" #保存模型的path
 UNITS = SAMPLE_TYPES # 此数据应该与参与训练的种类数量相同
 
-label_converters=["菠萝咕老肉","蛋饺","番茄炒蛋","咖喱鸡块","贡丸汤",
-                  "黄焖鸡米饭","烤鸭饭","麻辣香锅","米饭","面","青菜",
-                  "生煎","酸汤肥牛","糖醋里脊","土豆丝","油条","炸酱面","煮鸡蛋","苑齐超"]
+label_converters=['菠萝咕老肉', '炒冬瓜', '炒海带', '炒花菜', '炒豇豆',
+                  '炒芹菜', '炒青菜', '炒玉米', '蛋饺', '东坡肉', '番茄炒蛋',
+                  '贡丸汤', '红烧大排', '酒酿丸子', '凉拌黄瓜', '卤鸡腿', '米饭',
+                  '酸汤肥牛', '糖醋里脊', '汤圆', '土豆丝', '炸鸡块',
+                  '炸小鸡腿', '蒸鸡蛋', '煮鸡蛋','苑齐超']
 
-
-def cnn_model_fn(features, labels, mode):
-    # RGB pic since color does matter for a food
-    input_layer = tf.reshape(features["x"], [-1, 128, 128, 3])
-    dropout1 = tf.nn.dropout(input_layer,keep_prob=INPUT_DROPOUT)
-    print("Input layer defined...")
+def vgg16(features, labels, mode):
+    # RGB pic 224*224
+    input_layer = tf.reshape(features["x"], [-1, 224, 224, 3])
+    # Conv1 first convolutional layer
     conv1 = tf.layers.conv2d(
-        inputs=dropout1,
-        filters=4,
-        kernel_size=[5, 5],
+        inputs=input_layer,
+        filters=64,
+        kernel_size=[3, 3],
         padding="same",
         activation=tf.nn.relu)
-    print("Conv1 layer defined...")
-    # 128 128 4
+    # Output a tensor of size 224*224*64
     conv1 = tf.dtypes.cast(conv1,dtype=tf.float32)
-    dropout2 = tf.nn.dropout(conv1,keep_prob=CONV1_DROPOUT)
-    pool1 = tf.layers.max_pooling2d(inputs=dropout2, pool_size=[2, 2], strides=2)
-    # 64 64 4
-    print("Poo1 layer defined...")
-
     conv2 = tf.layers.conv2d(
-        inputs=pool1,
-        filters=8,
-        kernel_size=[5, 5],
+        inputs=conv1,
+        filters=64,
+        kernel_size=[3, 3],
         padding="same",
         activation=tf.nn.relu)
-    # 64 64 8
-    print("Conv2 layer defined...")
-    dropout3 = tf.nn.dropout(conv2,keep_prob=CONV2_DROPOUT)
-    pool2 = tf.layers.max_pooling2d(inputs=dropout3, pool_size=[2, 2], strides=2)
-    # 32 32 8
-    pool2_flat = tf.reshape(pool2, [-1, 32 * 32 * 8])
-    print("Pool2 layer defined...")
-    dense = tf.layers.dense(inputs=pool2_flat, units=32 * 32 *8, activation=tf.nn.relu)
-    print("Dense layer defined...")
+    # First max pooling
+    pool1 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+    # result tensor size 112*112*64
+    conv3 = tf.layers.conv2d(
+        inputs=pool1,
+        filters=128,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv4 = tf.layers.conv2d(
+        inputs=conv3,
+        filters=128,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    pool2 = tf.layers.max_pooling2d(inputs=conv4, pool_size=[2, 2], strides=2)
+    # output 56*56*128
+    conv5 = tf.layers.conv2d(
+        inputs=pool2,
+        filters=256,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv6 = tf.layers.conv2d(
+        inputs=conv5,
+        filters=256,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv7 = tf.layers.conv2d(
+        inputs=conv6,
+        filters=256,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    # 56*56*256
+    pool3 = tf.layers.max_pooling2d(inputs=conv7, pool_size=[2, 2], strides=2)
+    # 28*28*256
+    conv8 = tf.layers.conv2d(
+        inputs=pool3,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv9 = tf.layers.conv2d(
+        inputs=conv8,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv10 = tf.layers.conv2d(
+        inputs=conv9,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    # 28*28*512
+    pool4 = tf.layers.max_pooling2d(inputs=conv10, pool_size=[2, 2], strides=2)
+    # 14*14*512
+    conv11 = tf.layers.conv2d(
+        inputs=pool4,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv12 = tf.layers.conv2d(
+        inputs=conv11,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    conv13 = tf.layers.conv2d(
+        inputs=conv12,
+        filters=512,
+        kernel_size=[3, 3],
+        padding="same",
+        activation=tf.nn.relu)
+    pool5 = tf.layers.max_pooling2d(inputs=conv13, pool_size=[2, 2], strides=2)
+    # 7*7*512
+
+    pool_flat = tf.reshape(pool5, [-1, 7 * 7 * 512])
+    dense = tf.layers.dense(inputs=pool_flat, units=4096, activation=tf.nn.relu)
     dropout = tf.layers.dropout(
-        inputs=dense, rate=0.3, training=mode == tf.estimator.ModeKeys.TRAIN)
-    logits = tf.layers.dense(inputs=dropout, units=UNITS)
+        inputs=dense, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+    dense2 = tf.layers.dense(inputs=dropout, units=4096, activation=tf.nn.relu)
+    dropout2 = tf.layers.dropout(
+        inputs=dense2, rate=0.5, training=mode == tf.estimator.ModeKeys.TRAIN)
+    logits = tf.layers.dense(inputs=dropout2, units=UNITS)
+
     predictions = {
         # Generate predictions
         "classes": tf.argmax(input=logits, axis=1),
         "probabilities": tf.nn.softmax(logits, name="softmax_tensor")}
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
-    loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
-    if mode == tf.estimator.ModeKeys.TRAIN:
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate=LEARNING_RATE)
-        train_op = optimizer.minimize(
-            loss=loss,
-            global_step=tf.train.get_global_step())
-        return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
-    eval_metric_ops = {
-        "accuracy": tf.metrics.accuracy(labels=labels, predictions=predictions["classes"])}
-    return tf.estimator.EstimatorSpec(mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
 
 food_classifier = tf.estimator.Estimator(
-        model_fn=cnn_model_fn, model_dir=MODEL_PATH)
+        model_fn=vgg16, model_dir=MODEL_PATH)
 
 
 def model_predict(images):
-    images = [transform.resize(image,(128,128,3)) for image in images]
+    images = [transform.resize(image,(224,224,3)) for image in images]
     images = np.array(images)
     predict_input_fn = tf.estimator.inputs.numpy_input_fn(
         x={"x": images},
@@ -165,8 +226,6 @@ class Predict:
         self.label = label
         self.probability = probability
 
-    def __str__(self):
-        return "{class:"+label_converters[self.label]+",probability:"+str(self.probability)+"}"
 
 def Predict2Json(p):
     return {
@@ -174,13 +233,26 @@ def Predict2Json(p):
         "probability":p.probability
     }
 
+def All2Json(p):
+    if hasattr(p,"label"):
+        return {
+            "class": label_converters[p.label],
+            "probability": p.probability
+        }
+    else:
+        return {
+            "x":p.x,
+            "y":p.y,
+            "w":p.w,
+            "h":p.h
+        }
 
 def is_object(img,b_width,b_height,x,y,W,H,Bbox_list,do_repel=True,wide_space=False):
     Del_list = list()
     tested = img[y:y+b_height,x:x+b_width]
     tested = tested.reshape(tested.shape[0]*tested.shape[1])
 
-    if np.std(tested) > 2.0:
+    if np.std(tested) > 1.2:
         return False
     else:
         sign = True
@@ -258,8 +330,8 @@ def region_proposal(plate_type,pic):
     for bbox in Bbox_list:
         sub_images.append(pic[bbox.y:bbox.y+bbox.h,bbox.x:bbox.x+bbox.w])
     Pred_list = model_predict(sub_images)
-    Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
-    Bbox_list = json.dumps(Bbox_list,default=Bbox2Json)
+    # Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
+    # Bbox_list = json.dumps(Bbox_list,default=Bbox2Json)
     res =  {
         "predictions":Pred_list,
         "boxes":Bbox_list
@@ -299,15 +371,12 @@ def index(request):
             images = list()
             images.append(img)
             res = model_predict(images)
-            if res.probability <= 0.5:
-                res = Predict(18,0.0)
-            Pred_list = list()
-            Pred_list.append(res)
-            Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
-            print(json.dumps({'tel':tel,'predictions':Pred_list}))
+            if res[0].probability <= 0.5:
+                res[0] = Predict(25,0.0)
+            Pred_list = json.dumps(res,default=Predict2Json,ensure_ascii=False)
             requests.post(url_2, json.dumps({'tel':tel,'predictions':Pred_list}),
                           headers={'Content-Type': 'application/json'})
-            return HttpResponse(json.dumps(res, default=Predict2Json))
+            return HttpResponse(json.dumps(res, default=All2Json))
         elif obj_type == 2:
             # multiple object
             plate_type = 0
@@ -319,8 +388,8 @@ def index(request):
                 return HttpResponse("plate_type must be 1 (square plate) or 2 (round plate)")
             res=region_proposal(plate_type,img)
             # also send result to YQC
-            requests.post(url_2, json.dumps({'tel':tel,'predictions':res['predictions']}),headers={'Content-Type':'application/json'})
-            return HttpResponse(json.dumps(res))
+            requests.post(url_2, json.dumps({'tel':tel,'predictions':res['predictions']},default=All2Json),headers={'Content-Type':'application/json'})
+            return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json))
     return HttpResponse("INVALID REQUEST.")
 
 
