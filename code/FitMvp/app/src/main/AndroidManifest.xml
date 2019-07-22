@@ -48,18 +48,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="com.example.fitmvp.fileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+</provider>
         <activity android:name=".view.activity.LoginActivity"></activity>
         <activity android:name=".view.activity.MainActivity"></activity>
         <activity android:name=".view.activity.RegisterActivity"></activity>
         <activity android:name=".view.activity.ChangePwActivity"></activity>
         <activity android:name=".view.activity.RecordDetailActivity"></activity>
         <activity android:name=".view.activity.SettingActivity"></activity>
-        <activity android:name=".view.activity.AddFriendActivity"></activity>
+        <activity android:name=".view.activity.FriendSearchActivity"></activity>
         <activity android:name=".view.activity.FriendDetailActivity"></activity>
+        <activity android:name=".view.activity.FriendAddActivity"></activity>
+        <activity android:name=".view.activity.FriendRecommendActivity"/>
+        <activity android:name=".chat.activity.ChatActivity"></activity>
         <!--<activity android:name=".view.activity.P"></activity>-->
         <activity android:name=".view.activity.PhotoPass"></activity>
         <activity android:name=".view.activity.PhotoType"></activity>
         <activity android:name=".view.activity.PhotoPassm"></activity>
+        <activity android:name=".view.activity.PhotoShow"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
@@ -72,7 +85,22 @@
             </intent-filter>
         </service>
 
+        <!-- 数据库配置 -->
+        <meta-data android:name="AA_DB_NAME" android:value="fit.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.example.fitmvp.database.FriendEntry,
+                           com.example.fitmvp.database.FriendRecommendEntry,
+                           com.example.fitmvp.database.UserEntry"/>
 
+
+        <provider
+            android:name="com.activeandroid.content.ContentProvider"
+            android:authorities="com.example.fitmvp"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
 
 
 

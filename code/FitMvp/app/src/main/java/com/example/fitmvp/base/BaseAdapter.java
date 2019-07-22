@@ -21,6 +21,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
         this.dataList = datas;
     }
 
+    public void setDataList(List<T> list){
+        dataList = list;
+    }
+
     public abstract int getLayoutId(int viewType);
 
 
@@ -111,6 +115,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
         public void setText(int id, String value){
             TextView view = getView(id);
             view.setText(value);
+        }
+
+        public void setVisible(int id, int type){
+            TextView view = getView(id);
+            view.setVisibility(type);
         }
 
         // 设置的图片在项目中

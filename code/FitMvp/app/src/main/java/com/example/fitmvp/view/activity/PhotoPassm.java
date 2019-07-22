@@ -9,20 +9,27 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.bean.PhotoTypetBean;
+import com.example.fitmvp.exception.ApiException;
+import com.example.fitmvp.network.Http;
+import com.example.fitmvp.observer.CommonObserver;
+import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -30,37 +37,55 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class PhotoPassm extends AppCompatActivity {
-    private static final String IMAGE_FILE_NAME = "icon1.png";
-    private static final String CROP_IMAGE_FILE_NAME = "icon1.png";
+    private static final String IMAGE_FILE_NAME = "output_image_m.jpg";
+    private static final String CROP_IMAGE_FILE_NAME = "fit_crop_m.jpg";
     //    /* 请求识别码 */
     private static final int CODE_GALLERY_REQUEST = 0xa0;
     private static final int CODE_CAMERA_REQUEST = 0xa1;
     private static final int CODE_RESULT_REQUEST = 0xa2;
-    Bitmap bitmap;
     // 裁剪后图片的宽(X)和高(Y),的正方形。
-    private static int output_X = 450;
-    private static int output_Y = 450;
+    private static int output_Xs = 450;
+    private static int output_Ys = 450;
+    private static int output_Xc = 440;
+    private static int output_Yc = 308;
     //改变头像的标记位
-    private int new_icon=0xa3;
     private ImageView headImage = null;
     private String mExtStorDir;
     private Uri mUriPath;
 
+    //提示跳转
+    private TextView notes=null;
+
     private final int PERMISSION_READ_AND_CAMERA =0;//读和相机权限
     private final int PERMISSION_READ =1;//读取权限
+//盘子种类
+    private TextView type_name = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_passm);
         mExtStorDir = Environment.getExternalStorageDirectory().toString();
-     //   headImage = (ImageView) findViewById(R.id.imageViewm);
-        Button buttonLocal = (Button) findViewById(R.id.openfilem);
-        buttonLocal.setOnClickListener(new View.OnClickListener() {
+        notes=(TextView)findViewById(R.id.tishi);
+        Intent intent = getIntent();
+        // 获取盘子参数
+        String show_name = intent.getStringExtra("plate_type");//c和s分别代表圆方盘
+        notes.setText(show_name);
+
+        Button filem = (Button) findViewById(R.id.openfilem);
+        filem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkReadPermission();
             }
         });
+        Button cameram=(Button)findViewById(R.id.type_whole);
+        cameram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkStoragePermission();
+            }
+        });
+
     }
 
     // 从本地相册选取图片作为头像
@@ -68,6 +93,38 @@ public class PhotoPassm extends AppCompatActivity {
         Intent intentFromGallery = new Intent(Intent.ACTION_PICK, null);
         intentFromGallery.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
+    }
+
+    // 启动手机相机拍摄照片作为头像
+    private void choseHeadImageFromCameraCapture() {
+        String savePath = mExtStorDir;
+        System.out.println("savePath: "+savePath);// /storage/emulated/0
+        Intent intent = null;
+        // 判断存储卡是否可以用，可用进行存储
+        if (hasSdcard()) {
+            //设定拍照存放到自己指定的目录,可以先建好
+            File file = new File(savePath);
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+            Uri pictureUri;
+            File pictureFile = new File(savePath, IMAGE_FILE_NAME);
+            if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {//24
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                pictureUri = FileProvider.getUriForFile(this, getPackageName()+".fileProvider", pictureFile);
+
+            }
+            else {
+                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                pictureUri = Uri.fromFile(pictureFile);
+            }
+            if (intent != null) {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        pictureUri);
+                startActivityForResult(intent, CODE_CAMERA_REQUEST);
+            }
+        }
     }
 
     public Uri getImageContentUri(File imageFile) {
@@ -125,9 +182,6 @@ public class PhotoPassm extends AppCompatActivity {
                 break;
 
             case CODE_RESULT_REQUEST:
-                /*if (intent != null) {
-                    setImageToHeadView(intent);    //此代码在小米有异常，换以下代码
-                }*/
                 try {
                     Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mUriPath));
                     setImageToHeadView(intent,bitmap);
@@ -141,9 +195,22 @@ public class PhotoPassm extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
+    private void checkStoragePermission() {
+        System.out.println("打印！！！！！！");
+        int result = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_DENIED) {
+            String[] permissions = {/*Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ,*/Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            ActivityCompat.requestPermissions(this, permissions, PERMISSION_READ_AND_CAMERA);
+        }
+        else {
+            choseHeadImageFromCameraCapture();
+        }
+    }
+
     private void checkReadPermission() {
         int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (permission== PackageManager.PERMISSION_DENIED){
+        if (permission==PackageManager.PERMISSION_DENIED){
             String[] permissions ={Manifest.permission.READ_EXTERNAL_STORAGE};
             ActivityCompat.requestPermissions(this,permissions, PERMISSION_READ);
         }else {
@@ -182,17 +249,25 @@ public class PhotoPassm extends AppCompatActivity {
 
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
-
+        //添加这一句表示对目标应用临时授权该Uri所代表的文件
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
         // 设置裁剪
         intent.putExtra("crop", "true");
-
-        // aspectX , aspectY :宽高的比例
-//        intent.putExtra("aspectX", 1);
-//        intent.putExtra("aspectY", 1);
-
-        // outputX , outputY : 裁剪图片宽高
-        intent.putExtra("outputX", output_X);
-        intent.putExtra("outputY", output_Y);
+        String tyy=notes.getText().toString();
+        if(tyy.equals("圆盘食物")){
+            intent.putExtra("aspectX", 1);
+            intent.putExtra("aspectY", 1);
+            intent.putExtra("outputX", output_Xc);
+            intent.putExtra("outputY", output_Yc);
+        }
+        else{
+            intent.putExtra("aspectX", 10);
+            intent.putExtra("aspectY", 7);
+            intent.putExtra("outputX", output_Xs);
+            intent.putExtra("outputY", output_Ys);
+        }
         intent.putExtra("return-data", true);
 
         //startActivityForResult(intent, CODE_RESULT_REQUEST); //直接调用此代码在小米手机有异常，换以下代码
@@ -217,15 +292,55 @@ public class PhotoPassm extends AppCompatActivity {
     private void setImageToHeadView(Intent intent,Bitmap b) {
         try {
             if (intent != null) {
-                headImage.setImageBitmap(b);
-                System.out.println(1);
-                //剪裁后传输图像
-                PictureUtil.passPhoto2(b);
+                String tyy=notes.getText().toString();
+                if(tyy.equals("圆盘食物")){
+                    passPhoto2(b,1); //传输图像给后端,开始操作
+                    System.out.println("圆盘");
+                }
+                else{
+                    passPhoto2(b,2);
+                    System.out.println("方盘");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(2);
         }
+    }
+
+    //图片传送接口
+    public void passPhoto2(Bitmap bitmap,Integer integer){
+        Integer obj_type=2;
+        String pic= PictureUtil.bitmapToBase64(bitmap);
+        String tel="123456";
+        System.out.println("类型： ");
+        System.out.println(integer);
+        //(String) SpUtils.get("phone","");
+        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
+                .compose(new ThreadTransformer<PhotoTypetBean>())
+                .subscribe(new CommonObserver<PhotoTypetBean>() {
+                    // 请求成功返回后检查登录结果
+                    @Override
+                    public void onNext(PhotoTypetBean response) {
+                        System.out.println(response.getBoxes());
+                        System.out.println(response.getPredictions());
+                        //notes.setText(foodname);
+                    }
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                        System.out.println("嘎嘎嘎");
+                    }
+                });
+        //跳转页面到PhotoShow
+        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+        // 传参
+        //intent.putExtra("img",bitmap);
+     //   intent.putExtra("foodname",notes.getText());
+        // 传项目中图片
+        //intent.putExtra("image", item.getImage());
+        startActivity(intent);
+
     }
 
     /**
@@ -283,5 +398,6 @@ public class PhotoPassm extends AppCompatActivity {
 
         return bitmap;
     }
+
 
 }

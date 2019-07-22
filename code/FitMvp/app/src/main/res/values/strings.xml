@@ -15,4 +15,5 @@
     <string name="calorie">热量：</string>
     <string name="return_bt">返回</string>
     <string name="logout">退出当前账号</string>
+    <string name="btn_send">发送</string>
 </resources>

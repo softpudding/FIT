@@ -6,21 +6,21 @@ import com.google.gson.annotations.SerializedName;
 public class PhotoType1Bean {
     @SerializedName("class")
     private String foodname;
-    private Double probsbility;
+    private Float probability;
 
     public String getFoodname() {
         return foodname;
     }
 
-    public Double getProbsbility() {
-        return probsbility;
+    public Float getProbability() {
+        return probability;
     }
 
     public void setFoodname(String foodname) {
         this.foodname = foodname;
     }
 
-    public void setProbsbility(Double probsbility) {
-        this.probsbility = probsbility;
+    public void setProbability(Float probability) {
+        this.probability = probability;
     }
 }

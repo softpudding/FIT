@@ -5,10 +5,11 @@ android {
     // buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.example.fitmvp"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,7 +50,12 @@ dependencies {
     implementation "com.android.support:support-v13:28.0.0"
     implementation "com.android.support:cardview-v7:28.0.0"
     implementation "com.android.support:appcompat-v7:28.0.0"
-
+    implementation "com.alibaba:fastjson:1.1.55.android"
+//glide 图片加载
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    //动态权限申请库
+    implementation 'pub.devrel:easypermissions:1.3.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28'
@@ -68,7 +74,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28'
     implementation 'com.android.support:design:28'
     implementation 'com.android.support:cardview-v7:28'
-    implementation 'com.jakewharton:butterknife:5.1.1'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
     // okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okio:okio:1.14.0'
@@ -83,6 +90,14 @@ dependencies {
     // JMessage
     implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以J
     implementation 'cn.jiguang.sdk:jcore:2.0.0'
+    // ActiveAndroid
+    implementation 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    // 图片加载缓存
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation project(path: ':emoji')
 }
 
 List<String> dirs = [

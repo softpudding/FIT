@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.LoginContract;
+import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.model.LoginModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
@@ -18,13 +19,14 @@ import cn.jpush.im.api.BasicCallback;
 public class LoginPresenter extends BasePresenter<LoginActivity> implements LoginContract.Presenter {
     @Override
     public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new LoginModel());
+        return loadModelMap(new LoginModel(),new FriendModel());
     }
 
     @Override
     public HashMap<String, IModel> loadModelMap(IModel... models) {
         HashMap<String, IModel> map = new HashMap<>();
         map.put("login", models[0]);
+        map.put("initFriends",models[1]);
         return map;
     }
 
@@ -45,6 +47,7 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
     public void login(final String account,final String password){
         if (!checkNull()) {
             final LoginModel loginModel = (LoginModel) getiModelMap().get("login");
+            final FriendModel friendModel = (FriendModel) getiModelMap().get("initFriends");
             loginModel.login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
                 public void successInfo() {
@@ -55,6 +58,10 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                             if (responseCode == 0){
                                 // 登录成功，在本地保存用户信息
                                 loginModel.saveUser();
+                                // 初始化好友列表
+                                friendModel.initFriendList();
+                                // 初始化好友请求记录
+
                                 // 页面跳转
                                 ToastUtil.setToast("登录成功");
                                 getIView().loginSuccess();
