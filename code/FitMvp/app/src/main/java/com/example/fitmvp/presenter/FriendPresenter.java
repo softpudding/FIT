@@ -79,7 +79,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
 
             //对方将你从好友中删除
             case contact_deleted:
-                // TODO： 未完成
+                // TODO： 删除好友 未完成
                 friendModel.deleteFriend(fromUsername);
                 getIView().setCachedNewFriendNum();
                 break;
