@@ -26,6 +26,9 @@ public class MessageModel extends BaseModel implements MessageContract.Model {
         // 从本地数据库中获取会话列表，默认按照会话的最后一条消息的时间，降序排列
         List<Conversation> convList = JMessageClient.getConversationList();
         list.clear();
+        if(convList==null){
+            return null;
+        }
         for(Conversation conv : convList) {
             if(conv!=null){
                 ConversationEntity entity = getEntity(conv);
