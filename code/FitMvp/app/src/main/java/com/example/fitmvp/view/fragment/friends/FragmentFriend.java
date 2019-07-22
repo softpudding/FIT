@@ -83,12 +83,12 @@ public class FragmentFriend extends Fragment {
         fragmentMsg.updateData();
     }
 
-    public void onEvent(ContactNotifyEvent event){
-        LogUtils.e("接收contactNotifyEvnent","handle event at FragmentFriend");
-        String reason = event.getReason();
-        String fromUsername = event.getFromUsername();
-        ContactNotifyEvent.Type type = event.getType();
-//        mPresenter.handleEvent(fromUsername,reason,type);
-    }
+//    public void onEvent(ContactNotifyEvent event){
+//        LogUtils.e("接收contactNotifyEvnent","handle event at FragmentFriend");
+//        String reason = event.getReason();
+//        String fromUsername = event.getFromUsername();
+//        ContactNotifyEvent.Type type = event.getType();
+////        mPresenter.handleEvent(fromUsername,reason,type);
+//    }
 
 }
