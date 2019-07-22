@@ -8,15 +8,15 @@ public class LoginUserBean {
      * tel : 103
      */
 
-    private Boolean isactive;
+    private Integer isactive;
     private String password;
     private String tel;
 
-    public Boolean isIsactive() {
+    public Integer isIsactive() {
         return isactive;
     }
 
-    public void setIsactive(Boolean isactive) {
+    public void setIsactive(Integer isactive) {
         this.isactive = isactive;
     }
 

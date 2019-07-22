@@ -41,25 +41,57 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.WelcomeActivity">
+        <activity android:name=".view.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.LoginActivity"></activity>
-        <activity android:name=".view.activity.MainActivity"></activity>
-        <activity android:name=".view.activity.RegisterActivity"></activity>
-        <activity android:name=".view.activity.ChangePwActivity"></activity>
-        <activity android:name=".view.activity.RecordDetailActivity"></activity>
-        <activity android:name=".view.activity.SettingActivity"></activity>
-        <activity android:name=".view.activity.AddFriendActivity"></activity>
-        <activity android:name=".view.activity.FriendDetailActivity"></activity>
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="com.example.fitmvp.fileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+</provider>
+        <!--不允许横屏-->
+        <activity android:name=".view.activity.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.ChangePwActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.RecordDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendSearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendAddActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendRecommendActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".chat.activity.ChatActivity"
+            android:screenOrientation="portrait"/>
         <!--<activity android:name=".view.activity.P"></activity>-->
-        <activity android:name=".view.activity.PhotoPass"></activity>
-        <activity android:name=".view.activity.PhotoType"></activity>
-        <activity android:name=".view.activity.PhotoPassm"></activity>
+        <activity android:name=".view.activity.PhotoPass"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoType"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoPassm"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoShow"
+            android:screenOrientation="portrait"/>
+        
+        <activity android:name=".view.activity.PhotoShowt"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
@@ -72,7 +104,22 @@
             </intent-filter>
         </service>
 
+        <!-- 数据库配置 -->
+        <meta-data android:name="AA_DB_NAME" android:value="fit.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.example.fitmvp.database.FriendEntry,
+                           com.example.fitmvp.database.FriendRecommendEntry,
+                           com.example.fitmvp.database.UserEntry"/>
 
+
+        <provider
+            android:name="com.activeandroid.content.ContentProvider"
+            android:authorities="com.example.fitmvp"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
 
 
 
@@ -91,4 +138,5 @@
 <!--读写sd权限-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
 </manifest>

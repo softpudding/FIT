@@ -6,13 +6,19 @@ import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
 import com.example.fitmvp.contract.LoginContract;
+import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.UserUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
@@ -77,7 +83,28 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         SpUtils.put("token",token);
         // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
+        UserInfo userInfo = JMessageClient.getMyInfo();
+        if(userInfo!=null){
+            LogUtils.e("save_info",userInfo.getUserName()+" "+userInfo.getNickname());
+            String phone = userInfo.getUserName();
+            String appKey = userInfo.getAppKey();
+            SpUtils.put("phone",phone);
+            SpUtils.put("appKey",appKey);
+            SpUtils.put("nickname",userInfo.getNickname());
+            UserInfo.Gender gender = userInfo.getGender();
+            // 性别
+            SpUtils.put("gender", UserUtils.getGender(userInfo));
+            // 生日
+            SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
+            // 保存身高、体重
 
+            // 更新数据库中用户数据
+            UserEntry userEntry = UserEntry.getUser(phone,appKey);
+            if(userEntry==null){
+                UserEntry newUser = new UserEntry(phone,appKey);
+                newUser.save();
+            }
+        }
     }
 
     @Override

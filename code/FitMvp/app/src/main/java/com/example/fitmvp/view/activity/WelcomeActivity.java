@@ -16,8 +16,8 @@ import java.lang.ref.WeakReference;
 import java.util.Timer;
 
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View{
 //    //声明一个静态的Handler内部类，并持有外部类的弱引用 （避免内存泄漏）
@@ -45,7 +45,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 //    }
 //    private final InnerHandler mHandler = new InnerHandler(this);
 
-    @InjectView(R.id.jump_timer)
+    @Bind(R.id.jump_timer)
     Button jump;
 
     private Integer second;
@@ -70,7 +70,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     protected void initView() {
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         second = 3;
         timer = new CountDownTimer(second*1000,1000) {
             @Override

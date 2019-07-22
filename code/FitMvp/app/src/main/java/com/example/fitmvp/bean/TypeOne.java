@@ -1,11 +1,14 @@
 package com.example.fitmvp.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 public class TypeOne {
-    private Integer obj_type;
+    @SerializedName("obj_type")
+    private Integer objtype;
     private String img;
 
-    public Integer getObj_type() {
-        return obj_type;
+    public Integer getObjtype() {
+        return objtype;
     }
 
     public String getImg() {
@@ -16,7 +19,7 @@ public class TypeOne {
         this.img = img;
     }
 
-    public void setObj_type(Integer obj_type) {
-        this.obj_type = obj_type;
+    public void setObjtype(Integer obj_type) {
+        this.objtype = obj_type;
     }
 }
