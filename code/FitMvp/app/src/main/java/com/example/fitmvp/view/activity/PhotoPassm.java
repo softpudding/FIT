@@ -27,6 +27,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.PhotoTypetBean;
 import com.example.fitmvp.bean.box;
@@ -331,7 +332,8 @@ public class PhotoPassm extends AppCompatActivity {
         Integer obj_type=2;
         String pic= PictureUtil.bitmapToBase64(bitmap);
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
-        String tel="123456";
+        String tel= BaseApplication.getUserEntry().username;
+        System.out.println(tel);
         System.out.println("类型： ");
         System.out.println(integer);
         //(String) SpUtils.get("phone","");

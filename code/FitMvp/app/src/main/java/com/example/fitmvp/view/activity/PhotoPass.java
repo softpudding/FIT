@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.PhotoType1Bean;
 import com.example.fitmvp.exception.ApiException;
@@ -331,7 +332,7 @@ public class PhotoPass extends AppCompatActivity {
         Integer obj_type=1;
         String pic= PictureUtil.bitmapToBase64(bitmap);
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
-        String tel="123456";
+        String tel= BaseApplication.getUserEntry().username;
                 //(String) SpUtils.get("phone","");
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean>())
