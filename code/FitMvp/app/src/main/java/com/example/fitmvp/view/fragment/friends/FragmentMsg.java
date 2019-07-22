@@ -83,7 +83,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     public void initData(){
         convList = mPresenter.getConvList();
         TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
-        if(convList==null||convList.size()==0){
+        if(convList==null || convList.size()==0){
             emptyList.setVisibility(View.VISIBLE);
         }
         else {
