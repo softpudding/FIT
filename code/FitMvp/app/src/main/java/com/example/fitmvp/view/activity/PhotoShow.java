@@ -114,12 +114,13 @@ public class PhotoShow extends AppCompatActivity {
 //        final String path = saveImage(image);
         Intent share_intent = new Intent();
         share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
-        share_intent.setType("image/*");  //设置分享内容的类型
+        //share_intent.setType("image/*");  //设置分享内容的类型
+        share_intent.setType("text/plain");
         Uri uri = saveImage(imgBit);
         System.out.println("这是uri：");
-        share_intent.putExtra(Intent.EXTRA_STREAM, uri);
+      //  share_intent.putExtra(Intent.EXTRA_STREAM, uri);
         //创建分享的Dialog
-        //share_intent.putExtra(Intent.EXTRA_TEXT,name);
+        share_intent.putExtra(Intent.EXTRA_TEXT,name);
         // share_intent = Intent.createChooser(share_intent,"分享");
         share_intent.putExtra(Intent.EXTRA_SUBJECT, "分享");//添加分享内容标题
         // startActivity(share_intent);
