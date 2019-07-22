@@ -48,10 +48,6 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
                                 friend.getAppKey(), friend.getAvatar(), friend.getDisplayName(),
                                 reason, otherState ,user);
                         newEntry.save();
-
-                        Integer cacheNum = SpUtils.getCachedNewFriendNum() + 1;
-                        LogUtils.e("cacheNum",cacheNum.toString());
-                        SpUtils.setCachedNewFriendNum(cacheNum);
                         LogUtils.e("find_user",friend.getUserName());
                     }
                     else{
@@ -62,6 +58,9 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
             });
             LogUtils.e("onEvent","end");
         }
+        Integer cacheNum = SpUtils.getCachedNewFriendNum() + 1;
+        LogUtils.e("cacheNum",cacheNum.toString());
+        SpUtils.setCachedNewFriendNum(cacheNum);
     }
 
     /*

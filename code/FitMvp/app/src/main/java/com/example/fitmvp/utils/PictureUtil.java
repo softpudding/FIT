@@ -2,6 +2,8 @@ package com.example.fitmvp.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Base64;
 
 import com.example.fitmvp.R;
@@ -16,6 +18,9 @@ import com.example.fitmvp.view.activity.PhotoPass;
 import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 
@@ -78,4 +83,5 @@ public class PictureUtil {
     public static void passPhoto2(Bitmap bitmap){
 
     }
+
 }

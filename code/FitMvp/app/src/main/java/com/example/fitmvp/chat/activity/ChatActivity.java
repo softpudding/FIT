@@ -24,6 +24,7 @@ import android.widget.AbsListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
@@ -136,7 +137,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 
         ButterKnife.bind(this);
 
-
         initView();
         initData();
         setBar();
@@ -145,7 +145,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     @Override
     public void onDestroy() {
         // TODO:eventbus
-        //EventBus.getDefault().unregister(this);
+//        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 
@@ -161,6 +161,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         actionbar.setTitle(mTitle);
     }
 
+    // 右上角的菜单栏 - 进入好友信息界面
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chatmenu, menu);
@@ -172,7 +173,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home://actionbar的左侧图标的点击事件处理
-                finish();
+                onBackPressed();
                 break;
             case R.id.to_friend_info:
                 toFriendInfo();
@@ -189,73 +190,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         startActivity(intent);
     }
 
-//    private void initChatRoom(long chatRoomId) {
-//        ProgressDialog dialog = new ProgressDialog(mContext);
-//        dialog.setMessage("正在进入聊天室...");
-//        dialog.show();
-//        dialog.setOnCancelListener((d) -> {
-//            d.dismiss();
-//            ChatActivity.this.finish();
-//        });
-//        ChatRoomManager.enterChatRoom(chatRoomId, new RequestCallback<Conversation>() {
-//            @Override
-//            public void gotResult(int i, String s, Conversation conversation) {
-//                if (i == 0) {
-//                    dialog.dismiss();
-//                    if (conversation == null) {
-//                        mConv = Conversation.createChatRoomConversation(chatRoomId);
-//                    } else {
-//                        mConv = conversation;
-//                    }
-//                    initChatRoomData();
-//                } else if (i == 851003) { // 已经在聊天室中先退出聊天室再进入
-//                    ChatRoomManager.leaveChatRoom(chatRoomId, new BasicCallback() {
-//                        @Override
-//                        public void gotResult(int i, String s) {
-//                            if (i == 0) {
-//                                ChatRoomManager.enterChatRoom(chatRoomId, new RequestCallback<Conversation>() {
-//                                    @Override
-//                                    public void gotResult(int i, String s, Conversation conversation) {
-//                                        dialog.dismiss();
-//                                        if (i == 0) {
-//                                            if (conversation == null) {
-//                                                mConv = Conversation.createChatRoomConversation(chatRoomId);
-//                                            } else {
-//                                                mConv = conversation;
-//                                            }
-//                                            initChatRoomData();
-//                                        }
-//                                    }
-//                                });
-//                            } else if (i == 852004) {
-//                                dialog.dismiss();
-//                                mConv = Conversation.createChatRoomConversation(chatRoomId);
-//                                initChatRoomData();
-//                            } else {
-//                                dialog.dismiss();
-//                                Toast.makeText(ChatActivity.this, "进入聊天室失败" + s, Toast.LENGTH_SHORT).show();
-//                                finish();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    dialog.dismiss();
-//                    Toast.makeText(ChatActivity.this, "进入聊天室失败" + s, Toast.LENGTH_SHORT).show();
-//                    finish();
-//                }
-//            }
-//        });
-//    }
-
-//    private void initChatRoomData() {
-//        mChatAdapter = new ChattingListAdapter(mContext, mConv, longClickListener);
-//        mChatView.setChatListAdapter(mChatAdapter);
-//        mChatView.setToBottom();
-//        mChatView.setConversation(mConv);
-//        mChatView.setGroupIcon();
-//        initEmoticonsKeyBoardBar();
-//    }
-
     private void initData() {
         SimpleCommonUtils.initEmoticonsEditText(ekBar.getEtChat());
         Intent intent = getIntent();
@@ -267,8 +201,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         if (!TextUtils.isEmpty(mTargetId)) {
             //单聊
             mIsSingle = true;
-            // 设置title 好友名字
-        //    mChatView.setChatTitle(mTitle);
             mConv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
             if (mConv == null) {
                 mConv = Conversation.createSingleConversation(mTargetId, mTargetAppKey);
@@ -367,22 +299,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                 if (temp.length() > 0) {
                     mLongClick = false;
                 }
-
-//                if (mAtList != null && mAtList.size() > 0) {
-//                    for (UserInfo info : mAtList) {
-//                        String name = info.getDisplayName();
-//
-//                        if (!arg0.toString().contains("@" + name + " ")) {
-//                            forDel.add(info);
-//                        }
-//                    }
-//                    mAtList.removeAll(forDel);
-//                }
-//
-//                if (!arg0.toString().contains("@所有成员 ")) {
-//                    mAtAll = false;
-//                }
-
             }
 
             @Override
@@ -391,12 +307,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 
             @Override
             public void onTextChanged(CharSequence s, int start, int count, int after) {
-//                temp = s;
-//                if (s.length() > 0 && after >= 1 && s.subSequence(start, start + 1).charAt(0) == '@' && !mLongClick) {
-//                    if (null != mConv && mConv.getType() == ConversationType.group) {
-//                        ChooseAtMemberActivity.show(ChatActivity.this, ekBar.getEtChat(), mConv.getTargetId());
-//                    }
-//                }
             }
         });
 
@@ -453,17 +363,8 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                 }
                 Message msg;
                 TextContent content = new TextContent(mcgContent);
-//                if (mAtAll) {
-//                    msg = mConv.createSendMessageAtAllMember(content, null);
-//                    mAtAll = false;
-//                }
-//                else if (null != mAtList) {
-//                    msg = mConv.createSendMessage(content, mAtList, null);
-//                }
-//                else {
-                    LogUtils.d("ChatActivity", "create send message conversation = " + mConv + "==content==" + content.toString());
-                    msg = mConv.createSendMessage(content);
-//                }
+                LogUtils.d("ChatActivity", "create send message conversation = " + mConv + "==content==" + content.toString());
+                msg = mConv.createSendMessage(content);
 
                 if (!isChatRoom) {
                     //设置不需要已读回执
@@ -472,18 +373,10 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                     JMessageClient.sendMessage(msg, options);
                     mChatAdapter.addMsgFromReceiptToList(msg);
                     ekBar.getEtChat().setText("");
-//                    if (mAtList != null) {
-//                        mAtList.clear();
-//                    }
                     if (forDel != null) {
                         forDel.clear();
                     }
                 }
-//            else {
-//                JMessageClient.sendMessage(msg);
-//                mChatAdapter.addMsgToList(msg);
-//                ekBar.getEtChat().setText("");
-//            }
             }
         });
 //        //切换语音输入
@@ -528,12 +421,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         }
     }
 
-//    private void startChatRoomActivity(long chatRoomId) {
-//        Intent intent = new Intent(ChatActivity.this, ChatRoomInfoActivity.class);
-//        intent.putExtra("chatRoomId", chatRoomId);
-//        startActivity(intent);
-//    }
-
     @Override
     public void onBackPressed() {
         returnBtn();
@@ -542,11 +429,9 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     private void returnBtn() {
         mConv.resetUnreadCount();
         dismissSoftInput();
-//        if (mChatAdapter != null) {
-//            mChatAdapter.stopMediaPlayer();
-//        }
         JMessageClient.exitConversation();
         //发送保存为草稿事件到会话列表
+        // TODO: 保存草稿
         EventBus.getDefault().post(new Event.Builder().setType(EventType.draft)
                 .setConversation(mConv)
                 .setDraft(ekBar.getEtChat().getText().toString())
@@ -561,19 +446,9 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 //            }
             BaseApplication.delConversation = mConv;
         }
-//        if (isChatRoom) {
-//            ChatRoomManager.leaveChatRoom(Long.valueOf(mTargetId), new BasicCallback() {
-//                @Override
-//                public void gotResult(int i, String s) {
-//                    ChatActivity.this.finish();
-//                    ChatActivity.super.onBackPressed();
-//                }
-//            });
-//        }
-//        else {
-            finish();
-            super.onBackPressed();
-//        }
+        updateMsgList();
+        finish();
+        super.onBackPressed();
     }
 
     private void dismissSoftInput() {
@@ -701,14 +576,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                 JMessageClient.enterSingleConversation(targetId, appKey);
             }
         }
-//        else if (!isChatRoom) {
-//            long groupId = getIntent().getLongExtra(GROUP_ID, 0);
-//            if (groupId != 0) {
-//                JGApplication.isAtMe.put(groupId, false);
-//                JGApplication.isAtall.put(groupId, false);
-//                JMessageClient.enterGroupConversation(groupId);
-//            }
-//        }
 
         //历史消息中删除后返回到聊天界面刷新界面
         if (BaseApplication.ids != null && BaseApplication.ids.size() > 0) {
@@ -718,88 +585,22 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         }
         if (mChatAdapter != null)
             mChatAdapter.notifyDataSetChanged();
-//        //发送名片返回聊天界面刷新信息
-//        if (SharePreferenceManager.getIsOpen()) {
-//            if (!isChatRoom) {
-//                initData();
-//            }
-//            SharePreferenceManager.setIsOpen(false);
-//        }
         super.onResume();
 
     }
 
-//    public void onEvent(CommandNotificationEvent event) {
-//        if (event.getType().equals(CommandNotificationEvent.Type.single)) {
-//            String msg = event.getMsg();
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        JSONObject object = new JSONObject(msg);
-//                        JSONObject jsonContent = object.getJSONObject("content");
-//                        String messageString = jsonContent.getString("message");
-//                        if (TextUtils.isEmpty(messageString)) {
-//                            mChatView.setTitle(mConv.getTitle());
-//                        } else {
-//                            mChatView.setTitle(messageString);
-//                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-//    }
 
-//    public void onEventMainThread(ChatRoomMessageEvent event) {
-//        List<Message> messages = event.getMessages();
-//        mChatAdapter.addMsgListToList(messages);
-//    }
-//
-//    public void onEventMainThread(ChatRoomNotificationEvent event) {
-//        try {
-//            Constructor constructor =  EventNotificationContent.class.getDeclaredConstructor();
-//            constructor.setAccessible(true);
-//            List<Message> messages = new ArrayList<>();
-//            switch (event.getType()) {
-//                case add_chatroom_admin:
-//                case del_chatroom_admin:
-//                    event.getTargetUserInfoList(new GetUserInfoListCallback() {
-//                        @Override
-//                        public void gotResult(int i, String s, List<UserInfo> list) {
-//                            if (i == 0) {
-//                                for (UserInfo userInfo : list) {
-//                                    try {
-//                                        EventNotificationContent content = (EventNotificationContent) constructor.newInstance();
-//                                        Field field = content.getClass().getSuperclass().getDeclaredField("contentType");
-//                                        field.setAccessible(true);
-//                                        field.set(content, ContentType.eventNotification);
-//                                        String user = userInfo.getUserID() == JMessageClient.getMyInfo().getUserID()
-//                                                ? "你" : TextUtils.isEmpty(userInfo.getNickname()) ? userInfo.getUserName() : userInfo.getNickname();
-//                                        String result = event.getType() == ChatRoomNotificationEvent.Type.add_chatroom_admin ? "被设置成管理员" : "被取消管理员";
-//                                        content.setStringExtra("msg", user + result);
-//                                        if (mConv != null) {
-//                                            messages.add(mConv.createSendMessage(content));
-//                                        }
-//                                    } catch (Exception e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                }
-//                                if (messages.size() > 0) {
-//                                    mChatAdapter.addMsgListToList(messages);
-//                                }
-//                            }
-//                        }
-//                    });
-//                    break;
-//                default:
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+    //发送刷新数据的广播
+    public void updateMsgList(){
+        Intent intent = new Intent("updateMsgList");
+        intent.putExtra("refreshInfo", "yes");
+        LocalBroadcastManager.getInstance(ChatActivity.this).sendBroadcast(intent);
+        this.setResult(Activity.RESULT_OK, intent);//返回页面1
+        this.finish();
+    }
+
+    // 接收消息
     public void onEvent(MessageEvent event) {
         final Message message = event.getMessage();
 
@@ -886,11 +687,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
             }
         });
     }
-
-//    public void onEventMainThread(MessageRetractEvent event) {
-//        Message retractedMessage = event.getRetractedMessage();
-//        mChatAdapter.delMsgRetract(retractedMessage);
-//    }
 
     /**
      * 当在聊天界面断网再次连接时收离线事件刷新
@@ -1165,93 +961,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         }
     };
 
-//    /**
-//     * 消息已读事件
-//     */
-//    public void onEventMainThread(MessageReceiptStatusChangeEvent event) {
-//        List<MessageReceiptStatusChangeEvent.MessageReceiptMeta> messageReceiptMetas = event.getMessageReceiptMetas();
-//        for (MessageReceiptStatusChangeEvent.MessageReceiptMeta meta : messageReceiptMetas) {
-//            long serverMsgId = meta.getServerMsgId();
-//            int unReceiptCnt = meta.getUnReceiptCnt();
-//            mChatAdapter.setUpdateReceiptCount(serverMsgId, unReceiptCnt);
-//        }
-//    }
-
-//    @Subscribe (threadMode = ThreadMode.MAIN)
-//    public void onEventMainThread(ImageEvent event) {
-//        Intent intent;
-//        switch (event.getFlag()) {
-//            case JGApplication.IMAGE_MESSAGE:
-//                int from = PickImageActivity.FROM_LOCAL;
-//                int requestCode = RequestCode.PICK_IMAGE;
-//                if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                        != PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(this, "请在应用管理中打开“读写存储”访问权限！", Toast.LENGTH_LONG).show();
-//                } else {
-//                    PickImageActivity.start(ChatActivity.this, requestCode, from, tempFile(), true, 9,
-//                            true, false, 0, 0);
-//                }
-//                break;
-//            case JGApplication.TAKE_PHOTO_MESSAGE:
-//                if ((ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.CAMERA)
-//                        != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                        != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.RECORD_AUDIO)
-//                        != PackageManager.PERMISSION_GRANTED)) {
-//                    Toast.makeText(this, "请在应用管理中打开“相机,读写存储,录音”访问权限！", Toast.LENGTH_LONG).show();
-//                } else {
-//                    intent = new Intent(ChatActivity.this, CameraActivity.class);
-//                    startActivityForResult(intent, RequestCode.TAKE_PHOTO);
-//                }
-//                break;
-//            case JGApplication.TAKE_LOCATION:
-//                if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
-//                        != PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(this, "请在应用管理中打开“位置”访问权限！", Toast.LENGTH_LONG).show();
-//                } else {
-//                    intent = new Intent(mContext, MapPickerActivity.class);
-//                    intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
-//                    intent.putExtra(JGApplication.TARGET_ID, mTargetId);
-//                    intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);
-//                    intent.putExtra("sendLocation", true);
-//                    startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_LOCATION);
-//                }
-//                break;
-//            case JGApplication.FILE_MESSAGE:
-//                if (ContextCompat.checkSelfPermission(this,
-//                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                        != PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(this, "请在应用管理中打开“读写存储”访问权限！", Toast.LENGTH_LONG).show();
-//
-//                } else {
-//                    intent = new Intent(mContext, SendFileActivity.class);
-//                    intent.putExtra(JGApplication.TARGET_ID, mTargetId);
-//                    intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);
-//                    intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
-//                    startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_FILE);
-//                }
-//                break;
-//            case JGApplication.BUSINESS_CARD:
-//                intent = new Intent(mContext, FriendListActivity.class);
-//                intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
-//                intent.putExtra(JGApplication.TARGET_ID, mTargetId);
-//                intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);;
-//                startActivityForResult(intent, JGApplication.REQUEST_CODE_FRIEND_LIST);
-//                break;
-//            case JGApplication.TACK_VIDEO:
-//            case JGApplication.TACK_VOICE:
-//                ToastUtil.shortToast(mContext, "该功能正在添加中");
-//                break;
-//            default:
-//                break;
-//        }
-//
-//    }
-
-//    private String tempFile() {
-//        String filename = StringUtil.get32UUID() + JPG;
-//        return StorageUtil.getWritePath(filename, StorageType.TYPE_TEMP);
-//    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -1524,5 +1233,166 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
             }
         }
     }
+    //    public void onEvent(CommandNotificationEvent event) {
+//        if (event.getType().equals(CommandNotificationEvent.Type.single)) {
+//            String msg = event.getMsg();
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        JSONObject object = new JSONObject(msg);
+//                        JSONObject jsonContent = object.getJSONObject("content");
+//                        String messageString = jsonContent.getString("message");
+//                        if (TextUtils.isEmpty(messageString)) {
+//                            mChatView.setTitle(mConv.getTitle());
+//                        } else {
+//                            mChatView.setTitle(messageString);
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
+//        }
+//    }
+
+//    public void onEventMainThread(ChatRoomMessageEvent event) {
+//        List<Message> messages = event.getMessages();
+//        mChatAdapter.addMsgListToList(messages);
+//    }
+//
+//    public void onEventMainThread(ChatRoomNotificationEvent event) {
+//        try {
+//            Constructor constructor =  EventNotificationContent.class.getDeclaredConstructor();
+//            constructor.setAccessible(true);
+//            List<Message> messages = new ArrayList<>();
+//            switch (event.getType()) {
+//                case add_chatroom_admin:
+//                case del_chatroom_admin:
+//                    event.getTargetUserInfoList(new GetUserInfoListCallback() {
+//                        @Override
+//                        public void gotResult(int i, String s, List<UserInfo> list) {
+//                            if (i == 0) {
+//                                for (UserInfo userInfo : list) {
+//                                    try {
+//                                        EventNotificationContent content = (EventNotificationContent) constructor.newInstance();
+//                                        Field field = content.getClass().getSuperclass().getDeclaredField("contentType");
+//                                        field.setAccessible(true);
+//                                        field.set(content, ContentType.eventNotification);
+//                                        String user = userInfo.getUserID() == JMessageClient.getMyInfo().getUserID()
+//                                                ? "你" : TextUtils.isEmpty(userInfo.getNickname()) ? userInfo.getUserName() : userInfo.getNickname();
+//                                        String result = event.getType() == ChatRoomNotificationEvent.Type.add_chatroom_admin ? "被设置成管理员" : "被取消管理员";
+//                                        content.setStringExtra("msg", user + result);
+//                                        if (mConv != null) {
+//                                            messages.add(mConv.createSendMessage(content));
+//                                        }
+//                                    } catch (Exception e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                                if (messages.size() > 0) {
+//                                    mChatAdapter.addMsgListToList(messages);
+//                                }
+//                            }
+//                        }
+//                    });
+//                    break;
+//                default:
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+    //    /**
+//     * 消息已读事件
+//     */
+//    public void onEventMainThread(MessageReceiptStatusChangeEvent event) {
+//        List<MessageReceiptStatusChangeEvent.MessageReceiptMeta> messageReceiptMetas = event.getMessageReceiptMetas();
+//        for (MessageReceiptStatusChangeEvent.MessageReceiptMeta meta : messageReceiptMetas) {
+//            long serverMsgId = meta.getServerMsgId();
+//            int unReceiptCnt = meta.getUnReceiptCnt();
+//            mChatAdapter.setUpdateReceiptCount(serverMsgId, unReceiptCnt);
+//        }
+//    }
+
+//    @Subscribe (threadMode = ThreadMode.MAIN)
+//    public void onEventMainThread(ImageEvent event) {
+//        Intent intent;
+//        switch (event.getFlag()) {
+//            case JGApplication.IMAGE_MESSAGE:
+//                int from = PickImageActivity.FROM_LOCAL;
+//                int requestCode = RequestCode.PICK_IMAGE;
+//                if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(this, "请在应用管理中打开“读写存储”访问权限！", Toast.LENGTH_LONG).show();
+//                } else {
+//                    PickImageActivity.start(ChatActivity.this, requestCode, from, tempFile(), true, 9,
+//                            true, false, 0, 0);
+//                }
+//                break;
+//            case JGApplication.TAKE_PHOTO_MESSAGE:
+//                if ((ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.CAMERA)
+//                        != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.RECORD_AUDIO)
+//                        != PackageManager.PERMISSION_GRANTED)) {
+//                    Toast.makeText(this, "请在应用管理中打开“相机,读写存储,录音”访问权限！", Toast.LENGTH_LONG).show();
+//                } else {
+//                    intent = new Intent(ChatActivity.this, CameraActivity.class);
+//                    startActivityForResult(intent, RequestCode.TAKE_PHOTO);
+//                }
+//                break;
+//            case JGApplication.TAKE_LOCATION:
+//                if (ContextCompat.checkSelfPermission(ChatActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(this, "请在应用管理中打开“位置”访问权限！", Toast.LENGTH_LONG).show();
+//                } else {
+//                    intent = new Intent(mContext, MapPickerActivity.class);
+//                    intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
+//                    intent.putExtra(JGApplication.TARGET_ID, mTargetId);
+//                    intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);
+//                    intent.putExtra("sendLocation", true);
+//                    startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_LOCATION);
+//                }
+//                break;
+//            case JGApplication.FILE_MESSAGE:
+//                if (ContextCompat.checkSelfPermission(this,
+//                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(this, "请在应用管理中打开“读写存储”访问权限！", Toast.LENGTH_LONG).show();
+//
+//                } else {
+//                    intent = new Intent(mContext, SendFileActivity.class);
+//                    intent.putExtra(JGApplication.TARGET_ID, mTargetId);
+//                    intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);
+//                    intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
+//                    startActivityForResult(intent, JGApplication.REQUEST_CODE_SEND_FILE);
+//                }
+//                break;
+//            case JGApplication.BUSINESS_CARD:
+//                intent = new Intent(mContext, FriendListActivity.class);
+//                intent.putExtra(JGApplication.CONV_TYPE, mConv.getType());
+//                intent.putExtra(JGApplication.TARGET_ID, mTargetId);
+//                intent.putExtra(JGApplication.TARGET_APP_KEY, mTargetAppKey);;
+//                startActivityForResult(intent, JGApplication.REQUEST_CODE_FRIEND_LIST);
+//                break;
+//            case JGApplication.TACK_VIDEO:
+//            case JGApplication.TACK_VOICE:
+//                ToastUtil.shortToast(mContext, "该功能正在添加中");
+//                break;
+//            default:
+//                break;
+//        }
+//
+//    }
+
+//    private String tempFile() {
+//        String filename = StringUtil.get32UUID() + JPG;
+//        return StorageUtil.getWritePath(filename, StorageType.TYPE_TEMP);
+//    }
+    // 撤回
+    //    public void onEventMainThread(MessageRetractEvent event) {
+//        Message retractedMessage = event.getRetractedMessage();
+//        mChatAdapter.delMsgRetract(retractedMessage);
+//    }
 
 }

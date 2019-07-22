@@ -31,10 +31,7 @@ public class OtherBaseActivity extends AppCompatActivity {
     protected int mHeight;
     protected float mDensity;
     protected int mDensityDpi;
-    private TextView mJmui_title_tv;
-    private ImageButton mReturn_btn;
-    private TextView mJmui_title_left;
-    public Button mJmui_commit_btn;
+
     protected int mAvatarSize;
     protected float mRatio;
     private Dialog dialog;
@@ -56,40 +53,6 @@ public class OtherBaseActivity extends AppCompatActivity {
         mAvatarSize = (int) (50 * mDensity);
 
     }
-
-//    //初始化各个activity的title
-//    public void initTitle(boolean returnBtn, boolean titleLeftDesc, String titleLeft, String title, boolean save, String desc) {
-//        mReturn_btn = (ImageButton) findViewById(R.id.return_btn);
-//        mJmui_title_left = (TextView) findViewById(R.id.jmui_title_left);
-//        mJmui_title_tv = (TextView) findViewById(R.id.jmui_title_tv);
-//        mJmui_commit_btn = (Button) findViewById(R.id.jmui_commit_btn);
-//
-//        if (returnBtn) {
-//            mReturn_btn.setVisibility(View.VISIBLE);
-//            mReturn_btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    if (imm.isActive() && getCurrentFocus() != null) {
-//                        if (getCurrentFocus().getWindowToken() != null) {
-//                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-//                        }
-//                    }
-//                    finish();
-//                }
-//            });
-//        }
-//        if (titleLeftDesc) {
-//            mJmui_title_left.setVisibility(View.VISIBLE);
-//            mJmui_title_left.setText(titleLeft);
-//        }
-//        mJmui_title_tv.setText(title);
-//        if (save) {
-//            mJmui_commit_btn.setVisibility(View.VISIBLE);
-//            mJmui_commit_btn.setText(desc);
-//        }
-//
-//    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
