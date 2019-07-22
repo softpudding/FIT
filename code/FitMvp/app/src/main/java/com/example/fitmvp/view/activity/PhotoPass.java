@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,6 +40,9 @@ import org.w3c.dom.Text;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 
 public class PhotoPass extends AppCompatActivity {
@@ -85,6 +89,17 @@ public class PhotoPass extends AppCompatActivity {
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // 从本地相册选取图片作为头像
@@ -111,7 +126,6 @@ public class PhotoPass extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N) {//24
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictureUri = FileProvider.getUriForFile(this, getPackageName()+".fileProvider", pictureFile);
-                System.out.println("miaomiao");
                 System.out.println(intent.getAction());//android.media.action.IMAGE_CAPTURE
                 System.out.println(pictureUri);//content://portrait.bala.portrait.fileProvider/external_storage_root/temp_head_image.jpg
             }
@@ -119,8 +133,6 @@ public class PhotoPass extends AppCompatActivity {
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 pictureUri = Uri.fromFile(pictureFile);
-                System.out.println("2pictureUri: ");//
-                System.out.println(pictureUri);
             }
             /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -315,9 +327,10 @@ public class PhotoPass extends AppCompatActivity {
     }
 
     //图片传送接口
-    public void passPhoto1(Bitmap bitmap){
+    public void passPhoto1(final Bitmap bitmap){
         Integer obj_type=1;
         String pic= PictureUtil.bitmapToBase64(bitmap);
+        final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         String tel="123456";
                 //(String) SpUtils.get("phone","");
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
@@ -335,7 +348,7 @@ public class PhotoPass extends AppCompatActivity {
                         // 传参
                         intent.putExtra("foodname",titleView.getText());
                         // 传项目中图片
-                        //intent.putExtra("image", item.getImage());
+                        intent.putExtra("picb",picb);
                         startActivity(intent);
                     }
                     @Override
@@ -344,7 +357,12 @@ public class PhotoPass extends AppCompatActivity {
                         System.out.println("嘎嘎嘎");
                     }
                 });
-
+//        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+//        // 传参
+//        intent.putExtra("foodname","传过来了");
+//        // 传项目中图片
+//        intent.putExtra("picb",picb);
+//        startActivity(intent);
 
     }
 
@@ -403,6 +421,5 @@ public class PhotoPass extends AppCompatActivity {
 
         return bitmap;
     }
-
 
 }
