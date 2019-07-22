@@ -27,6 +27,7 @@ import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
 import com.example.fitmvp.view.activity.FriendSearchActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.nostra13.universalimageloader.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,21 +69,31 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         addFriend = ButterKnife.findById(view,R.id.add_friend);
         recommends = ButterKnife.findById(view,R.id.friend_recommend);
         cachedNewFriendNum = ButterKnife.findById(view,R.id.friend_unread_msg);
-        Integer num = SpUtils.getCachedNewFriendNum();
-        if(num>0){
-            cachedNewFriendNum.setText(num);
-            cachedNewFriendNum.setVisibility(View.VISIBLE);
-        }
-        else{
-            cachedNewFriendNum.setVisibility(View.INVISIBLE);
-        }
-
         //注册刷新Fragment数据的方法
         registerReceiver();
     }
 
+    public void setCachedNewFriendNum(){
+        new Handler().post(new Runnable() {
+            public void run() {
+                //在这里来写你需要刷新的地方
+                Integer num = SpUtils.getCachedNewFriendNum();
+                LogUtils.e("set cache num",num.toString());
+                if(num>0){
+                    cachedNewFriendNum.setText(String.format("%d",num));
+                    cachedNewFriendNum.setVisibility(View.VISIBLE);
+                }
+                else{
+                    cachedNewFriendNum.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+    }
+
     @Override
     public void initData(){
+
+        mPresenter.initCacheNum();
 
         // 获取好友列表
         friendList = mPresenter.getFriendList();
@@ -172,8 +183,12 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private void toRecommend(){
         Intent intent = new Intent(getActivity(), FriendRecommendActivity.class);
         startActivity(intent);
-        cachedNewFriendNum.setVisibility(View.INVISIBLE);
         SpUtils.setCachedNewFriendNum(0);
+        new Handler().post(new Runnable() {
+            public void run() {
+                setCachedNewFriendNum();
+            }
+        });
     }
 
     public void onEvent(ContactNotifyEvent event){
@@ -190,6 +205,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         friendList = mPresenter.getFriendList();
         adapter.setDataList(friendList);
         adapter.notifyDataSetChanged();
+        setCachedNewFriendNum();
     }
 
     private LocalBroadcastManager broadcastManager;

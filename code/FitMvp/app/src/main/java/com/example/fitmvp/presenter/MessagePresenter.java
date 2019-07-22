@@ -5,6 +5,7 @@ import com.example.fitmvp.bean.ConversationEntity;
 import com.example.fitmvp.contract.MessageContract;
 import com.example.fitmvp.model.MessageModel;
 import com.example.fitmvp.mvp.IModel;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.fragment.friends.FragmentMsg;
 
 import java.util.HashMap;

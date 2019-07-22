@@ -464,14 +464,14 @@ public class ChattingListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final Message msg = mMsgList.get(position);
-        //消息接收方发送已读回执
-        if (msg.getDirect() == MessageDirect.receive && !msg.haveRead() && !isChatRoom) {
-            msg.setHaveRead(new BasicCallback() {
-                @Override
-                public void gotResult(int i, String s) {
-                }
-            });
-        }
+//        //消息接收方发送已读回执
+//        if (msg.getDirect() == MessageDirect.receive && !msg.haveRead() && !isChatRoom) {
+//            msg.setHaveRead(new BasicCallback() {
+//                @Override
+//                public void gotResult(int i, String s) {
+//                }
+//            });
+//        }
         final UserInfo userInfo = msg.getFromUser();
         final ViewHolder holder;
         if (convertView == null) {

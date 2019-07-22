@@ -2,15 +2,20 @@ package com.example.fitmvp.presenter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
+import com.example.fitmvp.database.FriendRecommendEntry;
+import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.model.FriendRecommendModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
@@ -50,24 +55,33 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
             //收到好友邀请
             case invite_received:
                 LogUtils.e("handelEvent","invite_received");
+                getIView().setCachedNewFriendNum();
                 break;
             //对方接收了你的好友邀请
             case invite_accepted:
                 friendModel.addFriend(fromUsername, new FriendContract.Model.InfoHint() {
                     @Override
                     public void updateFriend() {
-                        getIView().updateData();
+                        new Handler().post(new Runnable() {
+                            public void run() {
+                                //在这里来写你需要刷新的地方
+                                getIView().updateData();
+                            }
+                        });
                     }
                 });
                 break;
 
             //对方拒绝了你的好友邀请
             case invite_declined:
+                getIView().setCachedNewFriendNum();
                 break;
 
             //对方将你从好友中删除
             case contact_deleted:
+                // TODO： 未完成
                 friendModel.deleteFriend(fromUsername);
+                getIView().setCachedNewFriendNum();
                 break;
             default:
                 break;
@@ -107,5 +121,18 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
             }
         });
         return list;
+    }
+
+    public void initCacheNum(){
+        UserEntry user = BaseApplication.getUserEntry();
+        List<FriendRecommendEntry> list = user.getRecommends();
+        Integer cnt = 0;
+        for(FriendRecommendEntry entry : list){
+            if(entry.state.equals("请求加为好友")){
+                cnt++;
+            }
+        }
+        SpUtils.setCachedNewFriendNum(cnt);
+        getIView().setCachedNewFriendNum();
     }
 }

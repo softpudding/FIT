@@ -1,9 +1,13 @@
 package com.example.fitmvp.view.fragment.friends;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +30,7 @@ import com.example.fitmvp.chat.activity.ChatActivity;
 import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.presenter.MessagePresenter;
 import com.example.fitmvp.utils.LogUtils;
+import com.nostra13.universalimageloader.utils.L;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -69,6 +75,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     protected void initView(){
         recyclerView = ButterKnife.findById(view,R.id.message_list);
         recyclerView.setLayoutManager(linearLayoutManager);
+        //注册刷新Fragment数据的方法
+        registerReceiver();
     }
 
     @Override
@@ -121,8 +129,12 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
                     holder.setText(R.id.new_msg_number,String.format("%d",data.getNewMsgNum()));
                     holder.setVisible(R.id.new_msg_number,View.VISIBLE);
                 }
+                else if(data.getNewMsgNum()>99){
+                    holder.setText(R.id.new_msg_number,"99+");
+                    holder.setVisible(R.id.new_msg_number,View.VISIBLE);
+                }
                 else{
-                    holder.setVisible(R.id.new_msg_number,View.GONE);
+                    holder.setVisible(R.id.new_msg_number,View.INVISIBLE);
                 }
             }
         };
@@ -131,7 +143,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
             public void onItemClick(View view, int position) {
                 ConversationEntity entity = convList.get(position);
                 Conversation conversation = JMessageClient.getSingleConversation(entity.getUsername(), BaseApplication.getAppKey());
-                conversation.setUnReadMessageCnt(0);
+                conversation.resetUnreadCount();
+                LogUtils.e("debug","click item");
                 updateData();
 
                 Intent intent = new Intent(getActivity(), ChatActivity.class);
@@ -145,7 +158,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         recyclerView.setAdapter(adapter);
     }
 
-    private void updateData(){
+    public void updateData(){
+        LogUtils.e("updateData","start");
         convList = mPresenter.getConvList();
         TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
         if(convList.size()==0 || convList==null){
@@ -161,21 +175,36 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     @Override
     public void onClick(View view){}
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(MessageEvent event) {
-        updateData();
-        LogUtils.e("接收在线消息","...");
+    private LocalBroadcastManager broadcastManager;
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateMsgList");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
     }
 
-    /**
-     * 接收离线消息
-     *
-     * @param event 离线消息事件
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(OfflineMessageEvent event) {
-        updateData();
-        LogUtils.e("接收离线消息","...");
-    }
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String refresh= intent.getStringExtra("refreshInfo");
+            if ("yes".equals(refresh)) {
+                // 在主线程中刷新UI，用Handler来实现
+                new Handler().post(new Runnable() {
+                    public void run() {
+                        //在这里来写你需要刷新的地方
+                        updateData();
+                    }
+                });
+            }
+        }
+    };
 
+    //注销广播
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
+    }
 }
