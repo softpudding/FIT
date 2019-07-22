@@ -33,6 +33,7 @@
             android:id="@+id/friend_recommend"
             android:layout_width="fill_parent"
             android:layout_height="52dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -54,10 +55,15 @@
 
             <TextView
                 android:id="@+id/friend_unread_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="textEnd" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/unread_msg_red"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

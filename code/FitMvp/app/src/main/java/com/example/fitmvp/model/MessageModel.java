@@ -5,6 +5,7 @@ import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.ConversationEntity;
 import com.example.fitmvp.chat.utils.TimeFormat;
 import com.example.fitmvp.contract.MessageContract;
+import com.example.fitmvp.utils.LogUtils;
 import com.nostra13.universalimageloader.utils.L;
 
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class MessageModel extends BaseModel implements MessageContract.Model {
+    private static List<ConversationEntity> list  = new ArrayList<>();
+
     public List<ConversationEntity> getConvList(){
         // 从本地数据库中获取会话列表，默认按照会话的最后一条消息的时间，降序排列
         List<Conversation> convList = JMessageClient.getConversationList();
-        List<ConversationEntity> list = new ArrayList<>();
+        list.clear();
         for(Conversation conv : convList) {
             if(conv!=null){
                 ConversationEntity entity = getEntity(conv);
@@ -48,6 +51,21 @@ public class MessageModel extends BaseModel implements MessageContract.Model {
                     return 0;
                 }
             });
+        }
+        return list;
+    }
+
+    public List<ConversationEntity> updateConv(Conversation conv){
+        for(ConversationEntity entity: list){
+            Integer index = list.indexOf(entity);
+            UserInfo userInfo = (UserInfo) conv.getTargetInfo();
+            // 找到对应的会话后更新，跳出循环
+            if(entity.getUsername().equals(userInfo.getUserName())){
+                entity = getEntity(conv);
+                list.remove(index);
+                list.add(entity);
+                break;
+            }
         }
         return list;
     }

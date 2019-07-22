@@ -24,6 +24,7 @@ import android.widget.AbsListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
@@ -145,7 +146,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     @Override
     public void onDestroy() {
         // TODO:eventbus
-        //EventBus.getDefault().unregister(this);
+//        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 
@@ -172,7 +173,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home://actionbar的左侧图标的点击事件处理
-                finish();
+                onBackPressed();
                 break;
             case R.id.to_friend_info:
                 toFriendInfo();
@@ -571,6 +572,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 //            });
 //        }
 //        else {
+        updateMsgList();
             finish();
             super.onBackPressed();
 //        }
@@ -799,6 +801,15 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 //            e.printStackTrace();
 //        }
 //    }
+
+    //发送刷新数据的广播
+    public void updateMsgList(){
+        Intent intent = new Intent("updateMsgList");
+        intent.putExtra("refreshInfo", "yes");
+        LocalBroadcastManager.getInstance(ChatActivity.this).sendBroadcast(intent);
+        this.setResult(Activity.RESULT_OK, intent);//返回页面1
+        this.finish();
+    }
 
     public void onEvent(MessageEvent event) {
         final Message message = event.getMessage();
