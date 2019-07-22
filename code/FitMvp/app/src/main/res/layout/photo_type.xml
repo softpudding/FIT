@@ -33,6 +33,7 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/round_button"
         android:drawableTop="@drawable/plate_c"
+        android:visibility="invisible"
         android:text="圆盘" />
     <Button
         android:id="@+id/plate_s"
@@ -44,6 +45,7 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/round_button"
         android:drawableTop="@drawable/plate_s"
+        android:visibility="invisible"
         android:text="方盘" />
 
 </RelativeLayout>
