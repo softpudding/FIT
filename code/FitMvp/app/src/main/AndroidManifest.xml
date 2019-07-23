@@ -79,6 +79,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.FriendRecommendActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendSettingActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".chat.activity.ChatActivity"
             android:screenOrientation="portrait"/>
         <!--<activity android:name=".view.activity.P"></activity>-->

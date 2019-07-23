@@ -218,6 +218,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         broadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("updateFriendList");
+        intentFilter.addAction("updateFriendNoteName");
         broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
     }
 
@@ -225,7 +226,8 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         @Override
         public void onReceive(Context context, Intent intent) {
             String refresh= intent.getStringExtra("refreshInfo");
-            if ("yes".equals(refresh)) {
+            String refreshNoteName = intent.getStringExtra("refreshNoteName");
+            if ("yes".equals(refresh) || "yes".equals(refreshNoteName)) {
                 // 在主线程中刷新UI，用Handler来实现
                 new Handler().post(new Runnable() {
                     public void run() {
@@ -237,10 +239,10 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         }
     };
 
-    //注销广播
     @Override
     public void onDetach() {
         super.onDetach();
+        //注销广播
         broadcastManager.unregisterReceiver(mRefreshReceiver);
     }
 }

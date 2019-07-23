@@ -138,4 +138,17 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
         // 更新页面
         // friendPresenter.updateFriendList();
     }
+
+    public Boolean updateNoteName(String newNoteName, String friendName){
+        FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),friendName,BaseApplication.getAppKey());
+        if(friendEntry!=null){
+            friendEntry.noteName = newNoteName;
+            friendEntry.displayName = newNoteName;
+            friendEntry.save();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

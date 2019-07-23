@@ -1,9 +1,13 @@
 package com.example.fitmvp.view.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -141,9 +145,10 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
                 onBackPressed();
                 break;
             case R.id.set_notename:
-                //toFriendInfo();
+                toSetNoteName();
                 break;
             case R.id.delete_friend:
+                // deleteFriend();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -152,6 +157,9 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        //注册刷新Fragment数据的方法
+        registerReceiver();
+
         phone = intent.getStringExtra("phone");
         // 所有需要的参数都被传入
         if(phone != null){
@@ -332,5 +340,52 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(friendIntent);
         this.setResult(Activity.RESULT_OK, friendIntent);//返回页面1
         this.finish();
+    }
+
+    // 跳转至修改备注名的页面
+    private void toSetNoteName(){
+        Intent newIntent = new Intent();
+        if(!noteName.equals("")){
+            noteName = show_notename.getText().toString().trim();
+        }
+        newIntent.putExtra("noteName",noteName);
+        newIntent.putExtra("userName",phone);
+        newIntent.setClass(FriendDetailActivity.this, FriendSettingActivity.class);
+        startActivity(newIntent);
+    }
+
+    private LocalBroadcastManager broadcastManager;
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateFriendNoteName");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
+    }
+
+    // 接收广播，刷新好友备注名
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            String refresh= intent.getStringExtra("refreshNoteName");
+            if ("yes".equals(refresh)) {
+                // 在主线程中刷新UI，用Handler来实现
+                new Handler().post(new Runnable() {
+                    public void run() {
+                        //在这里来写你需要刷新的地方
+                        String newNoteName = intent.getStringExtra("newNoteName");
+                        show_notename.setText(newNoteName);
+                    }
+                });
+            }
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //注销广播
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
     }
 }

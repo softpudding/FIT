@@ -191,6 +191,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         broadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("updateMsgList");
+        intentFilter.addAction("updateFriendNoteName");
         broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
     }
 
@@ -198,7 +199,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         @Override
         public void onReceive(Context context, Intent intent) {
             String refresh= intent.getStringExtra("refreshInfo");
-            if ("yes".equals(refresh)) {
+            String refreshNoteName = intent.getStringExtra("refreshNoteName");
+            if ("yes".equals(refresh) || "yew".equals(refreshNoteName)) {
                 updateData();
             }
         }

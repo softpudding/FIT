@@ -34,9 +34,9 @@
                 android:background="@color/white"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:maxLength="30"
+                android:maxLength="15"
                 android:text="Name"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
-            android:text="备注名不能超过30字"
+            android:text="备注名不能超过15字"
             android:textAlignment="textEnd"
             android:textColor="@color/circleRed"
             android:visibility="invisible" />
