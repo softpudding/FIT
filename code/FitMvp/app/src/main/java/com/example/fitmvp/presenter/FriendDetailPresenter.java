@@ -43,6 +43,7 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
                         public void updateFriend() {
                             // refresh ui
                             getIView().updateFriendList();
+                            // TODO: 刷新验证消息列表
                         }
                     });
                     getIView().finish();
@@ -63,6 +64,7 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
                     //拒绝好友请求成功
                     LogUtils.e("refuse_invite","success");
                     recommendModel.updateRecommend(username,"已拒绝");
+                    // TODO：刷新验证消息UI
                     getIView().finish();
                 } else {
                     //拒绝好友请求失败

@@ -51,12 +51,13 @@ public class FriendSearchPresenter extends BasePresenter<FriendSearchActivity> i
 
     @Override
     public Boolean isFriend(UserInfo friend){
-        FriendEntry friendEntry = FriendEntry.getFriend(friend.getUserID());
-        if(friendEntry == null){
-            return false;
-        }
-        else{
-            return true;
-        }
+//        FriendEntry friendEntry = FriendEntry.getFriend(friend.getUserID());
+//        if(friendEntry == null){
+//            return false;
+//        }
+//        else{
+//            return true;
+//        }
+        return friend.isFriend();
     }
 }

@@ -131,17 +131,25 @@ public class FriendSearchActivity extends BaseActivity<FriendSearchPresenter> im
                 final Intent intent = new Intent(FriendSearchActivity.this,FriendDetailActivity.class);
                 // 传参
                 UserInfo friend = searchList.get(position);
-                intent.putExtra("isFriend",mPresenter.isFriend(friend));
+                Boolean isFriend = friend.isFriend();
+                intent.putExtra("isFriend",isFriend);
                 intent.putExtra("phone",friend.getUserName());
                 intent.putExtra("nickname",friend.getNickname());
                 intent.putExtra("notename",friend.getNotename());
                 intent.putExtra("avatar",friend.getAvatar());
                 intent.putExtra("gender", UserUtils.getGender(friend));
                 intent.putExtra("birthday",UserUtils.getBirthday(friend));
-                intent.putExtra("buttonType",0);
+                Integer buttonType = 0;
+                if (isFriend){
+                    buttonType = 1;
+                }
+                intent.putExtra("buttonType",buttonType);
                 startActivity(intent);
                 FriendSearchActivity.this.finish();
             }
+
+            @Override
+            public void onItemLongClick(View view, int position){}
         });
         recyclerView.setAdapter(adapter);
     }

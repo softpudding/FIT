@@ -91,6 +91,9 @@ public class FragmentMainpage extends Fragment {
                 intent.putExtra("image", item.getImage());
                 startActivity(intent);
             }
+            // TODO:长按后有什么操作吗？
+            @Override
+            public void onItemLongClick(View view, int position){}
         });
         // 设置adapter
         recyclerView.setAdapter(adapter);

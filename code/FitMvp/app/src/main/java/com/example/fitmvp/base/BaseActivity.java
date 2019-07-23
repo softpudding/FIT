@@ -20,10 +20,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getView());
-        initView();
         // 设置actionBar内容
         setBar();
+        setContentView(getView());
+        initView();
         mPresenter = loadPresenter();
         initCommonData();
         initListener();

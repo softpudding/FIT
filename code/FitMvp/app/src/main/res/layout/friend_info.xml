@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/info"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -35,8 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
-                android:background="@drawable/round_button"
-                android:backgroundTint="@color/colorButton"
+                android:background="@drawable/round_button_purple"
                 android:text="同意"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -46,8 +45,7 @@
             android:id="@+id/button_add_chat"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button"
-            android:backgroundTint="@color/colorButton"
+            android:background="@drawable/round_button_purple"
             android:text="加好友"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />

@@ -153,6 +153,9 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                 intent.putExtra("buttonType",1);
                 startActivity(intent);
             }
+
+            @Override
+            public void onItemLongClick(View view, int position){}
         });
         //设置adapter
         recyclerView.setAdapter(adapter);

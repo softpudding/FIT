@@ -154,6 +154,9 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
                 startActivity(intent);
 
             }
+            // 长按删除消息
+            @Override
+            public void onItemLongClick(View view, int position){}
         });
         recyclerView.setAdapter(adapter);
     }
@@ -161,14 +164,20 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     public void updateData(){
         LogUtils.e("updateData","start");
         convList = mPresenter.getConvList();
-        TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
-        if(convList==null || convList.size()==0){
-            emptyList.setVisibility(View.VISIBLE);
-        }
-        else {
-            emptyList.setVisibility(View.GONE);
-        }
-        adapter.notifyDataSetChanged();
+        // 在主线程中刷新UI，用Handler来实现
+        new Handler().post(new Runnable() {
+            public void run() {
+                //在这里来写你需要刷新的地方
+                TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+                if(convList==null || convList.size()==0){
+                    emptyList.setVisibility(View.VISIBLE);
+                }
+                else {
+                    emptyList.setVisibility(View.GONE);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
     @Override
     protected void initListener(){}
@@ -190,13 +199,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         public void onReceive(Context context, Intent intent) {
             String refresh= intent.getStringExtra("refreshInfo");
             if ("yes".equals(refresh)) {
-                // 在主线程中刷新UI，用Handler来实现
-                new Handler().post(new Runnable() {
-                    public void run() {
-                        //在这里来写你需要刷新的地方
-                        updateData();
-                    }
-                });
+                updateData();
             }
         }
     };

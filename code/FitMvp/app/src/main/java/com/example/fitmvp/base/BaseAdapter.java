@@ -31,7 +31,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
     // 定义点击回调接口
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
-        // void onItemLongClick(View view, int position);
+        void onItemLongClick(View view, int position);
     }
 
     // 定义一个设置点击监听器的方法
@@ -58,7 +58,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
             }
         });
 
-        /*
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -70,7 +70,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.My
                 return true;
             }
         });
-        */
     }
 
     @Override

@@ -10,11 +10,13 @@ import com.example.fitmvp.model.FriendRecommendModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class FriendRecommendPresenter extends BasePresenter<FriendRecommendActivity>
         implements FriendRecommendContract.Presenter {
+    private static List<FriendRecommendEntry> recommendList = new ArrayList<>();
     @Override
     public HashMap<String, IModel> getiModelMap() {
         return loadModelMap(new FriendRecommendModel());
@@ -34,9 +36,9 @@ public class FriendRecommendPresenter extends BasePresenter<FriendRecommendActiv
     }
 
     @Override
-    public void getRecommendList(){
+    public List<FriendRecommendEntry> getRecommendList(){
         UserEntry user = BaseApplication.getUserEntry();
-        List<FriendRecommendEntry> list = user.getRecommends();
-        getIView().setRecommendList(list);
+        recommendList = user.getRecommends();
+        return recommendList;
     }
 }

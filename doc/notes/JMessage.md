@@ -48,3 +48,33 @@ JMessageClient.logout();
 ```java
 JMessageClient.updateUserPassword(String oldPassword, String newPassword, BasicCallback callback);
 ```
+
+### 管理好友
+
++ 搜索-获取用户信息 在```FriendSearchPresenter```中
++ 发送好友请求 在```FriendAddPresenter```中
+
+```java
+  public static void sendInvitationRequest(final String targetUsername,String appKey, final String reason, final BasicCallback callback)
+```
+
++ 监听其他用户发来的加好友请求
+  
+  *问题：只有用户在登录状态时才可以接收到事件，离线时发送的事件在登录后会收不到*
+  
+```java
+public void onEvent(ContactNotifyEvent event){
+       // ......
+    }
+```
+
++ 同意/拒绝好友请求 在```FriendDetailPresenter```中
++ 删除好友 ***待完成***
+
+### 发消息
+
+目前只支持单聊，只能发送文字和emoji，相关代码在./chat/中
+
+消息发送界面复用了JChat Android中的代码  [github 地址](https://github.com/jpush/jchat-android.git)
+
+接收在线/离线消息，更新消息列表 写在```FragmentFriend```中

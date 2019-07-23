@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -14,10 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.base.BaseAdapter;
+import com.example.fitmvp.chat.view.TipItem;
+import com.example.fitmvp.chat.view.TipView;
 import com.example.fitmvp.contract.FriendRecommendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.database.FriendRecommendEntry;
 import com.example.fitmvp.presenter.FriendRecommendPresenter;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
 
@@ -39,6 +43,8 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     RecyclerView recyclerView;
     @Bind(R.id.recommend_hint)
     TextView hint;
+    @Bind(R.id.recommend_view)
+    RelativeLayout mView;
 
     private List<FriendRecommendEntry> recommendList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -64,7 +70,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     @Override
     protected void initData() {
         // 获取列表数据
-        mPresenter.getRecommendList();
+        recommendList = mPresenter.getRecommendList();
         if(recommendList.size()==0){
             hint.setVisibility(View.VISIBLE);
         }
@@ -185,6 +191,37 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
                 intent.putExtra("birthday",birthday);
                 startActivity(intent);
                 // FriendRecommendActivity.this.finish();
+            }
+            // 长按删除
+            @Override
+            public void onItemLongClick(View view, int position){
+                final FriendRecommendEntry item = recommendList.get(position);
+                int[] location = new int[2];
+                view.getLocationOnScreen(location);
+                float OldListY = (float) location[1];
+                float OldListX = (float) location[0];
+                new TipView.Builder(FriendRecommendActivity.this, mView, (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
+                        .addItem(new TipItem("删除"))
+                        .setOnItemClickListener(new TipView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(String name, int position) {
+                                // 删除
+                                FriendRecommendEntry.deleteEntry(item);
+                                recommendList.remove(item);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void dismiss() {
+
+                            }
+                        })
+                        .create();
             }
         });
         recyclerView.setAdapter(adapter);
