@@ -11,8 +11,16 @@
         android:text="没有验证消息"
         android:textAlignment="center" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommend_list"
+    <RelativeLayout
+        android:id="@+id/recommend_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommend_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
 </LinearLayout>

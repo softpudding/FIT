@@ -53,6 +53,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     protected void setBar(){
+        getSupportActionBar().hide();
     }
     @Override
     protected WelcomePresenter loadPresenter() {

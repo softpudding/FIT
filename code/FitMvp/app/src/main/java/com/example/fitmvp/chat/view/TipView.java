@@ -161,56 +161,83 @@ public class TipView extends View {
         mPath.lineTo(x + mHalfTriangleWidth, mItemBorder);
         canvas.drawPath(mPath, doPaint);
 
-        for (int i = 0; i < mItemList.size(); i++) {
+        // 只有一个Item时，不绘制分隔线，绘制最右边的线
+        if(mItemList.size()==1){
             // 当有方块Item被点击时，绘制不同颜色
-            if (choose == i) {
+            if (choose == 0) {
                 mPaint.setColor(Color.DKGRAY);
             } else {
                 mPaint.setColor(Color.BLACK);
             }
-
-            // 绘制第一个方块
-            if (i == 0) {
-                mPath.reset();
-                mPath.moveTo(realLeft + mItemWidth, mItemBorder);
-                mPath.lineTo(realLeft + mCorner, mItemBorder);
-                mPath.quadTo(realLeft, mItemBorder
-                        , realLeft, mItemBorder + mCorner);
-                mPath.lineTo(realLeft, mItemBorder + mItemHeight - mCorner);
-                mPath.quadTo(realLeft, mItemBorder + mItemHeight
-                        , realLeft + mCorner, mItemBorder + mItemHeight);
-                mPath.lineTo(realLeft + mItemWidth, mItemBorder + mItemHeight);
-                canvas.drawPath(mPath, mPaint);
-                // 绘制第一条分隔线
-                mPaint.setColor(mSeparateLineColor);
-                canvas.drawLine(realLeft + mItemWidth, mItemBorder
-                        , realLeft + mItemWidth, mItemBorder + mItemHeight, mPaint);
-
-            } else if (i == mItemList.size() - 1) {
-                // 绘制最后一个方块
-                mPath.reset();
-                mPath.moveTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder);
-                mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + +mItemWidth, mItemBorder
-                        , realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mCorner);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mItemHeight - mCorner);
-                mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mItemHeight,
-                        realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder + mItemHeight);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder + mItemHeight);
-                canvas.drawPath(mPath, mPaint);
-                // 最后一个方块不需要绘制分割线
-            } else {
-
-                // 绘制中间方块
-                canvas.drawRect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder
-                        , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight, mPaint);
-                // 绘制其他分隔线
-                mPaint.setColor(mSeparateLineColor);
-                canvas.drawLine(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder
-                        , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight, mPaint);
-            }
+            mPath.reset();
+            mPath.moveTo(realLeft + mItemWidth - mCorner, mItemBorder);
+            mPath.lineTo(realLeft + mCorner, mItemBorder);
+            mPath.quadTo(realLeft, mItemBorder
+                    , realLeft, mItemBorder + mCorner);
+            mPath.lineTo(realLeft, mItemBorder + mItemHeight - mCorner);
+            mPath.quadTo(realLeft, mItemBorder + mItemHeight
+                    , realLeft + mCorner, mItemBorder + mItemHeight);
+            mPath.lineTo(realLeft + mItemWidth - mCorner, mItemBorder + mItemHeight);
+            mPath.quadTo(realLeft + mItemWidth, mItemBorder + mItemHeight
+                    , realLeft + mItemWidth, mItemBorder + mItemHeight - mCorner);
+            mPath.lineTo(realLeft + mItemWidth, mItemBorder + mCorner);
+            mPath.quadTo(realLeft + mItemWidth, mItemBorder,
+                    realLeft + mItemWidth - mCorner, mItemBorder);
+            canvas.drawPath(mPath, mPaint);
             // 添加方块到方块集合
-            mItemRectList.add(new Rect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder, realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight));
+            mItemRectList.add(new Rect(realLeft, mItemBorder, realLeft + mItemWidth, mItemBorder + mItemHeight));
+        }
+        else{
+            for (int i = 0; i < mItemList.size(); i++) {
+                // 当有方块Item被点击时，绘制不同颜色
+                if (choose == i) {
+                    mPaint.setColor(Color.DKGRAY);
+                } else {
+                    mPaint.setColor(Color.BLACK);
+                }
+
+                // 绘制第一个方块
+                if (i == 0) {
+                    mPath.reset();
+                    mPath.moveTo(realLeft + mItemWidth, mItemBorder);
+                    mPath.lineTo(realLeft + mCorner, mItemBorder);
+                    mPath.quadTo(realLeft, mItemBorder
+                            , realLeft, mItemBorder + mCorner);
+                    mPath.lineTo(realLeft, mItemBorder + mItemHeight - mCorner);
+                    mPath.quadTo(realLeft, mItemBorder + mItemHeight
+                            , realLeft + mCorner, mItemBorder + mItemHeight);
+                    mPath.lineTo(realLeft + mItemWidth, mItemBorder + mItemHeight);
+                    canvas.drawPath(mPath, mPaint);
+                    // 绘制第一条分隔线
+                    mPaint.setColor(mSeparateLineColor);
+                    canvas.drawLine(realLeft + mItemWidth, mItemBorder
+                            , realLeft + mItemWidth, mItemBorder + mItemHeight, mPaint);
+                } else if (i == mItemList.size() - 1) {
+                    // 绘制最后一个方块
+                    mPath.reset();
+                    mPath.moveTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder);
+                    mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + +mItemWidth, mItemBorder
+                            , realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mCorner);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mItemHeight - mCorner);
+                    mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder + mItemHeight,
+                            realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder + mItemHeight);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder + mItemHeight);
+                    canvas.drawPath(mPath, mPaint);
+                    // 最后一个方块不需要绘制分割线
+                } else {
+
+                    // 绘制中间方块
+                    canvas.drawRect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder
+                            , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight, mPaint);
+                    // 绘制其他分隔线
+                    mPaint.setColor(mSeparateLineColor);
+                    canvas.drawLine(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder
+                            , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight, mPaint);
+                }
+                // 添加方块到方块集合
+                mItemRectList.add(new Rect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder, realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder + mItemHeight));
+            }
         }
 
         // 绘制方块上文字
@@ -241,51 +268,80 @@ public class TipView extends View {
         mPath.lineTo(x + mHalfTriangleWidth, mItemBorder);
         canvas.drawPath(mPath, doPaint);
 
-        for (int i = 0; i < mItemList.size(); i++) {
-
-            if (choose == i) {
+        // 只有一个Item时，不绘制分隔线，绘制最右边的线
+        if(mItemList.size()==1){
+            // 当有方块Item被点击时，绘制不同颜色
+            if (choose == 0) {
                 mPaint.setColor(Color.DKGRAY);
             } else {
                 mPaint.setColor(Color.BLACK);
             }
-
-
-            if (i == 0) {
-                mPath.reset();
-                mPath.moveTo(realLeft + mItemWidth, mItemBorder - mItemHeight);
-                mPath.lineTo(realLeft + mCorner, mItemBorder - mItemHeight);
-                mPath.quadTo(realLeft, mItemBorder - mItemHeight
-                        , realLeft, mItemBorder - mItemHeight + mCorner);
-                mPath.lineTo(realLeft, mItemBorder - mCorner);
-                mPath.quadTo(realLeft, mItemBorder
-                        , realLeft + mCorner, mItemBorder);
-                mPath.lineTo(realLeft + mItemWidth, mItemBorder);
-                canvas.drawPath(mPath, mPaint);
-
-                mPaint.setColor(mSeparateLineColor);
-                canvas.drawLine(realLeft + mItemWidth, mItemBorder - mItemHeight
-                        , realLeft + mItemWidth, mItemBorder, mPaint);
-
-            } else if (i == mItemList.size() - 1) {
-                mPath.reset();
-                mPath.moveTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder - mItemHeight);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder - mItemHeight);
-                mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + +mItemWidth, mItemBorder - mItemHeight
-                        , realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder - mItemHeight + mCorner);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder - mCorner);
-                mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder,
-                        realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder);
-                mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder);
-                canvas.drawPath(mPath, mPaint);
-            } else {
-                canvas.drawRect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder - mItemHeight
-                        , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder, mPaint);
-                mPaint.setColor(mSeparateLineColor);
-                canvas.drawLine(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder - mItemHeight
-                        , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder, mPaint);
-            }
-            mItemRectList.add(new Rect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder - mItemHeight, realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder));
+            mPath.reset();
+            mPath.moveTo(realLeft + mItemWidth - mCorner, mItemBorder - mItemHeight);
+            mPath.lineTo(realLeft + mCorner, mItemBorder - mItemHeight);
+            mPath.quadTo(realLeft, mItemBorder - mItemHeight
+                    , realLeft, mItemBorder - mItemHeight + mCorner);
+            mPath.lineTo(realLeft, mItemBorder - mCorner);
+            mPath.quadTo(realLeft, mItemBorder
+                    , realLeft + mCorner, mItemBorder);
+            mPath.lineTo(realLeft + mItemWidth - mCorner, mItemBorder);
+            mPath.quadTo(realLeft + mItemWidth, mItemBorder
+                    , realLeft + mItemWidth, mItemBorder - mCorner);
+            mPath.lineTo(realLeft + mItemWidth, mItemBorder - mItemHeight + mCorner);
+            mPath.quadTo(realLeft + mItemWidth, mItemBorder - mItemHeight,
+                    realLeft + mItemWidth - mCorner, mItemBorder - mItemHeight);
+            canvas.drawPath(mPath, mPaint);
+            // 添加方块到方块集合
+            mItemRectList.add(new Rect(realLeft, mItemBorder - mItemHeight, realLeft + mItemWidth, mItemBorder));
         }
+        else{
+            for (int i = 0; i < mItemList.size(); i++) {
+
+                if (choose == i) {
+                    mPaint.setColor(Color.DKGRAY);
+                } else {
+                    mPaint.setColor(Color.BLACK);
+                }
+
+
+                if (i == 0) {
+                    mPath.reset();
+                    mPath.moveTo(realLeft + mItemWidth, mItemBorder - mItemHeight);
+                    mPath.lineTo(realLeft + mCorner, mItemBorder - mItemHeight);
+                    mPath.quadTo(realLeft, mItemBorder - mItemHeight
+                            , realLeft, mItemBorder - mItemHeight + mCorner);
+                    mPath.lineTo(realLeft, mItemBorder - mCorner);
+                    mPath.quadTo(realLeft, mItemBorder
+                            , realLeft + mCorner, mItemBorder);
+                    mPath.lineTo(realLeft + mItemWidth, mItemBorder);
+                    canvas.drawPath(mPath, mPaint);
+
+                    mPaint.setColor(mSeparateLineColor);
+                    canvas.drawLine(realLeft + mItemWidth, mItemBorder - mItemHeight
+                            , realLeft + mItemWidth, mItemBorder, mPaint);
+
+                } else if (i == mItemList.size() - 1) {
+                    mPath.reset();
+                    mPath.moveTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder - mItemHeight);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder - mItemHeight);
+                    mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + +mItemWidth, mItemBorder - mItemHeight
+                            , realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder - mItemHeight + mCorner);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder - mCorner);
+                    mPath.quadTo(realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth, mItemBorder,
+                            realLeft + mItemWidth * (mItemList.size() - 1) + mItemWidth - mCorner, mItemBorder);
+                    mPath.lineTo(realLeft + mItemWidth * (mItemList.size() - 1), mItemBorder);
+                    canvas.drawPath(mPath, mPaint);
+                } else {
+                    canvas.drawRect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder - mItemHeight
+                            , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder, mPaint);
+                    mPaint.setColor(mSeparateLineColor);
+                    canvas.drawLine(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder - mItemHeight
+                            , realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder, mPaint);
+                }
+                mItemRectList.add(new Rect(realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth, mItemBorder - mItemHeight, realLeft + mItemWidth * (mItemList.size() - 1) - (mItemList.size() - (i + 1)) * mItemWidth + mItemWidth, mItemBorder));
+            }
+        }
+
         drawTitle(canvas);
     }
 

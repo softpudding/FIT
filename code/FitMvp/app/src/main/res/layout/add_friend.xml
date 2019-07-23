@@ -23,8 +23,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/colorButton"
+        android:background="@drawable/round_button_purple"
         android:text="发送"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />

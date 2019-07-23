@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +28,8 @@ import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
+
+import java.lang.reflect.Method;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -74,11 +79,79 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     private String avatar;
     private String gender;
     private String birthday;
+
+    @Override
+    protected void setBar(){
+        ActionBar actionbar = getSupportActionBar();
+        //显示返回箭头默认是不显示的
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        //显示左侧的返回箭头，并且返回箭头和title一直设置返回箭头才能显示
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setDisplayUseLogoEnabled(true);
+        //显示标题
+        actionbar.setDisplayShowTitleEnabled(true);
+
+        intent = getIntent();
+        isFriend = intent.getBooleanExtra("isFriend",false);
+
+        String title;
+        if(isFriend){
+            title = "详细信息";
+        }
+        else{
+            title = "添加好友";
+        }
+        actionbar.setTitle(title);
+    }
+
+    // 右上角的菜单栏 - 进入好友信息界面
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.friendmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // 如果是好友，显示右上角的菜单栏
+        if(isFriend){
+            menu.findItem(R.id.set_notename).setVisible(true);
+            menu.findItem(R.id.delete_friend).setVisible(true);
+            try{
+                Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                m.setAccessible(true);
+                m.invoke(menu, true);
+            } catch (Exception e) {
+                Log.e(getClass().getSimpleName(), "onMenuOpened...unable to set icons for overflow menu", e);
+            }
+        }
+        // 如果不是好友，不显示右上角的菜单栏
+        else{
+            menu.findItem(R.id.set_notename).setVisible(false);
+            menu.findItem(R.id.delete_friend).setVisible(false);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    // ActionBar 功能
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home://actionbar的左侧图标的点击事件处理
+                onBackPressed();
+                break;
+            case R.id.set_notename:
+                //toFriendInfo();
+                break;
+            case R.id.delete_friend:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        intent = getIntent();
-        isFriend = intent.getBooleanExtra("isFriend",false);
         phone = intent.getStringExtra("phone");
         // 所有需要的参数都被传入
         if(phone != null){
@@ -180,26 +253,6 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
             linearLayout.setVisibility(View.VISIBLE);
             action.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    protected void setBar(){
-        ActionBar actionbar = getSupportActionBar();
-        //显示返回箭头默认是不显示的
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        //显示左侧的返回箭头，并且返回箭头和title一直设置返回箭头才能显示
-        actionbar.setDisplayShowHomeEnabled(true);
-        actionbar.setDisplayUseLogoEnabled(true);
-        //显示标题
-        actionbar.setDisplayShowTitleEnabled(true);
-        String title;
-        if(isFriend){
-            title = "详细信息";
-        }
-        else{
-            title = "添加好友";
-        }
-        actionbar.setTitle(title);
     }
 
     protected FriendDetailPresenter loadPresenter() {
