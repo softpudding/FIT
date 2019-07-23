@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
@@ -20,46 +23,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="300dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/show2_name1"
-            android:layout_width="364dp"
-            android:layout_height="28dp"
+            android:layout_width="350dp"
+            android:layout_height="35dp"
             android:textAlignment="center"
             android:text="TextView" />
         <TextView
             android:id="@+id/show2_name2"
-            android:layout_width="364dp"
-            android:layout_height="28dp"
+            android:layout_width="350dp"
+            android:layout_height="35dp"
             android:textAlignment="center"
             android:text="TextView" />
         <TextView
             android:id="@+id/show2_name3"
-            android:layout_width="364dp"
-            android:layout_height="28dp"
+            android:layout_width="350dp"
+            android:layout_height="35dp"
             android:textAlignment="center"
             android:text="TextView" />
         <TextView
             android:id="@+id/show2_name4"
-            android:layout_width="364dp"
-            android:layout_height="28dp"
+            android:layout_width="350dp"
+            android:layout_height="35dp"
             android:textAlignment="center"
             android:text="TextView" />
         <TextView
             android:id="@+id/show2_name5"
-            android:layout_width="364dp"
-            android:layout_height="28dp"
+            android:layout_width="350dp"
+            android:layout_height="35dp"
             android:textAlignment="center"
             android:text="TextView" />
         <ImageButton
             android:id="@+id/sharem"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#00FFFFFF"
             android:src="@drawable/share"
             />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="确认记录" />
+
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>

@@ -1,28 +1,20 @@
 package com.example.fitmvp.view.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
-
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.utils.PictureUtil;
@@ -32,8 +24,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PhotoShow extends AppCompatActivity {
     TextView titleView;
@@ -45,18 +35,17 @@ public class PhotoShow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_show);
-        // 返回键
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 返回键
         titleView = findViewById(R.id.show1_name);
         foodpic = findViewById(R.id.foodpic);
+
         Intent intent = getIntent();
         // 获取参数
         show_name = intent.getStringExtra("foodname");
-        //图片还没收
         byte[] show_pic = intent.getByteArrayExtra("picb");
         bitmap = PictureUtil.Bytes2Bitmap(show_pic);
         foodpic.setImageBitmap(bitmap);
-        // 设置参数
+
         titleView.setText(show_name);
         final Uri urithis = stest(bitmap,show_name);
         ShareView shareView = new ShareView(PhotoShow.this);
@@ -69,11 +58,10 @@ public class PhotoShow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 shareFriends(urithat, show_name);
-//                shareFriend();
             }
         });
     }
-
+    //储存图片并返回本图片的uri
     public Uri stest(Bitmap b, String name){
         //生成路径
         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
@@ -126,11 +114,6 @@ public class PhotoShow extends AppCompatActivity {
         share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
         share_intent.setType("image/*");  //设置分享内容的类型
        share_intent.putExtra(Intent.EXTRA_STREAM, uri);
-        //创建分享的Dialog
-
-       // share_intent.putExtra(Intent.EXTRA_TEXT,name);
-        // share_intent = Intent.createChooser(share_intent,"分享");
-        // startActivity(share_intent);
         try {
             share_intent = Intent.createChooser(share_intent, "dialogTitle");
             startActivity(share_intent);
