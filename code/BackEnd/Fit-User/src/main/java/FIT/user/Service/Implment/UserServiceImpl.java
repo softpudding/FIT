@@ -3,39 +3,32 @@ package FIT.user.Service.Implment;
 import FIT.user.Dao.UserDao;
 import FIT.user.Entity.User;
 import FIT.user.Service.UserService;
-import FIT.user.Service.UserService2;
 import com.alibaba.fastjson.JSONObject;
-
-
-import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.params.HttpClientParams;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
-
+import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    private UserService2 userService2;
 
     @Override
     public User findByTel(String tel) {
@@ -79,96 +72,29 @@ public class UserServiceImpl implements UserService {
             userDao.save(test);
             /*
                 调用别人的API，实现更改密码
-             */
-/**
-            try {
-                String url = "https://api.im.jpush.cn" + " /v1/users/" + tel + "/password";
+            */
+            String url = "https://api.im.jpush.cn/v1/users/"+ tel + "/password";
+            org.apache.http.client.HttpClient client = HttpClientBuilder.create().build();
+            HttpPut put = new HttpPut(url);
 
-                System.out.println(1);
-                HttpClient client = new DefaultHttpClient();
-                HttpPost request = new HttpPost(url);
-                System.out.println(2);
-                List<BasicNameValuePair> pairs = new ArrayList<>();
-                pairs.add(new BasicNameValuePair("new_password", tel));
+            String payload = "{" +
+                    "\"new_password\": \"" + pwd + "\"" +
+                    "}";
+            StringEntity entity = new StringEntity(payload,
+                    ContentType.APPLICATION_JSON);
 
-                request.setEntity(new UrlEncodedFormEntity(pairs));
-                System.out.println(3);
-                request.setHeader("Content-Type", "application/json");
-                request.setHeader("Authorization", "Basic ZmY0YTZiZTQ3MWEyNDhiMjMyNTY5OGQzOjZmNjE1NmUzNDI1ODEyYmJlM2IzMDMzOA==");
-                System.out.println(4);
-                client.execute(request);
-                System.out.println(5);
+            System.out.println("\nentity : " + entity);
+            put.setEntity(entity);
 
-            }
-            catch (Exception e ) {
-                System.out.println("Wrong");
-            }
+            // 设置头部
+            put.setHeader("Content-Type", "application/json");
+            put.setHeader("Authorization","Basic ZmY0YTZiZTQ3MWEyNDhiMjMyNTY5OGQzOjZmNjE1NmUzNDI1ODEyYmJlM2IzMDMzOA==");
 
-
-            /*
-            //String basicUrl = "https://api.im.jpush.cn";
-
-            String url = "https://api.im.jpush.cn" + " /v1/users/" + tel + "/password";
-            String params = tel;
-
-            byte[] requestBytes = params.getBytes("utf-8"); // 将参数转为二进制流
-
-            HttpClient httpClient = new HttpClient();// 客户端实例化
-            try {
-            //  经判断 这里有问题哦！
-            //PutMethod putMethod = new PutMethod(url);
-            HttpPut putMethod = new HttpPut(url);
-
-
-            InputStream inputStream = new ByteArrayInputStream(requestBytes, 0,
-                    requestBytes.length);
-            RequestEntity requestEntity = new InputStreamRequestEntity(inputStream,
-                    requestBytes.length, "application/json; charset=utf-8"); // 请求体
-
-
-            // 设置请求头 Content-Type
-                putMethod.addHeader("Content-Type", "application/json");
-                putMethod.addHeader("Authorization", "Basic ZmY0YTZiZTQ3MWEyNDhiMjMyNTY5OGQzOjZmNjE1NmUzNDI1ODEyYmJlM2IzMDMzOA==");
-
-                httpClient.executeMethod((HttpMethod) putMethod);
-            }
-            catch (Exception e) {
-                System.out.println("Here is a problem!");
-            }
-
-*/
-
-
-            /**
-
-            CloseableHttpClient client = HttpClients.createDefault();
-            URIBuilder builder = new URIBuilder();
-            URI uri = null;
-            try {
-                uri = builder.setScheme("http")
-                        .setHost("https://api.im.jpush.cn")
-                        .setPath(" /v1/users/" + tel + "/password")
-                        .build();
-                System.out.println("walk here!");
-                HttpPut put = new HttpPut(uri);
-                //设置请求头
-                put.setHeader("Content-Type", "application/json");
-                put.setHeader("Authorization","Basic ZmY0YTZiZTQ3MWEyNDhiMjMyNTY5OGQzOjZmNjE1NmUzNDI1ODEyYmJlM2IzMDMzOA==");
-                String body = "{\"new_password\": \"111111\"}";
-                //设置请求体
-                System.out.println(body);
-
-                put.setEntity(new StringEntity(body));
-                //获取返回信息
-                System.out.println("I am going to explore!!");
-                client.execute(put);
-                System.out.println("AGAIN!  I am going to explore!!");
-                client.close();
-            } catch (Exception e) {
-                System.out.println("接口请求失败"+e.getStackTrace());
-            }
-             *
-             */
+            HttpResponse response = client.execute(put);
+            System.out.println("\nSending 'PUT' request to URL : " + url);
+            System.out.println("Post parameters : " + put.getEntity().getContent());
+            System.out.println("TEST payload : " + payload);
+            System.out.println("Response Code : " + response.getStatusLine().getStatusCode());
             return "1";
         } else {
             return "0";
