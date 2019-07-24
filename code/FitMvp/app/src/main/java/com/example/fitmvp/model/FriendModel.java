@@ -129,14 +129,14 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
     }
 
     // 删除好友
-    public void deleteFriend(String friendname){
+    public void deleteFriend(String friendname, final InfoHint infoHint){
         UserEntry user = BaseApplication.getUserEntry();
         FriendEntry friendEntry = FriendEntry.getFriend(user, friendname, user.appKey);
         if(friendEntry!=null){
+            LogUtils.e("delete_friend","from database");
             friendEntry.delete();
+            infoHint.updateFriend();
         }
-        // 更新页面
-        // friendPresenter.updateFriendList();
     }
 
     public Boolean updateNoteName(String newNoteName, String friendName){
@@ -151,4 +151,5 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
             return false;
         }
     }
+
 }

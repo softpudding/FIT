@@ -44,6 +44,7 @@ import com.example.fitmvp.chat.view.DropDownListView;
 import com.example.fitmvp.chat.view.TipItem;
 import com.example.fitmvp.chat.view.TipView;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.sj.emoji.EmojiBean;
 
@@ -56,6 +57,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.enums.ContentType;
 import cn.jpush.im.android.api.enums.ConversationType;
@@ -91,6 +93,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     private Conversation mConv;
     private String mTargetId;
     private String mTargetAppKey;
+    private Boolean isFriend;
     private Activity mContext;
     private ChattingListAdapter mChatAdapter;
 //    int maxImgCount = 9;
@@ -115,7 +118,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     InputMethodManager mImm;
     private final UIHandler mUIHandler = new UIHandler(this);
     private boolean mAtAll = false;
-    private boolean isChatRoom = false;
+    //private boolean isChatRoom = false;
 
 
     @Override
@@ -133,7 +136,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 
         this.mWindow = getWindow();
         this.mImm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-      //  mChatView.setListeners(this);
 
         ButterKnife.bind(this);
 
@@ -172,9 +174,11 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home://actionbar的左侧图标的点击事件处理
+            //actionbar的左侧图标的点击事件处理
+            case android.R.id.home:
                 onBackPressed();
                 break;
+            // 右上角图标点击事件，跳转至好友信息界面
             case R.id.to_friend_info:
                 toFriendInfo();
                 break;
@@ -182,12 +186,14 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         return super.onOptionsItemSelected(item);
     }
 
+
     public void toFriendInfo(){
-        LogUtils.e("toFriendPage",mTargetId);
-        Intent intent = new Intent();
+        final Intent intent = new Intent();
         intent.putExtra("TargetId",mTargetId);
+        intent.putExtra("isFriend",isFriend);
         intent.setClass(this, FriendDetailActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void initData() {
@@ -200,12 +206,25 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         initEmoticonsKeyBoardBar();
         if (!TextUtils.isEmpty(mTargetId)) {
             //单聊
+            //是否是好友
+            JMessageClient.getUserInfo(mTargetId, new GetUserInfoCallback() {
+                @Override
+                public void gotResult(int i, String s, UserInfo userInfo) {
+                    if(i==0){
+                        isFriend = userInfo.isFriend();
+                    }
+                    else{
+                        LogUtils.e("find_friend",s);
+                    }
+                }
+            });
             mIsSingle = true;
             mConv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
             if (mConv == null) {
                 mConv = Conversation.createSingleConversation(mTargetId, mTargetAppKey);
             }
             mChatAdapter = new ChattingListAdapter(mContext, mConv, longClickListener);
+
         }
 //        else {
 //            //群聊
@@ -269,6 +288,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 //            mChatView.setGroupIcon();
 //        }
 
+        // TODO:草稿
         String draft = intent.getStringExtra(DRAFT);
         if (draft != null && !TextUtils.isEmpty(draft)) {
             ekBar.getEtChat().setText(draft);
@@ -361,12 +381,12 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                 if (mcgContent.equals("")) {
                     return;
                 }
-                Message msg;
-                TextContent content = new TextContent(mcgContent);
-                LogUtils.d("ChatActivity", "create send message conversation = " + mConv + "==content==" + content.toString());
-                msg = mConv.createSendMessage(content);
 
-                if (!isChatRoom) {
+                if (isFriend) {
+                    Message msg;
+                    TextContent content = new TextContent(mcgContent);
+                    LogUtils.d("ChatActivity", "create send message conversation = " + mConv + "==content==" + content.toString());
+                    msg = mConv.createSendMessage(content);
                     //设置不需要已读回执
                     MessageSendingOptions options = new MessageSendingOptions();
                     options.setNeedReadReceipt(false);
@@ -376,6 +396,9 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                     if (forDel != null) {
                         forDel.clear();
                     }
+                }
+                else{
+                    ToastUtil.setToast("对方不是好友，不能发送消息");
                 }
             }
         });
@@ -395,30 +418,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-//            case R.id.jmui_return_btn:
-//                returnBtn();
-//                break;
-//            case R.id.jmui_right_btn:
-//                //如果是聊天室
-//                if (isChatRoom) {
-//                    startChatRoomActivity(getIntent().getLongExtra("chatRoomId", 0));
-//                }
-//                else {
-//                    startChatDetailActivity(mTargetId, mTargetAppKey, mGroupId);
-////                }
-//                break;
-//            case R.id.jmui_at_me_btn:
-//                if (mUnreadMsgCnt < ChattingListAdapter.PAGE_MESSAGE_COUNT) {
-//                    int position = ChattingListAdapter.PAGE_MESSAGE_COUNT + mAtMsgId - mConv.getLatestMessage().getId();
-//                    mChatView.setToPosition(position);
-//                } else {
-//                    mChatView.setToPosition(mAtMsgId + mUnreadMsgCnt - mConv.getLatestMessage().getId());
-//                }
-//                break;
-            default:
-                break;
-        }
     }
 
     @Override
@@ -742,9 +741,6 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 
         @Override
         public void onContentLongClick(final int position, View view) {
-            if (isChatRoom) {
-                return;
-            }
             final Message msg = mChatAdapter.getMessage(position);
 
             if (msg == null) {

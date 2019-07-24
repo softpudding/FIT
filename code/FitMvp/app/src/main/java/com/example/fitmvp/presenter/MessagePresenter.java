@@ -31,4 +31,12 @@ public class MessagePresenter extends BasePresenter<FragmentMsg>
         List<ConversationEntity> list = messageModel.getConvList();
         return list;
     }
+
+    @Override
+    public void deleteConv(ConversationEntity entity){
+        MessageModel messageModel = (MessageModel) getiModelMap().get("message");
+        if(messageModel.deleteMsg(entity)){
+            getIView().updateData();
+        }
+    }
 }

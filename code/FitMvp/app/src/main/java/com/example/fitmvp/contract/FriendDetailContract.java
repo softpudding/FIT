@@ -10,5 +10,6 @@ public interface FriendDetailContract {
     interface Presenter {
         void acceptInvite(String username);
         void refuseInvite(String username);
+        void deleteFriend(String username);
     }
 }

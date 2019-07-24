@@ -1,7 +1,9 @@
 package com.example.fitmvp.view.fragment.friends;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -27,9 +30,14 @@ import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.bean.ConversationEntity;
 import com.example.fitmvp.chat.activity.ChatActivity;
+import com.example.fitmvp.chat.view.TipItem;
+import com.example.fitmvp.chat.view.TipView;
+import com.example.fitmvp.database.FriendRecommendEntry;
 import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.presenter.MessagePresenter;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.view.activity.FriendDetailActivity;
+import com.example.fitmvp.view.activity.FriendRecommendActivity;
 import com.nostra13.universalimageloader.utils.L;
 
 import org.greenrobot.eventbus.EventBus;
@@ -55,6 +63,7 @@ import cn.jpush.im.android.api.model.UserInfo;
 public class FragmentMsg extends BaseFragment<MessagePresenter>
         implements View.OnClickListener {
 
+    private LinearLayout mView;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -73,6 +82,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
 
     @Override
     protected void initView(){
+        mView = ButterKnife.findById(view,R.id.msgView);
         recyclerView = ButterKnife.findById(view,R.id.message_list);
         recyclerView.setLayoutManager(linearLayoutManager);
         //注册刷新Fragment数据的方法
@@ -156,7 +166,28 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
             }
             // 长按删除消息
             @Override
-            public void onItemLongClick(View view, int position){}
+            public void onItemLongClick(View view, int position){
+                final ConversationEntity item = convList.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("删除聊天记录");
+                builder.setMessage("将删除好友 “"+item.getTitle()+"”的聊天记录，删除后将不能恢复");
+                builder.setCancelable(true);
+                builder.setPositiveButton("删除", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // 删除
+                        mPresenter.deleteConv(item);
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        LogUtils.e("delete_friend","cancel");
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
         });
         recyclerView.setAdapter(adapter);
     }

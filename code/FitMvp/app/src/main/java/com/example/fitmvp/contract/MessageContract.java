@@ -15,5 +15,6 @@ public interface MessageContract {
 
     interface Presenter {
         List<ConversationEntity> getConvList();
+        void deleteConv(ConversationEntity entity);
     }
 }

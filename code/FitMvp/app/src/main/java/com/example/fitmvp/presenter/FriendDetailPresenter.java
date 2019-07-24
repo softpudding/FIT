@@ -6,19 +6,27 @@ import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.contract.FriendDetailContract;
 import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.model.FriendRecommendModel;
+import com.example.fitmvp.model.MessageModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
+import com.nostra13.universalimageloader.utils.L;
 
 import java.util.HashMap;
 
 import cn.jpush.im.android.api.ContactManager;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.api.BasicCallback;
 
 public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
         implements FriendDetailContract.Presenter {
+
     private FriendRecommendModel recommendModel = new FriendRecommendModel();
     private FriendModel friendModel = new FriendModel();
+    private MessageModel msgModel = new MessageModel();
+
     @Override
     public HashMap<String, IModel> getiModelMap() {
         return null;
@@ -43,7 +51,9 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
                         public void updateFriend() {
                             // refresh ui
                             getIView().updateFriendList();
-                            // TODO: 刷新验证消息列表
+                            // 刷新验证消息列表
+                            getIView().updateRecommend();
+                            getIView().finish();
                         }
                     });
                     getIView().finish();
@@ -69,6 +79,47 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
                 } else {
                     //拒绝好友请求失败
                     LogUtils.e("refuse_invite","fail :"+ responseMessage);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void deleteFriend(final String username){
+        JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
+            @Override
+            public void gotResult(int i, String s, UserInfo userInfo) {
+                if(i==0){
+                    userInfo.removeFromFriendList(new BasicCallback() {
+                        @Override
+                        public void gotResult(int responseCode, String responseMessage) {
+                            if (0 == responseCode) {
+                                //移出好友列表成功
+                                // 刷新好友列表、聊天记录列表、验证信息列表
+                                recommendModel.updateRecommend(username,"已删除");
+
+                                friendModel.deleteFriend(username, new FriendContract.Model.InfoHint() {
+                                    @Override
+                                    public void updateFriend() {
+                                        getIView().updateFriendList();
+                                    }
+                                });
+
+                                Boolean flag = msgModel.deleteConv(username);
+                                if(flag){
+                                    getIView().updateMsgList();
+                                }
+                                getIView().finish();
+
+                            } else {
+                                //移出好友列表失败
+                                LogUtils.e("delete_friend_fail",responseMessage);
+                            }
+                        }
+                    });
+                }
+                else {
+                    LogUtils.e("find_user",s);
                 }
             }
         });
