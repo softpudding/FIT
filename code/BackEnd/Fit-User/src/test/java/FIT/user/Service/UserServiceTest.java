@@ -84,7 +84,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void chanegInfoTest() {
+    public void chanegInfoTest() throws Exception {
         JSONObject data_f = new JSONObject();
         data_f.put("tel", "Never has it!");
         /* assertEquals(false,userService.changeUserInfo(data_f)); */

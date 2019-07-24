@@ -17,7 +17,7 @@ public interface UserService {
 
     Integer sendMessage(String tel);
 
-    boolean changeUserInfo(JSONObject data);
+    boolean changeUserInfo(JSONObject data) throws Exception;
 
     Iterable<User> findAll();
 }
