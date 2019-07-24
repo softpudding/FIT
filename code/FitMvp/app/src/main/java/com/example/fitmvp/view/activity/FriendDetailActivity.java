@@ -175,7 +175,8 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         }
         // 只传入用户名，由聊天界面进入好友信息界面
         else{
-            isFriend = intent.getBooleanExtra("isFriend",false);
+            // isFriend = intent.getBooleanExtra("isFriend",false);
+            isFriend = true;
             phone = intent.getStringExtra("TargetId");
             FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),
                     phone,BaseApplication.getAppKey());
@@ -186,32 +187,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
                 gender = friendEntry.gender;
                 birthday = friendEntry.birthday;
             }
-            else {
-                friendEntry = new FriendEntry();
-                // 不再是好友
-                JMessageClient.getUserInfo(phone, new GetUserInfoCallback() {
-                    @Override
-                    public void gotResult(int i, String s, UserInfo userInfo) {
-                        if(i==0){
-                            LogUtils.e("nickName",userInfo.getNickname());
-                            nickName = userInfo.getNickname();
-                            noteName = "";
-                            avatar = userInfo.getAvatar();
-                            gender = UserUtils.getGender(userInfo);
-                            birthday = UserUtils.getBirthday(userInfo);
-                        }
-                        else {
-                            LogUtils.e("find_friend",s);
-                        }
-                    }
-                });
-            }
-            if(isFriend){
-                button_type = 1;
-            }
-            else{
-                button_type = 0;
-            }
+            button_type = 1;
         }
 
         // 显示头像

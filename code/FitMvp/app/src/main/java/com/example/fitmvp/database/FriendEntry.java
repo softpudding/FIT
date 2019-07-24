@@ -81,4 +81,13 @@ public class FriendEntry extends Model {
     public void setNickName(String name){
         nickName = name;
     }
+    public void setGender(String gender){
+        this.gender = gender;
+    }
+    public void setBirthday(String birthday){
+        this.birthday = birthday;
+    }
+    public void setAvatar(String avatar){
+        this.avatar = avatar;
+    }
 }

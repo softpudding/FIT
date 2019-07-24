@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,12 +46,14 @@ import com.example.fitmvp.chat.view.TipItem;
 import com.example.fitmvp.chat.view.TipView;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
+import com.example.fitmvp.utils.UserUtils;
 import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.sj.emoji.EmojiBean;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +96,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     private Conversation mConv;
     private String mTargetId;
     private String mTargetAppKey;
-    private Boolean isFriend;
+    private Boolean isFriend = true;
     private Activity mContext;
     private ChattingListAdapter mChatAdapter;
 //    int maxImgCount = 9;
@@ -161,6 +164,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         //显示标题
         actionbar.setDisplayShowTitleEnabled(true);
         actionbar.setTitle(mTitle);
+
     }
 
     // 右上角的菜单栏 - 进入好友信息界面
@@ -180,20 +184,50 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
                 break;
             // 右上角图标点击事件，跳转至好友信息界面
             case R.id.to_friend_info:
-                toFriendInfo();
+                if(isFriend){
+                    toFriendInfo();
+                }
+                else{
+                    toAddFriend();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void toFriendInfo(){
+    // 好友信息页面 （可发消息）
+    private void toFriendInfo(){
         final Intent intent = new Intent();
         intent.putExtra("TargetId",mTargetId);
-        intent.putExtra("isFriend",isFriend);
+        //intent.putExtra("isFriend",isFriend);
         intent.setClass(this, FriendDetailActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
+    }
+
+    // 用户信息页面 （可加好友）
+    private void toAddFriend(){
+        JMessageClient.getUserInfo(mTargetId, new GetUserInfoCallback() {
+            @Override
+            public void gotResult(int i, String s, UserInfo userInfo) {
+                if(i==0){
+                    Intent intent = new Intent();
+                    intent.putExtra("phone",userInfo.getUserName());
+                    intent.putExtra("nickname",userInfo.getNickname());
+                    intent.putExtra("notename","");
+                    intent.putExtra("avatar",userInfo.getAvatar());
+                    intent.putExtra("gender", UserUtils.getGender(userInfo));
+                    intent.putExtra("birthday",UserUtils.getBirthday(userInfo));
+                    intent.putExtra("buttonType",0);
+                    intent.setClass(ChatActivity.this,FriendDetailActivity.class);
+                    startActivity(intent);
+                    ChatActivity.this.finish();
+                }
+                else{
+                    LogUtils.e("find_user",s);
+                }
+            }
+        });
     }
 
     private void initData() {
@@ -202,22 +236,11 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         mTargetId = intent.getStringExtra(TARGET_ID);
         mTargetAppKey = intent.getStringExtra(TARGET_APP_KEY);
         mTitle = intent.getStringExtra(BaseApplication.CONV_TITLE);
+        isFriend = intent.getBooleanExtra("isFriend",true);
         mMyInfo = JMessageClient.getMyInfo();
         initEmoticonsKeyBoardBar();
         if (!TextUtils.isEmpty(mTargetId)) {
             //单聊
-            //是否是好友
-            JMessageClient.getUserInfo(mTargetId, new GetUserInfoCallback() {
-                @Override
-                public void gotResult(int i, String s, UserInfo userInfo) {
-                    if(i==0){
-                        isFriend = userInfo.isFriend();
-                    }
-                    else{
-                        LogUtils.e("find_friend",s);
-                    }
-                }
-            });
             mIsSingle = true;
             mConv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
             if (mConv == null) {
@@ -289,10 +312,10 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
 //        }
 
         // TODO:草稿
-        String draft = intent.getStringExtra(DRAFT);
-        if (draft != null && !TextUtils.isEmpty(draft)) {
-            ekBar.getEtChat().setText(draft);
-        }
+//        String draft = intent.getStringExtra(DRAFT);
+//        if (draft != null && !TextUtils.isEmpty(draft)) {
+//            ekBar.getEtChat().setText(draft);
+//        }
 
         mChatView.setChatListAdapter(mChatAdapter);
 //        mChatAdapter.initMediaPlayer();
@@ -431,20 +454,20 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
         JMessageClient.exitConversation();
         //发送保存为草稿事件到会话列表
         // TODO: 保存草稿
-        EventBus.getDefault().post(new Event.Builder().setType(EventType.draft)
-                .setConversation(mConv)
-                .setDraft(ekBar.getEtChat().getText().toString())
-                .build());
-        BaseApplication.delConversation = null;
-        if (mConv.getAllMessage() == null || mConv.getAllMessage().size() == 0) {
-            if (mIsSingle) {
-                JMessageClient.deleteSingleConversation(mTargetId);
-            }
-//            else {
-//                JMessageClient.deleteGroupConversation(mGroupId);
+//        EventBus.getDefault().post(new Event.Builder().setType(EventType.draft)
+//                .setConversation(mConv)
+//                .setDraft(ekBar.getEtChat().getText().toString())
+//                .build());
+//        BaseApplication.delConversation = null;
+//        if (mConv.getAllMessage() == null || mConv.getAllMessage().size() == 0) {
+//            if (mIsSingle) {
+//                JMessageClient.deleteSingleConversation(mTargetId);
 //            }
-            BaseApplication.delConversation = mConv;
-        }
+////            else {
+////                JMessageClient.deleteGroupConversation(mGroupId);
+////            }
+//            BaseApplication.delConversation = mConv;
+//        }
         updateMsgList();
         finish();
         super.onBackPressed();

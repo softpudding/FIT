@@ -8,18 +8,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,33 +23,17 @@ import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.bean.ConversationEntity;
 import com.example.fitmvp.chat.activity.ChatActivity;
-import com.example.fitmvp.chat.view.TipItem;
-import com.example.fitmvp.chat.view.TipView;
-import com.example.fitmvp.database.FriendRecommendEntry;
-import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.MessagePresenter;
 import com.example.fitmvp.utils.LogUtils;
-import com.example.fitmvp.view.activity.FriendDetailActivity;
-import com.example.fitmvp.view.activity.FriendRecommendActivity;
-import com.nostra13.universalimageloader.utils.L;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
-import cn.jpush.im.android.api.enums.ConversationType;
-import cn.jpush.im.android.api.event.MessageEvent;
-import cn.jpush.im.android.api.event.OfflineMessageEvent;
 import cn.jpush.im.android.api.model.Conversation;
-import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 
 
@@ -82,8 +59,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
 
     @Override
     protected void initView(){
-        mView = ButterKnife.findById(view,R.id.msgView);
-        recyclerView = ButterKnife.findById(view,R.id.message_list);
+        mView = view.findViewById(R.id.msgView);
+        recyclerView = view.findViewById(R.id.message_list);
         recyclerView.setLayoutManager(linearLayoutManager);
         //注册刷新Fragment数据的方法
         registerReceiver();
@@ -92,7 +69,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     @Override
     public void initData(){
         convList = mPresenter.getConvList();
-        TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+        final TextView emptyList = view.findViewById(R.id.empty_msg_list);
         if(convList==null || convList.size()==0){
             emptyList.setVisibility(View.VISIBLE);
         }
@@ -161,6 +138,15 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
                 intent.putExtra(BaseApplication.CONV_TITLE, entity.getTitle());
                 intent.putExtra(BaseApplication.TARGET_ID, entity.getUsername());
                 intent.putExtra(BaseApplication.TARGET_APP_KEY, BaseApplication.getAppKey());
+                // 检查是否是好友
+                FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),entity.getUsername(),BaseApplication.getAppKey());
+                if(friendEntry!=null){
+                    intent.putExtra("isFriend",true);
+                }
+                else{
+                    intent.putExtra("isFriend",false);
+                }
+
                 startActivity(intent);
 
             }
@@ -199,7 +185,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         new Handler().post(new Runnable() {
             public void run() {
                 //在这里来写你需要刷新的地方
-                TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+                TextView emptyList = view.findViewById(R.id.empty_msg_list);
                 if(convList==null || convList.size()==0){
                     emptyList.setVisibility(View.VISIBLE);
                 }

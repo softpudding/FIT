@@ -115,6 +115,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         builder.setMessage(str) ;
         builder.setPositiveButton("是" ,  null );
         builder.show();
+        waiting.setVisibility(View.GONE);
+        login.setVisibility(View.VISIBLE);
     }
 
     public void toRegister(){

@@ -27,12 +27,10 @@ import com.example.fitmvp.view.activity.FriendDetailActivity;
 import com.example.fitmvp.view.activity.FriendRecommendActivity;
 import com.example.fitmvp.view.activity.FriendSearchActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.nostra13.universalimageloader.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
@@ -63,12 +61,12 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
 
     @Override
     protected void initView(){
-        recyclerView = ButterKnife.findById(view,R.id.friend_list);
+        recyclerView = view.findViewById(R.id.friend_list);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        addFriend = ButterKnife.findById(view,R.id.add_friend);
-        recommends = ButterKnife.findById(view,R.id.friend_recommend);
-        cachedNewFriendNum = ButterKnife.findById(view,R.id.friend_unread_msg);
+        addFriend = view.findViewById(R.id.add_friend);
+        recommends = view.findViewById(R.id.friend_recommend);
+        cachedNewFriendNum = view.findViewById(R.id.friend_unread_msg);
         //注册刷新Fragment数据的方法
         registerReceiver();
     }
