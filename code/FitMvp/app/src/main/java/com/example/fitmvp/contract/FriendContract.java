@@ -22,5 +22,7 @@ public interface FriendContract {
     interface Presenter {
         List<FriendEntry> getFriendList();
         void handleEvent(String fromUsername, String reason, ContactNotifyEvent.Type type);
+        void initCacheNum();
+        void initFriendList();
     }
 }

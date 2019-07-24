@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.fitmvp.R;
@@ -22,13 +23,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Bind(R.id.input_password)
     EditText inputPassword;
     @Bind(R.id.button_login)
-    FloatingActionButton login;
-    @Bind(R.id.button_toRegister)
-    Button buttonToRegister;
+    Button login;
+    @Bind(R.id.toRegister)
+    TextView buttonToRegister;
     @Bind(R.id.toRepassword)
     TextView changePassword;
-    @Bind(R.id.button2)
-    Button toMain;
+    @Bind(R.id.wait_login)
+    ProgressBar waiting;
 
     @Override
     protected void setBar(){
@@ -48,12 +49,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         login.setOnClickListener(this);
         buttonToRegister.setOnClickListener(this);
         changePassword.setOnClickListener(this);
-        toMain.setOnClickListener(this);
     }
 
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        waiting.setVisibility(View.GONE);
+        login.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -67,15 +69,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             case R.id.button_login:
                 otherViewClick(view);
                 break;
-            case R.id.button_toRegister:
+            case R.id.toRegister:
                 toRegister();
                 break;
             case R.id.toRepassword:
                 toRePassword();
-                break;
-            // 直接去主页，调试用
-            case R.id.button2:
-                loginSuccess();
                 break;
             default:
                 otherViewClick(view);
@@ -86,7 +84,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected void otherViewClick(View view) {
         // 点击登录后暂时不能再点击
-        login.setEnabled(false);
+        waiting.setVisibility(View.VISIBLE);
+        login.setVisibility(View.GONE);
         mPresenter.login(getAccount(), getPassword());
     }
 
@@ -102,7 +101,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginSuccess(){
-        login.setEnabled(true);
         Intent intent = new Intent();
         intent.setClass(LoginActivity.this, MainActivity.class);
         intent.putExtra("id",0);
@@ -112,7 +110,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void loginFail(String title, String str){
-        login.setEnabled(true);
         AlertDialog.Builder builder  = new AlertDialog.Builder(LoginActivity.this);
         builder.setTitle(title) ;
         builder.setMessage(str) ;

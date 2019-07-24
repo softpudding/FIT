@@ -137,6 +137,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         return list;
     }
 
+    @Override
     public void initCacheNum(){
         UserEntry user = BaseApplication.getUserEntry();
         List<FriendRecommendEntry> list = user.getRecommends();
@@ -148,5 +149,11 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         }
         SpUtils.setCachedNewFriendNum(cnt);
         getIView().setCachedNewFriendNum();
+    }
+
+    @Override
+    public void initFriendList(){
+        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
+        friendModel.initFriendList();
     }
 }

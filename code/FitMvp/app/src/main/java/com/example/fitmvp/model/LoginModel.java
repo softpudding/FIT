@@ -2,6 +2,7 @@ package com.example.fitmvp.model;
 
 import androidx.annotation.NonNull;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
@@ -12,12 +13,14 @@ import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
@@ -43,7 +46,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                             }
                             switch(response.getResult()){
                                 case "100":
-                                    infoHint.successInfo();
+                                    infoHint.successInfo(response.getUser().getTel());
                                     token = response.getToken();
                                     isLogin = true;
                                     break;
@@ -76,35 +79,45 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                 });
         return isLogin;
     }
-    public void saveUser(){
+    public void saveUser(String username, final InfoHint infoHint){
         // 登录状态设为true
         SpUtils.put("isLogin",true);
         // 保存token
         SpUtils.put("token",token);
         // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
-        UserInfo userInfo = JMessageClient.getMyInfo();
-        if(userInfo!=null){
-            LogUtils.e("save_info",userInfo.getUserName()+" "+userInfo.getNickname());
-            String phone = userInfo.getUserName();
-            String appKey = userInfo.getAppKey();
-            SpUtils.put("phone",phone);
-            SpUtils.put("appKey",appKey);
-            SpUtils.put("nickname",userInfo.getNickname());
-            UserInfo.Gender gender = userInfo.getGender();
-            // 性别
-            SpUtils.put("gender", UserUtils.getGender(userInfo));
-            // 生日
-            SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
-            // 保存身高、体重
 
-            // 更新数据库中用户数据
-            UserEntry userEntry = UserEntry.getUser(phone,appKey);
-            if(userEntry==null){
-                UserEntry newUser = new UserEntry(phone,appKey);
-                newUser.save();
+        JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
+            @Override
+            public void gotResult(int i, String s, UserInfo userInfo) {
+                if(i==0){
+                    LogUtils.e("save_info",userInfo.getUserName()+" "+userInfo.getNickname());
+                    String phone = userInfo.getUserName();
+                    String appKey = userInfo.getAppKey();
+                    SpUtils.put("phone",phone);
+                    SpUtils.put("appKey",appKey);
+                    SpUtils.put("nickname",userInfo.getNickname());
+                    UserInfo.Gender gender = userInfo.getGender();
+                    // 性别
+                    SpUtils.put("gender", UserUtils.getGender(userInfo));
+                    // 生日
+                    SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
+                    // 保存身高、体重
+
+                    // 更新数据库中用户数据
+                    UserEntry userEntry = UserEntry.getUser(phone,appKey);
+                    if(userEntry==null){
+                        LogUtils.e("save_user",phone);
+                        UserEntry newUser = new UserEntry(phone,appKey);
+                        newUser.save();
+                    }
+                    infoHint.successInfo("");
+                }
+                else{
+                    LogUtils.e("find_user",s);
             }
-        }
+            }
+        });
     }
 
     @Override

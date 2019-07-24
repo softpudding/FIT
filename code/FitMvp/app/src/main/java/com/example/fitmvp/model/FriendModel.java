@@ -25,11 +25,9 @@ import cn.jpush.im.android.api.model.UserInfo;
 public class FriendModel extends BaseModel implements FriendContract.Model {
     private List<FriendEntry> mList = new ArrayList<>();
     private List<FriendEntry> forDelete = new ArrayList<>();
-    private FriendPresenter friendPresenter = new FriendPresenter();
 
     // 同步本地好友列表
     public void initFriendList(){
-        final UserEntry user = BaseApplication.getUserEntry();
         ContactManager.getFriendList(new GetUserInfoListCallback() {
             @Override
             public void gotResult(int i, String s, List<UserInfo> list) {
@@ -50,6 +48,7 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                                 String letter = "A";
 
                                 //避免重复请求时导致数据重复A
+                                UserEntry user = BaseApplication.getUserEntry();
                                 FriendEntry friend = FriendEntry.getFriend(user,
                                         userInfo.getUserName(), userInfo.getAppKey());
                                 if (null == friend) {
@@ -76,7 +75,8 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                         }
                     }
                     //其他端删除好友后,登陆时把数据库中的也删掉
-                    List<FriendEntry> friends = user.getFriends();
+                    UserEntry me = BaseApplication.getUserEntry();
+                    List<FriendEntry> friends = me.getFriends();
                     // 移出没有被删除的好友
                     friends.removeAll(forDelete);
                     // 剩下的是已经删除的好友，删除数据库中数据
