@@ -15,7 +15,12 @@ public class RecognitionServiceImpl implements RecognitionService {
 
 
     @Override
-    public void save(Recognition recognition) {
-        recognitionDao.save(recognition);
+    public boolean save(Recognition recognition) {
+        return recognitionDao.save(recognition);
+    }
+
+    @Override
+    public Iterable<Recognition> findAllByTel(String tel) {
+        return recognitionDao.findAllByTel(tel);
     }
 }
