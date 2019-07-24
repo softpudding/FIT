@@ -5,5 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 
 public interface RecognitionService {
 
-    void save(Recognition recognition);
+    boolean save(Recognition recognition);
+
+    Iterable<Recognition> findAllByTel(String tel);
 }

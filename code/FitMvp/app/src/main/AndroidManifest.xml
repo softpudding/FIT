@@ -123,8 +123,6 @@
             android:exported="false">
         </provider>
 
-
-
     </application>
 
 
