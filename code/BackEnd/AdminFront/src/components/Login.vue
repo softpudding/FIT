@@ -1,6 +1,7 @@
 <template>
   <div class="login-box" align="center">
-    <h1>FIT 丑不拉几的管理员</h1>
+    <h1>FIT</h1>
+    <h2>丑不拉几的管理员页面</h2>
     <el-container>
       <el-aside width="560px"></el-aside>
       <el-container>
