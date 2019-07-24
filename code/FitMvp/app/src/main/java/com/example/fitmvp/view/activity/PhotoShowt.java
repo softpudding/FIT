@@ -67,32 +67,37 @@ public class PhotoShowt extends AppCompatActivity{
             }
         });
         //列表显示
-       // initView(bitmap);
+        initView(bitmap);
 
 
     }
-// private void initView(Bitmap bitmap){
-//        fContext=PhotoShowt.this;
-//        list_food=findViewById(R.id.foodlist);
-//        fdata=new LinkedList<FoodItem>();
-//        initfood(fdata,bitmap);
-//        fAdapter=new FoodAdapter((LinkedList<FoodItem>)fdata,fContext);
-//        list_food.setAdapter(fAdapter);
-// }
-//    public void initfood(List<FoodItem> fdata,Bitmap bitmap){
-//        //foodlist = new ArrayList<>();
-//        //缺少图片分隔函数未完成
-//        for(int i=1;i<=4;i++){
-//            FoodItem food1 = new FoodItem();
-//            food1.setBitmap(bitmap);
-//            String is= String.valueOf(i);
-//            food1.setFoodname("food"+ is);
-//            food1.setWeight(100+i);
-//            food1.setEnergy(200+i);
-//            fdata.add(food1);
-//            System.out.println(food1.getFoodname());
+ private void initView(Bitmap bitmap){
+        fContext=PhotoShowt.this;
+        list_food=findViewById(R.id.foodlist);
+        fdata=new LinkedList<FoodItem>();
+        initfood(fdata,bitmap);
+        fAdapter=new FoodAdapter((LinkedList<FoodItem>)fdata,fContext);
+        list_food.setAdapter(fAdapter);
+        //TODO:onclick之后的操作
+//        list_food.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
+//
+//            }
 //        }
-//    }
+ }
+    public void initfood(List<FoodItem> fdata,Bitmap bitmap){
+        //缺少图片分隔函数未完成
+        for(int i=1;i<=4;i++){
+            FoodItem food1 = new FoodItem();
+            food1.setBitmap(bitmap);
+            String is= String.valueOf(i);
+            food1.setFoodname("food"+ is);
+            food1.setWeight(100+i);
+            food1.setEnergy(200+i);
+            fdata.add(food1);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

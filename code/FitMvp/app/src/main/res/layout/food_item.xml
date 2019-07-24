@@ -40,19 +40,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="100g"
                 android:textSize="14sp" />
         </LinearLayout>
         <TextView
             android:id="@+id/foodienergy"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@+id/foodenter"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical|end"
+            android:text="50kg"
+            android:gravity="center"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:text="50千卡"
-            android:orientation="horizontal" />
+            android:textSize="20sp" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:id="@+id/foodenter"
+            android:layout_gravity="end"
+            app:srcCompat="@drawable/more"
+            />
 </LinearLayout>
 </LinearLayout>

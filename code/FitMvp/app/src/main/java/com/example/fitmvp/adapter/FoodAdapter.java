@@ -38,15 +38,13 @@ public class FoodAdapter extends BaseAdapter {
         ImageView foodpic = (ImageView)convertView.findViewById(R.id.foodipic);
         TextView foodname = (TextView) convertView.findViewById(R.id.foodiname);
         TextView foodmuch = (TextView) convertView.findViewById(R.id.foodimuch);
-        TextView fooden=(TextView) convertView.findViewById(R.id.foodienergy);
+        TextView fooden= (TextView) convertView.findViewById(R.id.foodienergy);
         foodpic.setImageBitmap(fdata.get(position).getBitmap());
         foodname.setText(fdata.get(position).getFoodname());
-        foodmuch.setText(String.valueOf(fdata.get(position).getWeight()));
-        fooden.setText(String.valueOf(fdata.get(position).getEnergy()));
-//        String s1=fdata.get(position).getWeight().toString()+"克";
-//        foodmuch.setText(s1);
-//        String s2=fdata.get(position).getEnergy().toString()+"kJ";
-//        fooden.setText(s2);
+        String s1=fdata.get(position).getWeight().toString()+"克";
+        foodmuch.setText(s1);
+        String s2=fdata.get(position).getEnergy().toString()+"kJ";
+        fooden.setText(s2);
         return convertView;
     }
 }

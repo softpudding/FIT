@@ -33,13 +33,13 @@
             android:layout_width="350dp"
             android:layout_height="35dp"
             android:textAlignment="center"
-            android:text="本餐" />
+            android:text="本餐成分" />
 
-        <!--<ListView-->
-            <!--android:id="@+id/foodlist"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="335dp">-->
-        <!--</ListView>-->
+        <ListView
+            android:id="@+id/foodlist"
+            android:layout_width="match_parent"
+            android:layout_height="335dp">
+        </ListView>
 
         <ImageButton
             android:id="@+id/sharem"
