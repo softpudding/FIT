@@ -4,6 +4,7 @@ import FIT.user.Annotation.UserLoginToken;
 import FIT.user.Entity.User;
 import FIT.user.Service.TokenService;
 import FIT.user.Service.UserService;
+import FIT.user.Service.UserService2;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class UsersController {
     private UserService userService;
     @Autowired
     TokenService tokenService;
+    @Autowired
+    private UserService2 userService2;
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/login")               //  这里的自动登录还没有搞好额...
@@ -91,8 +94,24 @@ public class UsersController {
     @PostMapping(path = "/changePassword")    // 记得改回来 这是测试用的  改了已经
     public @ResponseBody
     String changPwd(@RequestParam String tel, @RequestParam String password) {
-        return userService.changePwd(tel, password);
+        try {return userService.changePwd(tel, password);}
+        catch (Exception e){return "报错了";}
     }
+
+    /**
+     * 用来测试怎么连接那个公司的API的
+     * @param tel
+     * @param password
+     * @return
+     */
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/apitest")    // 记得改回来 这是测试用的  改了已经
+    public @ResponseBody
+    String apitest(@RequestParam String tel, @RequestParam String password) {
+        try {return userService2.changePwd(tel, password);}
+        catch (Exception e){return "Controller 报错了兄dei";}
+    }
+
 
 
     @CrossOrigin(origins = "*", maxAge = 3600)
