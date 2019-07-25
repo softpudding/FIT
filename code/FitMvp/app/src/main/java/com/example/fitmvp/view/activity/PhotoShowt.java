@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.adapter.FoodAdapter;
+import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.bean.FoodItem;
 import com.example.fitmvp.utils.PictureUtil;
 
@@ -78,13 +80,23 @@ public class PhotoShowt extends AppCompatActivity{
         initfood(fdata,bitmap);
         fAdapter=new FoodAdapter((LinkedList<FoodItem>)fdata,fContext);
         list_food.setAdapter(fAdapter);
-        //TODO:onclick之后的操作
-//        list_food.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
-//
-//            }
-//        }
+        //点击
+        list_food.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String text = (String) ((TextView)view.findViewById(R.id.foodimuch)).getText();
+                   // String showText = "点击第" + position + "项，文本内容为：" + text + "，ID为：" + id;
+                   //点击第0项，文本内容为：101，ID为：0
+                    Integer itemMuch= Integer.valueOf(text);//本项的重量
+                    changeNum(itemMuch);
+                }
+        });
+ }
+//修改某项的重量
+ public void changeNum(Integer integer){
+        System.out.println(integer);
+
+
  }
     public void initfood(List<FoodItem> fdata,Bitmap bitmap){
         //缺少图片分隔函数未完成

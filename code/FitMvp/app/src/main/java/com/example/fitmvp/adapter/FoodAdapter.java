@@ -1,5 +1,5 @@
 package com.example.fitmvp.adapter;
-
+import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +13,11 @@ import com.example.fitmvp.bean.FoodItem;
 
 import java.util.LinkedList;
 
-public class FoodAdapter extends BaseAdapter {
+public class FoodAdapter extends BaseAdapter{
     private LinkedList<FoodItem> fdata;
     private Context fContext;
+    private boolean isClick = false;
+
     public FoodAdapter(LinkedList<FoodItem> fdata,Context fContext){
         this.fdata=fdata;
         this.fContext=fContext;
@@ -41,10 +43,13 @@ public class FoodAdapter extends BaseAdapter {
         TextView fooden= (TextView) convertView.findViewById(R.id.foodienergy);
         foodpic.setImageBitmap(fdata.get(position).getBitmap());
         foodname.setText(fdata.get(position).getFoodname());
-        String s1=fdata.get(position).getWeight().toString()+"克";
+        String s1=fdata.get(position).getWeight().toString();
         foodmuch.setText(s1);
         String s2=fdata.get(position).getEnergy().toString()+"kJ";
         fooden.setText(s2);
         return convertView;
+    }
+    public void setClick(boolean click) {
+        this.isClick = click;
     }
 }
