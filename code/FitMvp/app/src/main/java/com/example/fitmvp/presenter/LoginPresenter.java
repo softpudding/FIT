@@ -95,5 +95,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                 }
             });
         }
+        else{
+            getIView().setButton();
+        }
     }
 }
