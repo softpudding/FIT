@@ -19,6 +19,7 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
     private Button logout;
     private Button toSetting;
     private TextView textNickname;
+    private TextView textPhone;
 
    @Override
    protected Integer getLayoutId(){
@@ -38,7 +39,9 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
       logout = view.findViewById(R.id.button_logout);
       toSetting = view.findViewById(R.id.button_setting);
       textNickname = view.findViewById(R.id.text_nickname);
+      textPhone = view.findViewById(R.id.text_account);
       textNickname.setText((String)SpUtils.get("nickname",""));
+      textPhone.setText((String)SpUtils.get("phone",""));
    }
 
    @Override

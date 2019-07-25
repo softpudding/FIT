@@ -97,13 +97,14 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                     SpUtils.put("phone",phone);
                     SpUtils.put("appKey",appKey);
                     SpUtils.put("nickname",userInfo.getNickname());
-                    UserInfo.Gender gender = userInfo.getGender();
                     // 性别
                     SpUtils.put("gender", UserUtils.getGender(userInfo));
                     // 生日
                     SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
                     // 保存身高、体重
-
+                    // todo 保存身高体重
+                    SpUtils.put("height","");
+                  //  SpUtils.put("weight","55");
                     // 更新数据库中用户数据
                     UserEntry userEntry = UserEntry.getUser(phone,appKey);
                     if(userEntry==null){
