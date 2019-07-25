@@ -50,21 +50,31 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
             final FriendModel friendModel = (FriendModel) getiModelMap().get("initFriends");
             loginModel.login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
-                public void successInfo() {
+                public void successInfo(final String tel) {
                     // 登录成功后在JMessage中也进行登录
                     JMessageClient.login(account, password, new BasicCallback() {
                         @Override
                         public void gotResult(int responseCode, String responseMessage) {
                             if (responseCode == 0){
                                 // 登录成功，在本地保存用户信息
-                                loginModel.saveUser();
-                                // 初始化好友列表
-                                friendModel.initFriendList();
-                                // 初始化好友请求记录
+                                loginModel.saveUser(tel, new LoginContract.Model.InfoHint() {
+                                    @Override
+                                    public void successInfo(String str) {
+                                        // 页面跳转
+                                        ToastUtil.setToast("登录成功");
+                                        getIView().loginSuccess();
+                                        // 初始化好友列表
+                                        friendModel.initFriendList();
+                                    }
 
-                                // 页面跳转
-                                ToastUtil.setToast("登录成功");
-                                getIView().loginSuccess();
+                                    @Override
+                                    public void errorInfo(String str) {
+                                    }
+
+                                    @Override
+                                    public void failInfo(String str) {
+                                    }
+                                });
                             }
                             else{
                                 getIView().loginFail("登录失败",responseMessage);

@@ -7,7 +7,7 @@ public interface LoginContract {
         Boolean login(@NonNull String account, @NonNull String password, @NonNull final InfoHint
                 infoHint);
         interface InfoHint {
-            void successInfo();
+            void successInfo(String str);
             void errorInfo(String str);
             void failInfo(String str);
         }

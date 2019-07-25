@@ -1,8 +1,10 @@
 package com.example.fitmvp.view.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -31,6 +33,7 @@ import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.UserUtils;
 import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
 import java.lang.reflect.Method;
@@ -148,7 +151,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
                 toSetNoteName();
                 break;
             case R.id.delete_friend:
-                // deleteFriend();
+                deleteFriend();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -172,6 +175,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         }
         // 只传入用户名，由聊天界面进入好友信息界面
         else{
+            // isFriend = intent.getBooleanExtra("isFriend",false);
             isFriend = true;
             phone = intent.getStringExtra("TargetId");
             FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),
@@ -182,11 +186,8 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
                 avatar = friendEntry.avatar;
                 gender = friendEntry.gender;
                 birthday = friendEntry.birthday;
-                button_type = 1;
             }
-            else {
-                // 不再是好友？
-            }
+            button_type = 1;
         }
 
         // 显示头像
@@ -313,7 +314,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
             // 跳转至发送验证消息界面，传好友手机号
             Intent newIntent = new Intent();
             newIntent.setClass(FriendDetailActivity.this, FriendAddActivity.class);
-            newIntent.putExtra("targetUser",intent.getStringExtra("phone"));
+            newIntent.putExtra("targetUser",phone);
             startActivity(newIntent);
         }
         else{
@@ -333,13 +334,28 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         }
     }
 
-    //发送刷新数据的广播
+    //发送刷新好友列表的广播
     public void updateFriendList(){
         Intent friendIntent = new Intent("updateFriendList");
         friendIntent.putExtra("refreshInfo", "yes");
         LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(friendIntent);
-        this.setResult(Activity.RESULT_OK, friendIntent);//返回页面1
-        this.finish();
+        this.setResult(Activity.RESULT_OK, friendIntent);
+    }
+
+    // 发送刷新聊天记录的广播
+    public void updateMsgList(){
+        Intent msgIntent = new Intent("updateMsgList");
+        msgIntent.putExtra("refreshInfo", "yes");
+        LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(msgIntent);
+        this.setResult(Activity.RESULT_OK, msgIntent);
+    }
+
+    // 发送刷新验证消息的广播
+    public void updateRecommend(){
+        Intent intent = new Intent("updateRecommend");
+        intent.putExtra("refreshInfo", "yes");
+        LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(intent);
+        this.setResult(Activity.RESULT_OK, intent);
     }
 
     // 跳转至修改备注名的页面
@@ -352,6 +368,27 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         newIntent.putExtra("userName",phone);
         newIntent.setClass(FriendDetailActivity.this, FriendSettingActivity.class);
         startActivity(newIntent);
+    }
+
+    private void deleteFriend(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(FriendDetailActivity.this);
+        builder.setTitle("删除好友");
+        builder.setMessage("将好友 “"+nickName+"”删除，将同时删除与该好友的聊天记录");
+        builder.setCancelable(true);
+        builder.setPositiveButton("删除", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mPresenter.deleteFriend(phone);
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                LogUtils.e("delete_friend","cancel");
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 
     private LocalBroadcastManager broadcastManager;

@@ -1,22 +1,18 @@
 package com.example.fitmvp.view.fragment.friends;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,34 +23,24 @@ import com.example.fitmvp.base.BaseAdapter;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.bean.ConversationEntity;
 import com.example.fitmvp.chat.activity.ChatActivity;
-import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.MessagePresenter;
 import com.example.fitmvp.utils.LogUtils;
-import com.nostra13.universalimageloader.utils.L;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import butterknife.ButterKnife;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
-import cn.jpush.im.android.api.enums.ConversationType;
-import cn.jpush.im.android.api.event.MessageEvent;
-import cn.jpush.im.android.api.event.OfflineMessageEvent;
 import cn.jpush.im.android.api.model.Conversation;
-import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 
 
 public class FragmentMsg extends BaseFragment<MessagePresenter>
         implements View.OnClickListener {
 
+    private LinearLayout mView;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -73,7 +59,8 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
 
     @Override
     protected void initView(){
-        recyclerView = ButterKnife.findById(view,R.id.message_list);
+        mView = view.findViewById(R.id.msgView);
+        recyclerView = view.findViewById(R.id.message_list);
         recyclerView.setLayoutManager(linearLayoutManager);
         //注册刷新Fragment数据的方法
         registerReceiver();
@@ -82,7 +69,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     @Override
     public void initData(){
         convList = mPresenter.getConvList();
-        TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+        final TextView emptyList = view.findViewById(R.id.empty_msg_list);
         if(convList==null || convList.size()==0){
             emptyList.setVisibility(View.VISIBLE);
         }
@@ -151,12 +138,42 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
                 intent.putExtra(BaseApplication.CONV_TITLE, entity.getTitle());
                 intent.putExtra(BaseApplication.TARGET_ID, entity.getUsername());
                 intent.putExtra(BaseApplication.TARGET_APP_KEY, BaseApplication.getAppKey());
+                // 检查是否是好友
+                FriendEntry friendEntry = FriendEntry.getFriend(BaseApplication.getUserEntry(),entity.getUsername(),BaseApplication.getAppKey());
+                if(friendEntry!=null){
+                    intent.putExtra("isFriend",true);
+                }
+                else{
+                    intent.putExtra("isFriend",false);
+                }
+
                 startActivity(intent);
 
             }
             // 长按删除消息
             @Override
-            public void onItemLongClick(View view, int position){}
+            public void onItemLongClick(View view, int position){
+                final ConversationEntity item = convList.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("删除聊天记录");
+                builder.setMessage("将删除好友 “"+item.getTitle()+"”的聊天记录，删除后将不能恢复");
+                builder.setCancelable(true);
+                builder.setPositiveButton("删除", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // 删除
+                        mPresenter.deleteConv(item);
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        LogUtils.e("delete_friend","cancel");
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
         });
         recyclerView.setAdapter(adapter);
     }
@@ -168,7 +185,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
         new Handler().post(new Runnable() {
             public void run() {
                 //在这里来写你需要刷新的地方
-                TextView emptyList = ButterKnife.findById(view,R.id.empty_msg_list);
+                TextView emptyList = view.findViewById(R.id.empty_msg_list);
                 if(convList==null || convList.size()==0){
                     emptyList.setVisibility(View.VISIBLE);
                 }

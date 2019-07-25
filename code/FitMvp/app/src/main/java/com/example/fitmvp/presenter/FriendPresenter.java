@@ -13,6 +13,7 @@ import com.example.fitmvp.database.FriendRecommendEntry;
 import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.model.FriendRecommendModel;
+import com.example.fitmvp.model.MessageModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
@@ -34,7 +35,8 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     @Override
     public HashMap<String, IModel> getiModelMap() {
         return loadModelMap(new FriendModel(),
-                new FriendRecommendModel());
+                new FriendRecommendModel(),
+                new MessageModel());
     }
 
     @Override
@@ -42,6 +44,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         HashMap<String, IModel> map = new HashMap<>();
         map.put("friend", models[0]);
         map.put("recommend",models[1]);
+        map.put("message",models[2]);
         return map;
     }
 
@@ -49,7 +52,9 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     public void handleEvent(String fromUsername, String reason, ContactNotifyEvent.Type type){
         FriendRecommendModel model = (FriendRecommendModel) getiModelMap().get("recommend");
         FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
+        MessageModel messageModel = (MessageModel) getiModelMap().get("message");
         LogUtils.d("handleEvent",fromUsername);
+        // 添加验证消息记录
         model.addRecommend(fromUsername,reason,type);
         switch (type) {
             //收到好友邀请
@@ -64,7 +69,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
                     public void updateFriend() {
                         new Handler().post(new Runnable() {
                             public void run() {
-                                //在这里来写你需要刷新的地方
+                                // 更新好友列表
                                 getIView().updateData();
                             }
                         });
@@ -79,8 +84,17 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
 
             //对方将你从好友中删除
             case contact_deleted:
-                // TODO： 删除好友 未完成
-                friendModel.deleteFriend(fromUsername);
+                friendModel.deleteFriend(fromUsername, new FriendContract.Model.InfoHint() {
+                    @Override
+                    public void updateFriend() {
+                        new Handler().post(new Runnable() {
+                            public void run() {
+                                // 更新好友列表
+                                getIView().updateData();
+                            }
+                        });
+                    }
+                });
                 getIView().setCachedNewFriendNum();
                 break;
             default:
@@ -123,6 +137,7 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         return list;
     }
 
+    @Override
     public void initCacheNum(){
         UserEntry user = BaseApplication.getUserEntry();
         List<FriendRecommendEntry> list = user.getRecommends();
@@ -134,5 +149,11 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
         }
         SpUtils.setCachedNewFriendNum(cnt);
         getIView().setCachedNewFriendNum();
+    }
+
+    @Override
+    public void initFriendList(){
+        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
+        friendModel.initFriendList();
     }
 }

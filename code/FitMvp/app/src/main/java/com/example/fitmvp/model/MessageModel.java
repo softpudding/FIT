@@ -107,4 +107,39 @@ public class MessageModel extends BaseModel implements MessageContract.Model {
         entity.setMessage(content);
         return entity;
     }
+
+    // 删除对话返回true，没有可删除的对话返回false
+    public Boolean deleteConv(String username){
+        ConversationEntity entity = findConv(username);
+        if(entity!=null){
+            JMessageClient.deleteSingleConversation(username, null);
+            list.remove(entity);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    // 删除会话中的消息，不删除会话
+    public Boolean deleteMsg(ConversationEntity entity){
+        Conversation conv = JMessageClient.getSingleConversation(entity.getUsername());
+        if(conv!=null){
+            conv.deleteAllMessage();
+            list.remove(entity);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private ConversationEntity findConv(String username){
+        for(ConversationEntity entity:list){
+            if(entity.getUsername().equals(username)){
+                return entity;
+            }
+        }
+        return null;
+    }
 }

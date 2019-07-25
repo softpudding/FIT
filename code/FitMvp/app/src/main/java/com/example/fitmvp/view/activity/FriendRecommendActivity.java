@@ -1,14 +1,17 @@
 package com.example.fitmvp.view.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,6 +90,8 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        //注册刷新Fragment数据的方法
+        registerReceiver();
         recyclerView.setLayoutManager(linearLayoutManager);
         hint.setVisibility(View.GONE);
     }
@@ -227,7 +232,41 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
         recyclerView.setAdapter(adapter);
     }
 
-    public void setRecommendList(List<FriendRecommendEntry> list){
-        recommendList = list;
+    public void updateData(){
+        recommendList = mPresenter.getRecommendList();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private LocalBroadcastManager broadcastManager;
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateRecommend");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
+    }
+
+    // 接收广播，刷新好友备注名
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            String refresh= intent.getStringExtra("refreshInfo");
+            if ("yes".equals(refresh)) {
+                updateData();
+            }
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //注销广播
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
     }
 }
