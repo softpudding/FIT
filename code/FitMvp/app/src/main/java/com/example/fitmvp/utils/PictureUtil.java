@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Base64;
+import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.PhotoType1Bean;
@@ -82,6 +85,13 @@ public class PictureUtil {
 
     public static void passPhoto2(Bitmap bitmap){
 
+    }
+    //PopupWindow的背景
+    public static void setBackgroundAlpha(AppCompatActivity activity, float bgAlpha) {
+        WindowManager.LayoutParams lp = activity.getWindow()
+                .getAttributes();
+        lp.alpha = bgAlpha;
+        (activity).getWindow().setAttributes(lp);
     }
 
 }

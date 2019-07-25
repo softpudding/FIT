@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +46,7 @@ public class FoodAdapter extends BaseAdapter{
         foodname.setText(fdata.get(position).getFoodname());
         String s1=fdata.get(position).getWeight().toString();
         foodmuch.setText(s1);
-        String s2=fdata.get(position).getEnergy().toString()+"kJ";
+        String s2=fdata.get(position).getEnergy().toString();
         fooden.setText(s2);
         return convertView;
     }
