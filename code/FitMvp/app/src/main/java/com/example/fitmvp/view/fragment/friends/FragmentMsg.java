@@ -186,6 +186,7 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
             public void run() {
                 //在这里来写你需要刷新的地方
                 TextView emptyList = view.findViewById(R.id.empty_msg_list);
+                convList = mPresenter.getConvList();
                 if(convList==null || convList.size()==0){
                     emptyList.setVisibility(View.VISIBLE);
                 }
@@ -215,9 +216,9 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String refresh= intent.getStringExtra("refreshInfo");
-            String refreshNoteName = intent.getStringExtra("refreshNoteName");
-            if ("yes".equals(refresh) || "yew".equals(refreshNoteName)) {
+            String action = intent.getAction();
+            if("updateMsgList".equals(action)|| "updateFriendNoteName".equals(action)){
+                LogUtils.e("receive","update msg broadcast");
                 updateData();
             }
         }

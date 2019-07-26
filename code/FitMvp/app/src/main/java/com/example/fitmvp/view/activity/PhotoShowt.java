@@ -108,7 +108,6 @@ public class PhotoShowt extends AppCompatActivity{
 
 //修改某项的重量
  public void changeNum(Integer integer){
-
  }
 
     public void initfood(List<FoodItem> fdata,Bitmap bitmap){

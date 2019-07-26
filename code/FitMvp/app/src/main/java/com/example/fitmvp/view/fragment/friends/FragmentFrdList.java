@@ -223,9 +223,8 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String refresh= intent.getStringExtra("refreshInfo");
-            String refreshNoteName = intent.getStringExtra("refreshNoteName");
-            if ("yes".equals(refresh) || "yes".equals(refreshNoteName)) {
+            String action = intent.getAction();
+            if ("updateFriendList".equals(action) || "updateFriendNoteName".equals(action)) {
                 // 在主线程中刷新UI，用Handler来实现
                 new Handler().post(new Runnable() {
                     public void run() {

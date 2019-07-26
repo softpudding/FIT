@@ -3,6 +3,7 @@ package com.example.fitmvp.presenter;
 import android.text.TextUtils;
 
 import com.example.fitmvp.base.BasePresenter;
+import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.contract.LoginContract;
 import com.example.fitmvp.model.FriendModel;
 import com.example.fitmvp.model.LoginModel;
@@ -50,16 +51,20 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
             final FriendModel friendModel = (FriendModel) getiModelMap().get("initFriends");
             loginModel.login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
-                public void successInfo(final String tel) {
+                public void successInfo(final LoginUserBean user) {
                     // 登录成功后在JMessage中也进行登录
                     JMessageClient.login(account, password, new BasicCallback() {
                         @Override
                         public void gotResult(int responseCode, String responseMessage) {
                             if (responseCode == 0){
                                 // 登录成功，在本地保存用户信息
-                                loginModel.saveUser(tel, new LoginContract.Model.InfoHint() {
+                                loginModel.saveUser(user, new LoginContract.Model.InfoHint() {
                                     @Override
-                                    public void successInfo(String str) {
+                                    public void successInfo(LoginUserBean user) {
+                                    }
+
+                                    @Override
+                                    public void loginSuccess() {
                                         // 页面跳转
                                         ToastUtil.setToast("登录成功");
                                         getIView().loginSuccess();
@@ -81,6 +86,10 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                             }
                         }
                     });
+                }
+
+                @Override
+                public void loginSuccess() {
                 }
 
                 @Override

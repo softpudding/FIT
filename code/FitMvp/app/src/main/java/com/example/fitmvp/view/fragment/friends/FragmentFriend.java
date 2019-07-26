@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.adapter.FragmentOrderListAdapter;
 import com.example.fitmvp.utils.LogUtils;
 import com.google.android.material.tabs.TabLayout;
 

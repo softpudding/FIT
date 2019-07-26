@@ -1,4 +1,4 @@
-package com.example.fitmvp.view.fragment.friends;
+package com.example.fitmvp.adapter;
 
 import android.content.Context;
 

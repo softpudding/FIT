@@ -199,10 +199,10 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     private void toFriendInfo(){
         final Intent intent = new Intent();
         intent.putExtra("TargetId",mTargetId);
-        //intent.putExtra("isFriend",isFriend);
+        intent.putExtra("isFriend",isFriend);
         intent.setClass(this, FriendDetailActivity.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     // 用户信息页面 （可加好友）
@@ -616,9 +616,7 @@ public class ChatActivity extends OtherBaseActivity implements FuncLayout.OnFunc
     //发送刷新数据的广播
     public void updateMsgList(){
         Intent intent = new Intent("updateMsgList");
-        intent.putExtra("refreshInfo", "yes");
         LocalBroadcastManager.getInstance(ChatActivity.this).sendBroadcast(intent);
-        this.setResult(Activity.RESULT_OK, intent);//返回页面1
         this.finish();
     }
 

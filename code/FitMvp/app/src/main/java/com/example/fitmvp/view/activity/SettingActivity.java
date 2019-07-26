@@ -14,6 +14,7 @@ import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.SettingContract;
 import com.example.fitmvp.presenter.SettingPresenter;
 import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.dialog.GenderDialog;
 import com.example.fitmvp.view.fragment.dialog.MyDatePickerDialog;
 
@@ -76,7 +77,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
     }
 
     @Override
-    protected void initData() {
+    public void initData() {
         phone = (String)SpUtils.get("phone","");
         oldNickname = (String)SpUtils.get("nickname","");
         oldBirthday = (String)SpUtils.get("birthday","");
@@ -127,7 +128,19 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
 
     @Override
     protected void otherViewClick(View view) {
-        // TODO：保存更新
+        newNickname = infoNickname.getText().toString().trim();
+        newBirthday = infoBirthday.getText().toString().trim();
+        newGender = infoGender.getText().toString().trim();
+        newHeight = infoHeight.getText().toString().trim();
+        newWeight = infoWeight.getText().toString().trim();
+        // 新旧值不相同时向后端发送修改请求
+        if(!oldNickname.equals(newNickname) || !oldBirthday.equals(newBirthday) ||
+            !oldGender.equals(newGender) || !oldHeight.equals(newHeight) || !oldWeight.equals(newWeight)){
+            mPresenter.updateInfo(phone, newNickname, newBirthday, newGender, newHeight, newWeight);
+        }
+        else{
+            ToastUtil.setToast("没有修改个人信息");
+        }
     }
 
     // 弹出日期选择对话框
