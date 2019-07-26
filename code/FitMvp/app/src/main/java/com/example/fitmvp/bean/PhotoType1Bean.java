@@ -1,26 +1,23 @@
 package com.example.fitmvp.bean;
 
 
-import com.google.gson.annotations.SerializedName;
+public class PhotoType1Bean<T,Y> {
+    private T prediction;
+    private Y nutri;
 
-public class PhotoType1Bean {
-    @SerializedName("class")
-    private String foodname;
-    private Float probability;
-
-    public String getFoodname() {
-        return foodname;
+    public void setPrediction(T prediction) {
+        this.prediction = prediction;
     }
 
-    public Float getProbability() {
-        return probability;
+    public void setNutri(Y nutri) {
+        this.nutri = nutri;
     }
 
-    public void setFoodname(String foodname) {
-        this.foodname = foodname;
+    public Y getNutri() {
+        return nutri;
     }
 
-    public void setProbability(Float probability) {
-        this.probability = probability;
+    public T getPrediction() {
+        return prediction;
     }
 }

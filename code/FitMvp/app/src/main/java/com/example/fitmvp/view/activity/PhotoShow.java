@@ -6,19 +6,32 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.core.content.FileProvider;
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.fitmvp.R;
+import com.example.fitmvp.exception.ApiException;
+import com.example.fitmvp.network.Http;
+import com.example.fitmvp.observer.CommonObserver;
+import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
 import com.example.fitmvp.view.fragment.ShareView;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,41 +39,114 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class PhotoShow extends AppCompatActivity {
-    TextView titleView;
+    TextView show1name;
     ImageView foodpic;
+    Button enesend;
     Bitmap bitmap;
     String show_name;
-
+    Integer energy;
+    Double protein;
+    Double fat;
+    Double carbo;
+    AppCompatSeekBar sb_pressure;
+    TextView et_pressure;
+    TextView kj_pressure;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_show);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 返回键
-        titleView = findViewById(R.id.show1_name);
+        show1name = findViewById(R.id.show1_name);
         foodpic = findViewById(R.id.foodpic);
 
         Intent intent = getIntent();
         // 获取参数
         show_name = intent.getStringExtra("foodname");
+        energy=intent.getIntExtra("energy",1);
+        protein=intent.getDoubleExtra("protein",0);
+        fat=intent.getDoubleExtra("fat",0);
+        carbo=intent.getDoubleExtra("carbo",0);
         byte[] show_pic = intent.getByteArrayExtra("picb");
+        //初始化显示
         bitmap = PictureUtil.Bytes2Bitmap(show_pic);
         foodpic.setImageBitmap(bitmap);
-
-        titleView.setText(show_name);
-        final Uri urithis = stest(bitmap,show_name);
-        ShareView shareView = new ShareView(PhotoShow.this);
-        shareView.setInfo(show_name);
-        shareView.setUriview(urithis);
-        final Bitmap image = shareView.createImage(bitmap,show_name);
-        final Uri urithat=stest(image,show_name);
-        ImageButton share = (ImageButton) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
+        show1name.setText(show_name);
+        // 滑动条
+        sb_pressure = (AppCompatSeekBar) findViewById(R.id.sb_pressure);
+        et_pressure = (TextView)findViewById(R.id.et_pressure);
+        kj_pressure=(TextView)findViewById(R.id.show1_ener);
+        sb_pressure.setProgress(0);
+        String haha1="50";
+        et_pressure.setText(haha1);
+        sb_pressure.setMax(1450);
+        String haha2="100";
+        et_pressure.setText(haha2);
+        Integer kj2=(Integer.valueOf(haha2))*energy/100;String kjs2=kj2.toString();
+        kj_pressure.setText(kjs2);
+        sb_pressure.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int p=50+progress;
+                int q=p*energy/100;
+                String miao="" + String.valueOf(p);
+                String ju=""+String.valueOf(q);
+                et_pressure.setText(miao);// 50为进度条滑到最小值时代表的数值
+                kj_pressure.setText(ju);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+        //确认记录
+        enesend=(Button)findViewById(R.id.show1_sure);
+        enesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareFriends(urithat, show_name);
+                String weight=et_pressure.getText().toString();
+                Integer kalu=Integer.valueOf(weight)/100;
+                Double protein1=kalu*protein;
+                Integer cal=energy*kalu;
+                Double fat1=kalu*fat;
+                Double carbo1=kalu*carbo;
+                sendene(show_name,kalu,fat1,protein1,carbo1,cal);
             }
         });
+//        final Uri urithis = stest(bitmap,show_name);
+//        ShareView shareView = new ShareView(PhotoShow.this);
+//        shareView.setInfo(show_name);
+//        shareView.setUriview(urithis);
+//        final Bitmap image = shareView.createImage(bitmap,show_name);
+//        final Uri urithat=stest(image,show_name);
+//        ImageButton share = (ImageButton) findViewById(R.id.share);
+//        share.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                shareFriends(urithat, show_name);
+//            }
+//        });
+
     }
+    //这里是oncreate结尾
+
+    public void sendene(String show_name,Integer kalu,Double fat1, Double protein1,Double carbo1,Integer cal){
+//        JSONArray hallo;
+//        Http.getHttpService(2).saveRecord(hallo)
+//                .compose(new ThreadTransformer<String>())
+//                .subscribe(new CommonObserver<String>() {
+//                    @Override
+//                    public void onNext(String response) {
+//                        System.out.println(response);
+//                    }
+//                    @Override
+//                    public void onError(ApiException e){
+//                        System.err.println("onError: "+ e.getMessage());
+//                        System.out.println("没传过去！");
+//                    }
+//                });
+    }
+
+
     //储存图片并返回本图片的uri
     public Uri stest(Bitmap b, String name){
         //生成路径
