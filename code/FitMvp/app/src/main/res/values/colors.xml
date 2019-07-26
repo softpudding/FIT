@@ -19,4 +19,5 @@
     <color name="menu_item_back_pres_color">#BA7C60AD</color>
     <color name="chat_text_color">#0B1816</color>
     <color name="bg_gray">#f2f4f6</color>
+    <color name="button_blue">#BDEDE6</color>
 </resources>
