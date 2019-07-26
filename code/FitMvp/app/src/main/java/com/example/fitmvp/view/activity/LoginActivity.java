@@ -89,6 +89,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         mPresenter.login(getAccount(), getPassword());
     }
 
+    public void setButton(){
+        waiting.setVisibility(View.GONE);
+        login.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public String getAccount() {
         return inputAccount.getText().toString().trim();
