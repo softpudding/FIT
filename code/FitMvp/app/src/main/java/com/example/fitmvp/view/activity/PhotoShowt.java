@@ -108,11 +108,7 @@ public class PhotoShowt extends AppCompatActivity{
 
 //修改某项的重量
  public void changeNum(Integer integer){
-     System.out.println(integer);
-     Intent intent = new Intent(PhotoShowt.this, change.class);
-     // 传参
-     intent.putExtra("size",4);
-     startActivity(intent);
+
  }
 
     public void initfood(List<FoodItem> fdata,Bitmap bitmap){
@@ -128,14 +124,14 @@ public class PhotoShowt extends AppCompatActivity{
         }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:// 点击返回图标事件
-//                this.finish();
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:// 点击返回图标事件
+                this.finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

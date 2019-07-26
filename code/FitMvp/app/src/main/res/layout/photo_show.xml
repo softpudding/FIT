@@ -31,7 +31,13 @@
         android:layout_marginBottom="20dp"
         android:textAlignment="center"
         android:text="TextView" />
-<ImageButton
+    <Button
+        android:id="@+id/show1_sure"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="确认记录"
+        />
+    <ImageButton
     android:id="@+id/share"
     android:layout_width="50dp"
     android:layout_height="50dp"
