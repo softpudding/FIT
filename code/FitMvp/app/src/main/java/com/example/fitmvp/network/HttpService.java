@@ -14,8 +14,10 @@ import com.alibaba.fastjson.JSONArray;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
 // 所有网络请求接口
@@ -52,5 +54,6 @@ public interface HttpService {
                                          @Field("img")String img, @Field("plate_type")Integer ptype);
 
     @POST("user/saveRecord")
-    Observable<String> saveRecord(JSONArray array);
+   // @Multipart
+    Observable<String> saveRecord(@Body JSONArray array);
 }

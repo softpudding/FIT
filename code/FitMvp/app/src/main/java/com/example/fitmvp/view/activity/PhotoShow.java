@@ -22,7 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.core.content.FileProvider;
 
+
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
@@ -31,7 +34,7 @@ import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.PictureUtil;
 import com.example.fitmvp.view.fragment.ShareView;
 
-import org.json.JSONObject;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -104,9 +107,9 @@ public class PhotoShow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String weight=et_pressure.getText().toString();
-                Integer kalu=Integer.valueOf(weight)/100;
+                Double kalu=Double.valueOf(weight)/100;
                 Double protein1=kalu*protein;
-                Integer cal=energy*kalu;
+                Double cal=energy*kalu;
                 Double fat1=kalu*fat;
                 Double carbo1=kalu*carbo;
                 sendene(show_name,kalu,fat1,protein1,carbo1,cal);
@@ -129,21 +132,34 @@ public class PhotoShow extends AppCompatActivity {
     }
     //这里是oncreate结尾
 
-    public void sendene(String show_name,Integer kalu,Double fat1, Double protein1,Double carbo1,Integer cal){
-//        JSONArray hallo;
-//        Http.getHttpService(2).saveRecord(hallo)
-//                .compose(new ThreadTransformer<String>())
-//                .subscribe(new CommonObserver<String>() {
-//                    @Override
-//                    public void onNext(String response) {
-//                        System.out.println(response);
-//                    }
-//                    @Override
-//                    public void onError(ApiException e){
-//                        System.err.println("onError: "+ e.getMessage());
-//                        System.out.println("没传过去！");
-//                    }
-//                });
+    public void sendene(String show_name,Double kalu,Double fat1, Double protein1,Double carbo1,Double cal){
+         JSONArray hallo=new JSONArray();
+        JSONObject jsonObject=new JSONObject();
+        String tel= BaseApplication.getUserEntry().username;
+        kalu=kalu*100;
+        jsonObject.put("tel",tel);
+        jsonObject.put("food",show_name);
+        jsonObject.put("weight",kalu);
+        jsonObject.put("fat",fat1);
+        jsonObject.put("protein",protein1);
+        jsonObject.put("carbohydrate",carbo1);
+        jsonObject.put("cal",cal);
+        hallo.add(jsonObject);
+        System.out.println(show_name);
+        System.out.println(protein1);
+        Http.getHttpService(1).saveRecord(hallo)
+                .compose(new ThreadTransformer<String>())
+                .subscribe(new CommonObserver<String>() {
+                    @Override
+                    public void onNext(String response) {
+                        System.out.println(response);
+                    }
+                    @Override
+                    public void onError(ApiException e){
+                        System.err.println("onError: "+ e.getMessage());
+                        System.out.println("没传过去！");
+                    }
+                });
     }
 
 
