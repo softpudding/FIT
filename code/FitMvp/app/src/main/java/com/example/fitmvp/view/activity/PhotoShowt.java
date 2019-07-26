@@ -108,11 +108,7 @@ public class PhotoShowt extends AppCompatActivity{
 
 //修改某项的重量
  public void changeNum(Integer integer){
-     System.out.println(integer);
-     Intent intent = new Intent(PhotoShowt.this, change.class);
-     // 传参
-     intent.putExtra("size",4);
-     startActivity(intent);
+
  }
 
     public void initfood(List<FoodItem> fdata,Bitmap bitmap){

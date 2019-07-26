@@ -333,9 +333,6 @@ public class PhotoPassm extends AppCompatActivity {
         String pic= PictureUtil.bitmapToBase64(bitmap);
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         String tel= BaseApplication.getUserEntry().username;
-        System.out.println(tel);
-        System.out.println("类型： ");
-        System.out.println(integer);
 //        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
 //                .compose(new ThreadTransformer<PhotoTypetBean>())
 //                .subscribe(new CommonObserver<PhotoTypetBean>() {

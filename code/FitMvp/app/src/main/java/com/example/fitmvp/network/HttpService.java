@@ -1,9 +1,12 @@
 package com.example.fitmvp.network;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
+import com.example.fitmvp.bean.NutriBean;
 import com.example.fitmvp.bean.PhotoType1Bean;
 import com.example.fitmvp.bean.PhotoTypetBean;
+import com.example.fitmvp.bean.PredictionBean;
 import com.example.fitmvp.bean.RegisterUserBean;
 
 import com.alibaba.fastjson.JSONArray;
@@ -40,11 +43,14 @@ public interface HttpService {
     //图片传输
     @POST("classify/")
     @FormUrlEncoded
-    Observable<PhotoType1Bean> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
+    Observable<PhotoType1Bean<PredictionBean, NutriBean>> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
     //多种食物
 
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
                                          @Field("img")String img, @Field("plate_type")Integer ptype);
+
+    @POST("user/saveRecord")
+    Observable<String> saveRecord(JSONArray array);
 }
