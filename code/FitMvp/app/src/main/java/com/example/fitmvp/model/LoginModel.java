@@ -46,7 +46,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                             }
                             switch(response.getResult()){
                                 case "100":
-                                    infoHint.successInfo(response.getUser().getTel());
+                                    infoHint.successInfo(response.getUser());
                                     token = response.getToken();
                                     isLogin = true;
                                     break;
@@ -79,7 +79,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                 });
         return isLogin;
     }
-    public void saveUser(String username, final InfoHint infoHint){
+    public void saveUser(final LoginUserBean user, final InfoHint infoHint){
         // 登录状态设为true
         SpUtils.put("isLogin",true);
         // 保存token
@@ -87,7 +87,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
         // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
 
-        JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
+        JMessageClient.getUserInfo(user.getTel(), new GetUserInfoCallback() {
             @Override
             public void gotResult(int i, String s, UserInfo userInfo) {
                 if(i==0){
@@ -102,9 +102,8 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                     // 生日
                     SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
                     // 保存身高、体重
-                    // todo 保存身高体重
-                    SpUtils.put("height","");
-                  //  SpUtils.put("weight","55");
+                    SpUtils.put("height",String.valueOf(user.getHeight()));
+                    SpUtils.put("weight",String.valueOf(user.getWeight()));
                     // 更新数据库中用户数据
                     UserEntry userEntry = UserEntry.getUser(phone,appKey);
                     if(userEntry==null){
@@ -112,7 +111,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                         UserEntry newUser = new UserEntry(phone,appKey);
                         newUser.save();
                     }
-                    infoHint.successInfo("");
+                    infoHint.loginSuccess();
                 }
                 else{
                     LogUtils.e("find_user",s);

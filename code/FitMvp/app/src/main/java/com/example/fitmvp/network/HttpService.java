@@ -7,10 +7,12 @@ import com.example.fitmvp.bean.PhotoTypetBean;
 import com.example.fitmvp.bean.RegisterUserBean;
 
 import com.alibaba.fastjson.JSONArray;
+import com.example.fitmvp.bean.UserInfoBean;
 
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -47,4 +49,8 @@ public interface HttpService {
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
                                          @Field("img")String img, @Field("plate_type")Integer ptype);
+
+    // 更新用户信息
+    @POST("/user/changeUserInfo")
+    Observable<Boolean> updateInfo(@Body UserInfoBean user);
 }

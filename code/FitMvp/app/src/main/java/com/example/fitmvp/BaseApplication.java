@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
 import com.example.fitmvp.database.UserEntry;
+import com.example.fitmvp.utils.LogUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -138,7 +140,11 @@ public class BaseApplication extends Application {
                     View child = p.getChildAt(i);
                     proxyOnclick(child, recycledContainerDeep);
                 }
-            } else {
+            }
+            else if(view instanceof Menu) {
+                LogUtils.e("menu",String.valueOf(view.getId()));
+            }
+            else {
                 getClickListenerForView(view);
             }
         }
@@ -167,7 +173,7 @@ public class BaseApplication extends Application {
                     onClickListenerField.setAccessible(true);
                 }
                 View.OnClickListener mOnClickListener = (View.OnClickListener) onClickListenerField.get(listenerInfoObj);
-                if (!(mOnClickListener instanceof ProxyOnclickListener)) {
+                if (!(mOnClickListener instanceof ProxyOnclickListener) && mOnClickListener!=null) {
                     //自定义代理事件监听器
                     View.OnClickListener onClickListenerProxy = new ProxyOnclickListener(mOnClickListener);
                     //更换
@@ -200,12 +206,20 @@ public class BaseApplication extends Application {
                 onclick.onClick(v);
                 return;
             }
+            if(v.getId()==R.id.friendmenu){
+//                onclick.onClick(v);
+                LogUtils.e("press","friend menu");
+                return;
+            }
             //点击时间控制
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {
                 lastClickTime = currentTime;
                 Log.e("OnClickListenerProxy", "OnClickListenerProxy"+this);
                 if (onclick != null) onclick.onClick(v);
+                else{
+                    LogUtils.e("onClick","onclick is null "+v.getId());
+                }
             }
         }
     }

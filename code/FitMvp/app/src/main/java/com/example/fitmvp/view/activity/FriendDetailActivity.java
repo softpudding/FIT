@@ -33,8 +33,6 @@ import com.example.fitmvp.contract.FriendContract;
 import com.example.fitmvp.database.FriendEntry;
 import com.example.fitmvp.presenter.FriendDetailPresenter;
 import com.example.fitmvp.utils.LogUtils;
-import com.example.fitmvp.utils.UserUtils;
-import com.example.fitmvp.view.fragment.friends.FragmentFrdList;
 
 import java.lang.reflect.Method;
 
@@ -337,25 +335,19 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     //发送刷新好友列表的广播
     public void updateFriendList(){
         Intent friendIntent = new Intent("updateFriendList");
-        friendIntent.putExtra("refreshInfo", "yes");
         LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(friendIntent);
-        this.setResult(Activity.RESULT_OK, friendIntent);
     }
 
     // 发送刷新聊天记录的广播
     public void updateMsgList(){
         Intent msgIntent = new Intent("updateMsgList");
-        msgIntent.putExtra("refreshInfo", "yes");
         LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(msgIntent);
-        this.setResult(Activity.RESULT_OK, msgIntent);
     }
 
     // 发送刷新验证消息的广播
     public void updateRecommend(){
         Intent intent = new Intent("updateRecommend");
-        intent.putExtra("refreshInfo", "yes");
         LocalBroadcastManager.getInstance(FriendDetailActivity.this).sendBroadcast(intent);
-        this.setResult(Activity.RESULT_OK, intent);
     }
 
     // 跳转至修改备注名的页面
@@ -405,8 +397,8 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, final Intent intent) {
-            String refresh= intent.getStringExtra("refreshNoteName");
-            if ("yes".equals(refresh)) {
+            String action = intent.getAction();
+            if ("updateFriendNoteName".equals(action)) {
                 // 在主线程中刷新UI，用Handler来实现
                 new Handler().post(new Runnable() {
                     public void run() {

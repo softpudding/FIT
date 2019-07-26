@@ -256,8 +256,8 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
     private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, final Intent intent) {
-            String refresh= intent.getStringExtra("refreshInfo");
-            if ("yes".equals(refresh)) {
+            String action= intent.getAction();
+            if ("updateRecommend".equals(action)) {
                 updateData();
             }
         }

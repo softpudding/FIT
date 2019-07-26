@@ -95,10 +95,8 @@ public class FriendSettingActivity extends BaseActivity<FriendSettingPresenter>
     //发送刷新数据的广播
     public void updateFriendInfo(){
         Intent friendInfoIntent = new Intent("updateFriendNoteName");
-        friendInfoIntent.putExtra("refreshNoteName", "yes");
         friendInfoIntent.putExtra("newNoteName",newNoteName);
         LocalBroadcastManager.getInstance(FriendSettingActivity.this).sendBroadcast(friendInfoIntent);
-        this.setResult(Activity.RESULT_OK, friendInfoIntent);
         this.finish();
     }
 }
