@@ -19,6 +19,8 @@ import base64
 import io
 import skimage
 # *************** CONSTANT AREA ******************************************* #
+W = 900
+H = 630
 multi_types = 22
 single_types = 25
 multi_lr = 1e-5
@@ -29,51 +31,62 @@ single_label_converters=['炒河粉', '炒乌冬面', '蛋包饭', '咖喱猪排
                          '卤肉饭', '麻辣香锅', '毛血旺', '奶油蘑菇意面', '披萨',
                          '三杯鸡饭', '上海炒面', '烧饼', '生煎', '酸菜鱼',
                          '汤包', '汤圆', '西红柿鸡蛋面', '鸭血粉丝汤',
-                         '扬州炒饭', '炸酱面']
+                         '扬州炒饭', '炸酱面','苑齐超']
 multi_label_converters=['菠萝咕老肉', '炒冬瓜', '炒海带', '炒花菜',
                         '炒豇豆', '炒芹菜', '炒青菜', '炒玉米', '蛋饺',
                         '东坡肉', '番茄炒蛋', '红烧大排', '凉拌黄瓜', '卤鸡腿',
                         '米饭', '酸汤肥牛', '糖醋里脊', '土豆丝', '炸鸡块',
-                        '炸小鸡腿', '蒸鸡蛋', '煮鸡蛋']
+                        '炸小鸡腿', '蒸鸡蛋', '煮鸡蛋','苑齐超不知道']
 
 # ************* DEFINE 2 MODELS *****************************************
-
 input_shape = (224,224,3)
-vgg = vgg16.VGG16(include_top=False, weights='imagenet',
+
+vgg_m = vgg16.VGG16(include_top=False, weights='imagenet',
                   input_shape=input_shape)
-
-output = vgg.layers[-1].output
-output = keras.layers.Flatten()(output)
-vgg_model = Model(vgg.input, output)
-
-vgg_model._make_predict_function()
-
-input_shape = vgg_model.output_shape[1]
-'''
+output_m = vgg_m.layers[-1].output
+output_m = keras.layers.Flatten()(output_m)
+vgg_model_m = Model(vgg_m.input, output_m)
+vgg_model_m.trainable = True
+set_trainable = False
+for layer in vgg_model_m.layers:
+    if layer.name in ['block5_conv1', 'block4_conv1']:
+        set_trainable = True
+    if set_trainable:
+        layer.trainable = True
+    else:
+        layer.trainable = False
+vgg_model_m._make_predict_function()
+input_shape_m = vgg_model_m.output_shape[1]
 model_m = Sequential()
-model_m.add(vgg_model)
-model_m.add(InputLayer(input_shape=(input_shape,)))
+model_m.add(vgg_model_m)
+model_m.add(InputLayer(input_shape=(input_shape_m,)))
 model_m.add(Dense(512, activation='relu', input_dim=input_shape))
 model_m.add(Dropout(0.3))
 model_m.add(Dense(512, activation='relu'))
 model_m.add(Dropout(0.3))
 model_m.add(Dense(multi_types,activation='softmax'))
-
 sgd = keras.optimizers.SGD(lr=multi_lr)
 model_m.compile(loss='categorical_crossentropy',
               optimizer=sgd,
               metrics=['accuracy'])
 model_m.load_weights("fit_multi.h5")
-'''
+model_m._make_predict_function()
 
+
+vgg_s = vgg16.VGG16(include_top=False, weights='imagenet',
+                  input_shape=input_shape)
+output_s = vgg_s.layers[-1].output
+output_s = keras.layers.Flatten()(output_s)
+vgg_model_s = Model(vgg_s.input, output_s)
+vgg_model_s._make_predict_function()
+input_shape_s = vgg_model_s.output_shape[1]
 model_s = Sequential()
-model_s.add(InputLayer(input_shape=(input_shape,)))
-model_s.add(Dense(512, activation='relu', input_dim=input_shape))
+model_s.add(InputLayer(input_shape=(input_shape_s,)))
+model_s.add(Dense(512, activation='relu', input_dim=input_shape_s))
 model_s.add(Dropout(0.3))
 model_s.add(Dense(512, activation='relu'))
 model_s.add(Dropout(0.3))
 model_s.add(Dense(single_types,activation='softmax'))
-
 sgd = keras.optimizers.SGD(lr=single_lr)
 model_s.compile(loss='categorical_crossentropy',
               optimizer=sgd,
@@ -81,14 +94,6 @@ model_s.compile(loss='categorical_crossentropy',
 model_s.load_weights("fit_single.h5")
 model_s._make_predict_function()
 # ******************* TWO PREDICT FUNCTIONS **************************
-
-'''
-def multi_model_predict(images):
-    images = [transform.resize(image,(224,224,3)) for image in images]
-    images = np.array(images)
-    print(model_m.predict(images))
-'''
-
 # ******************** CLASSES *****************************************
 # class for a bounding box (x,y) stands for the upper left corner
 class Bbox:
@@ -155,13 +160,56 @@ nutris_s = [Nutri(175,5.05,6.37,23.76),Nutri(131,4.02,0.35,27.18),Nutri(95,3.59,
             Nutri(92,4.45,3.73,12.15),Nutri(95,6.5,2.17,12.06),Nutri(164,5.08,7.88,17.76),
             Nutri(168,6.47,7.12,19.32),Nutri(0,0,0,0)]
 
+nutris_m = [Nutri(175,5.05,6.37,23.76),Nutri(40,0.84,2.15,5.25),Nutri(54,1.65,3.19,6.13),
+            Nutri(53,2.22,2.42,6.94),Nutri(49,3.31,2.44,5.26),Nutri(37,0.87,2.38,3.66),
+            Nutri(46,2.24,2.42,4.81),Nutri(88,3.02,0.77,20.8),Nutri(170,10.83,11.23,5.78),
+            Nutri(463,8.68,45.53,3.37),Nutri(82,5.65,4.66,4.02),Nutri(248,14.89,18.93,3.8),
+            Nutri(37,0.67,0.09,8.06),Nutri(81,10.18,4.2,0),Nutri(130,2.38,0.21,28.59),
+            Nutri(204,17.88,11.53,6.37),Nutri(267,18.08,18.55,6.09),Nutri(125,1.77,6.99,15.23),
+            Nutri(297,15.59,18.82,16.32),Nutri(243,27.76,13.85,0),Nutri(48,4.47,2.66,1.18),
+            Nutri(144,13.3,10.5,1.12),  Nutri(0,0,0,0)]
+
 # ********************* USEFUL FUNCTIONS ********************************
+
+
+def multi_model_predict(images):
+    images = [transform.resize(image,(224,224,3)) for image in images]
+    '''
+    for image in images:
+        plt.imshow(image)
+        plt.show()
+    '''
+    images = np.array(images)
+    print(images.shape)
+    res = model_m.predict(images)
+    print(res.shape)
+    ct = 0
+    i = 0
+    t = -1
+    m = 0
+    predictions = list()
+    for result in res:
+        while i < multi_types:
+            if result[i] > m:
+                t = i
+                m = result[i]
+            i = i + 1
+        if m < 0.25:
+            predictions.append(Predict(multi_types,0.0))
+        else:
+            predictions.append(Predict(t,m))
+        i = 0
+        t = -1
+        m = 0
+        ct = ct +1
+    return predictions
+
 
 def single_model_predict(images):
     images = [transform.resize(image,(224,224,3)) for image in images]
     images = np.array(images)
     print(images.shape)
-    features = get_bottleneck_features(vgg_model,images)
+    features = get_bottleneck_features(vgg_model_s,images)
     res = model_s.predict(features)
     i = 0
     type = -1
@@ -173,7 +221,6 @@ def single_model_predict(images):
         i = i+1
     print(single_label_converters[type],max)
     return Predict(type,max)
-
 
 
 def show_boxed_img(img,Bbox_list):
@@ -232,17 +279,17 @@ def All2Json_s(p):
         }
 
 
-def is_object(img,b_width,b_height,x,y,W,H,Bbox_list,do_repel=True,wide_space=False):
-    Del_list = list()
+def is_object(img,bbox_list,b_width,b_height,x,y,do_repel=True,wide_space=False):
+    Del_list=list()
     tested = img[y:y+b_height,x:x+b_width]
     tested = tested.reshape(tested.shape[0]*tested.shape[1])
 
-    if np.std(tested) > 1.2:
+    if np.std(tested) > 2.0:
         return False
     else:
         sign = True
         tmp_bbox = Bbox(x, y, b_width, b_height, np.std(tested))
-        for bbox in Bbox_list:
+        for bbox in bbox_list:
             if bbox.overlap(tmp_bbox,wide_space):
                 if (tmp_bbox.precision < bbox.precision and tmp_bbox.w == bbox.w
                 and tmp_bbox.h == bbox.h) or (do_repel and tmp_bbox.precision < bbox.precision - 0.5):
@@ -251,25 +298,29 @@ def is_object(img,b_width,b_height,x,y,W,H,Bbox_list,do_repel=True,wide_space=Fa
                     sign = False
                     break
         if sign:
-            Bbox_list.append(tmp_bbox)
+            bbox_list.append(tmp_bbox)
             for del_obj in Del_list:
-                Bbox_list.remove(del_obj)
+                bbox_list.remove(del_obj)
             return True
     return False
 
 
-def apply_bbox(bbox_w,bbox_h,img,W,H,Bbox_list,do_repel=True,wide_space=False):
+
+def apply_bbox_in_range(bbox_w,bbox_h,img,x,y,w,h,do_repel=True,wide_space=False):
+    bbox_list = list()
     BOUND = 50
-    bbox_x = int(W / BOUND)
-    bbox_y = int(H / BOUND)
+    bbox_x = int(x)
+    bbox_y = int(y)
     step_x = int(W / 25)
     step_y = int(H / 25)
-    while bbox_y + bbox_h < H - H/BOUND:
-        while bbox_x + bbox_w < W - W/BOUND:
-            is_object(img, bbox_w, bbox_h, bbox_x, bbox_y, W, H, Bbox_list, do_repel = do_repel,wide_space=wide_space)
+    while bbox_y + bbox_h <= y + h:
+        while bbox_x + bbox_w <= x + w:
+            is_object(img, bbox_list, bbox_w, bbox_h, bbox_x, bbox_y, do_repel = do_repel,wide_space=wide_space)
             bbox_x = bbox_x + step_x
         bbox_y = bbox_y + step_y
-        bbox_x = int(W / BOUND)
+        bbox_x = int(x)
+    return bbox_list
+
 
 
 def get_bottleneck_features(model, input_imgs):
@@ -277,12 +328,11 @@ def get_bottleneck_features(model, input_imgs):
     return features
 
 
-'''
+
 def region_proposal(plate_type,pic):
-    H = int(pic.shape[0] / pic.shape[1] * 400)
-    W = 400
-    Bbox_list = list()
-    pic = transform.resize(pic, (H, W, 3))
+    if pic.shape[0] != 630 or pic.shape[1] !=900:
+        print("******PIC SHAPE ERROR******")
+        return None
     # cluster
     pic_n = pic.reshape(pic.shape[0] * pic.shape[1], pic.shape[2])
     kmeans = KMeans(n_clusters=4, random_state=1).fit(pic_n)
@@ -307,37 +357,38 @@ def region_proposal(plate_type,pic):
                 j = j + 1
         i = i + 1
     g_cluster_pic = tmp.reshape(H, W)
-    if plate_type == 1:
-        apply_bbox(int(W * 0.5), int(H * 0.5), g_cluster_pic, W, H, Bbox_list)
-        apply_bbox(int(W * 0.25), int(H * 0.5), g_cluster_pic, W, H, Bbox_list)
-        apply_bbox(int(W * 0.3), int(H * 0.32), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
-        apply_bbox(int(W * 0.26), int(H * 0.26), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
-        apply_bbox(int(W * 0.22), int(H * 0.22), g_cluster_pic, W, H, Bbox_list, do_repel=False, wide_space=True)
-    elif plate_type == 2:
-        apply_bbox(int(W * 0.75), int(H * 0.45), g_cluster_pic,W,H,Bbox_list)
-        apply_bbox(int(W * 0.33), int(H * 0.33), g_cluster_pic,W,H,Bbox_list)
-        apply_bbox(int(W * 0.25), int(H * 0.25), g_cluster_pic,W,H,Bbox_list)
-    show_boxed_img(pic,Bbox_list)
+    bbox_list = list()
+    if plate_type == 1 or plate_type == 2:
+        bbox_list += apply_bbox_in_range(300,300, g_cluster_pic, int(W / 3), int(H / 2),
+                                         int(W * 2 / 3), int(H / 2))
+        bbox_list += apply_bbox_in_range(250,250, g_cluster_pic, int(0), int(H / 3), int(W / 3),
+                                         int(H * 2 / 3))
+        bbox_list += apply_bbox_in_range(280,280, g_cluster_pic, int(W / 4), int(0), int(W * 3 / 8),
+                                         int(H / 2))
+        bbox_list += apply_bbox_in_range(280,280, g_cluster_pic, int(W * 5 / 8), int(0),
+                                         int(W * 3 / 8), int(H / 2))
+        #show_boxed_img(g_cluster_pic, bbox_list)
     sub_images = list()
-    for bbox in Bbox_list:
+    for bbox in bbox_list:
         sub_images.append(pic[bbox.y:bbox.y+bbox.h,bbox.x:bbox.x+bbox.w])
-    Pred_list = model_predict(sub_images)
-    # Pred_list = json.dumps(Pred_list,default=Predict2Json,ensure_ascii=False)
-    # Bbox_list = json.dumps(Bbox_list,default=Bbox2Json)
+    Pred_list = multi_model_predict(sub_images)
+    Nutri_list = list()
+    for prediction in Pred_list:
+        Nutri_list.append(nutris_m[prediction.label])
     res =  {
         "predictions":Pred_list,
-        "boxes":Bbox_list
+        "boxes":bbox_list,
+        "nutri":Nutri_list
     }
     return res
-'''
 
 @csrf_exempt
 def index(request):
     if request.method == 'POST' and request.POST.get('img') is not None and request.POST.get('tel') is not None:
         # object type confirmation
         obj_type = 0
-        url = 'http://202.120.40.8:30231/user/recoTest/'
-        url_2 = "http://202.120.40.8:30231/Reco/saveReco"
+        url = 'http://localhost:30231/user/recoTest/'
+        url_2 = "http://localhost:30231/Reco/saveReco"
         tel = request.POST.get("tel")
         if request.POST.get('obj_type') is not None:
             obj_type = int(request.POST.get('obj_type'))
@@ -373,7 +424,6 @@ def index(request):
             '''
             return HttpResponse(json.dumps({'prediction':pred,'nutri':nutris_s[pred.label]}, default=All2Json_s))
         elif obj_type == 2:
-            '''
             # multiple object
             plate_type = 0
             if request.POST.get("plate_type") is not None:
@@ -384,11 +434,8 @@ def index(request):
                 return HttpResponse("plate_type must be 1 (square plate) or 2 (round plate)")
             res=region_proposal(plate_type,img)
             # also send result to YQC
-            print(json.dumps({'tel':tel,'predictions':res['predictions']},default=All2Json))
-            requests.post(url_2, json.dumps({'tel':tel,'predictions':res['predictions']},default=All2Json),headers={'Content-Type':'application/json'})
-            return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json))
-            '''
-            return HttpResponse("Unsupported Request")
+            print(json.dumps({'tel':tel,'predictions':res['predictions']},default=All2Json_m))
+            return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes'],'nutri':res['nutri']},default=All2Json_m))
     return HttpResponse("INVALID REQUEST.")
 
 
