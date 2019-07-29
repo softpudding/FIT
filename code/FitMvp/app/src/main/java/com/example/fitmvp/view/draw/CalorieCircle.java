@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 
 import com.example.fitmvp.R;
 
+import java.util.Locale;
+
 // 绘制首页热量记录的环形图
 public class CalorieCircle extends View {
     private Context context;
@@ -40,8 +42,8 @@ public class CalorieCircle extends View {
     private Paint progressTextPaint;
 
     // 进度
-    private int curProgress;
-    private int targetProgress;
+    private double curProgress;
+    private double targetProgress;
     // private boolean complete;
 
     // 构造函数
@@ -59,11 +61,11 @@ public class CalorieCircle extends View {
         this.initialize();
     }
 
-    public void setCurProgress(int value){
+    public void setCurProgress(double value){
         curProgress = value;
     }
 
-    public void setTargetProgress(int value){
+    public void setTargetProgress(double value){
         targetProgress = value;
     }
 
@@ -128,10 +130,10 @@ public class CalorieCircle extends View {
                 - sroundRadius, centerPoint.x + sroundRadius, centerPoint.y
                 + sroundRadius);
         // 卡路里量
-        // 小于目标值时弧长根据目标值和当前值比例动态变化
-        if (curProgress <= targetProgress) {
+        // 小于目标值的110%时弧长根据目标值和当前值比例动态变化
+        if (curProgress <= targetProgress*1.1) {
             genPaint.setColor(getResources().getColor(R.color.circleGreen));
-            int sweepAngle = 360 * curProgress / targetProgress;
+            float sweepAngle = (float)(360 * curProgress / targetProgress*1.1);
             canvas.drawArc(oval, 135, sweepAngle, false, genPaint);
         }
         // 大于目标值后更换弧线颜色为粉红色
@@ -142,10 +144,10 @@ public class CalorieCircle extends View {
 
 
         // 环中心数值文本（动态迭加的）
-        int curValue = curProgress;
+        String curValue = String.format(Locale.getDefault(),"%.2f 千卡",curProgress);
         progressTextPaint.setTextSize(60);
-        float ww = progressTextPaint.measureText(curValue + " CAL");
-        canvas.drawText(curValue + " CAL", centerPoint.x - ww / 2,
+        float ww = progressTextPaint.measureText(curValue);
+        canvas.drawText(curValue, centerPoint.x - ww / 2,
                 centerPoint.y, progressTextPaint);
     }
 

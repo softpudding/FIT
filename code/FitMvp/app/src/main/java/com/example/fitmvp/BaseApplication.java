@@ -179,7 +179,7 @@ public class BaseApplication extends Application {
                     //更换
                     onClickListenerField.set(listenerInfoObj, onClickListenerProxy);
                 }else{
-                    Log.e("OnClickListenerProxy", "setted proxy listener ");
+                    //Log.e("OnClickListenerProxy", "setted proxy listener ");
                 }
             }
         } catch (Exception e) {
@@ -215,7 +215,7 @@ public class BaseApplication extends Application {
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {
                 lastClickTime = currentTime;
-                Log.e("OnClickListenerProxy", "OnClickListenerProxy"+this);
+                //Log.e("OnClickListenerProxy", "OnClickListenerProxy"+this);
                 if (onclick != null) onclick.onClick(v);
                 else{
                     LogUtils.e("onClick","onclick is null "+v.getId());

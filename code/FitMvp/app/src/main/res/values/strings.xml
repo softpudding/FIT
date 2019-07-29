@@ -16,4 +16,9 @@
     <string name="return_bt">返回</string>
     <string name="logout">退出当前账号</string>
     <string name="btn_send">发送</string>
+    <string name="report_history">查看历史周报</string>
+    <string name="report_now">查看本周报表</string>
+    <string name="report_title">一周饮食报表</string>
+    <string name="progress">记录加载中...</string>
+    <string name="empty_record">还没有识别记录，快去拍照识别吧！</string>
 </resources>
