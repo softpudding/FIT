@@ -15,9 +15,11 @@ import com.example.fitmvp.bean.UserInfoBean;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
 // 所有网络请求接口
@@ -46,8 +48,8 @@ public interface HttpService {
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoType1Bean<PredictionBean, NutriBean>> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
-    //多种食物
 
+    //多种食物
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
@@ -57,5 +59,6 @@ public interface HttpService {
     @POST("/user/changeUserInfo")
     Observable<Boolean> updateInfo(@Body UserInfoBean user);
     @POST("user/saveRecord")
-    Observable<String> saveRecord(JSONArray array);
+   // @Multipart
+    Observable<String> saveRecord(@Body JSONArray array);
 }
