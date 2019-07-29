@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONArray;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -46,8 +47,8 @@ public interface HttpService {
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoType1Bean<PredictionBean, NutriBean>> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
-    //多种食物
 
+    //多种食物
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,

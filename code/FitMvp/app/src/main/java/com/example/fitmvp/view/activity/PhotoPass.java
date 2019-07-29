@@ -320,6 +320,7 @@ public class PhotoPass extends AppCompatActivity {
                 headImage.setImageBitmap(b);
                 System.out.println(1);
                 titleView.setText("识别中。。。");
+
                 //传输图像给后端,开始操作
                 passPhoto1(b);
             }
@@ -347,6 +348,7 @@ public class PhotoPass extends AppCompatActivity {
                         Double Protein=response.getNutri().getProtein();
                         String Foodname=response.getPrediction().getFoodname();
                         //跳转页面到PhotoShow
+                        titleView.setText(Foodname);
                         Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
                         // 传参
                         intent.putExtra("foodname",Foodname);
@@ -361,7 +363,7 @@ public class PhotoPass extends AppCompatActivity {
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
-                        System.out.println("嘎嘎嘎");
+                        titleView.setText("服务器关了");
                     }
                 });
 //        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);

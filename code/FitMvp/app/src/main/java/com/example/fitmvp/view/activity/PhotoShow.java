@@ -41,16 +41,22 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PhotoShow extends AppCompatActivity {
     TextView show1name;
     ImageView foodpic;
     Button enesend;
     Bitmap bitmap;
+    Button share1;
     String show_name;
     Integer energy;
     Double protein;
     Double fat;
     Double carbo;
+    ImageView wait_show;
     AppCompatSeekBar sb_pressure;
     TextView et_pressure;
     TextView kj_pressure;
@@ -71,6 +77,8 @@ public class PhotoShow extends AppCompatActivity {
         carbo=intent.getDoubleExtra("carbo",0);
         byte[] show_pic = intent.getByteArrayExtra("picb");
         //初始化显示
+        share1=(Button)findViewById(R.id.share);
+        wait_show=(ImageView)findViewById(R.id.wait_show);
         bitmap = PictureUtil.Bytes2Bitmap(show_pic);
         foodpic.setImageBitmap(bitmap);
         show1name.setText(show_name);
@@ -113,6 +121,7 @@ public class PhotoShow extends AppCompatActivity {
                 Double fat1=kalu*fat;
                 Double carbo1=kalu*carbo;
                 sendene(show_name,kalu,fat1,protein1,carbo1,cal);
+
             }
         });
 //        final Uri urithis = stest(bitmap,show_name);
@@ -133,7 +142,9 @@ public class PhotoShow extends AppCompatActivity {
     //这里是oncreate结尾
 
     public void sendene(String show_name,Double kalu,Double fat1, Double protein1,Double carbo1,Double cal){
-         JSONArray hallo=new JSONArray();
+        enesend.setVisibility(View.INVISIBLE);
+        wait_show.setVisibility(View.VISIBLE);
+        JSONArray hallo=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         String tel= BaseApplication.getUserEntry().username;
         kalu=kalu*100;
@@ -152,7 +163,7 @@ public class PhotoShow extends AppCompatActivity {
                 .subscribe(new CommonObserver<String>() {
                     @Override
                     public void onNext(String response) {
-                        System.out.println(response);
+                        System.out.println(response);//返回了"1"
                     }
                     @Override
                     public void onError(ApiException e){
@@ -160,6 +171,9 @@ public class PhotoShow extends AppCompatActivity {
                         System.out.println("没传过去！");
                     }
                 });
+
+        wait_show.setVisibility(View.INVISIBLE);
+        share1.setVisibility(View.VISIBLE);
     }
 
 
