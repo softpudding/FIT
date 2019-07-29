@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.fitmvp.chat.activity.ChatActivity;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.activity.MainActivity;
 
 import cn.jpush.im.android.api.JMessageClient;
@@ -54,5 +55,7 @@ public class NotificationClickEventReceiver {
                     | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mContext.startActivity(notificationIntent);
         }
+//        else {
+//        }
     }
 }
