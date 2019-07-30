@@ -136,7 +136,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         // 新旧值不相同时向后端发送修改请求
         if(!oldNickname.equals(newNickname) || !oldBirthday.equals(newBirthday) ||
             !oldGender.equals(newGender) || !oldHeight.equals(newHeight) || !oldWeight.equals(newWeight)){
-            mPresenter.updateInfo(phone, newNickname, newBirthday, newGender, newHeight, newWeight);
+            mPresenter.updateInfo(phone, oldNickname, newNickname, newBirthday, newGender, newHeight, newWeight);
         }
         else{
             ToastUtil.setToast("没有修改个人信息");

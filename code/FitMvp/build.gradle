@@ -31,6 +31,8 @@ allprojects {
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        // 双日期选择器
+        maven { url 'https://jitpack.io' }
     }
 }
 

@@ -107,12 +107,10 @@ public class CalorieCircle extends View {
         centerPoint.y = boundsHeigh / 2;
 
         radius = boundsHeigh * 1 / 3.5f;
-        paintWidth = 50;
-        genPaintWidth = paintWidth / 2;
+        paintWidth = 40;
+        genPaintWidth = paintWidth / 3 * 2;
         initialize();
     }
-
-
 
     @SuppressLint("DrawAllocation")
     @Override
@@ -144,8 +142,8 @@ public class CalorieCircle extends View {
 
 
         // 环中心数值文本（动态迭加的）
-        String curValue = String.format(Locale.getDefault(),"%.2f 千卡",curProgress);
-        progressTextPaint.setTextSize(60);
+        String curValue = String.format(Locale.getDefault(),"%.1f 千卡",curProgress);
+        progressTextPaint.setTextSize(40);
         float ww = progressTextPaint.measureText(curValue);
         canvas.drawText(curValue, centerPoint.x - ww / 2,
                 centerPoint.y, progressTextPaint);

@@ -18,6 +18,7 @@ import com.example.fitmvp.presenter.MePresenter;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.LoginActivity;
+import com.example.fitmvp.view.activity.ReportChooseDateActivity;
 import com.example.fitmvp.view.activity.SettingActivity;
 
 
@@ -78,11 +79,19 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
                 break;
             case R.id.button_setting:
                 toSetting(view);
+                break;
+            case R.id.button_report:
+                toReport();
         }
     }
 
     private void toSetting(View view){
         Intent intent = new Intent(getActivity(), SettingActivity.class);
+        startActivity(intent);
+    }
+
+    private void toReport(){
+        Intent intent = new Intent(getActivity(), ReportChooseDateActivity.class);
         startActivity(intent);
     }
 

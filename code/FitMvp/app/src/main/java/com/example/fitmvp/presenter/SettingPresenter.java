@@ -29,7 +29,7 @@ public class SettingPresenter extends BasePresenter<SettingActivity> implements 
     }
 
     @Override
-    public void updateInfo(String tel, final String nickname, final String birthday,
+    public void updateInfo(String tel, final String oldNickname, final String nickname, final String birthday,
                            final String gender, final String height, final String weight) {
         SettingModel model = (SettingModel) getiModelMap().get("setting");
         model.updateInfo(tel, nickname, birthday, gender, height, weight, new SettingContract.Model.InfoHint() {
@@ -45,6 +45,11 @@ public class SettingPresenter extends BasePresenter<SettingActivity> implements 
                 Intent friendInfoIntent = new Intent("updateUserInfo");
                 LocalBroadcastManager.getInstance(getIView()).sendBroadcast(friendInfoIntent);
                 ToastUtil.setToast("个人信息保存成功");
+                // 新旧昵称相同时，修改年龄、性别、身高或体重的信息，需要刷新首页能量环形图的标准值
+                if(oldNickname.equals(nickname)){
+                    Intent calIntent = new Intent("updateCal");
+                    LocalBroadcastManager.getInstance(getIView()).sendBroadcast(calIntent);
+                }
             }
 
             @Override

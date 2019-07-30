@@ -173,7 +173,7 @@
                 android:layout_marginStart="20dp"
                 android:background="@drawable/round_button"
                 android:drawableStart="@drawable/report"
-                android:text="查看每周报表" />
+                android:text="查看总结报表" />
         </LinearLayout>
 
         <Button

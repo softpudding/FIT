@@ -34,7 +34,7 @@ public class MyDatePickerDialog extends DialogFragment implements android.app.Da
         String yy = String.valueOf(year);
         String mm;
         String dd;
-        if (month <= 9) {
+        if (month < 9) {
             mMonth = month + 1;
             mm = "0" + mMonth;
         } else {

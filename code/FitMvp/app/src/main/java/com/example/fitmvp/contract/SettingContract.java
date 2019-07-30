@@ -14,7 +14,7 @@ public interface SettingContract {
     }
 
     interface Presenter {
-        void updateInfo(String tel, String nickname, String birthday,
+        void updateInfo(String tel, String oldNickname, String nickname, String birthday,
                         String gender, String height, String weight);
     }
 }

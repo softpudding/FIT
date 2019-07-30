@@ -35,8 +35,6 @@ public class MainPagePresenter extends BasePresenter<FragmentMainpage>
         mainPageModel.getCalValue(new MainPageContract.Model.calCallback() {
             @Override
             public void success(double target, double current) {
-                LogUtils.e("target", String.valueOf(target));
-                LogUtils.e("current",String.valueOf(current));
                 getIView().setCircleValue(target,current);
             }
 
@@ -53,23 +51,12 @@ public class MainPagePresenter extends BasePresenter<FragmentMainpage>
         mainPageModel.getList(new MainPageContract.Model.listCallback() {
             @Override
             public void success(List<RecordBean> list) {
-                getIView().setList(list);
-                getIView().updateList();
+                getIView().updateList(list);
             }
 
             @Override
             public void fail() {
                 ToastUtil.setToast("获取识别记录失败");
-            }
-
-            @Override
-            public void empty() {
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        getIView().showEmptyList();
-                    }
-                });
             }
         });
     }

@@ -15,7 +15,6 @@ public interface MainPageContract {
         interface listCallback{
             void success(List<RecordBean> list);
             void fail();
-            void empty();
         }
     }
 

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.core.content.FileProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 import com.alibaba.fastjson.JSONArray;
@@ -164,6 +165,8 @@ public class PhotoShow extends AppCompatActivity {
                     @Override
                     public void onNext(String response) {
                         System.out.println(response);//返回了"1"
+                        // 更新主页和记录页面
+                        updateRecords();
                     }
                     @Override
                     public void onError(ApiException e){
@@ -174,6 +177,12 @@ public class PhotoShow extends AppCompatActivity {
 
         wait_show.setVisibility(View.INVISIBLE);
         share1.setVisibility(View.VISIBLE);
+    }
+
+    // 发送更新主页和记录页面的广播
+    private void updateRecords(){
+        Intent friendInfoIntent = new Intent("updateRecords");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(friendInfoIntent);
     }
 
 

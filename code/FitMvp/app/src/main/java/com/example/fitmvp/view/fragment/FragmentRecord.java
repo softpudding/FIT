@@ -1,10 +1,14 @@
 package com.example.fitmvp.view.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +18,7 @@ import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.contract.RecordContract;
 import com.example.fitmvp.presenter.RecordPresenter;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.activity.RecordDetailActivity;
 
 import java.util.ArrayList;
@@ -27,6 +32,8 @@ public class FragmentRecord extends BaseFragment<RecordPresenter> implements Rec
     private BaseAdapter<RecordBean> adapter;
 
     private List<RecordBean> records = new ArrayList<>();
+    //  接收广播
+    private LocalBroadcastManager broadcastManager;
 
     @Override
     protected Integer getLayoutId() {
@@ -43,6 +50,8 @@ public class FragmentRecord extends BaseFragment<RecordPresenter> implements Rec
         progress = view.findViewById(R.id.record_progress);
         emptyList = view.findViewById(R.id.record_empty_list);
         recyclerView = view.findViewById(R.id.record_all_list);
+        // 注册广播接收
+        registerReceiver();
         // 首先隐藏列表，显示正在加载记录
         hideList();
 
@@ -139,5 +148,38 @@ public class FragmentRecord extends BaseFragment<RecordPresenter> implements Rec
         progress.setVisibility(View.GONE);
         emptyList.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+    }
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateRecords");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // 更新记录时同
+            if("updateRecords".equals(action)){
+                LogUtils.e("receive","update all records broadcast");
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideList();
+                    }
+                });
+                mPresenter.getAllRecords();
+            }
+        }
+    };
+
+    //注销广播
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
     }
 }

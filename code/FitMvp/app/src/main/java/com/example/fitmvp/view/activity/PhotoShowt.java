@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSeekBar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -146,6 +147,8 @@ public void sendm(){
                 @Override
                 public void onNext(String response) {
                     System.out.println(response);//返回了"1"
+                    // 更新主页和记录页面
+                    updateRecords();
                 }
                 @Override
                 public void onError(ApiException e){
@@ -154,6 +157,12 @@ public void sendm(){
                 }
             });
 }
+
+    // 发送更新主页和记录页面的广播
+    private void updateRecords(){
+        Intent friendInfoIntent = new Intent("updateRecords");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(friendInfoIntent);
+    }
 
  private void initView(Bitmap bitmap){
         fContext=PhotoShowt.this;

@@ -1,10 +1,14 @@
 package com.example.fitmvp.view.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +33,15 @@ public class FragmentMainpage extends BaseFragment<MainPagePresenter> implements
     private LinearLayout progress;
     private LinearLayout progress_circle;
     private LinearLayout empty_record;
+    private LinearLayout zero_cal;
     private RecyclerView recyclerView;
     private CalorieCircle calorieCircle;
     private FloatingActionButton takePhoto;
     private BaseAdapter<RecordBean> adapter;
     // 样例数据，后续需要从数据库中获得
     private List<RecordBean> records = new ArrayList<>();
+    // 接收广播
+    private LocalBroadcastManager broadcastManager;
 
     @Override
     protected void initListener() {
@@ -56,11 +63,14 @@ public class FragmentMainpage extends BaseFragment<MainPagePresenter> implements
         progress = view.findViewById(R.id.progress);
         progress_circle = view.findViewById(R.id.progress_circle);
         empty_record = view.findViewById(R.id.empty_record);
-
+        zero_cal = view.findViewById(R.id.zero_cal);
         recyclerView = view.findViewById(R.id.rcyc_record);
         calorieCircle = view.findViewById(R.id.calCircle);
 
         takePhoto = view.findViewById(R.id.takePhoto);
+
+        //注册刷新Fragment数据的方法
+        registerReceiver();
 
         // 初始时显示正在加载数据，环形统计图和数据列表不可见
         hideCircle();
@@ -132,26 +142,35 @@ public class FragmentMainpage extends BaseFragment<MainPagePresenter> implements
             public void run() {
                 calorieCircle.setCurProgress(current);
                 calorieCircle.setTargetProgress(target);
-                showCircle();
+                if(current==0){
+                    showZeroCircle();
+                }
+                else{
+                    showCircle();
+                }
             }
         });
     }
 
-    public void setList(List<RecordBean> list){
-        //records = list;
+    private void setList(List<RecordBean> list){
+        // 重置记录
         records.clear();
         records.addAll(list);
     }
 
-    public void addList(List<RecordBean> list){
-        records.addAll(list);
-    }
-
-    public void updateList(){
+    public void updateList(List<RecordBean> list){
+        setList(list);
         new Handler().post(new Runnable() {
             public void run() {
+                // 有记录，显示记录
+                if(records.size()>0){
+                    showList();
+                }
+                // 无记录，显示记录为空的提示
+                else{
+                    showEmptyList();
+                }
                 adapter.notifyDataSetChanged();
-                showList();
             }
         });
     }
@@ -159,11 +178,19 @@ public class FragmentMainpage extends BaseFragment<MainPagePresenter> implements
     private void showCircle(){
         calorieCircle.setVisibility(View.VISIBLE);
         progress_circle.setVisibility(View.GONE);
+        zero_cal.setVisibility(View.GONE);
     }
 
     private void hideCircle(){
         calorieCircle.setVisibility(View.GONE);
         progress_circle.setVisibility(View.VISIBLE);
+        zero_cal.setVisibility(View.GONE);
+    }
+
+    private void showZeroCircle(){
+        calorieCircle.setVisibility(View.GONE);
+        progress_circle.setVisibility(View.GONE);
+        zero_cal.setVisibility(View.VISIBLE);
     }
 
     private void showList(){
@@ -178,10 +205,56 @@ public class FragmentMainpage extends BaseFragment<MainPagePresenter> implements
         progress.setVisibility(View.VISIBLE);
     }
 
-    public void showEmptyList(){
-        records.clear();
+    private void showEmptyList(){
         recyclerView.setVisibility(View.GONE);
         empty_record.setVisibility(View.VISIBLE);
         progress.setVisibility(View.GONE);
+    }
+
+    //注册广播接收器
+    private void registerReceiver() {
+        broadcastManager = LocalBroadcastManager.getInstance(getActivity());
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("updateRecords");
+        intentFilter.addAction("updateCal");
+        broadcastManager.registerReceiver(mRefreshReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver mRefreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // 更新记录时同时更新当日能量记录环形图
+            if("updateRecords".equals(action)){
+                LogUtils.e("receive","update records broadcast");
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideList();
+                        hideCircle();
+                    }
+                });
+                mPresenter.getList();
+                mPresenter.getCalValue();
+            }
+            // 仅更新当日能量记录环形图，修改了身高、体重和性别信息时更新
+            else if("updateCal".equals(action)){
+                LogUtils.e("receive","update cal broadcast");
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideCircle();
+                    }
+                });
+                mPresenter.getCalValue();
+            }
+        }
+    };
+
+    //注销广播
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        broadcastManager.unregisterReceiver(mRefreshReceiver);
     }
 }

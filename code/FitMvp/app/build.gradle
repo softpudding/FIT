@@ -98,6 +98,8 @@ dependencies {
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(path: ':emoji')
+    // 双日期选择器
+    implementation 'com.github.darrenfantasy:DoubleDatePicker:1.0'
 }
 
 List<String> dirs = [

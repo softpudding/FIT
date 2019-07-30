@@ -1,6 +1,8 @@
 package com.example.fitmvp.network;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.fitmvp.bean.FormBean;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
 import com.example.fitmvp.bean.NutriBean;
@@ -76,4 +78,9 @@ public interface HttpService {
     @POST("record/sumCal")
     @FormUrlEncoded
     Observable<JSONObject> getSumCal(@Field("tel") String tel);
+
+    // 获取给定时间段的报表
+    @POST("record/getForm")
+    @FormUrlEncoded
+    Observable<FormBean> getForm(@Field("tel") String tel, @Field("beginDate") String start, @Field("endDate") String end);
 }

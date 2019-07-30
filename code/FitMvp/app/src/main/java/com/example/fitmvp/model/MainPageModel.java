@@ -32,8 +32,6 @@ public class MainPageModel extends BaseModel implements MainPageContract.Model {
                             try {
                                 double target = (double)jsonObject.get("standard");
                                 double current = jsonObject.getDouble("result");
-                                LogUtils.e("target", String.valueOf(target));
-                                LogUtils.e("current",String.valueOf(current));
                                 callback.success(target,current);
                             }
                             catch (JSONException e){
@@ -61,12 +59,7 @@ public class MainPageModel extends BaseModel implements MainPageContract.Model {
                     .subscribe(new CommonObserver<List<RecordBean>>() {
                         @Override
                         public void onNext(List<RecordBean> list) {
-                            if(list!=null && list.size()>0){
-                                callback.success(list);
-                            }
-                            else{
-                                callback.empty();
-                            }
+                            callback.success(list);
                         }
 
                         @Override
