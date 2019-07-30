@@ -3,8 +3,10 @@ package com.example.fitmvp.network;
 import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
+import com.example.fitmvp.bean.NutriBean;
 import com.example.fitmvp.bean.PhotoType1Bean;
 import com.example.fitmvp.bean.PhotoTypetBean;
+import com.example.fitmvp.bean.PredictionBean;
 import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.bean.RegisterUserBean;
 
@@ -13,9 +15,11 @@ import com.example.fitmvp.bean.UserInfoBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
 // 所有网络请求接口
@@ -43,9 +47,9 @@ public interface HttpService {
     //图片传输
     @POST("classify/")
     @FormUrlEncoded
-    Observable<PhotoType1Bean> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
-    //多种食物
+    Observable<PhotoType1Bean<PredictionBean, NutriBean>> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
 
+    //多种食物
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
@@ -54,6 +58,9 @@ public interface HttpService {
     // 更新用户信息
     @POST("/user/changeUserInfo")
     Observable<Boolean> updateInfo(@Body UserInfoBean user);
+    @POST("user/saveRecord")
+   // @Multipart
+    Observable<String> saveRecord(@Body JSONArray array);
 
     // 获取最新五条识别记录
     @POST("record/getFiveRecord")
