@@ -92,6 +92,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.PhotoShow"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.Notice"
+            android:screenOrientation="portrait" />
         
         <activity android:name=".view.activity.PhotoShowt"></activity>
         <!-- Since JCore2.0.0 Required SDK核心功能 -->

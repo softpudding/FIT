@@ -13,8 +13,6 @@ import com.example.fitmvp.bean.RegisterUserBean;
 import com.alibaba.fastjson.JSONArray;
 import com.example.fitmvp.bean.UserInfoBean;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.example.fitmvp.model;
 
+import com.alibaba.fastjson.JSONException;
 import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.contract.MainPageContract;
@@ -10,8 +11,8 @@ import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 

@@ -15,8 +15,8 @@
         android:layout_marginTop="30dp" />
     <ImageView
         android:id="@+id/foodpicmc"
-        android:layout_width="245dp"
-        android:layout_height="245dp"
+        android:layout_width="324dp"
+        android:layout_height="243dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />

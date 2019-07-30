@@ -158,22 +158,29 @@
 
             <Button
                 android:id="@+id/button_setting"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/round_button"
                 android:drawableStart="@drawable/setting"
-                android:text="设置个人信息"
+                android:text="个人信息"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/button_report"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/round_button"
                 android:drawableStart="@drawable/report"
-                android:text="查看每周报表" />
+                android:text="每周报表" />
+            <Button
+                android:id="@+id/button_notice"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/round_button"
+                android:drawableStart="@drawable/naozhong"
+                android:text="用餐提醒" />
         </LinearLayout>
 
         <Button

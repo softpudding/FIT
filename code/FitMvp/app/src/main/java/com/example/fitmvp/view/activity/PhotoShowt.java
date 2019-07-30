@@ -214,15 +214,6 @@ public void sendm(){
         fdata.add(food4);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:// 点击返回图标事件
-//                this.finish();
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
