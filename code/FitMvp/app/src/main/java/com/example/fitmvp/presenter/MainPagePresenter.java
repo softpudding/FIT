@@ -7,6 +7,7 @@ import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.contract.MainPageContract;
 import com.example.fitmvp.model.MainPageModel;
 import com.example.fitmvp.mvp.IModel;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.FragmentMainpage;
 
@@ -34,6 +35,8 @@ public class MainPagePresenter extends BasePresenter<FragmentMainpage>
         mainPageModel.getCalValue(new MainPageContract.Model.calCallback() {
             @Override
             public void success(double target, double current) {
+                LogUtils.e("target", String.valueOf(target));
+                LogUtils.e("current",String.valueOf(current));
                 getIView().setCircleValue(target,current);
             }
 

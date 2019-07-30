@@ -1,5 +1,6 @@
 package com.example.fitmvp.network;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
 import com.example.fitmvp.bean.PhotoType1Bean;
@@ -7,12 +8,8 @@ import com.example.fitmvp.bean.PhotoTypetBean;
 import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.bean.RegisterUserBean;
 
-import com.alibaba.fastjson.JSONArray;
 import com.example.fitmvp.bean.UserInfoBean;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;

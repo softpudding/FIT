@@ -1,5 +1,7 @@
 package com.example.fitmvp.model;
 
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.RecordBean;
 import com.example.fitmvp.contract.MainPageContract;
@@ -10,8 +12,6 @@ import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -30,8 +30,10 @@ public class MainPageModel extends BaseModel implements MainPageContract.Model {
                         @Override
                         public void onNext(JSONObject jsonObject) {
                             try {
-                                double target = jsonObject.getDouble("standard");
+                                double target = (double)jsonObject.get("standard");
                                 double current = jsonObject.getDouble("result");
+                                LogUtils.e("target", String.valueOf(target));
+                                LogUtils.e("current",String.valueOf(current));
                                 callback.success(target,current);
                             }
                             catch (JSONException e){
