@@ -89,9 +89,12 @@ public class FragmentMsg extends BaseFragment<MessagePresenter>
                 holder.setText(R.id.message_time,data.getTime());
                 // 设置头像
                 if(data.getAvatar()!=null){
+                    System.out.println("进入了这条");
                     holder.setImage(R.id.message_photo, BitmapFactory.decodeFile(data.getAvatar()));
+
                 }
                 else{
+                    System.out.println("没有进入了这条");
                     JMessageClient.getUserInfo(data.getUsername(), new GetUserInfoCallback() {
                         @Override
                         public void gotResult(int i, String s, UserInfo userInfo) {

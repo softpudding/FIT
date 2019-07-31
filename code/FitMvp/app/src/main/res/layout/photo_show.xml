@@ -116,7 +116,20 @@
     android:src="@drawable/jmui_sending_img"
     android:visibility="invisible"/>
     <Button
-        android:id="@+id/share"
+        android:id="@+id/baocun1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:text="生成记录图片到本地"
+        android:background="@drawable/round_button_blue"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/share1"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
         android:layout_alignParentEnd="true"
