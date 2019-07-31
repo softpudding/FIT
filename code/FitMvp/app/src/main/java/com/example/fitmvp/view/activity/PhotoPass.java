@@ -105,14 +105,14 @@ public class PhotoPass extends AppCompatActivity {
         }
     }
 
-    // 从本地相册选取图片作为头像
+    // 从本地相册选取图片
     private void choseHeadImageFromGallery() {
         Intent intentFromGallery = new Intent(Intent.ACTION_PICK, null);
         intentFromGallery.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
     }
 
-    // 启动手机相机拍摄照片作为头像
+    // 启动手机相机拍摄照片
     private void choseHeadImageFromCameraCapture() {
         String savePath = mExtStorDir;
         System.out.println("savePath: "+savePath);// /storage/emulated/0
@@ -209,9 +209,6 @@ public class PhotoPass extends AppCompatActivity {
                 break;
 
             case CODE_RESULT_REQUEST:
-                /*if (intent != null) {
-                    setImageToHeadView(intent);    //此代码在小米有异常，换以下代码
-                }*/
                 try {
                     Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mUriPath));
                     setImageToHeadView(intent,bitmap);
@@ -226,7 +223,6 @@ public class PhotoPass extends AppCompatActivity {
     }
 
     private void checkStoragePermission() {
-        System.out.println("打印！！！！！！");
         int result = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_DENIED) {
             String[] permissions = {/*Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -339,7 +335,6 @@ public class PhotoPass extends AppCompatActivity {
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean<PredictionBean, NutriBean>>())
                 .subscribe(new CommonObserver<PhotoType1Bean<PredictionBean, NutriBean>>() {
-                    // 请求成功返回后检查登录结果
                     @Override
                     public void onNext(PhotoType1Bean<PredictionBean, NutriBean> response) {
                         Integer Calory=response.getNutri().getCalory();

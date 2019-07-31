@@ -1,25 +1,56 @@
 package com.example.fitmvp.view.fragment;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.MeContract;
 import com.example.fitmvp.presenter.MePresenter;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.LoginActivity;
 import com.example.fitmvp.view.activity.ReportChooseDateActivity;
+import com.example.fitmvp.view.activity.MainActivity;
+import com.example.fitmvp.view.activity.Notice;
+import com.example.fitmvp.view.activity.PhotoShow;
 import com.example.fitmvp.view.activity.SettingActivity;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
+
+import static android.app.Activity.RESULT_CANCELED;
 
 
 public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.View{
@@ -28,10 +59,13 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
     private Button toReport;
     private TextView textNickname;
     private TextView textPhone;
+    private Button toNotice;
+    private ImageView userpic;
     private TextView textBirthday;
     private TextView textGender;
     private TextView textHeight;
     private TextView textWeight;
+
 
    @Override
    protected Integer getLayoutId(){
@@ -51,17 +85,45 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        logout = view.findViewById(R.id.button_logout);
        toSetting = view.findViewById(R.id.button_setting);
        toReport = view.findViewById(R.id.button_report);
+       toNotice=view.findViewById(R.id.button_notice);
        textNickname = view.findViewById(R.id.text_nickname);
        textPhone = view.findViewById(R.id.text_account);
        textBirthday = view.findViewById(R.id.text_birthday);
        textGender = view.findViewById(R.id.text_gender);
        textHeight = view.findViewById(R.id.text_height);
        textWeight = view.findViewById(R.id.text_weight);
+       userpic=view.findViewById(R.id.image_photo);
        // 设置数据
+       setuserpic();
        updateInfo();
        textPhone.setText((String)SpUtils.get("phone","")); // 手机号不会被修改
        //注册刷新Fragment数据的方法
        registerReceiver();
+   }
+
+   private void setuserpic(){
+       String username = (String)SpUtils.get("phone","");
+       JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
+           @Override
+           public void gotResult(int i, String s, UserInfo userInfo) {
+               if(i == 0){
+                   userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                       @Override
+                       public void gotResult(int i, String s, Bitmap bitmap) {
+                           if (i == 0) {
+                               userpic.setImageBitmap(bitmap);
+                           }else {
+                               // 设置为默认头像
+                               userpic.setImageResource(R.drawable.default_portrait80);
+                           }
+                       }
+                   });
+               }
+               else{
+                   LogUtils.e("error",s);
+               }
+           }
+       });
    }
 
    @Override
@@ -69,6 +131,8 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        logout.setOnClickListener(this);
        toSetting.setOnClickListener(this);
        toReport.setOnClickListener(this);
+       toNotice.setOnClickListener(this);
+       userpic.setOnClickListener(this);
    }
 
     @Override
@@ -77,11 +141,18 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
             case R.id.button_logout:
                 mPresenter.logout();
                 break;
-            case R.id.button_setting:
+                case R.id.button_setting:
                 toSetting(view);
                 break;
             case R.id.button_report:
                 toReport();
+                break;
+                case R.id.button_notice:
+                toNotice(view);
+                break;
+            case R.id.image_photo:
+                cuserpic(view);
+                break;
         }
     }
 
@@ -89,6 +160,16 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
     }
+    private void toNotice(View view){
+        Intent intent = new Intent(getActivity(), Notice.class);
+        startActivity(intent);
+    }
+    private void cuserpic(View view){
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.checkReadPermission();
+    }
+
+
 
     private void toReport(){
         Intent intent = new Intent(getActivity(), ReportChooseDateActivity.class);

@@ -15,6 +15,7 @@ import com.example.fitmvp.bean.RegisterUserBean;
 
 import com.example.fitmvp.bean.UserInfoBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
