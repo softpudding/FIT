@@ -67,7 +67,7 @@ public class ReportDetailActivity extends AppCompatActivity {
 
         // 设置字体颜色，超标时为红色，正常时为绿色
         int red = getColor(R.color.circleRed);
-        int green = getColor(R.color.circleGreen);
+        int green = getColor(R.color.textGreen);
         if(vCal > sCal){
             calVal.setTextColor(red);
         }

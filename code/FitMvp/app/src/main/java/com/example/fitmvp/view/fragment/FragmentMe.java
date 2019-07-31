@@ -1,33 +1,20 @@
 package com.example.fitmvp.view.fragment;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.MeContract;
@@ -38,21 +25,12 @@ import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.LoginActivity;
 import com.example.fitmvp.view.activity.ReportChooseDateActivity;
 import com.example.fitmvp.view.activity.MainActivity;
-import com.example.fitmvp.view.activity.Notice;
-import com.example.fitmvp.view.activity.PhotoShow;
 import com.example.fitmvp.view.activity.SettingActivity;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
-
-import static android.app.Activity.RESULT_CANCELED;
 
 
 public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.View{
@@ -61,7 +39,6 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
     private Button toReport;
     private TextView textNickname;
     private TextView textPhone;
-    private Button toNotice;
     private ImageView userpic;
     private TextView textBirthday;
     private TextView textGender;
@@ -87,7 +64,6 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        logout = view.findViewById(R.id.button_logout);
        toSetting = view.findViewById(R.id.button_setting);
        toReport = view.findViewById(R.id.button_report);
-       toNotice=view.findViewById(R.id.button_notice);
        textNickname = view.findViewById(R.id.text_nickname);
        textPhone = view.findViewById(R.id.text_account);
        textBirthday = view.findViewById(R.id.text_birthday);
@@ -133,7 +109,6 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        logout.setOnClickListener(this);
        toSetting.setOnClickListener(this);
        toReport.setOnClickListener(this);
-       toNotice.setOnClickListener(this);
        userpic.setOnClickListener(this);
    }
 
@@ -149,9 +124,6 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
             case R.id.button_report:
                 toReport();
                 break;
-                case R.id.button_notice:
-                toNotice(view);
-                break;
             case R.id.image_photo:
                 cuserpic(view);
                 break;
@@ -162,10 +134,7 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
         Intent intent = new Intent(getActivity(), SettingActivity.class);
         startActivity(intent);
     }
-    private void toNotice(View view){
-        Intent intent = new Intent(getActivity(), Notice.class);
-        startActivity(intent);
-    }
+
     private void cuserpic(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("修改头像");
@@ -178,7 +147,7 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
             }
         });
         builder.setNegativeButton("取消",null);
-
+        builder.show();
     }
 
 

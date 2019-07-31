@@ -162,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void gotResult(int i, String s) {
                 if(i==0){
-                    ToastUtil.setToast("头像修改成功");
                     ImageView imageView=findViewById(R.id.image_photo);
                     imageView.setImageBitmap(userpic);
                 }

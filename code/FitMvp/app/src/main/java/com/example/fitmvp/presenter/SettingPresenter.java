@@ -50,11 +50,13 @@ public class SettingPresenter extends BasePresenter<SettingActivity> implements 
                     Intent calIntent = new Intent("updateCal");
                     LocalBroadcastManager.getInstance(getIView()).sendBroadcast(calIntent);
                 }
+                getIView().showButton();
             }
 
             @Override
             public void failInfo() {
                 ToastUtil.setToast("修改个人信息失败");
+                getIView().showButton();
             }
         });
     }

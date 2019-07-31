@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +21,7 @@ import com.example.fitmvp.view.fragment.dialog.MyDatePickerDialog;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.http.POST;
 
 public class SettingActivity extends BaseActivity<SettingPresenter> implements SettingContract.View {
     @Bind(R.id.info_phone)
@@ -36,6 +38,8 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
     EditText infoWeight;
     @Bind(R.id.button_update_info)
     Button update;
+    @Bind(R.id.save_progress)
+    ProgressBar progress;
 
     private String phone;
     private String oldNickname;
@@ -69,6 +73,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         infoBirthday.setKeyListener(null);
         infoGender.setShowSoftInputOnFocus(false);
         infoGender.setKeyListener(null);
+        showButton();
     }
 
     @Override
@@ -128,6 +133,10 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
 
     @Override
     protected void otherViewClick(View view) {
+        // 隐藏按键
+        progress.setVisibility(View.VISIBLE);
+        update.setVisibility(View.GONE);
+
         newNickname = infoNickname.getText().toString().trim();
         newBirthday = infoBirthday.getText().toString().trim();
         newGender = infoGender.getText().toString().trim();
@@ -140,6 +149,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         }
         else{
             ToastUtil.setToast("没有修改个人信息");
+            showButton();
         }
     }
 
@@ -182,5 +192,10 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
+    }
+
+    public void showButton(){
+        progress.setVisibility(View.GONE);
+        update.setVisibility(View.VISIBLE);
     }
 }

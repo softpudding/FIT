@@ -27,7 +27,6 @@ public class NoticeListPresenter extends BasePresenter<NoticeListActivity> imple
 
     @Override
     public void getNotice() {
-        LogUtils.e("onstart","getnotice");
         NoticeListModel model = (NoticeListModel) getiModelMap().get("getNotice");
         model.getNotice(new NoticeListContract.Model.Callback() {
             @Override

@@ -7,6 +7,7 @@ import com.example.fitmvp.contract.NoticeListContract;
 import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
