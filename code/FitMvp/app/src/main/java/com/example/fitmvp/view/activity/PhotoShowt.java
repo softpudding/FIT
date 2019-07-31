@@ -64,6 +64,7 @@ public class PhotoShowt extends AppCompatActivity{
     Button sharem_sure;
     Button show2_share;
     ImageView sharem_wait;
+    Integer typePhoto;
     private ListView list_food;
     private List<FoodItem> fdata=null;
     private FoodAdapter fAdapter=null;
@@ -101,7 +102,7 @@ public class PhotoShowt extends AppCompatActivity{
         //图片显示
         byte[] show_pic=intent.getByteArrayExtra("pic");
         bitmap= PictureUtil.Bytes2Bitmap(show_pic);
-        Integer typePhoto=intent.getIntExtra("type",0);
+        typePhoto=intent.getIntExtra("type",0);
         if(typePhoto==1){
             picc.setImageBitmap(bitmap);
         }
@@ -118,8 +119,6 @@ public class PhotoShowt extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 sendm();
-                sharem_sure.setVisibility(View.INVISIBLE);
-                show2_share.setVisibility(View.VISIBLE);
             }
         });
 
@@ -149,6 +148,18 @@ public void sendm(){
                     System.out.println(response);//返回了"1"
                     // 更新主页和记录页面
                     updateRecords();
+                    byte[] pic1=PictureUtil.Bitmap2Bytes(bitmap);
+                    Intent intent = new Intent(PhotoShowt.this,FoodShare.class);
+                    intent.putExtra("typeShare",typePhoto+1);
+                    intent.putExtra("pic1",pic1);
+                    intent.putExtra("name",f1+"、"+f2+"、"+f3+"、"+f4);
+                    Integer num=cal1+cal2+cal3+cal4;
+                    Double calll=Double.valueOf(num.toString());;
+                    intent.putExtra("cal1",calll);
+                    intent.putExtra("protein1",prote1+prote2+prote3+prote4);
+                    intent.putExtra("fat1",fat1+fat2+fat3+fat4);
+                    intent.putExtra("carbo1",carbo1+carbo2+carbo3+carbo4);
+                    startActivity(intent);
                 }
                 @Override
                 public void onError(ApiException e){
