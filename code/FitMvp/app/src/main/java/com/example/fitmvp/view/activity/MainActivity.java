@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.ContentValues;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.contract.FriendSearchContract;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.draw.BottomBar;
 import com.example.fitmvp.view.fragment.FragmentRecord;
@@ -52,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     // 裁剪后图片的宽(X)和高(Y),的正方形。
     private static int output_X = 200;
     private static int output_Y = 200;
-    private ImageView headImage = null;
     private String mExtStorDir;
     private Uri mUriPath;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mExtStorDir = Environment.getExternalStorageDirectory().toString();
 
         bottomBar = findViewById(R.id.bottom_bar);
         bottomBar.setContainer(R.id.fl_container)
@@ -108,6 +110,19 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
     }
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            case PERMISSION_READ:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    choseHeadImageFromGallery();
+                }
+                break;
+        }
+
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
         // 用户没有进行有效的设置操作，返回
@@ -135,14 +150,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
     }
     private void setImageToHeadView(Intent intent,Bitmap b) {
-        System.out.println("okk");
-        File file=null;
+        File file=stest(b,"userpic");
         //file
+        final Bitmap userpic=b;
         JMessageClient.updateUserAvatar(file, new BasicCallback() {
             @Override
             public void gotResult(int i, String s) {
                 if(i==0){
-                    // 刷新界面
+                    ImageView imageView=findViewById(R.id.image_photo);
+                    imageView.setImageBitmap(userpic);
                 }
                 else{
                     // 报错
@@ -152,6 +168,47 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public File stest(Bitmap b, String name){
+        //生成路径
+        String root = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String dirName = "userphoto";
+        File appDir = new File(root , dirName);
+        if (!appDir.exists()) {
+            appDir.mkdirs();
+        }
+        String fileName = name + ".jpg";
+
+        //获取文件
+        File file = new File(appDir, fileName);
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            //通知系统相册刷新
+            MainActivity.this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                    Uri.fromFile(new File(file.getPath()))));
+            return file;
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public void cropRawPhoto(Uri uri) {
 
         Intent intent = new Intent("com.android.camera.action.CROP");

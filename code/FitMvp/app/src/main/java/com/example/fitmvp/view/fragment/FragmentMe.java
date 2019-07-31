@@ -25,10 +25,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseFragment;
 import com.example.fitmvp.contract.MeContract;
 import com.example.fitmvp.presenter.MePresenter;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.LoginActivity;
@@ -43,6 +45,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.UserInfo;
 
 import static android.app.Activity.RESULT_CANCELED;
 
@@ -60,12 +65,6 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
     private TextView textHeight;
     private TextView textWeight;
 
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.noticemenu,menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
 
    @Override
    protected Integer getLayoutId(){
@@ -94,10 +93,36 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        textWeight = view.findViewById(R.id.text_weight);
        userpic=view.findViewById(R.id.image_photo);
        // 设置数据
+       setuserpic();
        updateInfo();
        textPhone.setText((String)SpUtils.get("phone","")); // 手机号不会被修改
        //注册刷新Fragment数据的方法
        registerReceiver();
+   }
+
+   private void setuserpic(){
+       String username = (String)SpUtils.get("phone","");
+       JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
+           @Override
+           public void gotResult(int i, String s, UserInfo userInfo) {
+               if(i == 0){
+                   userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
+                       @Override
+                       public void gotResult(int i, String s, Bitmap bitmap) {
+                           if (i == 0) {
+                               userpic.setImageBitmap(bitmap);
+                           }else {
+                               // 设置为默认头像
+                               userpic.setImageResource(R.drawable.default_portrait80);
+                           }
+                       }
+                   });
+               }
+               else{
+                   LogUtils.e("error",s);
+               }
+           }
+       });
    }
 
    @Override
