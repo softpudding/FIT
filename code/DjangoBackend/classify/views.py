@@ -371,27 +371,27 @@ def region_proposal(plate_type,pic):
 
         bbox_list = list()
         if plate_type == 1:
-            print('1')
+            # print('1')
             bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w / 3), int(h / 2),
-                                             int(w * 2 / 3) - 1, int(h / 2))
-            bbox_list += apply_bbox_in_range(270, 270, g_cluster_pic, int(0), int(h / 3), int(w / 3),
-                                             int(h * 2 / 3))
-            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w / 4), int(0), int(w * 3 / 8),
+                                             int(w * 0.5), int(h / 2))
+            bbox_list += apply_bbox_in_range(270, 270, g_cluster_pic, int(w * 0.05), int(h * 0.3), int(w * 0.4),
+                                             int(h * 0.7))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 0.2), int(h * 0.05), int(w * 0.4),
                                              int(h / 2))
-            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 5 / 8), int(0),
-                                             int(w * 3 / 8), int(h / 2))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 0.5), int(h * 0.05),
+                                             int(w * 0.5), int(h / 2))
             # show_boxed_img(pic, bbox_list)
         else:
-            print('2')
+            # print('2')
             bbox_list += apply_bbox_in_range(350, 350, g_cluster_pic, int(w / 8), int(h / 2),
-                                             int(w * 3 / 4) - 1, int(h / 2))
-            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, 0, int(h / 10), int(w * 0.35),
+                                             int(w * 0.55) - 1, int(h * 0.5))
+            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w * 0.05), int(h / 10), int(w * 0.35),
                                              int(h * 0.45))
-            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w / 3), int(0), int(w / 3),
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w / 3), int(h * 0.05), int(w / 3),
                                              int(h / 3))
             bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w * 0.6), int(h / 10),
                                              int(w * 0.4), int(h * 0.45))
-        #show_boxed_img(g_cluster_pic,bbox_list)
+        show_boxed_img(g_cluster_pic,bbox_list)
         sub_images = list()
         for bbox in bbox_list:
             sub_images.append(pic[bbox.y:bbox.y + bbox.h, bbox.x:bbox.x + bbox.w])
