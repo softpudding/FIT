@@ -1,4 +1,4 @@
-package com.example.fitmvp.chat.utils;
+package com.example.fitmvp.utils;
 
 import android.content.Context;
 

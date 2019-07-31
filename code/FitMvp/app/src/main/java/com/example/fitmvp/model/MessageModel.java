@@ -3,11 +3,11 @@ package com.example.fitmvp.model;
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.ConversationEntity;
-import com.example.fitmvp.chat.utils.TimeFormat;
-import com.example.fitmvp.contract.MessageContract;
 import com.example.fitmvp.utils.LogUtils;
-import com.nostra13.universalimageloader.utils.L;
+import com.example.fitmvp.utils.TimeFormat;
+import com.example.fitmvp.contract.MessageContract;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -80,8 +80,14 @@ public class MessageModel extends BaseModel implements MessageContract.Model {
         entity.setNewMsgNum(conv.getUnReadMsgCnt());
         // 单聊
         UserInfo user = (UserInfo) conv.getTargetInfo();
-        // 头像
-        entity.setAvatar(user.getAvatar());
+        File file = user.getAvatarFile();
+        if(file!=null){
+            // 头像
+            entity.setAvatar(user.getAvatarFile().getAbsolutePath());
+        }
+        else{
+            entity.setAvatar(null);
+        }
         // 显示的名字
         String name = user.getNotename();
         if (name == null || name.equals("")) {

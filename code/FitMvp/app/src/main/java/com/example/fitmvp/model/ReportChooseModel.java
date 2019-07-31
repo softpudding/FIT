@@ -4,7 +4,6 @@ import com.example.fitmvp.base.BaseModel;
 import com.example.fitmvp.bean.FormBean;
 import com.example.fitmvp.contract.ReportChooseContract;
 import com.example.fitmvp.exception.ApiException;
-import com.example.fitmvp.exception.ExceptionEngine;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;

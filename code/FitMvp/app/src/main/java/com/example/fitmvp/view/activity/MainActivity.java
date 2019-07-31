@@ -3,8 +3,11 @@ package com.example.fitmvp.view.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.fitmvp.R;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.draw.BottomBar;
 import com.example.fitmvp.view.fragment.FragmentRecord;
 import com.example.fitmvp.view.fragment.friends.FragmentFriend;
@@ -51,4 +54,29 @@ public class MainActivity extends AppCompatActivity {
         // 0-mainpage, 1-socail, 2-friendold, 3-me
         bottomBar.switchFragment(id);
     }
+
+    // 右上角的菜单栏 - 公告
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    // ActionBar 功能
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.notice:
+                toNotice();
+                break;
+        }
+        return true;
+    }
+
+    // 前往公告页面查看公告
+    private void toNotice(){
+        Intent intent = new Intent(this, NoticeListActivity.class);
+        startActivity(intent);
+    }
+
 }
