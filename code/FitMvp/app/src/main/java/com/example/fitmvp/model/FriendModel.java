@@ -1,5 +1,6 @@
 package com.example.fitmvp.model;
 
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 
 import com.activeandroid.ActiveAndroid;
@@ -13,11 +14,13 @@ import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.jpush.im.android.api.ContactManager;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoListCallback;
 import cn.jpush.im.android.api.model.UserInfo;
@@ -44,6 +47,8 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                         try{
                             for(UserInfo userInfo : list){
                                 String displayName = userInfo.getDisplayName();
+                                // 下载用户数据
+                                JMessageClient.getUserInfo(userInfo.getUserName(), null);
                                 // 暂时不涉及到letter
                                 String letter = "A";
 
@@ -58,8 +63,15 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                                         friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
                                                 null, displayName, letter, gender, birthday, user);
                                     } else {
-                                        friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
-                                                userInfo.getAvatarFile().getAbsolutePath(), displayName, letter,  gender, birthday, user);
+                                        File file = userInfo.getAvatarFile();
+                                        if(file==null){
+                                            friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
+                                                    null, displayName, letter,  gender, birthday, user);
+                                        }
+                                        else{
+                                            friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
+                                                    userInfo.getAvatarFile().getAbsolutePath(), displayName, letter,  gender, birthday, user);
+                                        }
                                     }
                                     friend.save();
                                     mList.add(friend);

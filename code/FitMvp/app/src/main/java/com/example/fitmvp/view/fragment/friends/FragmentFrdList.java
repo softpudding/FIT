@@ -92,7 +92,6 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     public void initData(){
 
         mPresenter.initCacheNum();
-        //mPresenter.initFriendList();
         // 获取好友列表
         friendList = mPresenter.getFriendList();
         // 创建adapter实例
@@ -109,6 +108,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
 
                 // 设置头像
                 if(data.avatar!=null){
+                    LogUtils.e("avatar",data.avatar);
                     holder.setImage(R.id.friend_photo, BitmapFactory.decodeFile(data.avatar));
                 }
                 else{
