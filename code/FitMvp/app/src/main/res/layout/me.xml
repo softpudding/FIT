@@ -18,7 +18,7 @@
             android:layout_height="80dp"
 
             android:layout_marginTop="16dp"
-            app:srcCompat="@drawable/icon1" />
+            app:srcCompat="@drawable/default_portrait80" />
 
         <TextView
             android:id="@+id/text_nickname"

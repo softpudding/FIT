@@ -36,6 +36,10 @@ public class RecordBean {
         return timeFormat.getDetailTime();
     }
 
+    public long getRawTime(){
+        Timestamp time_s = Timestamp.valueOf(timeStamp);
+        return time_s.getTime();
+    }
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }

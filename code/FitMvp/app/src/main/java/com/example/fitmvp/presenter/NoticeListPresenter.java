@@ -6,6 +6,7 @@ import com.example.fitmvp.contract.NoticeListContract;
 import com.example.fitmvp.model.NoticeListModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.activity.NoticeListActivity;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class NoticeListPresenter extends BasePresenter<NoticeListActivity> imple
 
             @Override
             public void fail() {
-
+                ToastUtil.setToast("获取公告失败");
             }
         });
     }

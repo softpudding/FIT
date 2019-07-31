@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.bean.FormBean;
 import com.example.fitmvp.bean.LoginUserBean;
 import com.example.fitmvp.bean.MyResponse;
+import com.example.fitmvp.bean.NoticeBean;
 import com.example.fitmvp.bean.NutriBean;
 import com.example.fitmvp.bean.PhotoType1Bean;
 import com.example.fitmvp.bean.PhotoTypetBean;
@@ -83,4 +84,8 @@ public interface HttpService {
     @POST("record/getForm")
     @FormUrlEncoded
     Observable<FormBean> getForm(@Field("tel") String tel, @Field("beginDate") String start, @Field("endDate") String end);
+
+    // 获取所有公告
+    @POST("user/news")
+    Observable<List<NoticeBean>> getNotice();
 }
