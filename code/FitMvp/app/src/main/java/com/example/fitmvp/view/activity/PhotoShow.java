@@ -98,9 +98,10 @@ public class PhotoShow extends AppCompatActivity {
         sb_pressure.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                int p=50+progress;
-                int q=p*energy/100;
-                String miao="" + String.valueOf(p);
+                int p=(50+progress)/10;
+                int a=10*p;
+                int q=a*energy/100;
+                String miao="" + String.valueOf(a);
                 String ju=""+String.valueOf(q);
                 et_pressure.setText(miao);// 50为进度条滑到最小值时代表的数值
                 kj_pressure.setText(ju);

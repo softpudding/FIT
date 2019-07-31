@@ -51,8 +51,8 @@ public class PhotoPassm extends AppCompatActivity {
     // 裁剪后图片的宽(X)和高(Y),s是正方形，c是原型。
     private static int output_Xs = 900;
     private static int output_Ys = 630;
-    private static int output_Xc = 900;
-    private static int output_Yc = 900;
+    private static int output_Xc = 1000;
+    private static int output_Yc = 750;
     //改变头像的标记位
     private ImageView headImage = null;
     private String mExtStorDir;
@@ -273,8 +273,8 @@ public class PhotoPassm extends AppCompatActivity {
         intent.putExtra("crop", "true");
         String tyy=notes.getText().toString();
         if(tyy.equals("圆盘食物")){
-            intent.putExtra("aspectX", 1);
-            intent.putExtra("aspectY", 1);
+            intent.putExtra("aspectX", 4);
+            intent.putExtra("aspectY", 3);
             intent.putExtra("outputX", output_Xc);
             intent.putExtra("outputY", output_Yc);
         }
@@ -311,19 +311,18 @@ public class PhotoPassm extends AppCompatActivity {
                 String tyy=notes.getText().toString();
                 if(tyy.equals("圆盘食物")){
                     notes.setText("识别中。。。");
-                    passPhoto2(b,1); //传输图像给后端,开始操作
+                    passPhoto2(b,2); //传输图像给后端,开始操作
 
                     System.out.println("圆盘");
                 }
                 else{
                     notes.setText("识别中。。。");
-                    passPhoto2(b,2);
+                    passPhoto2(b,1);
                     System.out.println("方盘");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(2);
         }
     }
 
@@ -381,7 +380,8 @@ public class PhotoPassm extends AppCompatActivity {
                         }
                         intent.putExtra("type",integer);
                         intent.putExtra("pic",picb);
-                        notes.setText("");
+                        if(integer==2){notes.setText("圆盘食物");}
+                        else{notes.setText("方盘食物");}
                         startActivity(intent);
                     }
                     @Override
