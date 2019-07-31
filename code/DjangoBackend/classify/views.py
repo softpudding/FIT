@@ -18,9 +18,8 @@ from sklearn.cluster import KMeans
 import base64
 import io
 import skimage
+import time
 # *************** CONSTANT AREA ******************************************* #
-W = 900
-H = 630
 multi_types = 22
 single_types = 25
 multi_lr = 1e-5
@@ -194,7 +193,8 @@ def multi_model_predict(images):
                 t = i
                 m = result[i]
             i = i + 1
-        if m < 0.25:
+        print(multi_label_converters[t],m)
+        if m < 0.15:
             predictions.append(Predict(multi_types,0.0))
         else:
             predictions.append(Predict(t,m))
@@ -311,8 +311,8 @@ def apply_bbox_in_range(bbox_w,bbox_h,img,x,y,w,h,do_repel=True,wide_space=False
     BOUND = 50
     bbox_x = int(x)
     bbox_y = int(y)
-    step_x = int(W / 25)
-    step_y = int(H / 25)
+    step_x = int(img.shape[1] / 25)
+    step_y = int(img.shape[0] / 25)
     while bbox_y + bbox_h <= y + h:
         while bbox_x + bbox_w <= x + w:
             is_object(img, bbox_list, bbox_w, bbox_h, bbox_x, bbox_y, do_repel = do_repel,wide_space=wide_space)
@@ -330,57 +330,85 @@ def get_bottleneck_features(model, input_imgs):
 
 
 def region_proposal(plate_type,pic):
-    if pic.shape[0] != 630 or pic.shape[1] !=900:
-        print("******PIC SHAPE ERROR******")
-        return None
-    # cluster
-    pic_n = pic.reshape(pic.shape[0] * pic.shape[1], pic.shape[2])
-    kmeans = KMeans(n_clusters=4, random_state=1).fit(pic_n)
-    pic2show = kmeans.cluster_centers_[kmeans.labels_]
-    cluster_pic = pic2show.reshape(pic.shape[0], pic.shape[1], pic.shape[2])
-    # to gray scale
-    g_cluster_pic = rgb2gray(cluster_pic)
-    # color tuning
-    tmp = g_cluster_pic.reshape(H * W)
-    k_colors = list()
-    for v in tmp:
-        if v not in k_colors:
-            k_colors.append(v)
-    i = 0
-    while i < len(tmp):
-        j = 0
-        while j < len(k_colors):
-            if tmp[i] == k_colors[j]:
-                tmp[i] = j
-                break
-            else:
-                j = j + 1
-        i = i + 1
-    g_cluster_pic = tmp.reshape(H, W)
-    bbox_list = list()
-    if plate_type == 1 or plate_type == 2:
-        bbox_list += apply_bbox_in_range(300,300, g_cluster_pic, int(W / 3), int(H / 2),
-                                         int(W * 2 / 3), int(H / 2))
-        bbox_list += apply_bbox_in_range(250,250, g_cluster_pic, int(0), int(H / 3), int(W / 3),
-                                         int(H * 2 / 3))
-        bbox_list += apply_bbox_in_range(280,280, g_cluster_pic, int(W / 4), int(0), int(W * 3 / 8),
-                                         int(H / 2))
-        bbox_list += apply_bbox_in_range(280,280, g_cluster_pic, int(W * 5 / 8), int(0),
-                                         int(W * 3 / 8), int(H / 2))
-        #show_boxed_img(g_cluster_pic, bbox_list)
-    sub_images = list()
-    for bbox in bbox_list:
-        sub_images.append(pic[bbox.y:bbox.y+bbox.h,bbox.x:bbox.x+bbox.w])
-    Pred_list = multi_model_predict(sub_images)
-    Nutri_list = list()
-    for prediction in Pred_list:
-        Nutri_list.append(nutris_m[prediction.label])
-    res =  {
-        "predictions":Pred_list,
-        "boxes":bbox_list,
-        "nutri":Nutri_list
-    }
-    return res
+    if (pic.shape[0] == 630 and pic.shape[1] == 900 and plate_type ==1) or (pic.shape[0] == 750 and pic.shape[1] == 1000 and plate_type ==2):
+        # cluster
+        h = pic.shape[0]
+        w = pic.shape[1]
+        
+        #print("SMALL PIC SIZE:",h/4,w/4)
+        #start = time.clock()
+
+        smallpic = transform.resize(pic,(int(h/4),int(w/4),3))
+
+        smallpic_n = smallpic.reshape(smallpic.shape[0] * smallpic.shape[1], smallpic.shape[2])
+        kmeans = KMeans(n_clusters=4, random_state=1).fit(smallpic_n)
+        smallpic2show = kmeans.cluster_centers_[kmeans.labels_]
+        cluster_pic = smallpic2show.reshape(smallpic.shape[0], smallpic.shape[1], smallpic.shape[2])
+        # to gray scale
+        g_cluster_pic = rgb2gray(cluster_pic)
+        # color tuning
+        tmp = g_cluster_pic.reshape(smallpic.shape[0] * smallpic.shape[1])
+        k_colors = list()
+        for v in tmp:
+            if v not in k_colors:
+                k_colors.append(v)
+        i = 0
+        while i < len(tmp):
+            j = 0
+            while j < len(k_colors):
+                if tmp[i] == k_colors[j]:
+                    tmp[i] = j
+                    break
+                else:
+                    j = j + 1
+            i = i + 1
+        g_cluster_pic = tmp.reshape(smallpic.shape[0], smallpic.shape[1])
+        g_cluster_pic = transform.resize(g_cluster_pic,(h,w))
+        
+        #print("CLUSTERING SMALL PIC TAKES",(time.clock()-start))
+        #plt.imshow(g_cluster_pic)
+        #plt.show()
+
+        bbox_list = list()
+        if plate_type == 1:
+            print('1')
+            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w / 3), int(h / 2),
+                                             int(w * 2 / 3) - 1, int(h / 2))
+            bbox_list += apply_bbox_in_range(270, 270, g_cluster_pic, int(0), int(h / 3), int(w / 3),
+                                             int(h * 2 / 3))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w / 4), int(0), int(w * 3 / 8),
+                                             int(h / 2))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 5 / 8), int(0),
+                                             int(w * 3 / 8), int(h / 2))
+            # show_boxed_img(pic, bbox_list)
+        else:
+            print('2')
+            bbox_list += apply_bbox_in_range(350, 350, g_cluster_pic, int(w / 8), int(h / 2),
+                                             int(w * 3 / 4) - 1, int(h / 2))
+            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, 0, int(h / 10), int(w * 0.35),
+                                             int(h * 0.45))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w / 3), int(0), int(w / 3),
+                                             int(h / 3))
+            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w * 0.6), int(h / 10),
+                                             int(w * 0.4), int(h * 0.45))
+        #show_boxed_img(g_cluster_pic,bbox_list)
+        sub_images = list()
+        for bbox in bbox_list:
+            sub_images.append(pic[bbox.y:bbox.y + bbox.h, bbox.x:bbox.x + bbox.w])
+        Pred_list = multi_model_predict(sub_images)
+        Nutri_list = list()
+        for prediction in Pred_list:
+            Nutri_list.append(nutris_m[prediction.label])
+            #print(multi_label_converters[prediction.label],prediction.probability)
+        res = {
+            "predictions": Pred_list,
+            "boxes": bbox_list,
+            "nutri": Nutri_list
+        }
+        return res
+    else:
+        print("\n\n\n*************PIC SHAPE ERROR*************\n\n\n")
+
 
 @csrf_exempt
 def index(request):
