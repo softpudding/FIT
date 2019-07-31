@@ -24,8 +24,19 @@ public class SettingModel extends BaseModel implements SettingContract.Model {
             genderNum = 2;
         }
         user.setGender(genderNum);
-        user.setHeight(Integer.parseInt(height));
-        user.setWeight(Double.parseDouble(weight));
+        if(height.equals("")){
+            user.setHeight(0);
+        }
+        else {
+            user.setHeight(Integer.parseInt(height));
+        }
+        if(weight.equals("")){
+            user.setWeight(0);
+        }
+        else {
+            user.setWeight(Double.parseDouble(weight));
+        }
+
         httpService1.updateInfo(user)
                 .compose(new ThreadTransformer<Boolean>())
                 .subscribe(new CommonObserver<Boolean>() {
