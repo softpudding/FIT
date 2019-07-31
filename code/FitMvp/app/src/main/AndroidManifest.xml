@@ -92,6 +92,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.PhotoShow"
             android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FoodShare"
+            android:screenOrientation="portrait"/>
         
         <activity android:name=".view.activity.PhotoShowt"
             android:screenOrientation="portrait"/>

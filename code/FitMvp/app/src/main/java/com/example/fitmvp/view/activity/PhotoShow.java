@@ -2,6 +2,10 @@ package com.example.fitmvp.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,11 +51,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PhotoShow extends AppCompatActivity {
+    Uri urithis_s;
     TextView show1name;
     ImageView foodpic;
     Button enesend;
     Bitmap bitmap;
     Button share1;
+    Button save1;
     String show_name;
     Integer energy;
     Double protein;
@@ -61,6 +67,18 @@ public class PhotoShow extends AppCompatActivity {
     AppCompatSeekBar sb_pressure;
     TextView et_pressure;
     TextView kj_pressure;
+    String weight;
+    Double kalu;
+    Double protein1;
+    Double cal;
+    Double fat1;
+    Double carbo1;
+    private Paint bitmapPaint;
+    private Paint textPaint;
+    /**配文的颜色*/
+    private int textColor = Color.BLACK;
+    /**配文的字体大小*/
+    private float textSize = 16;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +96,8 @@ public class PhotoShow extends AppCompatActivity {
         carbo=intent.getDoubleExtra("carbo",0);
         byte[] show_pic = intent.getByteArrayExtra("picb");
         //初始化显示
-        share1=(Button)findViewById(R.id.share);
+        share1=(Button)findViewById(R.id.share1);
+        save1=(Button)findViewById(R.id.baocun1);
         wait_show=(ImageView)findViewById(R.id.wait_show);
         bitmap = PictureUtil.Bytes2Bitmap(show_pic);
         foodpic.setImageBitmap(bitmap);
@@ -116,32 +135,37 @@ public class PhotoShow extends AppCompatActivity {
         enesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String weight=et_pressure.getText().toString();
-                Double kalu=Double.valueOf(weight)/100;
-                Double protein1=kalu*protein;
-                Double cal=energy*kalu;
-                Double fat1=kalu*fat;
-                Double carbo1=kalu*carbo;
+                weight=et_pressure.getText().toString();
+                kalu=Double.valueOf(weight)/100;
+                protein1=kalu*protein;
+                cal=energy*kalu;
+                fat1=kalu*fat;
+                carbo1=kalu*carbo;
                 sendene(show_name,kalu,fat1,protein1,carbo1,cal);
 
             }
         });
-//        final Uri urithis = stest(bitmap,show_name);
-//        ShareView shareView = new ShareView(PhotoShow.this);
-//        shareView.setInfo(show_name);
-//        shareView.setUriview(urithis);
-//        final Bitmap image = shareView.createImage(bitmap,show_name);
-//        final Uri urithat=stest(image,show_name);
-//        ImageButton share = (ImageButton) findViewById(R.id.share);
-//        share.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                shareFriends(urithat, show_name);
-//            }
-//        });
+        share1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareFriends();
+            }
+        });
+
 
     }
     //这里是oncreate结尾
+
+    private Bitmap loadBitmapFromView(View v) {
+        int w = v.getWidth();
+        int h = v.getHeight();
+        Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmp);
+        c.drawColor(Color.WHITE);
+        v.layout(0, 0, w, h);
+        v.draw(c);
+        return bmp;
+    }
 
     public void sendene(String show_name,Double kalu,Double fat1, Double protein1,Double carbo1,Double cal){
         enesend.setVisibility(View.INVISIBLE);
@@ -176,10 +200,20 @@ public class PhotoShow extends AppCompatActivity {
                     }
                 });
 
-        wait_show.setVisibility(View.INVISIBLE);
-        share1.setVisibility(View.VISIBLE);
+        toSave();
     }
-
+public void toSave(){
+    byte[] pic1=PictureUtil.Bitmap2Bytes(bitmap);
+    Intent intent = new Intent(PhotoShow.this,FoodShare.class);
+    intent.putExtra("typeShare",1);
+    intent.putExtra("pic1",pic1);
+    intent.putExtra("name",show_name);
+    intent.putExtra("cal1",cal);
+    intent.putExtra("protein1",protein1);
+    intent.putExtra("fat1",fat1);
+    intent.putExtra("carbo1",carbo1);
+    startActivity(intent);
+}
     // 发送更新主页和记录页面的广播
     private void updateRecords(){
         Intent friendInfoIntent = new Intent("updateRecords");
@@ -187,59 +221,14 @@ public class PhotoShow extends AppCompatActivity {
     }
 
 
-    //储存图片并返回本图片的uri
-    public Uri stest(Bitmap b, String name){
-        //生成路径
-        String root = Environment.getExternalStorageDirectory().getAbsolutePath();
-        String dirName = "singleFoodShare";
-        File appDir = new File(root , dirName);
-        if (!appDir.exists()) {
-            appDir.mkdirs();
-        }
 
-        //文件名为时间
-        long timeStamp = System.currentTimeMillis();
-        String sd1=String.valueOf(timeStamp);
-        String fileName = sd1 + ".jpg";
 
-        //获取文件
-        File file = new File(appDir, fileName);
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
-            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.flush();
-            //通知系统相册刷新
-            PhotoShow.this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
-                    Uri.fromFile(new File(file.getPath()))));
-            Uri uri;
-            if (Build.VERSION.SDK_INT >= 24) {
-                uri = FileProvider.getUriForFile(this,"com.example.fitmvp.fileProvider", file);
-            } else {
-                uri = Uri.fromFile(file);
-            }
-            return uri;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fos != null) {
-                    fos.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    public void shareFriends(Uri uri, String name) {
+//    public void shareFriends(Uri uri, String name) {
+public void shareFriends() {
         Intent share_intent = new Intent();
         share_intent.setAction(Intent.ACTION_SEND);//设置分享行为
         share_intent.setType("image/*");  //设置分享内容的类型
-       share_intent.putExtra(Intent.EXTRA_STREAM, uri);
+       share_intent.putExtra(Intent.EXTRA_STREAM, urithis_s);
         try {
             share_intent = Intent.createChooser(share_intent, "dialogTitle");
             startActivity(share_intent);
