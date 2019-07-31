@@ -157,4 +157,18 @@ public class UsersController {
     }
 
 
+    /**
+     * get news
+     *
+     */
+
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/news")
+    public @ResponseBody JSONArray getNews() throws Exception{
+
+        String st = userService.getNews();
+        JSONArray jsonArray = JSONArray.parseArray(st);
+        // 我给我自己发请求？ 嗯 就是这个亚子
+        return jsonArray;
+    }
 }

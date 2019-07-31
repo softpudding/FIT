@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
+@RequestMapping(path = "/news")
 public class NewsController {
 
     @Autowired
@@ -21,7 +24,7 @@ public class NewsController {
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/getAllNews")
+    @PostMapping(path = "/getOneNews")
     public @ResponseBody
     String getOneNews(Integer id) {
         return newsService.findById(id).getNews();
@@ -42,7 +45,7 @@ public class NewsController {
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @PostMapping(path = "/showNews")
+    @PostMapping(path = "/hideNews")
     public @ResponseBody boolean  hideNews(Integer id) {
         News news = newsService.findById(id);
         if (news == null) {
@@ -52,5 +55,22 @@ public class NewsController {
             newsService.hide(news);
             return true;
         }
+    }
+
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/showActiveNews")
+    public @ResponseBody Iterable<News> getNews() {
+
+        Iterable<News> iterable = newsService.findAllByActive(1);
+        return iterable;
+        /*
+        JSONArray jsonArray = new JSONArray();
+        for (News news:iterable) {
+            System.out.println("here");
+            jsonArray.add(news);
+        }
+        return jsonArray;
+
+         */
     }
 }

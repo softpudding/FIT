@@ -97,6 +97,24 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public String getFiveRecord(String tel) {
 
+        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();// 获取当前时间
+        String time = sdf.format(date.getTime());
+        System.out.println(time);
+
+        StringBuilder ss = new StringBuilder(time);
+        String str = "00:00:00";
+        ss.replace(11,19,str);
+        System.out.println("begin time: " + ss.toString());
+        System.out.println("Compare:  " + ss.toString().compareTo("2019-07-28 14:26:46 PM"));
+
+        JSONArray jsonArray = recordDao.findByTelAndTime(tel,ss.toString(),"3000-09-26");
+
+        if (jsonArray.size()>0) {
+            return jsonArray.toJSONString();
+        }
+        /*
         JSONArray jsonArray = recordDao.findByTelAndTime(tel,"1900-00-00","3000-00-00");
         if (jsonArray.size() > 0) {
             JSONArray js = new JSONArray();
@@ -106,6 +124,8 @@ public class RecordServiceImpl implements RecordService {
             return js.toString();
 
         }
+
+         */
 
         else return "[]";
     }

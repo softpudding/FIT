@@ -19,8 +19,8 @@ public class News {
     @Column(name = "news")
     private String news;
 
-    @Column(name = "if_active")
-    private Integer if_active;
+    @Column(name = "active")
+    private Integer active;
 
     public Integer getId() {
         return id;
@@ -30,8 +30,8 @@ public class News {
         this.id = id;
     }
 
-    public Integer getIf_active() {
-        return if_active;
+    public Integer getActive() {
+        return active;
     }
 
     public String getNews() {
@@ -46,8 +46,8 @@ public class News {
         this.news = news;
     }
 
-    public void setIf_active(Integer if_active) {
-        this.if_active = if_active;
+    public void setActive(Integer if_active) {
+        this.active = if_active;
     }
 
     public void setTime_stamp(String time_stamp) {

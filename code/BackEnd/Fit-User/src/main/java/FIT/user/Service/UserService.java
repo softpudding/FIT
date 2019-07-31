@@ -20,4 +20,6 @@ public interface UserService {
     boolean changeUserInfo(JSONObject data) throws Exception;
 
     Iterable<User> findAll();
+
+    String  getNews() throws Exception;
 }
