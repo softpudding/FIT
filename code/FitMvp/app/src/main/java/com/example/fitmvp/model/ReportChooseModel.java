@@ -17,23 +17,8 @@ import java.util.Date;
 public class ReportChooseModel extends BaseModel implements ReportChooseContract.Model {
     @Override
     public void getReport(String start, String end, final Callback callback) {
-        // 向后端传递截止日期时需要加一天
-        String actualEnd = "";
-        try{
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date sDate = sdf.parse(end);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(sDate);
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-            sDate = calendar.getTime();
-            actualEnd = sdf.format(sDate);
-        }
-        catch (ParseException e){
-            LogUtils.e(e.getClass(),e.getMessage());
-        }
         String tel = (String)SpUtils.get("phone","");
-        LogUtils.e("actual",actualEnd);
-        httpService1.getForm(tel,start,actualEnd)
+        httpService1.getForm(tel,start,end)
                 .compose(new ThreadTransformer<FormBean>())
                 .subscribe(new CommonObserver<FormBean>() {
                     @Override
