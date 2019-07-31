@@ -29,6 +29,7 @@ public class ReportChooseModel extends BaseModel implements ReportChooseContract
                     @Override
                     protected void onError(ApiException e) {
                         LogUtils.e("onError",e.message);
+                        callback.fail();
                     }
                 });
     }
