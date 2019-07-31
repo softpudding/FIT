@@ -13,6 +13,8 @@ import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
 
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainPageModel extends BaseModel implements MainPageContract.Model {
@@ -59,6 +61,22 @@ public class MainPageModel extends BaseModel implements MainPageContract.Model {
                     .subscribe(new CommonObserver<List<RecordBean>>() {
                         @Override
                         public void onNext(List<RecordBean> list) {
+                            // 按时间降序
+                            Collections.sort(list, new Comparator<RecordBean>() {
+                                @Override
+                                public int compare(RecordBean t1, RecordBean t2) {
+                                    long time1 = t1.getRawTime();
+                                    long time2 = t2.getRawTime();
+                                    long diff = time1 - time2;
+                                    if (diff > 0) {
+                                        return -1;
+                                    }
+                                    else if (diff < 0) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                }
+                            });
                             callback.success(list);
                         }
 

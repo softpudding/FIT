@@ -1,7 +1,5 @@
 package com.example.fitmvp.bean;
 
-import java.util.Locale;
-
 public class FormBean {
     /**
      * eat_carbohydrate : 0.0
@@ -86,30 +84,5 @@ public class FormBean {
     public void setStandard_cal(double standard_cal) {
         this.standard_cal = standard_cal;
     }
-
-//    public String getEat_cal_s(){
-//        return String.format(Locale.getDefault(), "%.2f", eat_cal);
-//    }
-//    public String getEat_pro_s(){
-//        return String.format(Locale.getDefault(), "%.2f", eat_protein);
-//    }
-//    public String getEat_fat_s(){
-//        return String.format(Locale.getDefault(), "%.2f", eat_fat);
-//    }
-//    public String getEat_carb_s(){
-//        return String.format(Locale.getDefault(), "%.2f", eat_carbohydrate);
-//    }
-//    public String getStandard_cal_s(){
-//        return String.format(Locale.getDefault(), "%.2f", standard_cal);
-//    }
-//    public String getStandard_pro_s(){
-//        return String.format(Locale.getDefault(), "%.2f", standard_protein);
-//    }
-//    public String getStandard_fat_s(){
-//        return String.format(Locale.getDefault(), "%.2f", standard_fat);
-//    }
-//    public String getStandard_carb_s(){
-//        return String.format(Locale.getDefault(), "%.2f", standard_carbohydrate);
-//    }
 
 }

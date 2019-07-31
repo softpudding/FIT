@@ -1,5 +1,9 @@
 package com.example.fitmvp.bean;
 
+import com.example.fitmvp.utils.TimeFormat;
+
+import java.sql.Timestamp;
+
 public class RecordBean {
     /**
      * timeStamp : 2019-07-26 14:55:46 下午
@@ -26,9 +30,16 @@ public class RecordBean {
     private double cal;
 
     public String getTimeStamp() {
-        return timeStamp;
+        Timestamp time_s = Timestamp.valueOf(timeStamp);
+        long time_l = time_s.getTime();
+        TimeFormat timeFormat = new TimeFormat(null,time_l);
+        return timeFormat.getDetailTime();
     }
 
+    public long getRawTime(){
+        Timestamp time_s = Timestamp.valueOf(timeStamp);
+        return time_s.getTime();
+    }
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }

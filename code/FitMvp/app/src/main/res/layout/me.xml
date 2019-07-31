@@ -18,7 +18,7 @@
             android:layout_height="80dp"
 
             android:layout_marginTop="16dp"
-            app:srcCompat="@drawable/icon1" />
+            app:srcCompat="@drawable/default_portrait80" />
 
         <TextView
             android:id="@+id/text_nickname"
@@ -158,30 +158,25 @@
 
             <Button
                 android:id="@+id/button_setting"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/round_button"
                 android:drawableStart="@drawable/setting"
-                android:text="个人信息"
+                android:text="修改个人信息"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/button_report"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/round_button"
                 android:drawableStart="@drawable/report"
-                android:text="查看总结报表" />
+                android:text="查看总结报表"
+                tools:layout_marginStart="30dp" /><![CDATA[
                 android:text="每周报表" />
-            <Button
-                android:id="@+id/button_notice"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/round_button"
-                android:drawableStart="@drawable/naozhong"
-                android:text="用餐提醒" />
+            ]]>
         </LinearLayout>
 
         <Button

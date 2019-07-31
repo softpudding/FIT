@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="bottom|center|fill"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:foregroundGravity="center_vertical"
             android:visibility="gone" />
 
@@ -41,32 +41,34 @@
             android:id="@+id/zero_cal"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:gravity="center"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/num_zero" />
 
             <TextView
                 android:id="@+id/textView44"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="今天还没有记录"
+                android:text="当前能量记录累计为"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/num_zero" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/progress_circle"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="visible">
@@ -103,7 +105,7 @@
             android:layout_marginTop="45dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -116,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/empty_record"
+                android:text="@string/empty_today"
                 android:textAlignment="center" />
         </LinearLayout>
 
