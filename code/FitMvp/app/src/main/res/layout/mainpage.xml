@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="bottom|center|fill"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:foregroundGravity="center_vertical"
             android:visibility="gone" />
 
@@ -41,7 +41,7 @@
             android:id="@+id/zero_cal"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -66,7 +66,7 @@
             android:id="@+id/progress_circle"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryLight"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="visible">

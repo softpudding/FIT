@@ -21,14 +21,18 @@ import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.example.fitmvp.R;
-import com.example.fitmvp.contract.FriendSearchContract;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.draw.BottomBar;
 import com.example.fitmvp.view.fragment.FragmentRecord;
 import com.example.fitmvp.view.fragment.friends.FragmentFriend;
 import com.example.fitmvp.view.fragment.FragmentMe;
 import com.example.fitmvp.view.fragment.FragmentMainpage;
+import com.example.fitmvp.contract.FriendSearchContract;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -242,4 +246,28 @@ public class MainActivity extends AppCompatActivity {
 //        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(intent, CODE_RESULT_REQUEST);
     }
+    // 右上角的菜单栏 - 公告
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    // ActionBar 功能
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.notice:
+                toNotice();
+                break;
+        }
+        return true;
+    }
+
+    // 前往公告页面查看公告
+    private void toNotice(){
+        Intent intent = new Intent(this, NoticeListActivity.class);
+        startActivity(intent);
+    }
+
 }

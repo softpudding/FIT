@@ -78,6 +78,7 @@ public class CalorieCircle extends View {
         defaultPaint.setStyle(Paint.Style.STROKE);
         defaultPaint.setStrokeWidth(paintWidth);
         defaultPaint.setAntiAlias(true);
+        defaultPaint.setAlpha(100);
 
         // 比重环画笔
         genPaint = new Paint();
@@ -107,8 +108,8 @@ public class CalorieCircle extends View {
         centerPoint.y = boundsHeigh / 2;
 
         radius = boundsHeigh * 1 / 3.5f;
-        paintWidth = 40;
-        genPaintWidth = paintWidth / 3 * 2;
+        paintWidth = 35;
+        genPaintWidth = paintWidth;
         initialize();
     }
 
