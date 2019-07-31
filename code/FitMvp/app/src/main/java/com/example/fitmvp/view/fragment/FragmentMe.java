@@ -1,8 +1,10 @@
 package com.example.fitmvp.view.fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -165,8 +167,18 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
         startActivity(intent);
     }
     private void cuserpic(View view){
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.checkReadPermission();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("修改头像");
+        builder.setMessage("从相册中获取图片");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.checkReadPermission();
+            }
+        });
+        builder.setNegativeButton("取消",null);
+
     }
 
 

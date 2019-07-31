@@ -27,6 +27,7 @@ import android.view.MenuItem;
 
 import com.example.fitmvp.R;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.draw.BottomBar;
 import com.example.fitmvp.view.fragment.FragmentRecord;
 import com.example.fitmvp.view.fragment.friends.FragmentFriend;
@@ -161,11 +162,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void gotResult(int i, String s) {
                 if(i==0){
+                    ToastUtil.setToast("头像修改成功");
                     ImageView imageView=findViewById(R.id.image_photo);
                     imageView.setImageBitmap(userpic);
                 }
                 else{
                     // 报错
+                    ToastUtil.setToast("头像修改失败");
                     LogUtils.e("error",s);
                 }
             }
