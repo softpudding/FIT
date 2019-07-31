@@ -67,9 +67,8 @@ export default {
           } else if (response.data == "101") {
             alert("登录失败，ID不存在");
           } else if (response.data == "100") {
-            alert("登录成功");
             sessionStorage.setItem("login", response.data);
-            this.$router.replace("/ManageUser");
+            this.$router.replace("/main");
           }
         })
         .finally(() => {

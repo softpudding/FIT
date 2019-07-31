@@ -2,8 +2,10 @@ package FIT.user.Controller;
 
 import FIT.user.Annotation.UserLoginToken;
 import FIT.user.Entity.User;
+import FIT.user.Service.RecordService;
 import FIT.user.Service.TokenService;
 import FIT.user.Service.UserService;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ public class UsersController {
     @Autowired
     private UserService userService;
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
+    @Autowired
+    private RecordService recordService;
 
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -34,8 +38,10 @@ public class UsersController {
         if (ss.equals("100")) {
                 String token = tokenService.getToken(user);
                 jsonObject.put("result",ss);   // 登录结果result
-                jsonObject.put("user", user);
+                User tmp = userService.findByTel(tel);
+                jsonObject.put("user", tmp);
                 jsonObject.put("token",token);
+
                 return jsonObject.toJSONString();
         }
         else {
@@ -48,8 +54,7 @@ public class UsersController {
 
     /**
      * 发送验证短信
-     * @param tel
-     * @return
+     *
      */
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/sendMessage")
@@ -59,11 +64,8 @@ public class UsersController {
     }
 
     /**
-     * @Describe 用户注册
-     * @param tel
-     * @param password
-     * @param nickName
-     * @return
+     *  用户注册
+     *
      */
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/register")
@@ -99,9 +101,7 @@ public class UsersController {
 
     /**
      * 修改密码（后面是不是需要前端验证下他这个短信）
-     * @param tel
-     * @param password
-     * @return
+     *
      */
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/changePassword")    // 记得改回来 这是测试用的  改了已经
@@ -114,8 +114,7 @@ public class UsersController {
     /**
      *
      * 修改用户信息，还没搞好（未跟前端调通）
-     * @param data
-     * @return
+     *
      */
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/changeUserInfo")
@@ -129,7 +128,7 @@ public class UsersController {
     /**
      *
      * 识别用户token，来验证用户合法性
-     * @return
+     *
      */
     @CrossOrigin(origins = "*", maxAge = 3600)
     @UserLoginToken
@@ -143,4 +142,19 @@ public class UsersController {
         System.out.println("*/");
         return "get!";
     }
+
+    /*
+       接受前端传入的识别信息
+     */
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @UserLoginToken
+    @PostMapping(path = "/saveRecord")
+    public @ResponseBody
+    String saveRecord(@RequestBody JSONArray data) {
+        //JSONArray jsonArray = data.getJSONArray("test");
+        recordService.save(data);
+        return "1";
+    }
+
+
 }
