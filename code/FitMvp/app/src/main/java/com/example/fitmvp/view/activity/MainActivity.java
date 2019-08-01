@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         //生成路径
         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
         String dirName = "userphoto";
+        System.out.println(root);
         File appDir = new File(root , dirName);
         if (!appDir.exists()) {
             appDir.mkdirs();
