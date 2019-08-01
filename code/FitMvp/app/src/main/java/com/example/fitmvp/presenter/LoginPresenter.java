@@ -68,8 +68,8 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
                                         // 页面跳转
                                         ToastUtil.setToast("登录成功");
                                         getIView().loginSuccess();
-                                        // 初始化好友列表
-                                        friendModel.initFriendList();
+//                                        // 初始化好友列表
+//                                        friendModel.initFriendList();
                                     }
 
                                     @Override

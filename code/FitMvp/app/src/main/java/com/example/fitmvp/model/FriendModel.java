@@ -30,7 +30,7 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
     private List<FriendEntry> forDelete = new ArrayList<>();
 
     // 同步本地好友列表
-    public void initFriendList(){
+    public void initFriendList(final InfoHint infoHint){
         ContactManager.getFriendList(new GetUserInfoListCallback() {
             @Override
             public void gotResult(int i, String s, List<UserInfo> list) {
@@ -56,14 +56,15 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                                 UserEntry user = BaseApplication.getUserEntry();
                                 FriendEntry friend = FriendEntry.getFriend(user,
                                         userInfo.getUserName(), userInfo.getAppKey());
+                                String gender = UserUtils.getGender(userInfo);
+                                String birthday = UserUtils.getBirthday(userInfo);
+                                File file = userInfo.getAvatarFile();
                                 if (null == friend) {
-                                    String gender = UserUtils.getGender(userInfo);
-                                    String birthday = UserUtils.getBirthday(userInfo);
                                     if (TextUtils.isEmpty(userInfo.getAvatar())) {
                                         friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
                                                 null, displayName, letter, gender, birthday, user);
-                                    } else {
-                                        File file = userInfo.getAvatarFile();
+                                    }
+                                    else {
                                         if(file==null){
                                             friend = new FriendEntry(userInfo.getUserID(), userInfo.getUserName(), userInfo.getNotename(), userInfo.getNickname(), userInfo.getAppKey(),
                                                     null, displayName, letter,  gender, birthday, user);
@@ -73,10 +74,23 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                                                     userInfo.getAvatarFile().getAbsolutePath(), displayName, letter,  gender, birthday, user);
                                         }
                                     }
-                                    friend.save();
-                                    mList.add(friend);
                                 }
-                                LogUtils.d("find friend",friend.username);
+                                else{
+                                    friend.noteName = userInfo.getNotename();
+                                    friend.nickName = userInfo.getNickname();
+                                    friend.gender = gender;
+                                    friend.birthday = birthday;
+                                    friend.displayName = displayName;
+                                    if(file==null){
+                                        friend.avatar = null;
+                                    }
+                                    else{
+                                        friend.avatar = file.getAbsolutePath();
+                                    }
+                                }
+                                friend.save();
+                                mList.add(friend);
+                                //LogUtils.d("find friend",friend.username);
                                 // 是好友，添加到不被删除的列表中
                                 forDelete.add(friend);
                             }
@@ -96,6 +110,7 @@ public class FriendModel extends BaseModel implements FriendContract.Model {
                         del.delete();
                         mList.remove(del);
                     }
+                    infoHint.updateFriend();
                 }
                 else{
                     ToastUtil.setToast("获取好友列表失败");
