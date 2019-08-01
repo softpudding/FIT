@@ -1,5 +1,7 @@
 package com.example.fitmvp.presenter;
 
+import android.os.Handler;
+
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.FriendSearchContract;
 import com.example.fitmvp.database.FriendEntry;
@@ -37,10 +39,14 @@ public class FriendSearchPresenter extends BasePresenter<FriendSearchActivity> i
                         ToastUtil.setToast("不能添加自己为好友");
                         return;
                     }
-                    List<UserInfo> list = new ArrayList<>();
+                    final List<UserInfo> list = new ArrayList<>();
                     list.add(userInfo);
-                    getIView().setSearchList(list);
-                    getIView().initAdapter();
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            getIView().updateList(list);
+                        }
+                    });
                 }
                 else{
                     ToastUtil.setToast("用户不存在");

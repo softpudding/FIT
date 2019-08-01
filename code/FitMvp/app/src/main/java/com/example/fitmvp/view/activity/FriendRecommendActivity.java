@@ -237,6 +237,7 @@ public class FriendRecommendActivity extends BaseActivity<FriendRecommendPresent
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                adapter.setDataList(recommendList);
                 adapter.notifyDataSetChanged();
             }
         });
