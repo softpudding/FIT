@@ -214,6 +214,7 @@ public void toSave(){
     intent.putExtra("carbo1",carbo1);
     wait_show.setVisibility(View.INVISIBLE);
     startActivity(intent);
+    finish();
 }
 
     // 发送更新主页和记录页面的广播

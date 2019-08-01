@@ -161,6 +161,7 @@ public void sendm(){
                     intent.putExtra("carbo1",carbo1+carbo2+carbo3+carbo4);
                     sharem_sure.setVisibility(View.INVISIBLE);
                     startActivity(intent);
+                    finish();
                 }
                 @Override
                 public void onError(ApiException e){
