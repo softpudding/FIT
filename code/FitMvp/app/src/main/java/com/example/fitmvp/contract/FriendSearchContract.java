@@ -9,7 +9,6 @@ public interface FriendSearchContract {
     }
 
     interface View {
-        void setSearchList(List<UserInfo> list);
 
     }
 

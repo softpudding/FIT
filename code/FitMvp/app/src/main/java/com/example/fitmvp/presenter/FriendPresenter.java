@@ -154,6 +154,16 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     @Override
     public void initFriendList(){
         FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
-        friendModel.initFriendList();
+        friendModel.initFriendList(new FriendContract.Model.InfoHint() {
+            @Override
+            public void updateFriend() {
+                new Handler().post(new Runnable() {
+                    public void run() {
+                        // 更新好友列表
+                        getIView().updateData();
+                    }
+                });
+            }
+        });
     }
 }

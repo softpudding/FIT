@@ -189,7 +189,7 @@ public class FriendDetailActivity extends BaseActivity<FriendDetailPresenter> im
         }
 
         // 显示头像
-        if(avatar!=null){
+        if(avatar!=null && !avatar.equals("")){
             photo.setImageBitmap(BitmapFactory.decodeFile(avatar));
         }
         else{

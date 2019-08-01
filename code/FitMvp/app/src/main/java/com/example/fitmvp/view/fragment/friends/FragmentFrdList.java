@@ -92,6 +92,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     public void initData(){
 
         mPresenter.initCacheNum();
+        mPresenter.initFriendList();
         // 获取好友列表
         friendList = mPresenter.getFriendList();
         // 创建adapter实例
@@ -127,6 +128,7 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
                                         }
                                     }
                                 });
+
                             }
                         }
                     });

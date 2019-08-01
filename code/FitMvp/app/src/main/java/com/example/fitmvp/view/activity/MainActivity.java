@@ -132,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent) {
         // 用户没有进行有效的设置操作，返回
         if (resultCode == RESULT_CANCELED) {
-            Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
+            ToastUtil.setToast("取消");
             return;
         }
 
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mUriPath));
                     setImageToHeadView(intent,bitmap);
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    LogUtils.e("file not found", e.getMessage());
                 }
 
                 break;
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     // 报错
-                    ToastUtil.setToast("头像修改失败");
+                    ToastUtil.setToast("头像修改失败"+s);
                     LogUtils.e("error",s);
                 }
             }
