@@ -212,8 +212,10 @@ public void toSave(){
     intent.putExtra("protein1",protein1);
     intent.putExtra("fat1",fat1);
     intent.putExtra("carbo1",carbo1);
+    wait_show.setVisibility(View.INVISIBLE);
     startActivity(intent);
 }
+
     // 发送更新主页和记录页面的广播
     private void updateRecords(){
         Intent friendInfoIntent = new Intent("updateRecords");

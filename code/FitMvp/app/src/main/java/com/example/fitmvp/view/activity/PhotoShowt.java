@@ -159,6 +159,7 @@ public void sendm(){
                     intent.putExtra("protein1",prote1+prote2+prote3+prote4);
                     intent.putExtra("fat1",fat1+fat2+fat3+fat4);
                     intent.putExtra("carbo1",carbo1+carbo2+carbo3+carbo4);
+                    sharem_sure.setVisibility(View.INVISIBLE);
                     startActivity(intent);
                 }
                 @Override
