@@ -1,5 +1,6 @@
 package FIT.user.Service.Implment;
 
+
 import FIT.user.Dao.UserDao;
 import FIT.user.Entity.User;
 import FIT.user.Service.UserService;
@@ -10,11 +11,14 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -52,6 +56,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Iterable<User> findAll() { return userDao.findAll(); }
+
+    @Override
+    public String getNews() throws Exception{
+        String url = "http://127.0.0.1:30233/news/showActiveNews";
+        org.apache.http.client.HttpClient client = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost(url);
+        HttpResponse response = client.execute(post);
+        HttpEntity httpEntity = response.getEntity();
+        String result = EntityUtils.toString(httpEntity, "utf-8");
+        return result;
+    }
 
     /**
      * 登录

@@ -15,20 +15,26 @@ public class Record {
     @Column(name = "time_stamp")
     private String timeStamp;
 
-    @Column(name = "nutrition1")
-    private String nutrition1;
+    @Column(name = "cal")
+    private double cal;
 
-    @Column(name = "nutrition2")
-    private String nutrition2;
+    @Column(name = "food")
+    private String food;
 
-    @Column(name = "nutrition3")
-    private String nutrition3;
+    @Column(name = "weight")
+    private double weight;
 
-    @Column(name = "nutrition4")
-    private String nutrition4;
+    @Column(name = "fat")
+    private double fat;
 
-    @Column(name = "nutrition5")
-    private String nutrition6;
+    @Column(name = "protein")
+    private double protein;
+
+    @Column(name = "carbohydrate")
+    private double carbohydrate;
+
+    @Column(name = "if_is_vegetable")
+    private boolean if_is_vegetable;
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
@@ -50,47 +56,64 @@ public class Record {
         this.id = id;
     }
 
+    public double getCal() {
+        return cal;
+    }
+
+    public void setCal(double cal) {
+        this.cal = cal;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public String getNutrition1() {
-        return nutrition1;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
-    public String getNutrition2() {
-        return nutrition2;
+    public double getWeight() {
+        return weight;
     }
 
-    public String getNutrition3() {
-        return nutrition3;
+    public String getFood() {
+        return food;
     }
 
-    public void setNutrition1(String nutrition1) {
-        this.nutrition1 = nutrition1;
+    public void setFood(String food) {
+        this.food = food;
     }
 
-    public void setNutrition2(String nutrition2) {
-        this.nutrition2 = nutrition2;
+    public double getFat() {
+        return fat;
     }
 
-    public String getNutrition4() {
-        return nutrition4;
+    public double getProtein() {
+        return protein;
     }
 
-    public void setNutrition4(String nutrition4) {
-        this.nutrition4 = nutrition4;
+    public double getCarbohydrate() {
+        return carbohydrate;
     }
 
-    public void setNutrition3(String nutrition3) {
-        this.nutrition3 = nutrition3;
+    public void setFat(double fat) {
+        this.fat = fat;
     }
 
-    public void setNutrition6(String nutrition6) {
-        this.nutrition6 = nutrition6;
+    public void setProtein(double protein) {
+        this.protein = protein;
     }
 
-    public String getNutrition6() {
-        return nutrition6;
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
     }
+
+    public boolean isIf_is_vegetable() {
+        return if_is_vegetable;
+    }
+
+    public void setIf_is_vegetable(boolean if_is_vegetable) {
+        this.if_is_vegetable = if_is_vegetable;
+    }
+
 }
