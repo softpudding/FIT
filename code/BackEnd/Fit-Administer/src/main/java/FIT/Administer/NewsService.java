@@ -34,11 +34,11 @@ public class NewsService {
 
     public void show(News news) {
         news.setActive(1);
-        newsRepo.saveAndFlush(news);
+        newsDao.save(news);
     }
 
     public void hide(News news) {
         news.setActive(0);
-        newsRepo.saveAndFlush(news);
+        newsDao.save(news);
     }
 }

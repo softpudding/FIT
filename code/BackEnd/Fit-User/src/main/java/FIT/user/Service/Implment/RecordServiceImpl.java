@@ -94,6 +94,12 @@ public class RecordServiceImpl implements RecordService {
         else return "[]";
     }
 
+
+    /**
+     *
+     *  并不是获取5条记录
+     *  而是获取今天的记录
+     */
     @Override
     public String getFiveRecord(String tel) {
 
@@ -114,18 +120,6 @@ public class RecordServiceImpl implements RecordService {
         if (jsonArray.size()>0) {
             return jsonArray.toJSONString();
         }
-        /*
-        JSONArray jsonArray = recordDao.findByTelAndTime(tel,"1900-00-00","3000-00-00");
-        if (jsonArray.size() > 0) {
-            JSONArray js = new JSONArray();
-            for (int i=jsonArray.size()-1 ; i>=0 && i>jsonArray.size()-6 ; i--) {
-                js.add(jsonArray.getJSONObject(i));
-            }
-            return js.toString();
-
-        }
-
-         */
 
         else return "[]";
     }
@@ -146,6 +140,30 @@ public class RecordServiceImpl implements RecordService {
 
         JSONArray jsonArray = recordDao.findByTelAndTime(tel,ss.toString(),"3000-09-26");
         Integer size = jsonArray.size();
+
+
+        /*
+          如果size = 0，得特殊处理 (并不是这样，而是因为生日为null，就搞不定了)
+
+        if (size == 0) {
+            JSONObject js = new JSONObject();
+
+            User u = userDao.findByTel(tel);
+
+            String birthday = u.getBirthday();
+            StringBuilder sb = new StringBuilder(birthday);
+            String ageString = sb.substring(0,4);
+            System.out.println("birth_year test for  " + ageString);
+            Integer age = 2019 - Integer.parseInt(ageString);//valueOf(ageString).intValue();
+            Double standard = getStandard(age,u.getHeight(),u.getWeight(),u.getGender());
+
+            js.put("standard",standard);
+            js.put("result",0.0);
+            return js;
+        }
+
+         */
+
         System.out.println("the size : " + size);
         Double sumCal = 0.0;
         for (int i=0; i<size; i++){
@@ -176,7 +194,9 @@ public class RecordServiceImpl implements RecordService {
         /* 返回值 */
         JSONObject result = new JSONObject();
         /* 自己吃了啥 */
-        JSONArray jsonArray = recordDao.findByTelAndTime(tel, beginDate, endDate);
+        String b1 = beginDate + " 00:00:00";
+        String e1 = endDate + " 24:00:00";
+        JSONArray jsonArray = recordDao.findByTelAndTime(tel, b1, e1);
 
         System.out.println("Dao 找完了");
         System.out.println(jsonArray.size());
@@ -219,7 +239,7 @@ public class RecordServiceImpl implements RecordService {
 
         JSONObject jsonObject = sumCal(tel);
 
-        Double cal = jsonObject.getDouble("result");
+        Double cal = jsonObject.getDouble("standard");
 
         /* 计算正常所需的量 */
 
@@ -235,7 +255,7 @@ public class RecordServiceImpl implements RecordService {
     public Double getStandard(Integer age, Integer height, Double weight, Integer gender) {
 
 
-        Double female = 65 + 9.6 * weight + 1.7 * height - 4.7 * age;
+        Double female = 655 + 9.6 * weight + 1.7 * height - 4.7 * age;
         Double male = 66 + 13.7 * weight + 5 * height - 6.8 * age;
         if( gender == 1) {
             return male;

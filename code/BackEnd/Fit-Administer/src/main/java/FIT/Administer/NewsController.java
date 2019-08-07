@@ -1,11 +1,12 @@
 package FIT.Administer;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
@@ -26,14 +27,14 @@ public class NewsController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/getOneNews")
     public @ResponseBody
-    String getOneNews(Integer id) {
-        return newsService.findById(id).getNews();
+    News getOneNews(Integer id) {
+        return newsService.findById(id);
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/showNews")
     public @ResponseBody
-    boolean showNews(Integer id) {
+    boolean showNews(@RequestBody Integer id) {
         News news = newsService.findById(id);
         if (news == null) {
             return false;
@@ -46,8 +47,10 @@ public class NewsController {
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @PostMapping(path = "/hideNews")
-    public @ResponseBody boolean  hideNews(Integer id) {
+    public @ResponseBody boolean hideNews(@RequestBody Integer id) {
         News news = newsService.findById(id);
+        System.out.println("IDIDIID");
+        System.out.println("IDIDIID" + id);
         if (news == null) {
             return false;
         }
@@ -62,15 +65,30 @@ public class NewsController {
     public @ResponseBody Iterable<News> getNews() {
 
         Iterable<News> iterable = newsService.findAllByActive(1);
+        System.out.println("hello All News");
         return iterable;
-        /*
-        JSONArray jsonArray = new JSONArray();
-        for (News news:iterable) {
-            System.out.println("here");
-            jsonArray.add(news);
-        }
-        return jsonArray;
-
-         */
     }
+
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @PostMapping(path = "/AddNews")
+    public @ResponseBody boolean AddNews(@RequestBody JSONObject data) {
+
+
+
+        News n = new News();
+        n.setTittle(data.getString("tittle"));
+        n.setNews(data.getString("news"));
+        n.setActive(1);
+
+        // get time stamp
+        SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+        sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();// 获取当前时间
+        String time = sdf.format(date.getTime());
+        n.setTime_stamp(time);
+        
+        newsService.save(n);
+        return true;
+    }
+
 }
