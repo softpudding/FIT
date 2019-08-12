@@ -11,6 +11,6 @@ public class HttpTest {
         http = new Http();
         Http http2 = new Http();
         assertEquals(http.getInstance(),http2.getInstance());
-        assertNotEquals(http.getHttpService(),http2.getHttpService());
+        assertNotEquals(http.getHttpService(1),http2.getHttpService(1));
     }
 }

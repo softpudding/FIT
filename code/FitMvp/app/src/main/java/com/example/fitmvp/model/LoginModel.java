@@ -13,26 +13,19 @@ import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.SpUtils;
-import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.utils.UserUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import cn.jpush.im.android.api.JMessageClient;
-import cn.jpush.im.android.api.callback.GetUserInfoCallback;
-import cn.jpush.im.android.api.model.UserInfo;
 
 public class LoginModel extends BaseModel implements LoginContract.Model {
     private Boolean isLogin = false;
     private String token;
 
+    // 向后端发送登录请求，处理返回结果
     @Override
     public Boolean login(@NonNull String account, @NonNull String password, @NonNull final InfoHint
             infoHint) {
-        if (infoHint == null)
-            throw new RuntimeException("InfoHint不能为空");
-
+        // 发送登录请求
         httpService1.login(account, password)
                 .compose(new ThreadTransformer<MyResponse<LoginUserBean>>())
                 .subscribe(new CommonObserver<MyResponse<LoginUserBean>>() {
@@ -45,6 +38,7 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                                 return;
                             }
                             switch(response.getResult()){
+                                // 登录成功
                                 case "100":
                                     infoHint.successInfo(response.getUser());
                                     token = response.getToken();
@@ -79,47 +73,37 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
                 });
         return isLogin;
     }
+
+    // 后端和JMessage都登录成功后，保存用户信息
     public void saveUser(final LoginUserBean user, final InfoHint infoHint){
         // 登录状态设为true
         SpUtils.put("isLogin",true);
         // 保存token
         SpUtils.put("token",token);
-        // LogUtils.d("token",(String)SpUtils.get("token",""));
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
+        String phone = user.getTel();
+        SpUtils.put("phone",phone);
+        SpUtils.put("nickname",user.getNickName());
+        // 性别
+        SpUtils.put("gender", UserUtils.getGender(user));
+        // 生日
+        SpUtils.put("birthday",user.getBirthday());
+        // 保存身高、体重
+        SpUtils.put("height",String.valueOf(user.getHeight()));
+        SpUtils.put("weight",String.valueOf(user.getWeight()));
 
-        JMessageClient.getUserInfo(user.getTel(), new GetUserInfoCallback() {
-            @Override
-            public void gotResult(int i, String s, UserInfo userInfo) {
-                if(i==0){
-                    LogUtils.e("save_info",userInfo.getUserName()+" "+userInfo.getNickname());
-                    String phone = userInfo.getUserName();
-                    String appKey = userInfo.getAppKey();
-                    SpUtils.put("phone",phone);
-                    SpUtils.put("appKey",appKey);
-                    SpUtils.put("nickname",userInfo.getNickname());
-                    // 性别
-                    SpUtils.put("gender", UserUtils.getGender(userInfo));
-                    // 生日
-                    SpUtils.put("birthday",UserUtils.getBirthday(userInfo));
-                    // 保存身高、体重
-                    SpUtils.put("height",String.valueOf(user.getHeight()));
-                    SpUtils.put("weight",String.valueOf(user.getWeight()));
-                    // 更新数据库中用户数据
-                    UserEntry userEntry = UserEntry.getUser(phone,appKey);
-                    if(userEntry==null){
-                        LogUtils.e("save_user",phone);
-                        UserEntry newUser = new UserEntry(phone,appKey);
-                        newUser.save();
-                    }
-                    infoHint.loginSuccess();
-                }
-                else{
-                    LogUtils.e("find_user",s);
-            }
-            }
-        });
+        String appKey = BaseApplication.getAppKey();
+         // 更新数据库中用户数据
+        UserEntry userEntry = UserEntry.getUser(phone,appKey);
+        if(userEntry==null){
+            LogUtils.e("save_user",phone);
+            UserEntry newUser = new UserEntry(phone,appKey);
+            newUser.save();
+        }
+        infoHint.loginSuccess();
     }
 
+    // 登出
     @Override
     public Boolean logout() {
         JMessageClient.logout();
