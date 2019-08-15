@@ -83,12 +83,13 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
 
     @Override
     public void initData() {
-        phone = (String)SpUtils.get("phone","");
-        oldNickname = (String)SpUtils.get("nickname","");
-        oldBirthday = (String)SpUtils.get("birthday","");
-        oldGender = (String)SpUtils.get("gender","");
-        oldHeight = (String)SpUtils.get("height","");
-        oldWeight = (String)SpUtils.get("weight","");
+        SpUtils spUtils = new SpUtils();
+        phone = (String)spUtils.get("phone","");
+        oldNickname = (String)spUtils.get("nickname","");
+        oldBirthday = (String)spUtils.get("birthday","");
+        oldGender = (String)spUtils.get("gender","");
+        oldHeight = (String)spUtils.get("height","");
+        oldWeight = (String)spUtils.get("weight","");
 
         // 显示手机号
         infoPhone.setText(phone);

@@ -76,21 +76,22 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
 
     // 后端和JMessage都登录成功后，保存用户信息
     public void saveUser(final LoginUserBean user, final InfoHint infoHint){
+        SpUtils spUtils = new SpUtils();
         // 登录状态设为true
-        SpUtils.put("isLogin",true);
+        spUtils.put("isLogin",true);
         // 保存token
-        SpUtils.put("token",token);
+        spUtils.put("token",token);
         // 保存账号、昵称、头像、生日、身高、体重、性别信息
         String phone = user.getTel();
-        SpUtils.put("phone",phone);
-        SpUtils.put("nickname",user.getNickName());
+        spUtils.put("phone",phone);
+        spUtils.put("nickname",user.getNickName());
         // 性别
-        SpUtils.put("gender", UserUtils.getGender(user));
+        spUtils.put("gender", UserUtils.getGender(user));
         // 生日
-        SpUtils.put("birthday",user.getBirthday());
+        spUtils.put("birthday",user.getBirthday());
         // 保存身高、体重
-        SpUtils.put("height",String.valueOf(user.getHeight()));
-        SpUtils.put("weight",String.valueOf(user.getWeight()));
+        spUtils.put("height",String.valueOf(user.getHeight()));
+        spUtils.put("weight",String.valueOf(user.getWeight()));
 
         String appKey = BaseApplication.getAppKey();
          // 更新数据库中用户数据
@@ -107,7 +108,8 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
     @Override
     public Boolean logout() {
         JMessageClient.logout();
-        SpUtils.clear();
+        SpUtils spUtils = new SpUtils();
+        spUtils.clear();
         return true;
     }
 }

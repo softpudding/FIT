@@ -9,7 +9,8 @@ public class WelcomeModel extends BaseModel implements WelcomeContract.Model {
     public Boolean isLogin(){
         Boolean isLogin;
         // 默认值为false，即查找结果为null时返回false
-        isLogin = (Boolean)SpUtils.get("isLogin",false);
+        SpUtils spUtils = new SpUtils();
+        isLogin = (Boolean)spUtils.get("isLogin",false);
         return isLogin;
     }
 }

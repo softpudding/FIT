@@ -139,10 +139,11 @@ public class Http {
         Interceptor headerInterceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
+                SpUtils spUtils = new SpUtils();
                 Request originalRequest = chain.request();
                 Request.Builder requestBuilder = originalRequest.newBuilder()
                         // Provide your custom header here
-                        .header("token", (String) SpUtils.get("token", ""))
+                        .header("token", (String) spUtils.get("token", ""))
 //                        .header("phone",(String)SpUtils.get("phone",""))
                         .method(originalRequest.method(), originalRequest.body());
                 Request request = requestBuilder.build();

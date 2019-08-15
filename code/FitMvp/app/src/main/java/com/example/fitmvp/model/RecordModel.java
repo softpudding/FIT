@@ -16,7 +16,8 @@ import java.util.List;
 public class RecordModel extends BaseModel implements RecordContract.Model {
     @Override
     public void getAllRecords(final Callback callback) {
-        String tel = (String)SpUtils.get("phone","");
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
         if(tel==null || tel.equals("")){
             callback.fail();
         }

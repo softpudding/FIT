@@ -74,13 +74,15 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
        // 设置数据
        setuserpic();
        updateInfo();
-       textPhone.setText((String)SpUtils.get("phone","")); // 手机号不会被修改
+       SpUtils spUtils = new SpUtils();
+       textPhone.setText((String)spUtils.get("phone","")); // 手机号不会被修改
        //注册刷新Fragment数据的方法
        registerReceiver();
    }
 
    private void setuserpic(){
-       String username = (String)SpUtils.get("phone","");
+       SpUtils spUtils = new SpUtils();
+       String username = (String)spUtils.get("phone","");
        JMessageClient.getUserInfo(username, new GetUserInfoCallback() {
            @Override
            public void gotResult(int i, String s, UserInfo userInfo) {
@@ -167,27 +169,28 @@ public class FragmentMe extends BaseFragment<MePresenter> implements MeContract.
 
     private void updateInfo(){
        String UNSET = "未设置";
-       String nickname = (String)SpUtils.get("nickname","");
+       SpUtils spUtils = new SpUtils();
+       String nickname = (String)spUtils.get("nickname","");
        if(nickname==null || nickname.equals("")){
            nickname = UNSET;
        }
        textNickname.setText(nickname);
-       String birthday = (String)SpUtils.get("birthday","");
+       String birthday = (String)spUtils.get("birthday","");
        if(birthday==null || birthday.equals("")){
            birthday = UNSET;
        }
        textBirthday.setText(birthday);
-       String gender = (String)SpUtils.get("gender","");
+       String gender = (String)spUtils.get("gender","");
        if(gender==null || gender.equals("")){
            gender = UNSET;
        }
        textGender.setText(gender);
-       String height = (String)SpUtils.get("height","");
+       String height = (String)spUtils.get("height","");
        if(height==null || height.equals("")){
            height = UNSET;
        }
        textHeight.setText(height);
-       String weight = (String)SpUtils.get("weight","");
+       String weight = (String)spUtils.get("weight","");
        if(weight==null || weight.equals("")){
            weight = UNSET;
        }

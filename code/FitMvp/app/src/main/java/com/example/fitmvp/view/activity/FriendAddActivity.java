@@ -57,7 +57,8 @@ public class FriendAddActivity extends BaseActivity<FriendAddPresenter> implemen
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        String myName = (String)SpUtils.get("nickname","");
+        SpUtils spUtils = new SpUtils();
+        String myName = (String)spUtils.get("nickname","");
         inputReason.setText("我是"+myName);
     }
 
