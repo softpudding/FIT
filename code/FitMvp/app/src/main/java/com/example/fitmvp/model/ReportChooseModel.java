@@ -17,7 +17,8 @@ import java.util.Date;
 public class ReportChooseModel extends BaseModel implements ReportChooseContract.Model {
     @Override
     public void getReport(String start, String end, final Callback callback) {
-        String tel = (String)SpUtils.get("phone","");
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
         httpService1.getForm(tel,start,end)
                 .compose(new ThreadTransformer<FormBean>())
                 .subscribe(new CommonObserver<FormBean>() {

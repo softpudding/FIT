@@ -35,7 +35,8 @@ public class FriendSearchPresenter extends BasePresenter<FriendSearchActivity> i
             @Override
             public void gotResult(int i, String s, UserInfo userInfo) {
                 if(i == 0){
-                    if(userInfo.getUserName().equals(SpUtils.get("phone",""))){
+                    SpUtils spUtils = new SpUtils();
+                    if(userInfo.getUserName().equals(spUtils.get("phone",""))){
                         ToastUtil.setToast("不能添加自己为好友");
                         return;
                     }

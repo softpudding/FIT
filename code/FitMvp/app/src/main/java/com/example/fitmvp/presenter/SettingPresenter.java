@@ -35,12 +35,13 @@ public class SettingPresenter extends BasePresenter<SettingActivity> implements 
         model.updateInfo(tel, nickname, birthday, gender, height, weight, new SettingContract.Model.InfoHint() {
             @Override
             public void successInfo() {
+                SpUtils spUtils = new SpUtils();
                 // 保存新数据
-                SpUtils.put("nickname",nickname);
-                SpUtils.put("birthday",birthday);
-                SpUtils.put("gender",gender);
-                SpUtils.put("height",height);
-                SpUtils.put("weight",weight);
+                spUtils.put("nickname",nickname);
+                spUtils.put("birthday",birthday);
+                spUtils.put("gender",gender);
+                spUtils.put("height",height);
+                spUtils.put("weight",weight);
                 // 刷新UI
                 Intent friendInfoIntent = new Intent("updateUserInfo");
                 LocalBroadcastManager.getInstance(getIView()).sendBroadcast(friendInfoIntent);

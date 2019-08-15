@@ -18,10 +18,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MainPageModel extends BaseModel implements MainPageContract.Model {
-    String tel;
     @Override
     public void getCalValue(final calCallback callback) {
-        tel = (String)SpUtils.get("phone","");
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
         if(tel==null || tel.equals("")){
             callback.fail();
         }
@@ -51,7 +51,8 @@ public class MainPageModel extends BaseModel implements MainPageContract.Model {
 
     @Override
     public void getList(final listCallback callback) {
-        tel = (String)SpUtils.get("phone","");
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
         if(tel==null || tel.equals("")){
             callback.fail();
         }

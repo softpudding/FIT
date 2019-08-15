@@ -2,26 +2,30 @@ package com.example.fitmvp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Base64;
 
 import com.example.fitmvp.BaseApplication;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Map;
 
 public class SpUtils {
     /**
      * 保存在手机里面的文件名
      */
-    public static final String FILE_NAME ="fit";
-   static Context context = BaseApplication.getmContext();
+    private static final String FILE_NAME ="fit";
+
+    SharedPreferences sp;
+
+    // 正常代码调用
+    public SpUtils(){
+        Context context = BaseApplication.getmContext();
+        this.sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+    }
+
+    // 单元测试时调用
+    protected SpUtils(SharedPreferences sharedPre){
+        this.sp = sharedPre;
+    }
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
@@ -29,12 +33,8 @@ public class SpUtils {
      * @param key
      * @param object
      */
-    public static void put(String key, Object object) {
-
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+    public void put(String key, Object object) {
         SharedPreferences.Editor editor = sp.edit();
-
         if (object instanceof String) {
             editor.putString(key, (String) object);
         } else if (object instanceof Integer) {
@@ -45,13 +45,10 @@ public class SpUtils {
             editor.putFloat(key, (Float) object);
         } else if (object instanceof Long) {
             editor.putLong(key, (Long) object);
-        } else {
-            editor.putString(key, object.toString());
         }
 
         SharedPreferencesCompat.apply(editor);
     }
-
 
     /**
      * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
@@ -60,10 +57,7 @@ public class SpUtils {
      * @param defaultObject
      * @return
      */
-    public static Object get(String key, Object defaultObject) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
-
+    public Object get(String key, Object defaultObject) {
         if (defaultObject instanceof String) {
             return sp.getString(key, (String) defaultObject);
         } else if (defaultObject instanceof Integer) {
@@ -81,9 +75,7 @@ public class SpUtils {
     /**
      * 移除某个key值已经对应的值
      */
-    public static void remove(String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+    public void remove(String key) {
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
@@ -92,105 +84,21 @@ public class SpUtils {
     /**
      * 清除所有数据
      */
-    public static void clear() {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+    public void clear() {
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         SharedPreferencesCompat.apply(editor);
     }
 
+    // 记录未读好友申请消息数
     private static final String CACHED_NEW_FRIEND = "CachedNewFriend";
 
-    public static void setCachedNewFriendNum(int num) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+    public void setCachedNewFriendNum(int num) {
         sp.edit().putInt(CACHED_NEW_FRIEND, num).apply();
     }
 
-    public static int getCachedNewFriendNum() {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+    public int getCachedNewFriendNum() {
         return sp.getInt(CACHED_NEW_FRIEND, 0);
-    }
-
-    public static void setObject(String key, Object object) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream out = null;
-        try {
-
-            out = new ObjectOutputStream(baos);
-            out.writeObject(object);
-            String objectVal = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putString(key, objectVal);
-            editor.commit();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (baos != null) {
-                    baos.close();
-                }
-                if (out != null) {
-                    out.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T getObject(String key, Class<T> clazz) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
-
-        if (sp.contains(key)) {
-            String objectVal = sp.getString(key, null);
-            byte[] buffer = Base64.decode(objectVal, Base64.DEFAULT);
-            ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-            ObjectInputStream ois = null;
-            try {
-                ois = new ObjectInputStream(bais);
-                T t = (T) ois.readObject();
-                return t;
-            } catch (StreamCorruptedException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (bais != null) {
-                        bais.close();
-                    }
-                    if (ois != null) {
-                        ois.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
-
-
-    /**
-     * 返回所有的键值对
-     *
-     * @return
-     */
-    public static Map<String, ?> getAll() {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
-        return sp.getAll();
     }
 
     /**
@@ -212,8 +120,8 @@ public class SpUtils {
                 Class clz = SharedPreferences.Editor.class;
                 return clz.getMethod("apply");
             } catch (NoSuchMethodException e) {
+                System.out.println(e.getMessage());
             }
-
             return null;
         }
 
@@ -222,25 +130,21 @@ public class SpUtils {
          *
          * @param editor
          */
-        public static void apply(SharedPreferences.Editor editor) {
+        private static void apply(SharedPreferences.Editor editor) {
             try {
                 if (sApplyMethod != null) {
                     sApplyMethod.invoke(editor);
                     return;
                 }
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             } catch (IllegalAccessException e) {
+                System.out.println(e.getMessage());
             } catch (InvocationTargetException e) {
+                System.out.println(e.getMessage());
             }
             editor.commit();
         }
-    }
-
-    //返回String值
-    public static String getString(Context context, String key, String defaultStr){
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
-        return sp.getString(key,defaultStr);
     }
 
 }

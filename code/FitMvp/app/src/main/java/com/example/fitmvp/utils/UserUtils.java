@@ -1,15 +1,12 @@
 package com.example.fitmvp.utils;
 
+import com.example.fitmvp.bean.LoginUserBean;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
-
-import static cn.jpush.im.android.api.event.ContactNotifyEvent.Type.contact_deleted;
-import static cn.jpush.im.android.api.event.ContactNotifyEvent.Type.invite_accepted;
-import static cn.jpush.im.android.api.event.ContactNotifyEvent.Type.invite_declined;
-import static cn.jpush.im.android.api.event.ContactNotifyEvent.Type.invite_received;
 
 public class UserUtils {
     public static String getGender(UserInfo userInfo){
@@ -24,6 +21,19 @@ public class UserUtils {
             }
         } else {
             return "保密";
+        }
+    }
+
+    public static String getGender(LoginUserBean user){
+        switch (user.getGender()){
+            case 0:
+                return "保密";
+            case 1:
+                return "男";
+            case 2:
+                return "女";
+            default:
+                return "未知";
         }
     }
 
@@ -49,6 +59,7 @@ public class UserUtils {
                 //对方将你从好友中删除
                 case contact_deleted:
                     return "被对方删除";
+                // 应该不会到这里
                 default:
                     return "等待对方确认";
             }

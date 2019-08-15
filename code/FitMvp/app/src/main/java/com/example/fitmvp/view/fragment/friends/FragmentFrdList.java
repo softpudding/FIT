@@ -75,7 +75,8 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
         new Handler().post(new Runnable() {
             public void run() {
                 //在这里来写你需要刷新的地方
-                Integer num = SpUtils.getCachedNewFriendNum();
+                SpUtils spUtils = new SpUtils();
+                Integer num = spUtils.getCachedNewFriendNum();
                 LogUtils.e("set cache num",num.toString());
                 if(num>0){
                     cachedNewFriendNum.setText(String.format("%d",num));
@@ -186,7 +187,8 @@ public class FragmentFrdList extends BaseFragment<FriendPresenter>
     private void toRecommend(){
         Intent intent = new Intent(getActivity(), FriendRecommendActivity.class);
         startActivity(intent);
-        SpUtils.setCachedNewFriendNum(0);
+        SpUtils spUtils = new SpUtils();
+        spUtils.setCachedNewFriendNum(0);
         new Handler().post(new Runnable() {
             public void run() {
                 setCachedNewFriendNum();

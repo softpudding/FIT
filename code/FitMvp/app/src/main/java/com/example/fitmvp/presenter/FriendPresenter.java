@@ -147,7 +147,8 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
                 cnt++;
             }
         }
-        SpUtils.setCachedNewFriendNum(cnt);
+        SpUtils spUtils = new SpUtils();
+        spUtils.setCachedNewFriendNum(cnt);
         getIView().setCachedNewFriendNum();
     }
 

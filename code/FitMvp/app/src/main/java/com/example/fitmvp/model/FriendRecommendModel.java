@@ -47,9 +47,10 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
                                 reason, otherState ,user);
                         newEntry.save();
                         LogUtils.e("find_user",friend.getUserName());
-                        Integer cacheNum = SpUtils.getCachedNewFriendNum() + 1;
+                        SpUtils spUtils = new SpUtils();
+                        Integer cacheNum = spUtils.getCachedNewFriendNum() + 1;
                         LogUtils.e("cacheNum",cacheNum.toString());
-                        SpUtils.setCachedNewFriendNum(cacheNum);
+                        spUtils.setCachedNewFriendNum(cacheNum);
                     }
                     else{
                         LogUtils.e("getUserInfo Fail",s);
