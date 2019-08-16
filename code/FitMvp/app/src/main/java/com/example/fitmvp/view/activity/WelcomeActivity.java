@@ -48,6 +48,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     protected void initView() {
         ButterKnife.bind(this);
         second = 3;
+        final WelcomeActivity view = this;
         timer = new CountDownTimer(second*1000,1000) {
             @Override
             public void onTick(long l) {
@@ -58,7 +59,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
             }
             @Override
             public void onFinish() {
-                mPresenter.jump();
+                mPresenter.jump(null, view);
             }
         };
         timer.start();
@@ -71,7 +72,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     @Override
     protected void otherViewClick(View view) {
         timer.cancel();
-        mPresenter.jump();
+        mPresenter.jump(null, this);
     }
 
     @Override

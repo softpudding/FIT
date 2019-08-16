@@ -1,5 +1,6 @@
 package com.example.fitmvp.contract;
 
+import com.example.fitmvp.mvp.IView;
 import com.example.fitmvp.utils.SpUtils;
 
 public interface WelcomeContract {
@@ -13,6 +14,6 @@ public interface WelcomeContract {
     }
 
     interface Presenter {
-        void jump();
+        void jump(SpUtils spUtils, View view);
     }
 }
