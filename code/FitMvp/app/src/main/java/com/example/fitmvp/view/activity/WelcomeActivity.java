@@ -20,31 +20,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View{
-//    //声明一个静态的Handler内部类，并持有外部类的弱引用 （避免内存泄漏）
-//    private static class InnerHandler extends Handler{
-//        private final WeakReference<WelcomeActivity> mActivity;
-//        public InnerHandler(WelcomeActivity activity){
-//            mActivity = new WeakReference<WelcomeActivity>(activity);
-//        }
-//        @Override
-//        public void handleMessage(Message msg){
-//            WelcomeActivity activity = mActivity.get();
-//            if(activity != null){
-//               if(msg.what == 1){
-//                   activity.jump.setText("跳过  "+ activity.second.toString());
-//                   activity.second--;
-//                   if (activity.second<0){
-//                       //关闭定时器
-//                       activity.timer.cancel();
-//                       //跳往主界面
-//                       activity.mPresenter.jump();
-//                   }
-//               }
-//            }
-//        }
-//    }
-//    private final InnerHandler mHandler = new InnerHandler(this);
-
     @Bind(R.id.jump_timer)
     Button jump;
 

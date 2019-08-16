@@ -68,25 +68,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         }
     }
 
-
-    /**
-     * @param str 显示一个内容为str的toast
-     */
-    public void toast(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * @param contentId 显示一个内容为contentId指定的toast
-     */
-    public void toast(int contentId) {
-        Toast.makeText(this, contentId, Toast.LENGTH_SHORT).show();
-    }
-
-    public void LogE(String str) {
-        LogUtils.e(getClass(), str);
-    }
-
     @Override
     protected void onDestroy() {
         //注销消息接收

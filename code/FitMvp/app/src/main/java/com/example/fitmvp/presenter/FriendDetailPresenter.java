@@ -28,16 +28,6 @@ public class FriendDetailPresenter extends BasePresenter<FriendDetailActivity>
     private MessageModel msgModel = new MessageModel();
 
     @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return null;
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-       return null;
-    }
-
-    @Override
     public void acceptInvite(final String username){
         ContactManager.acceptInvitation(username, BaseApplication.getAppKey(), new BasicCallback() {
             @Override

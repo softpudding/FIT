@@ -1,8 +1,10 @@
 package com.example.fitmvp.contract;
 
+import com.example.fitmvp.utils.SpUtils;
+
 public interface WelcomeContract {
     interface Model {
-        Boolean isLogin();
+        Boolean isLogin(SpUtils spUtils);
     }
 
     interface View {

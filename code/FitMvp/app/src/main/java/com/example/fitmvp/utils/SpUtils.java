@@ -23,7 +23,7 @@ public class SpUtils {
     }
 
     // 单元测试时调用
-    protected SpUtils(SharedPreferences sharedPre){
+    public SpUtils(SharedPreferences sharedPre){
         this.sp = sharedPre;
     }
 

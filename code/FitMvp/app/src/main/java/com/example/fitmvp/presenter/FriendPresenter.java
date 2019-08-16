@@ -32,30 +32,15 @@ import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendPresenter extends BasePresenter<FragmentFrdList> implements FriendContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new FriendModel(),
-                new FriendRecommendModel(),
-                new MessageModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("friend", models[0]);
-        map.put("recommend",models[1]);
-        map.put("message",models[2]);
-        return map;
-    }
+    private FriendModel friendModel = new FriendModel();
+    private FriendRecommendModel friendRecommendModel = new FriendRecommendModel();
+    private MessageModel messageModel = new MessageModel();
 
     @Override
     public void handleEvent(String fromUsername, String reason, ContactNotifyEvent.Type type){
-        FriendRecommendModel model = (FriendRecommendModel) getiModelMap().get("recommend");
-        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
-        MessageModel messageModel = (MessageModel) getiModelMap().get("message");
         LogUtils.d("handleEvent",fromUsername);
         // 添加验证消息记录
-        model.addRecommend(fromUsername,reason,type);
+        friendRecommendModel.addRecommend(fromUsername,reason,type);
         switch (type) {
             //收到好友邀请
             case invite_received:
@@ -103,7 +88,6 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
     }
     @Override
     public List<FriendEntry> getFriendList(){
-        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
         List<FriendEntry> list = friendModel.getFriendList();
         Collections.sort(list, new Comparator<FriendEntry>() {
             // 按显示的名字升序排序
@@ -154,7 +138,6 @@ public class FriendPresenter extends BasePresenter<FragmentFrdList> implements F
 
     @Override
     public void initFriendList(){
-        FriendModel friendModel = (FriendModel) getiModelMap().get("friend");
         friendModel.initFriendList(new FriendContract.Model.InfoHint() {
             @Override
             public void updateFriend() {
