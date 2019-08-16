@@ -10,23 +10,12 @@ import com.example.fitmvp.view.activity.ChangePwActivity;
 import java.util.HashMap;
 
 public class ChangePwPresenter extends BasePresenter<ChangePwActivity> implements ChangePwContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new ChangePwModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("changePw", models[0]);
-        return map;
-    }
-
+    private ChangePwModel model = new ChangePwModel();
     @Override
     public void changePw(String tel,String password){
+
         if(getIView().check()) {
-            ((ChangePwModel) getiModelMap().get("changePw"))
-                    .changePw(tel, password, new ChangePwContract.Model.InfoHint() {
+            model.changePw(tel, password, new ChangePwContract.Model.InfoHint() {
                         @Override
                         public void successInfo(String str) {
                             getIView().changeSuccess(str);

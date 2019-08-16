@@ -20,16 +20,6 @@ import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendSearchPresenter extends BasePresenter<FriendSearchActivity> implements FriendSearchContract.Presenter {
     @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return null;
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        return null;
-    }
-
-    @Override
     public void search(String phone){
         JMessageClient.getUserInfo(phone, new GetUserInfoCallback() {
             @Override

@@ -18,18 +18,7 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
 
 public class LoginPresenter extends BasePresenter<LoginActivity> implements LoginContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new LoginModel(),new FriendModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("login", models[0]);
-        map.put("initFriends",models[1]);
-        return map;
-    }
+    private LoginModel loginModel = new LoginModel();
 
     public boolean checkNull() {
         boolean isNull = false;
@@ -47,8 +36,6 @@ public class LoginPresenter extends BasePresenter<LoginActivity> implements Logi
     @Override
     public void login(final String account,final String password){
         if (!checkNull()) {
-            final LoginModel loginModel = (LoginModel) getiModelMap().get("login");
-            final FriendModel friendModel = (FriendModel) getiModelMap().get("initFriends");
             loginModel.login(account, password, new LoginContract.Model.InfoHint() {
                 @Override
                 public void successInfo(final LoginUserBean user) {

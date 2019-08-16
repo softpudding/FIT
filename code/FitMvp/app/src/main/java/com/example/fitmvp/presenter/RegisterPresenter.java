@@ -14,23 +14,12 @@ import cn.jpush.im.android.api.options.RegisterOptionalUserInfo;
 import cn.jpush.im.api.BasicCallback;
 
 public class RegisterPresenter extends BasePresenter<RegisterActivity> implements RegisterContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new RegisterModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("register", models[0]);
-        return map;
-    }
+    private RegisterModel model = new RegisterModel();
 
     @Override
     public void register(final String tel, final String nickName, final String password){
         if (getIView().check()) {
-            ((RegisterModel) getiModelMap().get("register"))
-                    .register(tel, nickName, password, new RegisterContract.Model.InfoHint() {
+            model.register(tel, nickName, password, new RegisterContract.Model.InfoHint() {
                         @Override
                         public void successInfo(String str) {
                             // 注册成功后，用同样的账号密码在JMessage上注册
@@ -65,8 +54,7 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
     public void sendMsg(String tel){
         // 检查输入
         if(getIView().checkMsg()){
-            RegisterModel registerModel = (RegisterModel) getiModelMap().get("register");
-            String targetMsg = registerModel.getMessage(tel);
+            String targetMsg = model.getMessage(tel);
             getIView().setTargetMsg(targetMsg);
         }
     }

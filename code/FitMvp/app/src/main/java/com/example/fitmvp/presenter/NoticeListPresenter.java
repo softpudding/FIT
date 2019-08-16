@@ -13,21 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class NoticeListPresenter extends BasePresenter<NoticeListActivity> implements NoticeListContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new NoticeListModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("getNotice", models[0]);
-        return map;
-    }
+    private NoticeListModel model = new NoticeListModel();
 
     @Override
     public void getNotice() {
-        NoticeListModel model = (NoticeListModel) getiModelMap().get("getNotice");
         model.getNotice(new NoticeListContract.Model.Callback() {
             @Override
             public void success(List<NoticeBean> list) {

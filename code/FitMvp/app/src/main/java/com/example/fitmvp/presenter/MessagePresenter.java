@@ -7,34 +7,23 @@ import com.example.fitmvp.model.MessageModel;
 import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.view.fragment.friends.FragmentMsg;
+import com.nostra13.universalimageloader.utils.L;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class MessagePresenter extends BasePresenter<FragmentMsg>
         implements MessageContract.Presenter {
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new MessageModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("message", models[0]);
-        return map;
-    }
+    private MessageModel messageModel = new MessageModel();
 
     @Override
     public List<ConversationEntity> getConvList(){
-        MessageModel messageModel = (MessageModel) getiModelMap().get("message");
         List<ConversationEntity> list = messageModel.getConvList();
         return list;
     }
 
     @Override
     public void deleteConv(ConversationEntity entity){
-        MessageModel messageModel = (MessageModel) getiModelMap().get("message");
         if(messageModel.deleteMsg(entity)){
             getIView().updateData();
         }

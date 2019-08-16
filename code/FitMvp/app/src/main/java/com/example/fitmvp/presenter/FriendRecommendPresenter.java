@@ -17,17 +17,7 @@ import java.util.List;
 public class FriendRecommendPresenter extends BasePresenter<FriendRecommendActivity>
         implements FriendRecommendContract.Presenter {
     private static List<FriendRecommendEntry> recommendList = new ArrayList<>();
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new FriendRecommendModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("recommend", models[0]);
-        return map;
-    }
+    private FriendRecommendModel model = new FriendRecommendModel();
 
     @Override
     public FriendEntry getUser(String username){

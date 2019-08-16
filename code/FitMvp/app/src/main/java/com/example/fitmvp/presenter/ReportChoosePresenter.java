@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 public class ReportChoosePresenter extends BasePresenter<ReportChooseDateActivity>
         implements ReportChooseContract.Presenter {
+    private ReportChooseModel model = new ReportChooseModel();
     // 设置默认起止日期，到今天为止最近7天
     @Override
     public void initDate() {
@@ -38,7 +39,6 @@ public class ReportChoosePresenter extends BasePresenter<ReportChooseDateActivit
 
     @Override
     public void getReport(final String start, final String end) {
-        ReportChooseModel model = (ReportChooseModel)getiModelMap().get("choose");
         model.getReport(start, end, new ReportChooseContract.Model.Callback() {
             @Override
             public void success(FormBean formBean) {
@@ -63,17 +63,5 @@ public class ReportChoosePresenter extends BasePresenter<ReportChooseDateActivit
                 ToastUtil.setToast("获取报表失败，请稍后再试");
             }
         });
-    }
-
-    @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return loadModelMap(new ReportChooseModel());
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        HashMap<String, IModel> map = new HashMap<>();
-        map.put("choose", models[0]);
-        return map;
     }
 }

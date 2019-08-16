@@ -16,16 +16,6 @@ import cn.jpush.im.api.BasicCallback;
 public class FriendAddPresenter extends BasePresenter<FriendAddActivity> implements FriendAddContract.Presenter {
     private FriendRecommendModel model = new FriendRecommendModel();
     @Override
-    public HashMap<String, IModel> getiModelMap() {
-        return null;
-    }
-
-    @Override
-    public HashMap<String, IModel> loadModelMap(IModel... models) {
-        return null;
-    }
-
-    @Override
     public void addFriend(final String targetUser, final String reason){
         ContactManager.sendInvitationRequest(targetUser, null, reason, new BasicCallback() {
             @Override
