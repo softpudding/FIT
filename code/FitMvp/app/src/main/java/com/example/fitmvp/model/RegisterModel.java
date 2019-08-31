@@ -10,6 +10,7 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 public class RegisterModel extends BaseModel implements RegisterContract.Model {
     private Boolean isRegister = false;
@@ -64,6 +65,7 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
                     @Override
                     public void onError(ApiException e){
                         System.err.println("onError: "+ e.getMessage());
+                        ToastUtil.setToast("服务器出错");
                     }
                 });
         return message;

@@ -133,6 +133,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             inputPwd.setError("密码不能为空");
             flag = false;
         }
+        else if(getPassword().length()<4){
+            inputPwd.setError("密码不能小于4位");
+            flag = false;
+        }
+        else if(getPassword().length()>128){
+            inputPwd.setError("密码不能大于128位");
+            flag = false;
+        }
         else if(TextUtils.isEmpty(getPwdAgain())){
             inputPwdAgain.setError("请确认密码");
             flag = false;
