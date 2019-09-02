@@ -153,7 +153,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             inputMsg.setError("请输入验证码");
             flag = false;
         }
-        else if(getMsg().equals(targetMsg)){
+        else if(!getMsg().equals(targetMsg)){
             inputMsg.setError("验证码错误");
             flag = false;
         }

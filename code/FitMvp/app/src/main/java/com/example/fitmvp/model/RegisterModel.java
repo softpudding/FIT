@@ -14,14 +14,10 @@ import com.example.fitmvp.utils.ToastUtil;
 
 public class RegisterModel extends BaseModel implements RegisterContract.Model {
     private Boolean isRegister = false;
-    private String message;
 
     @Override
     public Boolean register(@NonNull String tel,@NonNull String nickName, @NonNull String password, @NonNull final InfoHint
             infoHint) {
-        if (infoHint == null)
-            throw new RuntimeException("InfoHint不能为空");
-
         httpService1.register(tel,nickName,password)
                 .compose(new ThreadTransformer<MyResponse<RegisterUserBean>>())
                 .subscribe(new CommonObserver<MyResponse<RegisterUserBean>>() {
@@ -53,14 +49,13 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
     }
 
     @Override
-    public String getMessage(String tel){
+    public void getMessage(String tel, @NonNull final InfoHint infoHint){
         httpService1.sendMessage(tel)
                 .compose(new ThreadTransformer<String>())
                 .subscribe(new CommonObserver<String>() {
                     @Override
                     public void onNext(String response){
-                        message = response;
-                        LogUtils.d("message",message);
+                        infoHint.successInfo(response);
                     }
                     @Override
                     public void onError(ApiException e){
@@ -68,6 +63,5 @@ public class RegisterModel extends BaseModel implements RegisterContract.Model {
                         ToastUtil.setToast("服务器出错");
                     }
                 });
-        return message;
     }
 }

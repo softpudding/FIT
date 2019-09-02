@@ -2,6 +2,7 @@ package com.example.fitmvp.presenter;
 
 import com.example.fitmvp.base.BasePresenter;
 import com.example.fitmvp.contract.ChangePwContract;
+import com.example.fitmvp.contract.RegisterContract;
 import com.example.fitmvp.model.ChangePwModel;
 import com.example.fitmvp.model.RegisterModel;
 import com.example.fitmvp.mvp.IModel;
@@ -37,8 +38,18 @@ public class ChangePwPresenter extends BasePresenter<ChangePwActivity> implement
     public void sendMsg(String tel) {
         // 检查输入
         if(getIView().checkMsg()){
-            String targetMsg = sendMsgmodel.getMessage(tel);
-            getIView().setTargetMsg(targetMsg);
+            sendMsgmodel.getMessage(tel, new RegisterContract.Model.InfoHint() {
+                @Override
+                public void successInfo(String str) {
+                    getIView().setTargetMsg(str);
+                }
+
+                @Override
+                public void errorInfo(String str) {
+                }
+            });
+
+
         }
     }
 }

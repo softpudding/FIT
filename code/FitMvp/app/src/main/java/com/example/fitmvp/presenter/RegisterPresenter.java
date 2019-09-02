@@ -54,8 +54,17 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
     public void sendMsg(String tel){
         // 检查输入
         if(getIView().checkMsg()){
-            String targetMsg = model.getMessage(tel);
-            getIView().setTargetMsg(targetMsg);
+            model.getMessage(tel, new RegisterContract.Model.InfoHint() {
+                @Override
+                public void successInfo(String str) {
+                    getIView().setTargetMsg(str);
+                }
+
+                @Override
+                public void errorInfo(String str) {
+
+                }
+            });
         }
     }
 }
