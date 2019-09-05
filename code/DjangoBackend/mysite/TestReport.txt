@@ -1,0 +1,26 @@
+C:\Users\11570\PycharmProjects\mysite>python3 manage.py test
+nosetests --with-coverage --cover-package=mysite,classify --verbosity=1
+Creating test database for alias 'default'...
+.2019-07-21 11:14:12.907722: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2019-07-21 11:14:13.050915: W tensorflow/core/framework/allocator.cc:107] Allocation of 411041792 exceeds 10% of system memory.
+2019-07-21 11:14:18.036366: W tensorflow/core/framework/allocator.cc:107] Allocation of 411041792 exceeds 10% of system memory.
+2019-07-21 11:14:19.059687: W tensorflow/core/framework/allocator.cc:107] Allocation of 154140672 exceeds 10% of system memory.
+2019-07-21 11:14:36.842827: W tensorflow/core/framework/allocator.cc:107] Allocation of 411041792 exceeds 10% of system memory.
+2019-07-21 11:14:37.825053: W tensorflow/core/framework/allocator.cc:107] Allocation of 154140672 exceeds 10% of system memory.
+.
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+classify\__init__.py                  0      0   100%
+classify\migrations\__init__.py       0      0   100%
+classify\urls.py                      3      0   100%
+classify\views.py                   225      0   100%
+mysite\__init__.py                    0      0   100%
+mysite\settings.py                   20     20     0%
+mysite\urls.py                        3      0   100%
+-----------------------------------------------------
+TOTAL                               251     20    92%
+----------------------------------------------------------------------
+Ran 2 tests in 42.761s
+
+OK
+Destroying test database for alias 'default'...
