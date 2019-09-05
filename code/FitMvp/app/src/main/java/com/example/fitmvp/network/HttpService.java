@@ -51,13 +51,17 @@ public interface HttpService {
     //图片传输
     @POST("classify/")
     @FormUrlEncoded
-    Observable<PhotoType1Bean<PredictionBean, NutriBean>> photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
+    Observable<PhotoType1Bean<PredictionBean>>photoSend(@Field("tel")String tel, @Field("obj_type")Integer obj_type, @Field("img")String img);
 
     //多种食物
     @POST("classify/")
     @FormUrlEncoded
     Observable<PhotoTypetBean> multifood(@Field("tel")String tel, @Field("obj_type")Integer obj_type,
                                          @Field("img")String img, @Field("plate_type")Integer ptype);
+
+    //人工修改后的多种食物信息传输
+    @POST("/user/foodInfo")
+    Observable<JSONArray> foodget(@Body JSONObject foodsname);
 
     // 更新用户信息
     @POST("/user/changeUserInfo")
