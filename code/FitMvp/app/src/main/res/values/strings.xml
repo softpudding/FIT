@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitMvp</string>
+    <string name="app_name">FIT</string>
     <string name="account">账号</string>
     <string name="password">密码</string>
     <string name="to_register">没有账号？去注册？</string>

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+
 import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.LoginContract;
@@ -33,6 +35,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void setBar(){
+        ActionBar actionbar = getSupportActionBar();
+        //显示标题
+        actionbar.setDisplayShowTitleEnabled(true);
+        actionbar.setTitle("登录");
     }
     @Override
     protected LoginPresenter loadPresenter() {
