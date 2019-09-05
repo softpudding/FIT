@@ -1,12 +1,18 @@
 package com.example.fitmvp.adapter;
 import java.util.List;
 import android.content.Context;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -18,9 +24,10 @@ import com.example.fitmvp.bean.FoodItem;
 import java.util.LinkedList;
 
 public class FoodAdapter extends BaseAdapter{
+    private TextView foodname;
     private LinkedList<FoodItem> fdata;
     private Context fContext;
-    private boolean isClick = false;
+    //private boolean isClick = false;
     public FoodAdapter(LinkedList<FoodItem> fdata,Context fContext){
         this.fdata=fdata;
         this.fContext=fContext;
@@ -39,48 +46,57 @@ public class FoodAdapter extends BaseAdapter{
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        FoodItem foodItem=(FoodItem)getItem(position);
         convertView = LayoutInflater.from(fContext).inflate(R.layout.food_item, parent, false);
         ImageView foodpic = (ImageView)convertView.findViewById(R.id.foodipic);
-        TextView foodname = (TextView) convertView.findViewById(R.id.foodiname);
-        TextView foodmuch = (TextView) convertView.findViewById(R.id.foodimuch);
-        TextView fooden= (TextView) convertView.findViewById(R.id.foodienergy);
+        foodname = (TextView) convertView.findViewById(R.id.foodiname);
+        EditText foodmuch = (EditText) convertView.findViewById(R.id.foodimuch);
+        int maxLength =4;
+        InputFilter[] fArray =new InputFilter[1];
+        fArray[0]=new InputFilter.LengthFilter(maxLength);
+        foodmuch.setFilters(fArray);
         //AppCompatSeekBar show2_pressure = (AppCompatSeekBar) convertView.findViewById(R.id.show2_pressure);
         foodpic.setImageBitmap(fdata.get(position).getBitmap());
         foodname.setText(fdata.get(position).getFoodname());
+//        foodname.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                String a=showListPopWindow(position);
+//                foodname.setText("琪超");
+//            }
+//        });
         String s1=fdata.get(position).getWeight().toString();
         foodmuch.setText(s1);
-        String s2=fdata.get(position).getEnergy().toString();
-        fooden.setText(s2);
-//       final Integer finalen1=fdata.get(0).getEnergy();
-//       final Integer finalen2=fdata.get(1).getEnergy();
-//        final Integer finalen3=fdata.get(2).getEnergy();
-//        final Integer finalen4=fdata.get(3).getEnergy();
-//        show2_pressure.setProgress(0);
-//        String haha1="50";
-//        foodmuch.setText(haha1);
-//        show2_pressure.setMax(1450);
-//        String haha2="100";
-//        foodmuch.setText(haha2);
-//        Integer kj2=(Integer.valueOf(haha2))*finalen1/100;String kjs2=kj2.toString();
-//        fooden.setText(kjs2);
-//        show2_pressure.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                int p=50+progress;
-//                int q=p*finalen1/100;
-//                String miao="" + String.valueOf(p);
-//                String ju=""+String.valueOf(q);
-//                foodmuch.setText(miao);// 50为进度条滑到最小值时代表的数值
-//                fooden.setText(ju);
-//            }
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {}
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {}
-//        });
-        return convertView;
+        foodmuch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                FoodItem foodItem1=fdata.get(position);
+                String rap=s.toString();
+                Integer cxk=Integer.valueOf(rap);
+                foodItem1.setWeight(cxk);
+                fdata.set(position,foodItem1);
+            }
+        });
+    return convertView;
     }
-    public void setClick(boolean click) {
-        this.isClick = click;
+//    public void setClick(boolean click) {
+//        this.isClick = click;
+//    }
+    public String showListPopWindow(int position){
+        String showText = "点击第" + position + "项";//第一排是第0项
+        System.out.println(showText);
+        return "qichao";
     }
+
 }

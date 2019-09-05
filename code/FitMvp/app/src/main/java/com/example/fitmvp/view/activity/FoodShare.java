@@ -95,6 +95,7 @@ public class FoodShare extends AppCompatActivity {
                System.out.println("ok");
                 save.setVisibility(View.INVISIBLE);
                 share.setVisibility(View.VISIBLE);
+
             }
         });
         share.setOnClickListener(new View.OnClickListener() {

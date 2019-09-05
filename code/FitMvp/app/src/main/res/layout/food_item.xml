@@ -29,32 +29,32 @@
             <TextView
                 android:id="@+id/foodiname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:text="食物"
+                android:gravity="center_vertical"
                 android:textColor="@color/colorTextTitle"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:orientation="horizontal">
-             <TextView
-                    android:id="@+id/foodienergy"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:textAlignment="viewEnd"
-                    android:textSize="14sp" />
-                <TextView
-                    android:id="@+id/foodikj"
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="viewStart"
-                    android:text="kJ"
-                    android:textSize="14sp" />
-            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:orientation="horizontal">-->
+             <!--<TextView-->
+                    <!--android:id="@+id/foodienergy"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginStart="16dp"-->
+                    <!--android:textAlignment="viewEnd"-->
+                    <!--android:textSize="14sp" />-->
+                <!--<TextView-->
+                    <!--android:id="@+id/foodikj"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textAlignment="viewStart"-->
+                    <!--android:text="kJ"-->
+                    <!--android:textSize="14sp" />-->
+            <!--</LinearLayout>-->
             <!--<androidx.appcompat.widget.AppCompatSeekBar-->
                 <!--android:id="@+id/show2_pressure"-->
                 <!--android:layout_width="160dp"-->
@@ -65,14 +65,14 @@
 
 
     </LinearLayout>
-    <TextView
+    <EditText
             android:id="@+id/foodimuch"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:background="#F9F9F9"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:text="100"
+            android:inputType="number"
             android:gravity="center_vertical|start"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
