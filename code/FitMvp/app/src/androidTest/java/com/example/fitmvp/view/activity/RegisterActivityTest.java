@@ -18,6 +18,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
@@ -49,7 +50,7 @@ public class RegisterActivityTest {
         // 点击登录按钮
         onView(withId(R.id.button_register)).perform(click());
         // 判断用户名为空
-        onView(withId(R.id.input_name)).check(matches(hasErrorText("用户名不能为空")));
+        onView(withId(R.id.input_name)).check(matches(withHint("请输入用户名")));
 
         // 输入用户名
         onView(withId(R.id.input_name))
@@ -98,36 +99,9 @@ public class RegisterActivityTest {
                 .check(matches(withText("password")));
         // 点击登录按钮
         onView(withId(R.id.button_register)).perform(click());
-        // 手机号已被注册，注册失败
-        onView(withText("注册失败，手机号已被注册")).check(matches(isDisplayed()));
-        onView(withText("是")).check(matches(isEnabled())).perform(click());
+        // 未输入验证码
+        onView(withId(R.id.input_msg)).check(matches(hasErrorText("请输入验证码")));
+
     }
 
-    /*
-    @Test
-    public void testRegisterSuccess(){
-        // 输入
-        // phone "666" (new account)
-        onView(withId(R.id.input_phone)).perform(clearText())
-                .perform(typeText("666\n"), closeSoftKeyboard())
-                .check(matches(withText("666")));
-        // name "test"
-        onView(withId(R.id.input_name)).perform(clearText())
-                .perform(typeText("test\n"), closeSoftKeyboard())
-                .check(matches(withText("test")));
-        // password "password"
-        onView(withId(R.id.input_pwd)).perform(clearText())
-                .perform(typeText("password\n"), closeSoftKeyboard())
-                .check(matches(withText("password")));
-        // password again "password"
-        onView(withId(R.id.input_pwd_again)).perform(clearText())
-                .perform(typeText("password\n"), closeSoftKeyboard())
-                .check(matches(withText("")));
-        // 点击登录按钮
-        onView(withId(R.id.button_register)).perform(click());
-        // 注册成功
-        onView(withText("注册成功，请登录")).check(matches(isDisplayed()));
-        onView(withText("是")).check(matches(isEnabled())).perform(click());
-    }
-    */
 }

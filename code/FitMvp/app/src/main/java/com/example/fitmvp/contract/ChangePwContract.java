@@ -16,12 +16,15 @@ public interface ChangePwContract {
         String getAccount();
         String getPassword();
         String getPwdAgain();
+        String getMsg();
         Boolean check();
+        Boolean checkMsg();
         void changeSuccess(String str);
         void changeFail(String title, String msg);
     }
 
     interface Presenter {
         void changePw(String tel,String password);
+        void sendMsg(String tel);
     }
 }

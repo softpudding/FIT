@@ -1,11 +1,9 @@
 package com.example.fitmvp.base;
 
-import com.example.fitmvp.mvp.IModel;
 import com.example.fitmvp.mvp.IPresenter;
 import com.example.fitmvp.mvp.IView;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 
 public abstract class BasePresenter<V extends IView> implements IPresenter {
     private WeakReference actReference;

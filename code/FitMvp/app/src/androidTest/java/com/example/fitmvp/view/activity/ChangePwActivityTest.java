@@ -18,6 +18,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
@@ -36,7 +37,7 @@ public class ChangePwActivityTest {
                 .check(matches(withText("")));
         onView(withId(R.id.change_pwd_again)).perform(clearText())
                 .check(matches(withText("")));
-        // 点击注册按钮
+        // 点击确认修改按钮
         onView(withId(R.id.button_change)).perform(click()).check(matches(isEnabled()));
         // 判断手机号输入栏为空
         onView(withId(R.id.change_phone)).check(matches(hasErrorText("手机号不能为空")));
@@ -45,15 +46,15 @@ public class ChangePwActivityTest {
         onView(withId(R.id.change_phone))
                 .perform(typeText("?12345678a\n"), closeSoftKeyboard())
                 .check(matches(withText("12345678")));
-        // 点击登录按钮
+        // 点击确认修改按钮
         onView(withId(R.id.button_change)).perform(click());
         // 判断用户名为空
-        onView(withId(R.id.change_pwd)).check(matches(hasErrorText("密码不能为空")));
+        onView(withId(R.id.change_pwd)).check(matches(withHint("请输入密码")));
 
         // 输入密码
         onView(withId(R.id.change_pwd))
                 .perform(typeText("password\n"), closeSoftKeyboard());
-        // 点击登录按钮
+        // 点击确认修改按钮
         onView(withId(R.id.button_change)).perform(click());
         // 判断没有确认密码
         onView(withId(R.id.change_pwd_again)).check(matches(hasErrorText("请确认密码")));
@@ -61,14 +62,14 @@ public class ChangePwActivityTest {
         // 确认密码，但输入与第一次不同
         onView(withId(R.id.change_pwd_again))
                 .perform(typeText("notSamePassword\n"), closeSoftKeyboard());
-        // 点击登录按钮
+        // 点击确认修改按钮
         onView(withId(R.id.button_change)).perform(click());
         // 判断密码不一致
         onView(withId(R.id.change_pwd_again)).check(matches(hasErrorText("两次密码不一致，请确认密码")));
     }
 
     @Test
-    public void testChangeFail(){
+    public void testMessageFail(){
         // 输入
         // phone "01234567890"
         onView(withId(R.id.change_phone)).perform(clearText())
@@ -82,31 +83,8 @@ public class ChangePwActivityTest {
         onView(withId(R.id.change_pwd_again)).perform(clearText())
                 .perform(typeText("password\n"), closeSoftKeyboard())
                 .check(matches(withText("password")));
-        // 点击登录按钮
+        // 点击确认修改按钮
         onView(withId(R.id.button_change)).perform(click());
-        // 手机号已被注册，注册失败
-        onView(withText("错误")).check(matches(isDisplayed()));
-        onView(withText("是")).check(matches(isEnabled())).perform(click());
-    }
-    @Test
-    public void testChangeSuccess(){
-        // 输入
-        // phone "101"
-        onView(withId(R.id.change_phone)).perform(clearText())
-                .perform(typeText("101\n"), closeSoftKeyboard())
-                .check(matches(withText("101")));
-        // password "password"
-        onView(withId(R.id.change_pwd)).perform(clearText())
-                .perform(typeText("password\n"), closeSoftKeyboard())
-                .check(matches(withText("password")));
-        // password again "password"
-        onView(withId(R.id.change_pwd_again)).perform(clearText())
-                .perform(typeText("password\n"), closeSoftKeyboard())
-                .check(matches(withText("password")));
-        // 点击登录按钮
-        onView(withId(R.id.button_change)).perform(click());
-        // 注册成功
-        onView(withText("修改成功，请登录")).check(matches(isDisplayed()));
-        onView(withText("是")).check(matches(isEnabled())).perform(click());
+        onView(withId(R.id.input_msg_c)).check(matches(hasErrorText("请输入验证码")));
     }
 }

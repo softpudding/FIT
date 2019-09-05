@@ -133,6 +133,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             inputPwd.setError("密码不能为空");
             flag = false;
         }
+        else if(getPassword().length()<4){
+            inputPwd.setError("密码不能小于4位");
+            flag = false;
+        }
+        else if(getPassword().length()>128){
+            inputPwd.setError("密码不能大于128位");
+            flag = false;
+        }
         else if(TextUtils.isEmpty(getPwdAgain())){
             inputPwdAgain.setError("请确认密码");
             flag = false;
@@ -145,7 +153,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             inputMsg.setError("请输入验证码");
             flag = false;
         }
-        else if(getMsg().equals(targetMsg)){
+        else if(!getMsg().equals(targetMsg)){
             inputMsg.setError("验证码错误");
             flag = false;
         }

@@ -11,7 +11,7 @@ public interface RegisterContract {
             void successInfo(String str);
             void errorInfo(String str);
         }
-        String getMessage(String tel);
+        void getMessage(String tel, @NonNull final InfoHint infoHint);
     }
 
     interface View {

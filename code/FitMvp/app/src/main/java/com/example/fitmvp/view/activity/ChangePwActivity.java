@@ -13,6 +13,7 @@ import com.example.fitmvp.R;
 import com.example.fitmvp.base.BaseActivity;
 import com.example.fitmvp.contract.ChangePwContract;
 import com.example.fitmvp.presenter.ChangePwPresenter;
+import com.example.fitmvp.utils.ToastUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.Bind;
@@ -25,8 +26,18 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
     EditText changePw;
     @Bind(R.id.change_pwd_again)
     EditText pwAgain;
+    @Bind(R.id.input_msg_c)
+    EditText inputMsg;
+    @Bind(R.id.get_msg_c)
+    Button getMsg;
     @Bind(R.id.button_change)
     FloatingActionButton change;
+
+    private String targetMsg;
+
+    public void setTargetMsg(String msg){
+        targetMsg = msg;
+    }
 
     @Override
     protected void setBar(){
@@ -52,6 +63,7 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
     @Override
     protected void initListener() {
         change.setOnClickListener(this);
+        getMsg.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +74,18 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
     @Override
     protected int getLayoutId() {
         return R.layout.change_pw;
+    }
+
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.button_change:
+                otherViewClick(view);
+                break;
+            case R.id.get_msg_c:
+                // 发送证码
+                mPresenter.sendMsg(getAccount());
+        }
     }
 
     @Override
@@ -85,6 +109,11 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
     }
 
     @Override
+    public String getMsg(){
+        return inputMsg.getText().toString().trim();
+    }
+
+    @Override
     public Boolean check(){
         Boolean flag = true;
         if (TextUtils.isEmpty(getAccount())) {
@@ -95,12 +124,44 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
             changePw.setError("密码不能为空");
             flag = false;
         }
+        else if(getPassword().length()<4){
+            changePw.setError("密码不能小于4位");
+            flag = false;
+        }
+        else if(getPassword().length()>128){
+            changePw.setError("密码不能大于128位");
+            flag = false;
+        }
         else if(TextUtils.isEmpty(getPwdAgain())){
             pwAgain.setError("请确认密码");
             flag = false;
         }
         else if(!getPassword().equals(getPwdAgain())){
             pwAgain.setError("两次密码不一致，请确认密码");
+            flag = false;
+        }
+        else if(TextUtils.isEmpty(getMsg())){
+            inputMsg.setError("请输入验证码");
+            flag = false;
+        }
+        else if(!getMsg().equals(targetMsg)){
+            inputMsg.setError("验证码错误");
+            if(targetMsg!=null){
+                ToastUtil.setToast(targetMsg);
+            }
+            else{
+                ToastUtil.setToast("null");
+            }
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkMsg(){
+        Boolean flag = true;
+        if (TextUtils.isEmpty(getAccount()) ){
+            inputPhone.setError("手机号不能为空");
             flag = false;
         }
         return flag;
