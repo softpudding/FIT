@@ -194,7 +194,7 @@ def multi_model_predict(images):
                 m = result[i]
             i = i + 1
         print(multi_label_converters[t],m)
-        if m < 0.15:
+        if m < 0.32:
             predictions.append(Predict(multi_types,0.0))
         else:
             predictions.append(Predict(t,m))
@@ -330,15 +330,13 @@ def get_bottleneck_features(model, input_imgs):
 
 
 def region_proposal(plate_type,pic):
+    time3 = time.time()
     if (pic.shape[0] == 630 and pic.shape[1] == 900 and plate_type ==1) or (pic.shape[0] == 750 and pic.shape[1] == 1000 and plate_type ==2):
         # cluster
         h = pic.shape[0]
         w = pic.shape[1]
-        
-        #print("SMALL PIC SIZE:",h/4,w/4)
-        #start = time.clock()
-
-        smallpic = transform.resize(pic,(int(h/4),int(w/4),3))
+       
+        smallpic = transform.resize(pic,(int(h/8),int(w/8),3))
 
         smallpic_n = smallpic.reshape(smallpic.shape[0] * smallpic.shape[1], smallpic.shape[2])
         kmeans = KMeans(n_clusters=4, random_state=1).fit(smallpic_n)
@@ -364,22 +362,18 @@ def region_proposal(plate_type,pic):
             i = i + 1
         g_cluster_pic = tmp.reshape(smallpic.shape[0], smallpic.shape[1])
         g_cluster_pic = transform.resize(g_cluster_pic,(h,w))
-        
-        #print("CLUSTERING SMALL PIC TAKES",(time.clock()-start))
-        #plt.imshow(g_cluster_pic)
-        #plt.show()
 
         bbox_list = list()
         if plate_type == 1:
             # print('1')
-            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w / 3), int(h / 2),
+            bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w * 0.35), int(h / 2),
                                              int(w * 0.5), int(h / 2))
             bbox_list += apply_bbox_in_range(270, 270, g_cluster_pic, int(w * 0.05), int(h * 0.3), int(w * 0.4),
                                              int(h * 0.7))
             bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 0.2), int(h * 0.05), int(w * 0.4),
                                              int(h / 2))
-            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 0.5), int(h * 0.05),
-                                             int(w * 0.5), int(h / 2))
+            bbox_list += apply_bbox_in_range(250, 250, g_cluster_pic, int(w * 0.6), int(h * 0.05),
+                                             int(w * 0.4), int(h / 2))
             # show_boxed_img(pic, bbox_list)
         else:
             # print('2')
@@ -391,20 +385,25 @@ def region_proposal(plate_type,pic):
                                              int(h / 3))
             bbox_list += apply_bbox_in_range(300, 300, g_cluster_pic, int(w * 0.6), int(h / 10),
                                              int(w * 0.4), int(h * 0.45))
-        show_boxed_img(g_cluster_pic,bbox_list)
+        # show_boxed_img(g_cluster_pic,bbox_list)
         sub_images = list()
         for bbox in bbox_list:
             sub_images.append(pic[bbox.y:bbox.y + bbox.h, bbox.x:bbox.x + bbox.w])
+        
+        time4 = time.time()
+        print("Bboxing:",time4-time3)
+         
         Pred_list = multi_model_predict(sub_images)
-        Nutri_list = list()
-        for prediction in Pred_list:
-            Nutri_list.append(nutris_m[prediction.label])
-            #print(multi_label_converters[prediction.label],prediction.probability)
+        
         res = {
             "predictions": Pred_list,
-            "boxes": bbox_list,
-            "nutri": Nutri_list
+            "boxes": bbox_list
+            #"nutri": Nutri_list
         }
+         
+        time5 = time.time()
+        print("Predict:",time5-time4)
+
         return res
     else:
         print("\n\n\n*************PIC SHAPE ERROR*************\n\n\n")
@@ -412,45 +411,64 @@ def region_proposal(plate_type,pic):
 
 @csrf_exempt
 def index(request):
-    if request.method == 'POST' and request.POST.get('img') is not None and request.POST.get('tel') is not None:
+    print(".........")
+    if request.method == 'POST' and request.POST.get('img') is not None:
         # object type confirmation
+        # print("LOADING...")        
+
+        time1 = time.time()
+
         obj_type = 0
-        url = 'http://localhost:30231/user/recoTest/'
-        url_2 = "http://localhost:30231/Reco/saveReco"
-        tel = request.POST.get("tel")
+        url = "http://localhost:30231/user/recoTest/"
+        # tel = request.POST.get("tel")
+        # print("Current:",time.time()-time1)
+        
         if request.POST.get('obj_type') is not None:
             obj_type = int(request.POST.get('obj_type'))
         if obj_type == 0:
             obj_type = 1   # single object
         if obj_type != 1 and obj_type != 2:
+            print("Invalid obj_type!")
             return HttpResponse("obj_type must be 1 (single object) or 2 (multiple object)")
+        
+        # obj_type = int(request.POST.get('obj_type'))        
+
+        # print("obj_type:",obj_type)
         # security authorization
+        
+        # print(time.time()-time1)
+        
         token = str(request.META['HTTP_TOKEN'])
-        headers = {'token':str(token)}
+        headers = {'token':token}
+
+        # print("HTTP_TOKEN:",token)
+        
         response = requests.post(url,headers,headers=headers)
         response = str(response.content)
         if response!="b'get!'":
             print(response)
             return HttpResponse("FAILED IN TOKEN AUTHORIZATIAN")
-        #deal with pic
+        
+        time2 = time.time()
+        print("Authorization:",time2-time1)
 
+        #deal with pic
         base64_string = request.POST.get('img')
+        print("length:",len(base64_string))
         imgdata = base64.b64decode(str(base64_string))
         img = Image.open(io.BytesIO(imgdata))
         img = np.array(img)
-        # img = skimage.data.imread("./1.jpg")
+
+        time3 = time.time()
+        print("Base64 decode:",time3-time2)
+        
         if obj_type == 1:
             # obj_type 1
             images = [img]
             pred = single_model_predict(images)
             if pred.probability <= 0.5:
                 pred = Predict(25,0.0)
-            '''
-            Pred_list = json.dumps(pred,default=All2Json_s,ensure_ascii=False)
-            requests.post(url_2, json.dumps({'tel':tel,'predictions':Pred_list}),
-                          headers={'Content-Type': 'application/json'})
-            '''
-            return HttpResponse(json.dumps({'prediction':pred,'nutri':nutris_s[pred.label]}, default=All2Json_s))
+            return HttpResponse(json.dumps({'prediction':pred}, default=All2Json_s))
         elif obj_type == 2:
             # multiple object
             plate_type = 0
@@ -461,9 +479,9 @@ def index(request):
             if plate_type !=1 and plate_type != 2:
                 return HttpResponse("plate_type must be 1 (square plate) or 2 (round plate)")
             res=region_proposal(plate_type,img)
-            # also send result to YQC
-            print(json.dumps({'tel':tel,'predictions':res['predictions']},default=All2Json_m))
-            return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes'],'nutri':res['nutri']},default=All2Json_m))
+            print("Overall:",time.time()-time1)
+            return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+    print("INVALID REQUEST") 
     return HttpResponse("INVALID REQUEST.")
 
 
