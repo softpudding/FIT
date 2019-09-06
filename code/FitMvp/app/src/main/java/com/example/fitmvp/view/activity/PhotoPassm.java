@@ -333,87 +333,87 @@ public class PhotoPassm extends AppCompatActivity {
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         String tel= BaseApplication.getUserEntry().username;
 //        System.out.println(bitmap.getWidth()+"hahah"+bitmap.getHeight());
-//        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
-//        Integer x=0;
-//        Integer y=0;
-//        Integer w=50;
-//        Integer h=50;
-//
-//        for(int i=0;i<4;i++){
-//                            int j=i+1;
-//                            intent.putExtra("x"+j,x);
-//                            intent.putExtra("y"+j,y);
-//                            intent.putExtra("w"+j,w);
-//                            intent.putExtra("h"+j,h);
-//                            String foodname="food";
-//                            intent.putExtra("food"+j,foodname+j);//把菜名放进
-//                        }
-//        if(integer==2){notes.setText("圆盘食物");}
-//                        else{notes.setText("方盘食物");}
-//        intent.putExtra("type",integer);
-//                        intent.putExtra("pic",picb);
-//                        startActivity(intent);
-        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
-                .compose(new ThreadTransformer<PhotoTypetBean>())
-                .subscribe(new CommonObserver<PhotoTypetBean>() {
-                    // 请求成功返回后检查登录结果
-                    @Override
-                    public void onNext(PhotoTypetBean response) {
-                        System.out.println(response.getBoxes());
-                        System.out.println(response.getPredictions());
-                        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
-                        //JSONArray tbox =response.getBoxes();
-                        JSONArray tpre=response.getPredictions();
-                        JSONObject opre;
-                        System.out.println(tpre);
-                        Integer listSize=tpre.size();
-                        for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
-                                opre = tpre.getJSONObject(i);
-                                String aa=opre.getString("class");
-                                int j=i+1;
-                                intent.putExtra("food"+j,aa);//把菜名放进
-                        }
-                        JSONArray boxes=response.getBoxes();
-                        for(int i=0;i<4;i++){
-                            opre=boxes.getJSONObject(i);
-                            Integer x=opre.getInteger("x");
-                            Integer y=opre.getInteger("y");
-                            Integer w=opre.getInteger("w");
-                            Integer h=opre.getInteger("h");
+        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+        Integer x=0;
+        Integer y=0;
+        Integer w=50;
+        Integer h=50;
+
+        for(int i=0;i<4;i++){
                             int j=i+1;
                             intent.putExtra("x"+j,x);
                             intent.putExtra("y"+j,y);
                             intent.putExtra("w"+j,w);
                             intent.putExtra("h"+j,h);
+                            String foodname="food";
+                            intent.putExtra("food"+j,foodname+j);//把菜名放进
                         }
-
-//                        JSONArray nutri=response.getNutri();
-//                        for(int i=0;i<4;i++){
-//                            opre=nutri.getJSONObject(i);
-//                            Integer calory=opre.getInteger("calory");
-//                            Double protein=opre.getDouble("protein");
-//                            Double fat=opre.getDouble("fat");
-//                            Double carbohydrate=opre.getDouble("carbohydrate");
-//                            int j=i+1;
-//                            intent.putExtra("calory"+j,calory);
-//                            intent.putExtra("protein"+j,protein);
-//                            intent.putExtra("fat"+j,fat);
-//                            intent.putExtra("carbohydrate"+j,carbohydrate);
-//                            System.out.println(calory+","+protein);
-//                        }
-                        intent.putExtra("type",integer);
-                        intent.putExtra("pic",picb);
-                        if(integer==2){notes.setText("圆盘食物");}
+        if(integer==2){notes.setText("圆盘食物");}
                         else{notes.setText("方盘食物");}
+        intent.putExtra("type",integer);
+                        intent.putExtra("pic",picb);
                         startActivity(intent);
-                    }
-                    @Override
-                    public void onError(ApiException e){
-                        System.err.println("onError: "+ e.getMessage());
-                        System.out.println("嘎嘎嘎");
-                        notes.setText("网管断网了。");
-                    }
-                });
+//        Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
+//                .compose(new ThreadTransformer<PhotoTypetBean>())
+//                .subscribe(new CommonObserver<PhotoTypetBean>() {
+//                    // 请求成功返回后检查登录结果
+//                    @Override
+//                    public void onNext(PhotoTypetBean response) {
+//                        System.out.println(response.getBoxes());
+//                        System.out.println(response.getPredictions());
+//                        Intent intent = new Intent(PhotoPassm.this, PhotoShowt.class);
+//                        //JSONArray tbox =response.getBoxes();
+//                        JSONArray tpre=response.getPredictions();
+//                        JSONObject opre;
+//                        System.out.println(tpre);
+//                        Integer listSize=tpre.size();
+//                        for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
+//                                opre = tpre.getJSONObject(i);
+//                                String aa=opre.getString("class");
+//                                int j=i+1;
+//                                intent.putExtra("food"+j,aa);//把菜名放进
+//                        }
+//                        JSONArray boxes=response.getBoxes();
+//                        for(int i=0;i<4;i++){
+//                            opre=boxes.getJSONObject(i);
+//                            Integer x=opre.getInteger("x");
+//                            Integer y=opre.getInteger("y");
+//                            Integer w=opre.getInteger("w");
+//                            Integer h=opre.getInteger("h");
+//                            int j=i+1;
+//                            intent.putExtra("x"+j,x);
+//                            intent.putExtra("y"+j,y);
+//                            intent.putExtra("w"+j,w);
+//                            intent.putExtra("h"+j,h);
+//                        }
+//
+////                        JSONArray nutri=response.getNutri();
+////                        for(int i=0;i<4;i++){
+////                            opre=nutri.getJSONObject(i);
+////                            Integer calory=opre.getInteger("calory");
+////                            Double protein=opre.getDouble("protein");
+////                            Double fat=opre.getDouble("fat");
+////                            Double carbohydrate=opre.getDouble("carbohydrate");
+////                            int j=i+1;
+////                            intent.putExtra("calory"+j,calory);
+////                            intent.putExtra("protein"+j,protein);
+////                            intent.putExtra("fat"+j,fat);
+////                            intent.putExtra("carbohydrate"+j,carbohydrate);
+////                            System.out.println(calory+","+protein);
+////                        }
+//                        intent.putExtra("type",integer);
+//                        intent.putExtra("pic",picb);
+//                        if(integer==2){notes.setText("圆盘食物");}
+//                        else{notes.setText("方盘食物");}
+//                        startActivity(intent);
+//                    }
+//                    @Override
+//                    public void onError(ApiException e){
+//                        System.err.println("onError: "+ e.getMessage());
+//                        System.out.println("嘎嘎嘎");
+//                        notes.setText("网管断网了。");
+//                    }
+//                });
     }
 
     /**

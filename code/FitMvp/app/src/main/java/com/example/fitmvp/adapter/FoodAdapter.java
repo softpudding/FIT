@@ -82,7 +82,10 @@ public class FoodAdapter extends BaseAdapter{
             @Override
             public void afterTextChanged(Editable s) {
                 FoodItem foodItem1=fdata.get(position);
-                String rap=s.toString();
+                String rap = s.toString();
+                if(rap.equals("")){
+                    rap="0";
+                }
                 Integer cxk=Integer.valueOf(rap);
                 foodItem1.setWeight(cxk);
                 fdata.set(position,foodItem1);
