@@ -102,8 +102,8 @@ public class PhotoShowt extends AppCompatActivity{
         sizeList=intent.getIntExtra("size",1);
         f1=intent.getStringExtra("food1");f2=intent.getStringExtra("food2");
         f3=intent.getStringExtra("food3");f4=intent.getStringExtra("food4");
-        f1="生煎";f2="苑齐超不知道";
-        f3="西红柿鸡蛋面";f4="苑齐超不知道";
+//        f1="生煎";f2="苑齐超不知道";
+//        f3="西红柿鸡蛋面";f4="苑齐超不知道";
         x1=intent.getIntExtra("x1",1);
         x2=intent.getIntExtra("x2",1);
         x3=intent.getIntExtra("x3",1);
