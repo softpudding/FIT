@@ -20,6 +20,7 @@ import com.example.fitmvp.presenter.FriendSearchPresenter;
 import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.UserUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,7 +136,15 @@ public class FriendSearchActivity extends BaseActivity<FriendSearchPresenter> im
                 intent.putExtra("phone",friend.getUserName());
                 intent.putExtra("nickname",friend.getNickname());
                 intent.putExtra("notename",friend.getNotename());
-                intent.putExtra("avatar",friend.getAvatarFile().getAbsolutePath());
+                File file = friend.getAvatarFile();
+                String path;
+                if(file == null){
+                    path = null;
+                }
+                else{
+                    path = file.getAbsolutePath();
+                }
+                intent.putExtra("avatar",path);
                 intent.putExtra("gender", UserUtils.getGender(friend));
                 intent.putExtra("birthday",UserUtils.getBirthday(friend));
                 Integer buttonType = 0;
