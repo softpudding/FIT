@@ -1,0 +1,659 @@
+-- Merging decision tree log ---
+permission#com.example.fitmvp.permission.JPUSH_MESSAGE
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:6:5-8:46
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:11:5-13:47
+	android:protectionLevel
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:8:9-44
+	android:name
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:7:9-65
+uses-permission#com.example.fitmvp.permission.JPUSH_MESSAGE
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:11:5-81
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:16:5-81
+	android:name
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:11:22-78
+manifest
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+MERGED from [androidx.legacy:legacy-support-v13:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e82d3e09436a5186878c7ba6a0129769\AndroidManifest.xml:17:1-22:12
+MERGED from [:emoji] D:\github4869\CNP\FIT\code\FitMvp\emoji\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d20bd7565bff747d645d677c33e2eb7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\087b468405bea62ba41bc8d0b6ec2f28\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0396e0d729882c6914644554ee49b78c\AndroidManifest.xml:17:1-22:12
+MERGED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:2:1-19:12
+MERGED from [com.github.darrenfantasy:DoubleDatePicker:1.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0ad1e5fd68737bd55888b5ceed4e7362\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27cb589cec5ebe1b7b1631c35a0153af\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e891efd6288e4a8f4552488bb8affad9\AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d2535d0da36119af75a6f54e9f0f03a4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\96a743af9e4dfd013acabb68dcd98989\AndroidManifest.xml:17:1-22:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\88108d2a6bb0d094e4a7169b1b61b5eb\AndroidManifest.xml:15:1-21:12
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:2:1-119:12
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27a0be9770a993a4771606120ebc7ef4\AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\f031987210000c42749610849fd3204e\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\fd5331d3a25556b87ed1ed9f5adc4223\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7b20dc90360e0c2d200d2b7fd70ccd8d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a99071ee272c7787cb6679850e5eec00\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6c71454c6be875bee7a2a470aa4fc505\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6816025c5585c0abad9a68feecfa9f95\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\345e3435372d8e4aa1bf436537fccd82\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a3535834470f2c90492b90ef1e04e320\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\2c4c1aa118b7e01461c296ca335a0311\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\66af946525439146ed5f8fb39d35831f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b3d3558d828b2d8d9726ba89d491d138\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d528d4fa2b574e979692b84f22f4e5a\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3e65f70c57dc3bc1abf2328ed8f55bba\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b84f05dffb647b035415a5794a72a5ae\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\17c0634a52e6b8e1d3f8081dd0e4cb27\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\eb2d812986821818812b590dedbdd735\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\212d8b947521d7638d955da66af90bed\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a85e37f3be4f198491f5c937d26b91b2\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\5d58da806acb6672c3a75e2705648d64\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d5dd03db657e6f76056dc3e9924a631c\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a76599e37f0e60bf0f2fb2507e637879\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\9798438b915e7af61c2994a77c576395\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\cecaa76d677fd717957803ba2a31ac6a\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\476d1cc0dc0862cb57bf367bfcdbbc38\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1c56f8a90b9b5dc55c9dc03d8554de3e\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0a56d159fd10c67a850bb65ac3463744\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e30d1ce67a977dd5ed445e514daf5ca5\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+	package
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:4:5-33
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:1-153:12
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:13:5-79
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:17:5-79
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:13:22-76
+uses-permission#android.permission.INTERNET
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:15:5-67
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:18:5-67
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:18:5-67
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:15:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:17:5-68
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:19:5-68
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:19:5-68
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:17:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:19:5-75
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:20:5-75
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:20:5-75
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:19:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:21:5-81
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:21:5-81
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:21:5-81
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:21:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:23:5-80
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:22:5-80
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:22:5-80
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:23:22-77
+uses-permission#android.permission.VIBRATE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:25:5-66
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:23:5-66
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:23:5-66
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:25:22-63
+permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:27:5-79
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:27:17-76
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:29:5-79
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:25:5-79
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:25:5-79
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:29:22-76
+permission#android.permission.WRITE_SETTINGS
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:31:5-68
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:31:17-65
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:33:5-76
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:27:5-76
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:27:5-76
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:33:22-73
+application
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:35:5-137:19
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\087b468405bea62ba41bc8d0b6ec2f28\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\087b468405bea62ba41bc8d0b6ec2f28\AndroidManifest.xml:22:5-20
+MERGED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:11:5-17:19
+MERGED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:11:5-17:19
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e891efd6288e4a8f4552488bb8affad9\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e891efd6288e4a8f4552488bb8affad9\AndroidManifest.xml:10:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d2535d0da36119af75a6f54e9f0f03a4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d2535d0da36119af75a6f54e9f0f03a4\AndroidManifest.xml:9:5-20
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:42:5-117:19
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:42:5-117:19
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27a0be9770a993a4771606120ebc7ef4\AndroidManifest.xml:11:5-12:19
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27a0be9770a993a4771606120ebc7ef4\AndroidManifest.xml:11:5-12:19
+MERGED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\eb2d812986821818812b590dedbdd735\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\eb2d812986821818812b590dedbdd735\AndroidManifest.xml:22:5-23:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a85e37f3be4f198491f5c937d26b91b2\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a85e37f3be4f198491f5c937d26b91b2\AndroidManifest.xml:9:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:41:9-35
+	android:label
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:39:9-41
+	android:roundIcon
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:40:9-54
+	android:icon
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:38:9-43
+	android:allowBackup
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:37:9-36
+	android:theme
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:43:9-40
+	android:networkSecurityConfig
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:42:9-69
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:36:9-40
+activity#com.example.fitmvp.view.activity.WelcomeActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:44:9-51:20
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:45:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:44:19-64
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:46:13-50:29
+action#android.intent.action.MAIN
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:47:17-69
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:47:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:49:17-77
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:49:27-74
+provider#androidx.core.content.FileProvider
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:52:1-60:12
+	android:grantUriPermissions
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:56:5-39
+	android:authorities
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:54:5-58
+	android:exported
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:55:5-29
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:53:5-54
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:57:5-59:45
+	android:resource
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:59:9-43
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:58:9-59
+activity#com.example.fitmvp.view.activity.LoginActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:62:9-63:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:63:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:62:19-62
+activity#com.example.fitmvp.view.activity.MainActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:64:9-65:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:65:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:64:19-61
+activity#com.example.fitmvp.view.activity.RegisterActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:66:9-67:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:67:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:66:19-65
+activity#com.example.fitmvp.view.activity.ChangePwActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:68:9-69:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:69:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:68:19-65
+activity#com.example.fitmvp.view.activity.RecordDetailActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:70:9-71:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:71:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:70:19-69
+activity#com.example.fitmvp.view.activity.SettingActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:72:9-73:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:73:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:72:19-64
+activity#com.example.fitmvp.view.activity.FriendSearchActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:74:9-75:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:75:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:74:19-69
+activity#com.example.fitmvp.view.activity.FriendDetailActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:76:9-77:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:77:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:76:19-69
+activity#com.example.fitmvp.view.activity.FriendAddActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:78:9-79:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:79:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:78:19-66
+activity#com.example.fitmvp.view.activity.FriendRecommendActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:80:9-81:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:81:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:80:19-72
+activity#com.example.fitmvp.view.activity.FriendSettingActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:82:9-83:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:83:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:82:19-70
+activity#com.example.fitmvp.chat.activity.ChatActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:84:9-85:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:85:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:84:19-61
+activity#com.example.fitmvp.view.activity.PhotoPass
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:87:9-88:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:88:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:87:19-58
+activity#com.example.fitmvp.view.activity.PhotoType
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:89:9-90:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:90:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:89:19-58
+activity#com.example.fitmvp.view.activity.PhotoPassm
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:91:9-92:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:92:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:91:19-59
+activity#com.example.fitmvp.view.activity.PhotoShow
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:93:9-94:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:94:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:93:19-58
+activity#com.example.fitmvp.view.activity.FoodShare
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:95:9-96:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:96:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:95:19-58
+activity#com.example.fitmvp.view.activity.PhotoShowt
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:98:9-99:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:99:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:98:19-59
+activity#com.example.fitmvp.view.activity.ReportChooseDateActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:100:9-101:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:101:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:100:19-73
+activity#com.example.fitmvp.view.activity.ReportDetailActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:102:9-103:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:103:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:102:19-69
+activity#com.example.fitmvp.view.activity.NoticeDetailActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:104:9-105:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:105:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:104:19-69
+activity#com.example.fitmvp.view.activity.NoticeListActivity
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:106:9-107:51
+	android:screenOrientation
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:107:13-49
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:106:19-67
+service#com.example.fitmvp.MyService
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:110:9-118:19
+	android:process
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:114:13-40
+	android:enabled
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:112:13-35
+	android:exported
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:113:13-37
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:111:13-38
+intent-filter#action:name:cn.jiguang.user.service.action
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:115:13-117:29
+action#cn.jiguang.user.service.action
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:116:17-72
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:116:25-70
+meta-data#AA_DB_NAME
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:121:9-71
+	android:value
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:121:46-68
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:121:20-45
+meta-data#AA_DB_VERSION
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:122:9-69
+	android:value
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:122:49-66
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:122:20-48
+meta-data#AA_MODELS
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:123:9-127:69
+	android:value
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:123:9-127:69
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:124:13-37
+provider#com.activeandroid.content.ContentProvider
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:130:9-135:20
+	android:enabled
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:133:13-35
+	android:authorities
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:132:13-53
+	android:exported
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:134:13-37
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:131:13-69
+uses-permission#android.permission.CAMERA
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:145:5-65
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:39:5-65
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:39:5-65
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:145:22-62
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:152:5-100
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:24:5-84
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:24:5-84
+	android:name
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml:152:22-81
+uses-sdk
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+MERGED from [androidx.legacy:legacy-support-v13:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e82d3e09436a5186878c7ba6a0129769\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v13:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e82d3e09436a5186878c7ba6a0129769\AndroidManifest.xml:20:5-44
+MERGED from [:emoji] D:\github4869\CNP\FIT\code\FitMvp\emoji\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:emoji] D:\github4869\CNP\FIT\code\FitMvp\emoji\build\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d20bd7565bff747d645d677c33e2eb7\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d20bd7565bff747d645d677c33e2eb7\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\087b468405bea62ba41bc8d0b6ec2f28\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\087b468405bea62ba41bc8d0b6ec2f28\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0396e0d729882c6914644554ee49b78c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0396e0d729882c6914644554ee49b78c\AndroidManifest.xml:20:5-44
+MERGED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:7:5-9:41
+MERGED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.darrenfantasy:DoubleDatePicker:1.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0ad1e5fd68737bd55888b5ceed4e7362\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.darrenfantasy:DoubleDatePicker:1.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0ad1e5fd68737bd55888b5ceed4e7362\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27cb589cec5ebe1b7b1631c35a0153af\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27cb589cec5ebe1b7b1631c35a0153af\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e891efd6288e4a8f4552488bb8affad9\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e891efd6288e4a8f4552488bb8affad9\AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d2535d0da36119af75a6f54e9f0f03a4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d2535d0da36119af75a6f54e9f0f03a4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\96a743af9e4dfd013acabb68dcd98989\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\96a743af9e4dfd013acabb68dcd98989\AndroidManifest.xml:20:5-44
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\88108d2a6bb0d094e4a7169b1b61b5eb\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\88108d2a6bb0d094e4a7169b1b61b5eb\AndroidManifest.xml:19:5-43
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27a0be9770a993a4771606120ebc7ef4\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\27a0be9770a993a4771606120ebc7ef4\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.media:media:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\f031987210000c42749610849fd3204e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\f031987210000c42749610849fd3204e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\fd5331d3a25556b87ed1ed9f5adc4223\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\fd5331d3a25556b87ed1ed9f5adc4223\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7b20dc90360e0c2d200d2b7fd70ccd8d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7b20dc90360e0c2d200d2b7fd70ccd8d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a99071ee272c7787cb6679850e5eec00\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a99071ee272c7787cb6679850e5eec00\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6c71454c6be875bee7a2a470aa4fc505\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6c71454c6be875bee7a2a470aa4fc505\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6816025c5585c0abad9a68feecfa9f95\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\6816025c5585c0abad9a68feecfa9f95\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\345e3435372d8e4aa1bf436537fccd82\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\345e3435372d8e4aa1bf436537fccd82\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a3535834470f2c90492b90ef1e04e320\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a3535834470f2c90492b90ef1e04e320\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\2c4c1aa118b7e01461c296ca335a0311\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\2c4c1aa118b7e01461c296ca335a0311\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\66af946525439146ed5f8fb39d35831f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\66af946525439146ed5f8fb39d35831f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b3d3558d828b2d8d9726ba89d491d138\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b3d3558d828b2d8d9726ba89d491d138\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d528d4fa2b574e979692b84f22f4e5a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1d528d4fa2b574e979692b84f22f4e5a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3e65f70c57dc3bc1abf2328ed8f55bba\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3e65f70c57dc3bc1abf2328ed8f55bba\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b84f05dffb647b035415a5794a72a5ae\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\b84f05dffb647b035415a5794a72a5ae\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\17c0634a52e6b8e1d3f8081dd0e4cb27\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\17c0634a52e6b8e1d3f8081dd0e4cb27\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\7d1d4fcc15e3c2a3789fca1d13958206\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\eb2d812986821818812b590dedbdd735\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\eb2d812986821818812b590dedbdd735\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\212d8b947521d7638d955da66af90bed\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\212d8b947521d7638d955da66af90bed\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a85e37f3be4f198491f5c937d26b91b2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a85e37f3be4f198491f5c937d26b91b2\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\5d58da806acb6672c3a75e2705648d64\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\5d58da806acb6672c3a75e2705648d64\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d5dd03db657e6f76056dc3e9924a631c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\d5dd03db657e6f76056dc3e9924a631c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a76599e37f0e60bf0f2fb2507e637879\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\a76599e37f0e60bf0f2fb2507e637879\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\9798438b915e7af61c2994a77c576395\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\9798438b915e7af61c2994a77c576395\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\cecaa76d677fd717957803ba2a31ac6a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\cecaa76d677fd717957803ba2a31ac6a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\476d1cc0dc0862cb57bf367bfcdbbc38\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\476d1cc0dc0862cb57bf367bfcdbbc38\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1c56f8a90b9b5dc55c9dc03d8554de3e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\1c56f8a90b9b5dc55c9dc03d8554de3e\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0a56d159fd10c67a850bb65ac3463744\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\0a56d159fd10c67a850bb65ac3463744\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e30d1ce67a977dd5ed445e514daf5ca5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\e30d1ce67a977dd5ed445e514daf5ca5\AndroidManifest.xml:20:5-44
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		ADDED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\github4869\CNP\FIT\code\FitMvp\app\src\main\AndroidManifest.xml
+activity#pub.devrel.easypermissions.AppSettingsDialogHolderActivity
+ADDED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:12:9-16:66
+	android:label
+		ADDED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:15:13-29
+	android:exported
+		ADDED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:14:13-37
+	android:theme
+		ADDED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:16:13-63
+	android:name
+		ADDED from [pub.devrel:easypermissions:1.3.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\3b3f6f4a03253f6da59b1b11f23031d5\AndroidManifest.xml:13:13-86
+permission#${JPUSH_PKGNAME}.permission.JPUSH_MESSAGE
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:11:5-13:47
+uses-permission#${JPUSH_PKGNAME}.permission.JPUSH_MESSAGE
+MERGED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:16:5-81
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:26:5-73
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:26:22-70
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:30:5-78
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:30:22-75
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:31:5-81
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:31:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:32:22-76
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:33:5-89
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:33:22-86
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:34:5-76
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:34:22-73
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:35:5-79
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:35:22-76
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:38:5-71
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:38:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:40:5-80
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:40:22-77
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:45:9-65:20
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:47:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:48:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:46:13-65
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:49:13-53:29
+	android:priority
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:49:28-51
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:com.example.fitmvp
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:49:13-53:29
+	android:priority
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:49:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:50:17-94
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:50:25-91
+category#${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:52:17-61
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:52:27-58
+category#com.example.fitmvp
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:52:17-61
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:52:27-58
+intent-filter#action:name:android.intent.action.USER_PRESENT+action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:54:13-57:29
+action#android.intent.action.USER_PRESENT
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:55:17-77
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:55:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:56:17-79
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:56:25-76
+intent-filter#action:name:android.intent.action.PACKAGE_ADDED+action:name:android.intent.action.PACKAGE_REMOVED+data:scheme:package
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:59:13-64:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:60:17-78
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:60:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:61:17-80
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:61:25-77
+data
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:63:17-50
+	android:scheme
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:63:23-47
+receiver#cn.jpush.im.android.helpers.IMReceiver
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:68:9-72:20
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:70:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:71:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:69:13-66
+receiver#cn.jpush.android.service.AlarmReceiver
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:75:9-77:40
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:77:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:76:13-66
+provider#cn.jpush.android.service.DataProvider
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:80:9-83:40
+	android:authorities
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:82:13-64
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:83:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:81:13-65
+service#cn.jpush.android.service.DaemonService
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:87:9-96:19
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:89:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:90:13-36
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:88:13-66
+intent-filter#action:name:cn.jpush.android.intent.DaemonService+category:name:${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:91:13-95:29
+intent-filter#action:name:cn.jpush.android.intent.DaemonService+category:name:com.example.fitmvp
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:91:13-95:29
+action#cn.jpush.android.intent.DaemonService
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:92:17-80
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:92:25-77
+provider#cn.jpush.im.android.helpers.ipc.IMProvider
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:99:9-102:40
+	android:authorities
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:101:13-62
+	android:exported
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:102:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:100:13-70
+meta-data#JPUSH_CHANNEL
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:110:9-112:48
+	android:value
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:112:13-45
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:111:13-41
+meta-data#JPUSH_APPKEY
+ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:114:9-116:47
+	android:value
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:116:13-44
+	android:name
+		ADDED from [cn.jiguang.sdk:jmessage:2.9.0] C:\Users\dell\.gradle\caches\transforms-2\files-2.1\30939a7f77aa989cd9e7fb5a05036b50\AndroidManifest.xml:115:13-40

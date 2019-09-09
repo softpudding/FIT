@@ -1,0 +1,1425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/UserServiceImpl.java" line="258" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb2ae4ce-b828-43d0-a257-1b388fd8af91" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/../Fit-Administer/target/" />
+    <ignored path="$PROJECT_DIR$/../FIT-admin/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="78" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="H:\111" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/UserServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="48" column="20" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/RecordServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecongitionController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecordController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Interceptor/AuthenticationInterceptor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/RecordServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4009">
+              <caret line="248" column="45" selection-start-line="248" selection-start-column="45" selection-end-line="248" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#if_vegetable#0;class#RecordServiceImpl#0" />
+                <element signature="e#4338#5044#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Dao/RecordDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3059">
+              <caret line="200" column="79" selection-start-line="200" selection-start-column="79" selection-end-line="200" selection-end-column="79" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#save#0;class#UserServiceImpl#0" />
+                <element signature="method#changePwd#0;class#UserServiceImpl#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>act</find>
+      <find>plu</find>
+      <find>URL</find>
+      <find>date</find>
+      <find>prehandle</find>
+      <find>header</find>
+      <find>ur</find>
+      <find>charse</find>
+      <find>httpclient</find>
+      <find>pwd</find>
+      <find>urlParameters</find>
+      <find>String</find>
+      <find>Float</find>
+      <find>服务器出错</find>
+      <find>sumCal</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Dao/RecognitionDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/Implment/RecognitionServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/RecognitionServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/RecognitionServiceTest.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/test/java/FIT/Administer/AdminControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/RecognitionService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/RecognitionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Dao/RecognitionDao.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Controller/RecongitionControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Controller/UsersControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Interceptor/GloablExceptionHandlerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Interceptor/AuthenticationInterceptorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application-prod.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Repository/RecordRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/UserService2.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/RecordService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecordController.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/DemoApplication.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsRepo.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/Repo.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/News.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Entity/News.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecongitionController.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsDao.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/RecordServiceImpl.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsController.java" />
+        <option value="$PROJECT_DIR$/../Fit-Administer/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Entity/food.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Repository/FoodRespository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Repository/FoodTypeRespository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Controller/UsersController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Dao/FoodTypeDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Entity/FoodTpye.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Repository/UserRepositoryTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Entity/NewsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Entity/Record.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Entity/FoodTpyeTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Entity/RecordTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Dao/UserDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Dao/FoodTypeDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Dao/RecordDao.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Dao/RecordDaoTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Interceptor/AuthenticationInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/UserServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/Implment/RecordServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/FIT/user/Service/RecordServiceTest.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="E:/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="E:\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="dedicatedModuleDir" value="E:\SESummer\FIT\code\BackEnd\Fit-User" />
+        <option name="importAutomatically" value="true" />
+        <option name="lookForNested" value="true" />
+      </MavenImportingSettings>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="prod" />
+        <option value="test" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="user_demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="user_demo" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1250" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-Administer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="Interceptor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+              <item name="Implment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fit-User" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fit-User" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="Service" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="H:/111" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="show.run.dashboard.notification" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="FIT.user.Service.Implment" />
+      <recent name="FIT.user.Dao" />
+      <recent name="FIT.user.Entity" />
+      <recent name="FIT.user.Interceptor" />
+      <recent name="FIT.user.Controller" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="FIT.user.Service" />
+      <recent name="FIT.Administer" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.RecordServiceTest.testSumail">
+    <configuration name="RecordServiceTest.testStanrdard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FIT.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FIT.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="FIT.user.Service.RecordServiceTest" />
+      <option name="METHOD_NAME" value="testStanrdard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecordServiceTest.testSumail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FIT.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FIT.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="FIT.user.Service.RecordServiceTest" />
+      <option name="METHOD_NAME" value="testSumail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FIT.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FIT.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="FIT.user.Service.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.chanegInfoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FIT.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FIT.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="FIT.user.Service.UserServiceTest" />
+      <option name="METHOD_NAME" value="chanegInfoTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.findAllTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FIT.user.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FIT.user.Service" />
+      <option name="MAIN_CLASS_NAME" value="FIT.user.Service.UserServiceTest" />
+      <option name="METHOD_NAME" value="findAllTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Administer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Fit-Administer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="FIT.Administer.DemoApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="User" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="fit" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="FIT.user.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.UserServiceTest.findAllTest" />
+      <item itemvalue="JUnit.UserServiceTest.chanegInfoTest" />
+      <item itemvalue="JUnit.UserServiceTest" />
+      <item itemvalue="JUnit.RecordServiceTest.testStanrdard" />
+      <item itemvalue="JUnit.RecordServiceTest.testSumail" />
+      <item itemvalue="Spring Boot.User" />
+      <item itemvalue="Spring Boot.Administer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RecordServiceTest.testSumail" />
+        <item itemvalue="JUnit.RecordServiceTest.testStanrdard" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.chanegInfoTest" />
+        <item itemvalue="JUnit.UserServiceTest.findAllTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb2ae4ce-b828-43d0-a257-1b388fd8af91" name="Default Changelist" comment="" />
+      <created>1563174453300</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1563174453300</updated>
+      <workItem from="1563174455939" duration="2737000" />
+      <workItem from="1563177797053" duration="4840000" />
+      <workItem from="1563200236252" duration="1455000" />
+      <workItem from="1563237681189" duration="6372000" />
+      <workItem from="1563254403995" duration="12435000" />
+      <workItem from="1563284737654" duration="1595000" />
+      <workItem from="1563325049720" duration="7565000" />
+      <workItem from="1563341573268" duration="12840000" />
+      <workItem from="1563370026080" duration="974000" />
+      <workItem from="1563410640349" duration="7458000" />
+      <workItem from="1563428233617" duration="13073000" />
+      <workItem from="1563455423479" duration="4058000" />
+      <workItem from="1563497363547" duration="23571000" />
+      <workItem from="1563756086181" duration="10597000" />
+      <workItem from="1563843015464" duration="5694000" />
+      <workItem from="1563860868865" duration="12693000" />
+      <workItem from="1563877208642" duration="1808000" />
+      <workItem from="1563930465900" duration="17102000" />
+      <workItem from="1563981626877" duration="618000" />
+      <workItem from="1564102124856" duration="19737000" />
+      <workItem from="1564361449159" duration="16939000" />
+      <workItem from="1564401525901" duration="2566000" />
+      <workItem from="1564447261052" duration="13772000" />
+      <workItem from="1564488633448" duration="1091000" />
+      <workItem from="1564534567666" duration="21224000" />
+      <workItem from="1564620746282" duration="3197000" />
+      <workItem from="1565252513178" duration="1831000" />
+      <workItem from="1565354496668" duration="754000" />
+      <workItem from="1565860281519" duration="10437000" />
+      <workItem from="1566794217381" duration="1297000" />
+      <workItem from="1566905248944" duration="595000" />
+      <workItem from="1566955170465" duration="2444000" />
+      <workItem from="1567040500479" duration="9892000" />
+      <workItem from="1567150905749" duration="6312000" />
+      <workItem from="1567247790310" duration="597000" />
+      <workItem from="1567317784655" duration="702000" />
+      <workItem from="1567471897028" duration="2115000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="UserServiceTest - 2019.08.29 at 17h 27m 01s.xml">
+      <configuration name="UserServiceTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testStanrdard - 2019.08.31 at 15h 50m 55s.xml">
+      <configuration name="RecordServiceTest.testStanrdard" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testStanrdard - 2019.08.31 at 15h 51m 27s.xml">
+      <configuration name="RecordServiceTest.testStanrdard" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testStanrdard - 2019.08.31 at 15h 51m 58s.xml">
+      <configuration name="RecordServiceTest.testStanrdard" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testStanrdard - 2019.08.31 at 15h 52m 23s.xml">
+      <configuration name="RecordServiceTest.testStanrdard" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testSumail - 2019.08.31 at 15h 56m 33s.xml">
+      <configuration name="RecordServiceTest.testSumail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testSumail - 2019.08.31 at 15h 57m 11s.xml">
+      <configuration name="RecordServiceTest.testSumail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testSumail - 2019.08.31 at 16h 03m 21s.xml">
+      <configuration name="RecordServiceTest.testSumail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testSumail - 2019.08.31 at 16h 04m 16s.xml">
+      <configuration name="RecordServiceTest.testSumail" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RecordServiceTest_testSumail - 2019.08.31 at 16h 04m 45s.xml">
+      <configuration name="RecordServiceTest.testSumail" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="262987000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2727882" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32577905" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798927" weight="0.35977337" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932975" visible="true" weight="0.39943343" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5020107" side_tool="true" weight="0.43342775" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932975" weight="0.3186969" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3286119" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49903288" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.2386059" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Mongo Explorer" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.50096714" side_tool="true" visible="true" weight="0.22319035" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2641654" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32577905" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798927" weight="0.33002833" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932975" weight="0.5374823" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5020107" side_tool="true" weight="0.43342775" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49932975" weight="0.3186969" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.3286119" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49932975" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49903288" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.2386059" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Mongo Explorer" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Bean Validation" order="10" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.50096714" side_tool="true" weight="0.22319035" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Fit_User$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1563432834154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Entity_in_fit.ic" NAME="FIT.user.Entity in fit Coverage Results" MODIFIED="1567062408611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Service_in_fit.ic" NAME="FIT.user.Service in fit Coverage Results" MODIFIED="1567069198567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserDaoTest.ic" NAME="UserDaoTest Coverage Results" MODIFIED="1563434153725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecognitionDaoTest.ic" NAME="RecognitionDaoTest Coverage Results" MODIFIED="1563436358967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Controller_in_fit.ic" NAME="FIT.user.Controller in fit Coverage Results" MODIFIED="1563528384702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FoodTypeDaoTest.ic" NAME="FoodTypeDaoTest Coverage Results" MODIFIED="1567064979366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UsersControllerTest_registerTest.ic" NAME="UsersControllerTest.registerTest Coverage Results" MODIFIED="1563457184037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$GloablExceptionHandlerTest.ic" NAME="GloablExceptionHandlerTest Coverage Results" MODIFIED="1563758395912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Interceptor.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest_login.ic" NAME="UserServiceTest.login Coverage Results" MODIFIED="1563430778464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest_registerTest.ic" NAME="UserServiceTest.registerTest Coverage Results" MODIFIED="1567069794407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Dao_in_fit.ic" NAME="FIT.user.Dao in fit Coverage Results" MODIFIED="1567066323083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$All_in_fit.ic" NAME="All in fit Coverage Results" MODIFIED="1563762082110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Fit_User$AuthenticationInterceptorTest_postHandle.ic" NAME="AuthenticationInterceptorTest.postHandle Coverage Results" MODIFIED="1563759518686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Interceptor.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest_saveRecoFunctionTest.ic" NAME="RecongitionControllerTest.saveRecoFunctionTest Coverage Results" MODIFIED="1563517054393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$NewsTest.ic" NAME="NewsTest Coverage Results" MODIFIED="1567063971436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest_TestTest.ic" NAME="RecongitionControllerTest.TestTest Coverage Results" MODIFIED="1563504028774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecordTest.ic" NAME="RecordTest Coverage Results" MODIFIED="1567064007654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecognitionServiceTest.ic" NAME="RecognitionServiceTest Coverage Results" MODIFIED="1563457072979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UsersControllerTest_recoTest.ic" NAME="UsersControllerTest.recoTest Coverage Results" MODIFIED="1563457428001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest.ic" NAME="RecongitionControllerTest Coverage Results" MODIFIED="1563520802321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecognitionTest.ic" NAME="RecognitionTest Coverage Results" MODIFIED="1563433477442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest_test.ic" NAME="RecongitionControllerTest.test Coverage Results" MODIFIED="1563516773265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest_findAllTest.ic" NAME="UserServiceTest.findAllTest Coverage Results" MODIFIED="1563441479896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest_saveReco.ic" NAME="RecongitionControllerTest.saveReco Coverage Results" MODIFIED="1563500050498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UsersControllerTest.ic" NAME="UsersControllerTest Coverage Results" MODIFIED="1563527180212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest_saveTest.ic" NAME="UserServiceTest.saveTest Coverage Results" MODIFIED="1563438166073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecongitionControllerTest_test3.ic" NAME="RecongitionControllerTest.test3 Coverage Results" MODIFIED="1563519021776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UsersControllerTest_TokenForDjangoTes2t.ic" NAME="UsersControllerTest.TokenForDjangoTes2t Coverage Results" MODIFIED="1563527996561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Repository_in_fit.ic" NAME="FIT.user.Repository in fit Coverage Results" MODIFIED="1567069176147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Repository.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_in_fit.ic" NAME="FIT.user in fit Coverage Results" MODIFIED="1563456235552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest.ic" NAME="UserServiceTest Coverage Results" MODIFIED="1567070807310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UserServiceTest_chanegInfoTest.ic" NAME="UserServiceTest.chanegInfoTest Coverage Results" MODIFIED="1563440885969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecognitionDaoTest_saveTest.ic" NAME="RecognitionDaoTest.saveTest Coverage Results" MODIFIED="1563437972941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecordDaoTest_saveTest.ic" NAME="RecordDaoTest.saveTest Coverage Results" MODIFIED="1567066279627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$UsersControllerTest_TokenForDjangoTest.ic" NAME="UsersControllerTest.TokenForDjangoTest Coverage Results" MODIFIED="1563525634462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FoodTpyeTest.ic" NAME="FoodTpyeTest Coverage Results" MODIFIED="1567062990903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$FIT_user_Interceptor_in_fit.ic" NAME="FIT.user.Interceptor in fit Coverage Results" MODIFIED="1567066349715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Interceptor.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Fit_User$RecordDaoTest_findByTelAndTime.ic" NAME="RecordDaoTest.findByTelAndTime Coverage Results" MODIFIED="1567065020809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>FIT.user.Dao.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1501">
+          <caret line="89" column="28" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1786">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/AdminController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#966#967#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/NewsDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Fit-Administer/src/main/java/FIT/Administer/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Entity/food.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/RecordService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="20" column="75" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/TokenService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/RecognitionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/UserService2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1092">
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Repository/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Repository/RecordRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Repository/FoodTypeRespository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Repository/UserRepositoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Repository/RecognitionRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Annotation/UserLoginToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Annotation/PassToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Entity/RecognitionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Entity/FoodTpye.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <folding>
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#781#782#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#931#932#0" expanded="true" />
+            <element signature="e#969#970#0" expanded="true" />
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1073#1074#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1133#1134#0" expanded="true" />
+            <element signature="e#1163#1164#0" expanded="true" />
+            <element signature="e#1197#1198#0" expanded="true" />
+            <element signature="e#1226#1227#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#1307#1308#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Entity/UserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Entity/Recognition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-361">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Entity/News.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Entity/FoodTpyeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Dao/FoodTypeDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Dao/FoodTypeDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Entity/RecordTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="27" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Entity/NewsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Dao/RecognitionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#398#399#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Entity/Record.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="111" column="31" lean-forward="true" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+          <folding>
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1146#1147#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1995#1996#0" expanded="true" />
+            <element signature="e#2033#2034#0" expanded="true" />
+            <element signature="e#2096#2097#0" expanded="true" />
+            <element signature="e#2150#2151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Dao/RecordDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Interceptor/GloablExceptionHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Interceptor/AuthenticationInterceptorTest.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/RecognitionServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/Implment/RecordServiceImplTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Dao/UserDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#857#858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/RecognitionServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="17" selection-start-line="17" selection-end-line="20" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Controller/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2044">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#1987#1988#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Config/InterceptorConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/UserServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/FIT/user/Service/RecordServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecongitionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/RecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4009">
+          <caret line="248" column="45" selection-start-line="248" selection-start-column="45" selection-end-line="248" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#if_vegetable#0;class#RecordServiceImpl#0" />
+            <element signature="e#4338#5044#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Dao/RecordDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Service/Implment/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3059">
+          <caret line="200" column="79" selection-start-line="200" selection-start-column="79" selection-end-line="200" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#save#0;class#UserServiceImpl#0" />
+            <element signature="method#changePwd#0;class#UserServiceImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Controller/RecordController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FIT/user/Interceptor/AuthenticationInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Fit-Administer</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
