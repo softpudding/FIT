@@ -146,12 +146,12 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresenter> implements
         }
         else if(!getMsg().equals(targetMsg)){
             inputMsg.setError("验证码错误");
-            if(targetMsg!=null){
-                ToastUtil.setToast(targetMsg);
-            }
-            else{
-                ToastUtil.setToast("null");
-            }
+//            if(targetMsg!=null){
+//                ToastUtil.setToast(targetMsg);
+//            }
+//            else{
+//                ToastUtil.setToast("null");
+//            }
             flag = false;
         }
         return flag;
