@@ -1,0 +1,2058 @@
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0830 08:39:44.569443 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0830 08:39:44.586543 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0830 08:39:44.588866 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0830 08:39:44.621392 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0830 08:39:45.088432 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0830 08:39:45.088675 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-08-30 08:39:45.088932: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-08-30 08:39:45.096191: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-08-30 08:39:45.097715: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f7ddbae5760 executing computations on platform Host. Devices:
+2019-08-30 08:39:45.097735: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-08-30 08:39:45.195113: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0830 08:39:45.404256 140178565355264 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0830 08:39:45.469805 140178565355264 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 30, 2019 - 08:39:46
+Django version 2.1.10, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:30232/
+Quit the server with CONTROL-C.
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0830 08:45:34.516363 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0830 08:45:34.535324 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0830 08:45:34.537887 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0830 08:45:34.569737 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0830 08:45:35.063706 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0830 08:45:35.063999 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-08-30 08:45:35.064326: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-08-30 08:45:35.071893: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-08-30 08:45:35.073287: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f2f9fae87c0 executing computations on platform Host. Devices:
+2019-08-30 08:45:35.073318: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-08-30 08:45:35.187141: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0830 08:45:35.417896 139842541807360 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0830 08:45:35.492628 139842541807360 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0831 16:03:43.810036 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0831 16:03:43.830160 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0831 16:03:43.832807 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0831 16:03:43.866933 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0831 16:03:44.389011 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0831 16:03:44.389325 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-08-31 16:03:44.389650: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-08-31 16:03:44.398119: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-08-31 16:03:44.399804: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fe07bae7f00 executing computations on platform Host. Devices:
+2019-08-31 16:03:44.399847: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-08-31 16:03:44.524661: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0831 16:03:44.767770 140602197939968 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0831 16:03:44.859132 140602197939968 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+[31/Aug/2019 16:05:10] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:20] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:21] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:21] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:23] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:25] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:27] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:28] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:29] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:30] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:31] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:32] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:33] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:34] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:35] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:35] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:36] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:37] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:38] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:39] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:40] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:41] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:42] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:42] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:43] "POST /classify/ HTTP/1.1" 200 459
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+August 31, 2019 - 16:03:46
+Django version 2.1.10, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:30232/
+Quit the server with CONTROL-C.
+.........
+Authorization: 0.02109670639038086
+Base64 decode: 0.040647268295288086
+Bboxing: 0.3484971523284912
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.48479413986206055
+Overall: 0.8951067924499512
+.........
+Authorization: 0.009238243103027344
+Base64 decode: 0.01741647720336914
+Bboxing: 0.43233203887939453
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4912087917327881
+Overall: 0.9502789974212646
+.........
+Authorization: 0.007311344146728516
+Base64 decode: 0.017140865325927734
+Bboxing: 0.3813178539276123
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.5187745094299316
+Overall: 0.9246244430541992
+.........
+Authorization: 0.009069442749023438
+Base64 decode: 0.01785898208618164
+Bboxing: 0.3268415927886963
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39447593688964844
+Overall: 0.748314380645752
+.........
+Authorization: 0.007739067077636719
+Base64 decode: 0.017025232315063477
+Bboxing: 0.4215843677520752
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4703090190887451
+Overall: 0.9167132377624512
+.........
+Authorization: 0.00754857063293457
+Base64 decode: 0.01680612564086914
+Bboxing: 0.3436746597290039
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4446420669555664
+Overall: 0.8127632141113281
+.........
+Authorization: 0.007674455642700195
+Base64 decode: 0.020455360412597656
+Bboxing: 0.41211485862731934
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.40767955780029297
+Overall: 0.8479876518249512
+.........
+Authorization: 0.008784294128417969
+Base64 decode: 0.02765512466430664
+Bboxing: 0.32293033599853516
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.42768025398254395
+Overall: 0.7871267795562744
+.........
+Authorization: 0.007806062698364258
+Base64 decode: 0.02243638038635254
+Bboxing: 0.32042717933654785
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3823974132537842
+Overall: 0.7331364154815674
+.........
+Authorization: 0.009723663330078125
+Base64 decode: 0.025021791458129883
+Bboxing: 0.3441426753997803
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39591193199157715
+Overall: 0.7748596668243408
+.........
+Authorization: 0.00823664665222168
+Base64 decode: 0.0173647403717041
+Bboxing: 0.33635640144348145
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.38230204582214355
+Overall: 0.7443206310272217
+.........
+Authorization: 0.007725954055786133
+Base64 decode: 0.020943403244018555
+Bboxing: 0.321413516998291
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4252943992614746
+Overall: 0.7754364013671875
+.........
+Authorization: 0.008265018463134766
+Base64 decode: 0.022507905960083008
+Bboxing: 0.31809139251708984
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39148688316345215
+Overall: 0.7404124736785889
+.........
+Authorization: 0.010946512222290039
+Base64 decode: 0.021566390991210938
+Bboxing: 0.3487892150878906
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.45625853538513184
+Overall: 0.8376245498657227
+.........
+Authorization: 0.006548643112182617
+Base64 decode: 0.016721487045288086
+Bboxing: 0.382627010345459
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4014770984649658
+Overall: 0.8074381351470947
+.........
+Authorization: 0.0076749324798583984
+Base64 decode: 0.017163753509521484
+Bboxing: 0.3165416717529297
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4294750690460205
+Overall: 0.7709424495697021
+.........
+Authorization: 0.007730722427368164
+Base64 decode: 0.019584178924560547
+Bboxing: 0.31055140495300293
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39324021339416504
+Overall: 0.7311716079711914
+.........
+Authorization: 0.00854802131652832
+Base64 decode: 0.016355276107788086
+Bboxing: 0.3740713596343994
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3916890621185303
+Overall: 0.7907207012176514
+.........
+Authorization: 0.007687807083129883
+Base64 decode: 0.022530555725097656
+Bboxing: 0.30482006072998047
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.37445688247680664
+Overall: 0.7095580101013184
+.........
+Authorization: 0.008648157119750977
+Base64 decode: 0.023336410522460938
+Bboxing: 0.31166768074035645
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3879427909851074
+Overall: 0.731651782989502
+.........
+Authorization: 0.006115913391113281
+Base64 decode: 0.016234636306762695
+Bboxing: 0.2961564064025879
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.37784504890441895
+Overall: 0.6964221000671387
+.........
+Authorization: 0.007613658905029297
+Base64 decode: 0.023530960083007812
+Bboxing: 0.3037858009338379
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.37194156646728516
+Overall: 0.7069339752197266
+.........
+Authorization: 0.008305549621582031
+Base64 decode: 0.02357172966003418
+Bboxing: 0.303356409072876
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3781437873840332
+Overall: 0.7134370803833008
+.........
+Authorization: 0.0075855255126953125
+Base64 decode: 0.023504257202148438
+Bboxing: 0.37568187713623047
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3772413730621338
+Overall: 0.784083366394043
+.........
+Authorization: 0.008263587951660156
+Base64 decode: 0.02082037925720215
+Bboxing: 0.31135058403015137
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.38956785202026367
+Overall: 0.7300698757171631
+.........
+Authorization: 0.007119417190551758
+Base64 decode: 0.016620159149169922
+Bboxing: 0.4215540885925293
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4302027225494385
+Overall: 0.8755471706390381
+.........
+Authorization: 0.007212638854980469
+Base64 decode: 0.01737809181213379
+Bboxing: 0.31119728088378906
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.40546584129333496
+Overall: 0.7413115501403809
+.........
+Authorization: 0.007602214813232422
+Base64 decode: 0.016864538192749023
+Bboxing: 0.30475401878356934
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4075441360473633
+Overall: 0.7368178367614746
+.........
+Authorization: 0.008473396301269531
+Base64 decode: 0.028839826583862305
+Bboxing: 0.3506336212158203
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉[31/Aug/2019 16:06:44] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:45] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:46] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:47] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:48] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:49] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:50] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:51] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:52] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:53] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:54] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:55] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:55] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:56] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:57] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:58] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:06:59] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:00] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:01] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:02] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:03] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:04] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:07:05] "POST /classify/ HTTP/1.1" 200 459
+Not Found: /
+W0831 16:30:04.150306 140598604453632 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.161523 140598596060928 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.185793 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.213525 140598604453632 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.226142 140598596060928 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.247193 140598472341248 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.267845 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.289419 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.307609 140598604453632 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.322721 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.348708 140598463948544 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.384736 140598596060928 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.407464 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.423394 140598587668224 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.448589 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.472634 140598596060928 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.488890 140598463948544 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.512912 140598587668224 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.532516 140598604453632 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.545435 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.573354 140598596060928 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.597205 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.609860 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.619983 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.643799 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.672290 140598463948544 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.684501 140598604453632 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.699807 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.723560 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.756726 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.775249 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.785735 140598587668224 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.811164 140598604453632 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.824600 140598596060928 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.853592 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.880702 140598604453632 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:04.890205 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.910405 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.928367 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.952445 140598604453632 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.969726 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:04] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:04.986259 140598472341248 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:05.016866 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:05.039822 140598455555840 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:05.049949 140598472341248 log.py:228] Not Found: /
+Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+W0831 16:30:05.071079 140598596060928 log.py:228] Not Found: /
+Not Found: /
+W0831 16:30:05.091532 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:05.114465 140598587668224 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:05.131946 140598472341248 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+Not Found: /
+W0831 16:30:05.364133 140598463948544 log.py:228] Not Found: /
+[31/Aug/2019 16:30:05] "POST / HTTP/1.1" 404 1929
+ 0.59875363
+炒青菜 0.9541277
+Predict: 0.41692519187927246
+Overall: 0.8049678802490234
+.........
+Authorization: 0.007338285446166992
+Base64 decode: 0.020802021026611328
+Bboxing: 0.3119535446166992
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.41880154609680176
+Overall: 0.7589545249938965
+.........
+Authorization: 0.007250308990478516
+Base64 decode: 0.02005457878112793
+Bboxing: 0.30924272537231445
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4134378433227539
+Overall: 0.7500438690185547
+.........
+Authorization: 0.007780790328979492
+Base64 decode: 0.020935773849487305
+Bboxing: 0.3423304557800293
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4359860420227051
+Overall: 0.8071029186248779
+.........
+Authorization: 0.009697198867797852
+Base64 decode: 0.02366781234741211
+Bboxing: 0.38616466522216797
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.41127777099609375
+Overall: 0.8308837413787842
+.........
+Authorization: 0.007796049118041992
+Base64 decode: 0.021472930908203125
+Bboxing: 0.32763123512268066
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4156029224395752
+Overall: 0.7725615501403809
+.........
+Authorization: 0.006923675537109375
+Base64 decode: 0.019077539443969727
+Bboxing: 0.34108448028564453
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.42069292068481445
+Overall: 0.7878408432006836
+.........
+Authorization: 0.008095741271972656
+Base64 decode: 0.03011631965637207
+Bboxing: 0.3730449676513672
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39975619316101074
+Overall: 0.811089038848877
+.........
+Authorization: 0.00629878044128418
+Base64 decode: 0.01808619499206543
+Bboxing: 0.3238546848297119
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4057490825653076
+Overall: 0.754042387008667
+.........
+Authorization: 0.008378982543945312
+Base64 decode: 0.0190887451171875
+Bboxing: 0.3601984977722168
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.40947413444519043
+Overall: 0.7972261905670166
+.........
+Authorization: 0.00711822509765625
+Base64 decode: 0.01924443244934082
+Bboxing: 0.34026527404785156
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.40018653869628906
+Overall: 0.7668793201446533
+.........
+Authorization: 0.00830388069152832
+Base64 decode: 0.019519329071044922
+Bboxing: 0.3701319694519043
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.40982532501220703
+Overall: 0.8078408241271973
+.........
+Authorization: 0.007220268249511719
+Base64 decode: 0.017399072647094727
+Bboxing: 0.3466775417327881
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4021914005279541
+Overall: 0.7735507488250732
+.........
+Authorization: 0.007903814315795898
+Base64 decode: 0.020512819290161133
+Bboxing: 0.3196597099304199
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3968663215637207
+Overall: 0.7450070381164551
+.........
+Authorization: 0.0063228607177734375
+Base64 decode: 0.017774343490600586
+Bboxing: 0.31818628311157227
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.3814256191253662
+Overall: 0.7237734794616699
+.........
+Authorization: 0.008180618286132812
+Base64 decode: 0.023931026458740234
+Bboxing: 0.3217613697052002
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4114193916320801
+Overall: 0.7653641700744629
+.........
+Authorization: 0.007224082946777344
+Base64 decode: 0.016874313354492188
+Bboxing: 0.3105652332305908
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.38947510719299316
+Overall: 0.7242012023925781
+.........
+Authorization: 0.0066988468170166016
+Base64 decode: 0.017624616622924805
+Bboxing: 0.302670955657959
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4094853401184082
+Overall: 0.7365388870239258
+.........
+Authorization: 0.007056713104248047
+Base64 decode: 0.017149686813354492
+Bboxing: 0.31446218490600586
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4039461612701416
+Overall: 0.7426860332489014
+.........
+Authorization: 0.00744938850402832
+Base64 decode: 0.021004199981689453
+Bboxing: 0.3545503616333008
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.39765453338623047
+Overall: 0.780717134475708
+.........
+Authorization: 0.0077931880950927734
+Base64 decode: 0.023500442504882812
+Bboxing: 0.3574836254119873
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4180440902709961
+Overall: 0.8068838119506836
+.........
+Authorization: 0.007269620895385742
+Base64 decode: 0.023764371871948242
+Bboxing: 0.3342781066894531
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.402630090713501
+Overall: 0.7679994106292725
+.........
+Authorization: 0.007823944091796875
+Base64 decode: 0.019617319107055664
+Bboxing: 0.32075047492980957
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.4432191848754883
+Overall: 0.7914736270904541
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+Authorization: 0.040428876876831055
+Authorization: 0.09048724174499512
+.........
+.........
+Authorization: 0.07153916358947754
+.........
+Authorization: 0.1363840103149414
+.........
+.........
+Authorization: 0.1917881965637207
+.........
+Authorization: 0.10685157775878906
+Base64 decode: 0.2840869426727295
+Authorization: 0.0884101390838623
+Base64 decode: 0.2069854736328125
+Base64 decode: 0.08559012413024902
+Authorization: 0.07927227020263672
+Base64 decode: 0.34911656379699707
+Authorization: 0.07263517379760742
+.........
+Authorization: 0.11966061592102051
+Authorization: 0.04557609558105469
+Base64 decode: 0.11635732650756836
+Base64 decode: 0.14405512809753418
+Base64 decode: 0.1062159538269043
+Base64 decode: 0.0883326530456543
+Authorization: 0.04958844184875488
+Base64 decode: 0.21610569953918457
+Base64 decode: 0.041245460510253906
+.........
+.........
+Base64 decode: 0.12587809562683105
+Authorization: 0.13869833946228027
+.........
+Base64 decode: 0.20082926750183105
+Base64 decode: 0.068359375
+.........
+.........
+Authorization: 0.08632969856262207
+Authorization: 0.1385347843170166
+.........
+Authorization: 0.17645835876464844
+Base64 decode: 0.06929707527160645
+.........
+Authorization: 0.11019086837768555
+.........
+Base64 decode: 0.09401702880859375
+Authorization: 0.04738783836364746
+.........
+Base64 decode: 0.19414687156677246
+Authorization: 0.07119393348693848
+.........
+.........
+Authorization: 0.07687664031982422
+Base64 decode: 0.1584632396697998
+Base64 decode: 0.06969881057739258
+Base64 decode: 0.0545504093170166
+Authorization: 0.1704540252685547
+Base64 decode: 0.15207862854003906
+.........
+Authorization: 0.058693647384643555
+Authorization: 0.1555781364440918
+Base64 decode: 0.02930903434753418
+.........
+Base64 decode: 0.1545705795288086
+Base64 decode: 0.06241106986999512
+.........
+Authorization: 0.10474228858947754
+Authorization: 0.10517191886901855
+Base64 decode: 0.05329751968383789
+.........
+Authorization: 0.0069904327392578125
+Authorization: 0.05589771270751953
+Base64 decode: 0.15442943572998047
+Base64 decode: 0.05950188636779785
+.........
+.........
+.........[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:14] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:15] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:15] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:16] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:16] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:17] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:18] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:19] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:20] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:20] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:21] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:21] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:21] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:21] "POST /classify/ HTTP/1.1" 200 459
+
+.........
+.........
+Base64 decode: 0.15025115013122559
+Authorization: 0.20067191123962402
+.........
+Authorization: 0.32634854316711426
+Base64 decode: 0.19014668464660645
+Authorization: 0.16215205192565918
+Authorization: 0.06388306617736816
+Base64 decode: 0.16825509071350098
+Base64 decode: 0.08633184432983398
+Base64 decode: 0.08163237571716309
+Authorization: 0.1703019142150879
+Authorization: 0.14415335655212402
+Base64 decode: 0.04033017158508301
+Authorization: 0.34587979316711426
+Base64 decode: 0.08254265785217285
+Base64 decode: 0.10835909843444824
+Authorization: 0.0747690200805664
+Authorization: 0.08766674995422363
+Base64 decode: 0.03513383865356445
+Base64 decode: 0.04217028617858887
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+.........
+Authorization: 0.07625722885131836
+.........
+.........
+Authorization: 0.10919356346130371
+.........
+Authorization: 0.13115191459655762
+Base64 decode: 0.1772754192352295
+Authorization: 0.07995462417602539
+Authorization: 0.24068045616149902
+Base64 decode: 0.2237999439239502
+Authorization: 0.12208938598632812
+Authorization: 0.1056520938873291
+Authorization: 0.12375879287719727
+Base64 decode: 0.0910181999206543
+.........
+Authorization: 0.29279232025146484
+Base64 decode: 0.16722679138183594
+Base64 decode: 0.0860435962677002
+Base64 decode: 0.11655855178833008
+Base64 decode: 0.10115957260131836
+.........
+Base64 decode: 0.2785308361053467
+Authorization: 0.04585766792297363
+Base64 decode: 0.22228026390075684
+Authorization: 0.2817683219909668
+Authorization: 0.2524406909942627
+Base64 decode: 0.10582685470581055
+Base64 decode: 0.1556708812713623
+Authorization: 0.11425423622131348
+Base64 decode: 0.1600487232208252
+Authorization: 0.12915658950805664
+Base64 decode: 0.051993608474731445
+Base64 decode: 0.02963733673095703
+Bboxing: 10.414209127426147
+Bboxing: 10.759007215499878
+Bboxing: 10.649981498718262
+(4, 224, 224, 3)
+Bboxing: 11.000514030456543
+Bboxing: 11.031605958938599
+Bboxing: 11.14080023765564
+(4, 224, 224, 3)
+Bboxing: 10.721816778182983
+Bboxing: 10.564547061920166
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 11.148868560791016
+(4, 224, 224, 3)
+Bboxing: 11.575933694839478
+Bboxing: 10.912858963012695
+Bboxing: 10.870059728622437
+Bboxing: 11.684747457504272
+(4, 224, 224, 3)
+Bboxing: 11.889001607894897
+Bboxing: 11.295908212661743
+(4, 224, 224, 3)
+Bboxing: 11.867123365402222
+Bboxing: 11.261136531829834
+(4, 224, 224, 3)
+Bboxing: 11.657723188400269
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 11.260651111602783
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 11.948323488235474
+(4, 224, 224, 3)
+Bboxing: 12.39194655418396
+Bboxing: 12.396086692810059
+Bboxing: 11.263609170913696
+Bboxing: 12.747847557067871
+Bboxing: 12.33524227142334
+Bboxing: 11.059423208236694
+Bboxing: 11.228363037109375
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 11.990049600601196
+Bboxing: 11.622047901153564
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 11.503500938415527
+Bboxing: 9.050924062728882
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 9.654362678527832
+Bboxing: 9.507026195526123
+Bboxing: 9.72832727432251
+(4, 224, 224, 3)
+Bboxing: 12.075552940368652
+Bboxing: 12.99069333076477
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 9.809794902801514
+Bboxing: 12.398956060409546
+Bboxing: 9.562878370285034
+Bboxing: 12.766290426254272
+Bboxing: 10.154607057571411
+(4, 224, 224, 3)
+Bboxing: 10.053043365478516
+Bboxing: 10.249923944473267
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 12.187907457351685
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 12.47320008277893
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+Bboxing: 10.189275979995728
+(4, 224, 224, 3)
+Bboxing: 10.285664081573486
+(4, 224, 224, 3)
+Bboxing: 10.13941502571106
+Bboxing: 10.733593702316284
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.0763819217681885
+Overall: 14.769177913665771
+(4, 224, 224, 3)
+Bboxing: 10.803133249282837
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.9577906131744385
+Overall: 15.091447830200195
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.019481182098389
+Overall: 15.23666262626648
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.915513753890991
+Overall: 14.5681631565094
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.068485975265503
+Overall: 15.414119243621826
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.224751949310303
+Overall: 15.386299848556519
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.095682621002197
+Overall: 15.086244583129883
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.684744834899902
+Overall: 15.74269413948059
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 2.5468671321868896
+Overall: 12.937758684158325
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 5.479604959487915
+Overall: 17.14644694328308
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.131960153579712
+Overall: 13.805295705795288
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 2.9308247566223145
+Overall: 13.958958148956299
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.2873477935791016
+Overall: 13.58564019203186
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.304020643234253
+Overall: 14.369382619857788
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.9191575050354004
+Overall: 14.210931777954102
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 3.9534928798675537
+Overall: 16.65347957611084
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 4.904714345932007
+Overall: 17.202620267868042
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 7.790353775024414
+Overall: 19.72610831260681
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 5.9627790451049805
+Overall: 18.795648097991943
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 7.019631385803223
+Overall: 19.562785148620605
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 6.382674932479858
+Overall: 19.50491762161255
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 6.440985679626465
+Overall: 19.23084020614624
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 7.319165229797363
+Overall: 19.435913562774658
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 6.758312225341797
+Overall: 16.926666021347046
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 7.121527671813965
+Overall: 17.658004999160767
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 10.180744647979736
+Overall: 21.60015606880188
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 8.375588417053223
+Overall: 18.83033299446106
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 8.553656578063965
+Overall: 18.529087781906128
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 9.826170921325684
+Overall: 21.915473699569702
+(4, 22)
+米饭 0.99960166
+卤鸡腿 [31/Aug/2019 16:31:22] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:22] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:22] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:22] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:23] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:24] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:25] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:26] "POST /classify/ HTTP/1.1" 200 459
+[31/Aug/2019 16:31:27] "POST /classify/ HTTP/1.1" 200 459
+[01/Sep/2019 02:05:17] "GET /classify HTTP/1.1" 301 0
+[02/Sep/2019 11:54:48] "GET /classify HTTP/1.1" 301 0
+[02/Sep/2019 18:56:27] "POST /classify/ HTTP/1.1" 200 485
+[02/Sep/2019 19:09:17] "POST /classify/ HTTP/1.1" 200 88
+[02/Sep/2019 19:09:59] "POST /classify/ HTTP/1.1" 200 88
+[02/Sep/2019 19:19:25] "POST /classify/ HTTP/1.1" 200 76
+[03/Sep/2019 01:41:58] "GET /classify HTTP/1.1" 301 0
+[03/Sep/2019 08:06:52] "POST /classify/ HTTP/1.1" 200 459
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.143', 33003)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[03/Sep/2019 08:39:44] "POST /classify/ HTTP/1.1" 200 466
+[03/Sep/2019 08:39:59] "POST /classify/ HTTP/1.1" 200 455
+[03/Sep/2019 08:40:41] "POST /classify/ HTTP/1.1" 200 461
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.143', 21138)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[03/Sep/2019 10:20:52] "POST /classify/ HTTP/1.1" 200 466
+[03/Sep/2019 10:24:25] "POST /classify/ HTTP/1.1" 200 465
+[03/Sep/2019 10:28:11] "POST /classify/ HTTP/1.1" 200 459
+[03/Sep/2019 10:28:30] "POST /classify/ HTTP/1.1" 200 461
+[03/Sep/2019 10:29:06] "POST /classify/ HTTP/1.1" 200 492
+[03/Sep/2019 10:36:46] "POST /classify/ HTTP/1.1" 200 455
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0903 20:55:13.196011 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0903 20:55:13.214779 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0903 20:55:13.217290 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0903 20:55:13.246176 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0903 20:55:13.732380 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0903 20:55:13.732653 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-09-03 20:55:13.732937: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-09-03 20:55:13.740634: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-09-03 20:55:13.741915: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f26dfae86c0 executing computations on platform Host. Devices:
+2019-09-03 20:55:13.741937: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-03 20:55:13.847844: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0903 20:55:14.160044 139804977567488 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0903 20:55:14.262537 139804977567488 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+[03/Sep/2019 20:56:05] "POST /classify/ HTTP/1.1" 200 88
+[03/Sep/2019 21:46:39] "POST /classify/ HTTP/1.1" 200 462
+[04/Sep/2019 01:41:07] "GET /classify HTTP/1.1" 301 0
+[04/Sep/2019 01:45:47] "GET /classify HTTP/1.1" 301 0
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 10:51:29.397415 139801268315904 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 10:51:29.471403 139801268315904 log.py:228] Bad Request: /classify/
+[04/Sep/2019 10:51:35] "POST /classify/ HTTP/1.1" 400 78065
+[04/Sep/2019 11:06:54] "POST /classify/ HTTP/1.1" 200 468
+[04/Sep/2019 11:08:12] "POST /classify/ HTTP/1.1" 200 459
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 03, 2019 - 20:55:15
+Django version 2.1.10, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:30232/
+Quit the server with CONTROL-C.
+.........
+Authorization: 0.7356994152069092
+length: 91841
+Base64 decode: 0.028543949127197266
+(1, 224, 224, 3)
+酒酿丸子 0.86996853
+.........
+Authorization: 0.35336875915527344
+length: 337925
+Base64 decode: 0.02659296989440918
+Bboxing: 0.3491849899291992
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99990034
+煮鸡蛋 0.16223533
+炸鸡块 0.4684105
+炒玉米 0.98742026
+Predict: 0.43683958053588867
+Overall: 1.1660687923431396
+.........
+.........
+Authorization: 3.434321641921997
+length: 320657
+Base64 decode: 0.02783942222595215
+Bboxing: 0.40376949310302734
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.9998211
+米饭 0.18443415
+炸小鸡腿 0.4497427
+炒玉米 0.9973711
+Predict: 0.38967251777648926
+Overall: 4.255679607391357
+.........
+Authorization: 0.29660677909851074
+length: 497596
+Base64 decode: 0.023836135864257812
+Bboxing: 0.3629648685455322
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99960166
+卤鸡腿 0.4152813
+东坡肉 0.59875363
+炒青菜 0.9541277
+Predict: 0.373917818069458
+Overall: 1.0573956966400146
+.........
+Authorization: 0.47064876556396484
+length: 320511
+Base64 decode: 0.0202329158782959
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0904 11:12:46.032068 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0904 11:12:46.048124 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0904 11:12:46.050313 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0904 11:12:46.077518 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0904 11:12:46.501750 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0904 11:12:46.502026 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-09-04 11:12:46.502314: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-09-04 11:12:46.509340: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-09-04 11:12:46.510164: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f52c3ae67c0 executing computations on platform Host. Devices:
+2019-09-04 11:12:46.510186: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-04 11:12:46.608279: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0904 11:12:46.839193 139993473009408 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0904 11:12:46.905157 139993473009408 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 11:13:35.087012 139992224470784 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 11:13:35.154978 139992224470784 log.py:228] Bad Request: /classify/
+[04/Sep/2019 11:13:46] "POST /classify/ HTTP/1.1" 400 78066
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 11:14:37.513024 139992224470784 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 11:15:04] "POST /classify/ HTTP/1.1" 500 1296476
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 11:16:03.060473 139992212932352 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 11:16:06] "POST /classify/ HTTP/1.1" 500 923682
+[04/Sep/2019 11:22:57] "POST /classify/ HTTP/1.1" 200 459
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 11:23:06.167470 139989927057152 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 11:23:09] "POST /classify/ HTTP/1.1" 500 960139
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 15 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 04, 2019 - 11:12:48
+Django version 2.1.10, using settings 'mysite.settings'
+Starting development server at http://0.0.0.0:30232/
+Quit the server with CONTROL-C.
+.........
+.........
+Authorization: 3.676081657409668
+length: 1041401
+Base64 decode: 0.0775296688079834
+
+
+
+*************PIC SHAPE ERROR*************
+
+
+
+Overall: 3.7536721229553223
+.........
+Authorization: 2.5811350345611572
+length: 722455
+Base64 decode: 0.04885983467102051
+
+
+
+*************PIC SHAPE ERROR*************
+
+
+
+Overall: 2.6300458908081055
+.........
+Authorization: 4.638274669647217
+length: 437393
+Base64 decode: 0.027466773986816406
+Bboxing: 0.35429883003234863
+(4, 224, 224, 3)
+(4, 22)
+米饭 0.99975413
+卤鸡腿 0.45253134
+东坡肉 0.8283574
+炒青菜 0.9526568
+Predict: 0.4804351329803467
+Overall: 5.500544548034668
+.........
+Authorization: 2.021005392074585
+length: 753660
+Base64 decode: 0.039328575134277344
+
+
+
+*************PIC SHAPE ERROR*************
+
+
+
+Overall: 2.060375690460205
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0904 11:26:32.937911 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0904 11:26:32.953833 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0904 11:26:32.955980 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0904 11:26:32.982642 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0904 11:26:33.537681 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0904 11:26:33.537968 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-09-04 11:26:33.538298: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-09-04 11:26:33.547330: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-09-04 11:26:33.549107: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7fa78fae5c90 executing computations on platform Host. Devices:
+2019-09-04 11:26:33.549130: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-04 11:26:33.661344: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0904 11:26:33.898288 140357714859776 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0904 11:26:33.975387 140357714859776 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+[04/Sep/2019 11:27:57] "POST /classify/ HTTP/1.1" 200 466
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 11:29:19.153456 140354196076288 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 11:29:19.222036 140354196076288 log.py:228] Bad Request: /classify/
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.154', 53986)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[04/Sep/2019 11:29:25] "POST /classify/ HTTP/1.1" 400 77327
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 12:03:08.252810 140354196076288 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 12:03:08.314911 140354196076288 log.py:228] Bad Request: /classify/
+[04/Sep/2019 12:03:13] "POST /classify/ HTTP/1.1" 400 77327
+[04/Sep/2019 12:03:49] "POST /classify/ HTTP/1.1" 200 88
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 12:07:31.162369 140354196076288 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 12:07:31.228991 140354196076288 log.py:228] Bad Request: /classify/
+[04/Sep/2019 12:07:43] "POST /classify/ HTTP/1.1" 400 77330
+Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+E0904 12:08:44.949404 140354196076288 exception.py:77] Request body exceeded settings.DATA_UPLOAD_MAX_MEMORY_SIZE.
+Bad Request: /classify/
+W0904 12:08:45.011149 140354196076288 log.py:228] Bad Request: /classify/
+[04/Sep/2019 12:09:00] "POST /classify/ HTTP/1.1" 400 77330
+[04/Sep/2019 12:10:29] "POST /classify/ HTTP/1.1" 200 459
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.154', 29644)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[04/Sep/2019 12:12:55] "POST /classify/ HTTP/1.1" 200 462
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.154', 29645)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[04/Sep/2019 12:16:15] "POST /classify/ HTTP/1.1" 200 468
+[04/Sep/2019 12:16:45] "POST /classify/ HTTP/1.1" 200 82
+[04/Sep/2019 12:16:52] "POST /classify/ HTTP/1.1" 200 478
+[04/Sep/2019 12:17:03] "POST /classify/ HTTP/1.1" 200 82
+[04/Sep/2019 12:17:11] "POST /classify/ HTTP/1.1" 200 460
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.154', 29646)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[04/Sep/2019 12:21:28] "POST /classify/ HTTP/1.1" 200 452
+----------------------------------------
+Exception happened during processing of request from ('112.64.119.154', 53988)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 12:25:11.979767 140354187683584 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 12:25:14] "POST /classify/ HTTP/1.1" 500 1448329
+[04/Sep/2019 12:40:40] "POST /classify/ HTTP/1.1" 200 475
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 12:46:38.363099 140356539045632 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 12:46:38] "POST /classify/ HTTP/1.1" 500 507391
+[04/Sep/2019 14:16:03] "POST /classify/ HTTP/1.1" 200 466
+[04/Sep/2019 14:16:59] "POST /classify/ HTTP/1.1" 200 465
+[04/Sep/2019 14:17:40] "POST /classify/ HTTP/1.1" 200 465
+Using TensorFlow backend.
+WARNING: Logging before flag parsing goes to stderr.
+W0904 17:28:32.499472 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0904 17:28:32.518144 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0904 17:28:32.520490 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0904 17:28:32.550595 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3976: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+W0904 17:28:33.021132 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0904 17:28:33.021392 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2019-09-04 17:28:33.021708: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-09-04 17:28:33.029448: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2099995000 Hz
+2019-09-04 17:28:33.030757: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x7f5147ae6270 executing computations on platform Host. Devices:
+2019-09-04 17:28:33.030779: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-04 17:28:33.161862: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W0904 17:28:33.379282 139987114440448 deprecation.py:506] From /usr/python/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0904 17:28:33.445666 139987114440448 deprecation_wrapper.py:119] From /usr/python/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+[04/Sep/2019 17:50:53] "POST /classify/ HTTP/1.1" 200 459
+----------------------------------------
+Exception happened during processing of request from ('112.65.48.230', 37436)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+[04/Sep/2019 17:51:55] "POST /classify/ HTTP/1.1" 200 465
+[04/Sep/2019 17:52:40] "POST /classify/ HTTP/1.1" 200 459
+----------------------------------------
+Exception happened during processing of request from ('112.65.48.230', 37399)
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/socketserver.py", line 654, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/python/lib/python3.6/socketserver.py", line 364, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/python/lib/python3.6/socketserver.py", line 724, in __init__
+    self.handle()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 171, in handle
+    self.handle_one_request()
+  File "/usr/python/lib/python3.6/site-packages/django/core/servers/basehttp.py", line 179, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+  File "/usr/python/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 18:21:03.108362 139985869076224 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 18:21:31] "POST /classify/ HTTP/1.1" 500 1338372
+Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+E0904 18:21:54.036664 139983419602688 log.py:228] Internal Server Error: /classify/
+Traceback (most recent call last):
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/python/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/python/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/centos/TF/ServerV2/mysite/classify/views.py", line 483, in index
+    return HttpResponse(json.dumps({'predictions':res['predictions'],'boxes':res['boxes']},default=All2Json_m))
+TypeError: 'NoneType' object is not subscriptable
+[04/Sep/2019 18:21:55] "POST /classify/ HTTP/1.1" 500 963308
+[04/Sep/2019 19:08:32] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:24:58] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:26:38] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:27:23] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:28:05] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:38:15] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 19:47:52] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:00:33] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:00:59] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:01:25] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:10:33] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:11:02] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:11:39] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:16:11] "POST /classify/ HTTP/1.1" 200 76
+[04/Sep/2019 20:16:35] "POST /classify/ HTTP/1.1" 200 88
+[04/Sep/2019 20:40:28] "POST /classify/ HTTP/1.1" 200 67
+[04/Sep/2019 21:10:42] "POST /classify/ HTTP/1.1" 200 67
+[05/Sep/2019 00:43:14] "GET /classify HTTP/1.1" 301 0
+[05/Sep/2019 01:44:28] "GET /classify HTTP/1.1" 301 0

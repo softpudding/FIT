@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/foodpicms"
+        android:layout_width="350dp"
+        android:layout_height="245dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <ImageView
+        android:id="@+id/foodpicmc"
+        android:layout_width="324dp"
+        android:layout_height="243dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <LinearLayout
+        android:id="@+id/show2_liner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="300dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+        android:id="@+id/show2_name1"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:textAlignment="center"
+        android:text="本餐成分" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:text="Hints: 最多一次记录4种菜品，长按'g'修改菜名或删除本条"
+            android:textSize="12sp"/>
+
+        <ListView
+            android:id="@+id/foodlist"
+            android:layout_width="match_parent"
+            android:layout_height="335dp">
+        </ListView>
+
+    </LinearLayout>
+    <!--<ImageButton-->
+        <!--android:id="@+id/show2_share"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_below="@+id/show2_liner"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:backgroundTint="#00FFFFFF"-->
+        <!--android:src="@drawable/share"-->
+        <!--android:visibility="invisible"-->
+        <!--/>-->
+    <Button
+        android:id="@+id/add_item"
+        android:layout_below="@+id/show2_liner"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_button_blue"
+        android:text="+"
+        />
+    <Button
+        android:id="@+id/show2_sure"
+        android:layout_below="@+id/show2_liner"
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button_blue"
+        android:text="确认记录" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/show2_sure"
+        android:layout_height="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/show2_liner"
+        android:layout_marginTop="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/jmui_sending_img"
+        android:backgroundTint="#00FFFFFF"
+        android:visibility="invisible"/>
+    <Button
+        android:id="@+id/show2_share"
+        android:layout_below="@+id/show2_liner"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button_blue"
+        android:text="记录成功，点击分享"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
+</ScrollView>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/foodpic"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="70dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <TextView
+    android:id="@+id/show1_name"
+    android:layout_width="150dp"
+    android:layout_height="30dp"
+    android:textAlignment="center"
+    android:textSize="18sp"
+    android:textColor="@android:color/black" />
+    <!--<TextView-->
+        <!--android:id="@+id/show1_much"-->
+        <!--android:layout_width="364dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:text="TextView >" />-->
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/sb_pressure"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        >
+        <TextView
+            android:id="@+id/shiwuzhiliang"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:textAlignment="viewEnd"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:text="食物质量："/>
+    <TextView
+        android:id="@+id/et_pressure"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/show1_ke"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:text="g"/>
+    </LinearLayout>
+</LinearLayout>
+    <!--<TextView-->
+        <!--android:id="@+id/show1_ener"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="30dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@color/colorTextMsg"-->
+        <!--android:text="100" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/show1_kj"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="110dp"-->
+        <!--android:textSize="18sp"-->
+        <!--android:textAlignment="viewStart"-->
+        <!--android:textColor="@color/colorTextMsg"-->
+        <!--android:text="千卡" />-->
+    <Button
+        android:id="@+id/show1_sure"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/round_button_blue"
+        android:text="确认记录"/>
+<ImageView
+    android:id="@+id/wait_show"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="15dp"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="50dp"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:backgroundTint="#00FFFFFF"
+    android:src="@drawable/jmui_sending_img"
+    android:visibility="invisible"/>
+    <Button
+        android:id="@+id/baocun1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:text="生成记录图片到本地"
+        android:background="@drawable/round_button_blue"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/share1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:text="记录成功，点击分享"
+        android:background="@drawable/round_button_blue"
+        android:visibility="invisible"
+        />
+
+
+</RelativeLayout>

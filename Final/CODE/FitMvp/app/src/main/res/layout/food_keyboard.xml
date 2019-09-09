@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:layout_gravity="center_vertical"
+        android:background="#D8FCFA">
+
+        <TextView
+            android:id="@+id/titlt_pop"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="食物重量"
+            android:textAlignment="center"
+            android:textSize="22sp" />
+        <TextView
+            android:id="@+id/name_pop"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/titlt_pop"
+            android:text="food1"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/liner_pop"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_pop"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/pop_much"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:ems="10"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/pop_keke"
+                android:layout_width="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="match_parent"
+                android:text="克"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/pop_sure"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/liner_pop"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="确认" />
+    </RelativeLayout>
+</LinearLayout>

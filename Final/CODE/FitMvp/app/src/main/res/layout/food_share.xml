@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="650dp"
+        android:layout_gravity="center_horizontal">
+<RelativeLayout
+    android:id="@+id/share_view1"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="430dp"
+    android:layout_height="575dp"
+    >
+    <ImageView
+        android:id="@+id/share_pic"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <ImageView
+        android:id="@+id/share_pic2"
+        android:layout_width="360dp"
+        android:layout_height="270dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <ImageView
+        android:id="@+id/share_pic3"
+        android:layout_width="360dp"
+        android:layout_height="252dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/share_name"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/share_pic"
+        android:layout_marginTop="20dp"/>
+    <TableLayout
+        android:id="@+id/share_table1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/share_pic"
+        android:layout_marginTop="60dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="3dp"
+                app:srcCompat="@drawable/cal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="能量：" />
+
+            <TextView
+                android:id="@+id/share_cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="千卡" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="3dp"
+                app:srcCompat="@drawable/pro" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="蛋白质：" />
+
+            <TextView
+                android:id="@+id/share_pro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="克" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="3dp"
+                app:srcCompat="@drawable/fat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="脂肪：" />
+
+            <TextView
+                android:id="@+id/share_fat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="克" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="3dp"
+                app:srcCompat="@drawable/carb" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="碳水化合物：" />
+
+            <TextView
+                android:id="@+id/share_ch2o"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="TextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:text="克" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
+    <Button
+        android:id="@+id/savephoto1"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/share_view1"
+        android:layout_centerHorizontal="true"
+        android:textSize="12sp"
+        android:text="保存并分享"
+        android:background="@drawable/round_button_blue"
+        />
+        <Button
+            android:id="@+id/sharephoto1"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/share_view1"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:text="选择分享途径"
+            android:background="@drawable/round_button_blue"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
+</ScrollView>

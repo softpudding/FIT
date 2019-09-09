@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.fitmvp">
+
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature"/>
+    <!-- Required -->
+    <!--允许应用接收JPUSH内部代码发送的广播消息-->
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <!--允许应用可以接收点亮屏幕或解锁广播-->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <!--允许应用可以访问网络-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许应用在手机屏幕关闭后后台进程仍然运行-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--允许应用访问手机状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许应用写入外部存储-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--允许应用读取外部存储-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--允许应用震动-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!--允许应用挂载/卸载外部文件系统-->
+    <permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!--允许应用获取网络信息状态，如当前的网络连接是否有效-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--允许应用读写系统设置-->
+    <permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--option-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.WelcomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="com.example.fitmvp.fileProvider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"/>
+</provider>
+        <!--不允许横屏-->
+        <activity android:name=".view.activity.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.ChangePwActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.RecordDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendSearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendAddActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendRecommendActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FriendSettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".chat.activity.ChatActivity"
+            android:screenOrientation="portrait"/>
+        <!--<activity android:name=".view.activity.P"></activity>-->
+        <activity android:name=".view.activity.PhotoPass"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoType"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoPassm"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PhotoShow"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.FoodShare"
+            android:screenOrientation="portrait"/>
+        
+        <activity android:name=".view.activity.PhotoShowt"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.ReportChooseDateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.ReportDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.NoticeDetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.NoticeListActivity"
+            android:screenOrientation="portrait"/>
+        <!-- Since JCore2.0.0 Required SDK核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action"/>
+            </intent-filter>
+        </service>
+
+        <!-- 数据库配置 -->
+        <meta-data android:name="AA_DB_NAME" android:value="fit.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.example.fitmvp.database.FriendEntry,
+                           com.example.fitmvp.database.FriendRecommendEntry,
+                           com.example.fitmvp.database.UserEntry"/>
+
+
+        <provider
+            android:name="com.activeandroid.content.ContentProvider"
+            android:authorities="com.example.fitmvp"
+            android:enabled="true"
+            android:exported="false">
+        </provider>
+
+    </application>
+
+
+    <!--网络权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!--相机权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--自动聚焦<uses-feature android:name = "android.hardware.camera.autofocus" />-->
+
+<!--读写sd权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+</manifest>

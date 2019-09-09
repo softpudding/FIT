@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#00FFFFFF">
+
+    <!--<com.example.fitmvp.view.activity.AutoFitTextureView-->
+        <!--android:id="@+id/texture"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="40dp" />-->
+
+    <ImageButton
+        android:id="@+id/openfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="90dp"
+        android:backgroundTint="#00FFFFFF"
+        android:src="@drawable/file" />
+
+
+    <ImageButton
+        android:id="@+id/capture"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="90dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="#00FDFDFD"
+        android:src="@drawable/camera" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#00FDFDFD"
+        app:srcCompat="@drawable/yqc" />
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:id="@+id/foodn"
+        android:layout_width="134dp"
+        android:layout_height="41dp" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/takephoto_notice"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:textSize="16sp"-->
+        <!--android:text="完整贴合食物能提高准确率哟~wink" />-->
+</RelativeLayout>
