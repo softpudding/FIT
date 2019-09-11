@@ -38,7 +38,10 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -131,7 +134,13 @@ public void sendm(){
     JSONObject jsonObject2=new JSONObject();
     JSONObject jsonObject3=new JSONObject();
     JSONObject jsonObject4=new JSONObject();
-    String tel= BaseApplication.getUserEntry().username;
+//    String tel= BaseApplication.getUserEntry().username;
+    SpUtils spUtils = new SpUtils();
+    String tel = (String)spUtils.get("phone","");
+    if(tel.equals("")){
+        LogUtils.e("error","not login");
+        ToastUtil.setToast("未登录，请登录后重试");
+    }
     jsonObject1.put("tel",tel);jsonObject2.put("tel",tel);jsonObject3.put("tel",tel);jsonObject4.put("tel",tel);
     jsonObject1.put("food",f1);jsonObject2.put("food",f2);jsonObject3.put("food",f3);jsonObject4.put("food",f4);
     jsonObject1.put("weight",100);jsonObject2.put("weight",100);jsonObject3.put("weight",100);jsonObject4.put("weight",100);

@@ -35,7 +35,10 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -331,7 +334,13 @@ public class PhotoPassm extends AppCompatActivity {
         Integer obj_type=2;
         String pic= PictureUtil.bitmapToBase64(bitmap);
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
-        String tel= BaseApplication.getUserEntry().username;
+//        String tel= BaseApplication.getUserEntry().username;
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
+        if(tel.equals("")){
+            LogUtils.e("error","not login");
+            ToastUtil.setToast("未登录，请登录后重试");
+        }
         Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
                 .compose(new ThreadTransformer<PhotoTypetBean>())
                 .subscribe(new CommonObserver<PhotoTypetBean>() {

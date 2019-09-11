@@ -149,14 +149,14 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
             inputPwdAgain.setError("两次密码不一致，请确认密码");
             flag = false;
         }
-        else if(TextUtils.isEmpty(getMsg())){
-            inputMsg.setError("请输入验证码");
-            flag = false;
-        }
-        else if(!getMsg().equals(targetMsg)){
-            inputMsg.setError("验证码错误");
-            flag = false;
-        }
+//        else if(TextUtils.isEmpty(getMsg())){
+//            inputMsg.setError("请输入验证码");
+//            flag = false;
+//        }
+//        else if(!getMsg().equals(targetMsg)){
+//            inputMsg.setError("验证码错误");
+//            flag = false;
+//        }
         return flag;
     }
 
