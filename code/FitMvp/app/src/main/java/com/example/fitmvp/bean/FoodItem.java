@@ -6,7 +6,6 @@ public class FoodItem {
     private Bitmap bitmap;
     private String foodname;
     private Integer weight;
-    private Integer energy;
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -20,10 +19,6 @@ public class FoodItem {
         return weight;
     }
 
-    public Integer getEnergy() {
-        return energy;
-    }
-
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
     }
@@ -34,9 +29,5 @@ public class FoodItem {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
-    }
-
-    public void setEnergy(Integer energy) {
-        this.energy = energy;
     }
 }

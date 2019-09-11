@@ -26,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.fitmvp.BaseApplication;
 import com.example.fitmvp.R;
 import com.example.fitmvp.bean.NutriBean;
@@ -51,6 +53,7 @@ import java.text.SimpleDateFormat;
 
 
 public class PhotoPass extends AppCompatActivity {
+    String Foodname;
     /* 头像文件 */
     private static final String IMAGE_FILE_NAME = "output_image.jpg";
     private static final String CROP_IMAGE_FILE_NAME = "fit_crop.jpg";
@@ -340,27 +343,18 @@ public class PhotoPass extends AppCompatActivity {
             ToastUtil.setToast("未登录，请登录后重试");
         }
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
-                .compose(new ThreadTransformer<PhotoType1Bean<PredictionBean, NutriBean>>())
-                .subscribe(new CommonObserver<PhotoType1Bean<PredictionBean, NutriBean>>() {
+                .compose(new ThreadTransformer<PhotoType1Bean<PredictionBean>>())
+                .subscribe(new CommonObserver<PhotoType1Bean<PredictionBean>>() {
                     @Override
-                    public void onNext(PhotoType1Bean<PredictionBean, NutriBean> response) {
-                        Integer Calory=response.getNutri().getCalory();
-                        Double Fat=response.getNutri().getFat();
-                        Double Carbohydrate=response.getNutri().getCarbohydrate();
-                        Double Protein=response.getNutri().getProtein();
-                        String Foodname=response.getPrediction().getFoodname();
+                    public void onNext(PhotoType1Bean<PredictionBean> response) {
+//                        Integer Calory=response.getNutri().getCalory();
+//                        Double Fat=response.getNutri().getFat();
+//                        Double Carbohydrate=response.getNutri().getCarbohydrate();
+//                        Double Protein=response.getNutri().getProtein();
+                        Foodname=response.getPrediction().getFoodname();
                         //跳转页面到PhotoShow
-                        titleView.setText(Foodname);
-                        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
-                        // 传参
-                        intent.putExtra("foodname",Foodname);
-                        intent.putExtra("energy",Calory);
-                        intent.putExtra("fat",Fat);
-                        intent.putExtra("carbo",Carbohydrate);
-                        intent.putExtra("protein",Protein);
-                        // 传项目中图片
-                        intent.putExtra("picb",picb);
-                        startActivity(intent);
+                        //titleView.setText("");
+                        getInfo(picb);
                     }
                     @Override
                     public void onError(ApiException e){
@@ -379,6 +373,18 @@ public class PhotoPass extends AppCompatActivity {
 //        intent.putExtra("picb",picb);
 //        startActivity(intent);
 
+    }
+
+    //获取详细能量数据接口
+    public void getInfo(byte[] picb){
+        Intent intent = new Intent(PhotoPass.this, PhotoShow.class);
+                        // 传参
+        intent.putExtra("foodname",Foodname);
+                        // 传项目中图片
+        intent.putExtra("picb",picb);
+        titleView.setText("");
+        headImage.setImageResource(R.drawable.yqc);
+        startActivity(intent);
     }
 
     /**

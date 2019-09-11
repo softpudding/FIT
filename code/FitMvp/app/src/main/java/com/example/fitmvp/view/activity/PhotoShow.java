@@ -14,10 +14,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +56,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PhotoShow extends AppCompatActivity {
+public class PhotoShow extends AppCompatActivity{
     Uri urithis_s;
     TextView show1name;
     ImageView foodpic;
@@ -69,7 +72,7 @@ public class PhotoShow extends AppCompatActivity {
     ImageView wait_show;
     AppCompatSeekBar sb_pressure;
     TextView et_pressure;
-    TextView kj_pressure;
+    //TextView kj_pressure;
     String weight;
     Double kalu;
     Double protein1;
@@ -88,6 +91,13 @@ public class PhotoShow extends AppCompatActivity {
         setContentView(R.layout.photo_show);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 返回键
         show1name = findViewById(R.id.show1_name);
+        show1name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showListPopulWindow();
+            }
+        });
+//        show1name.setOnFocusChangeListener(this);
         foodpic = findViewById(R.id.foodpic);
 
         Intent intent = getIntent();
@@ -108,7 +118,7 @@ public class PhotoShow extends AppCompatActivity {
         // 滑动条
         sb_pressure = (AppCompatSeekBar) findViewById(R.id.sb_pressure);
         et_pressure = (TextView)findViewById(R.id.et_pressure);
-        kj_pressure=(TextView)findViewById(R.id.show1_ener);
+        //kj_pressure=(TextView)findViewById(R.id.show1_ener);
         sb_pressure.setProgress(0);
         String haha1="50";
         et_pressure.setText(haha1);
@@ -116,7 +126,7 @@ public class PhotoShow extends AppCompatActivity {
         String haha2="100";
         et_pressure.setText(haha2);
         Integer kj2=(Integer.valueOf(haha2))*energy/100;String kjs2=kj2.toString();
-        kj_pressure.setText(kjs2);
+      //  kj_pressure.setText(kjs2);
         sb_pressure.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -126,7 +136,7 @@ public class PhotoShow extends AppCompatActivity {
                 String miao="" + String.valueOf(a);
                 String ju=""+String.valueOf(q);
                 et_pressure.setText(miao);// 50为进度条滑到最小值时代表的数值
-                kj_pressure.setText(ju);
+               // kj_pressure.setText(ju);
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -138,13 +148,36 @@ public class PhotoShow extends AppCompatActivity {
         enesend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weight=et_pressure.getText().toString();
-                kalu=Double.valueOf(weight)/100;
-                protein1=kalu*protein;
-                cal=energy*kalu;
-                fat1=kalu*fat;
-                carbo1=kalu*carbo;
-                sendene(show_name,kalu,fat1,protein1,carbo1,cal);
+                show_name=(String)show1name.getText();
+                JSONObject foodname=new JSONObject();
+                foodname.put("name1",show_name);
+                foodname.put("name2","NULL");
+                foodname.put("name3","NULL");
+                foodname.put("name4","NULL");
+                Http.getHttpService(1).foodget(foodname)
+                        .compose(new ThreadTransformer<JSONArray>())
+                        .subscribe(new CommonObserver<JSONArray>() {
+                            @Override
+                            public void onNext(JSONArray foodinfo) {
+                                JSONObject fooddetail = foodinfo.getJSONObject(0);
+                                Integer Calory=fooddetail.getInteger("calory");
+                                Double Fat=fooddetail.getDouble("fat");
+                                Double Carbohydrate=fooddetail.getDouble("carbohydrate");
+                                Double Protein=fooddetail.getDouble("protein");
+                                weight=et_pressure.getText().toString();
+                                kalu=Double.valueOf(weight)/100;
+                                protein1=kalu*Protein;
+                                cal=Calory*kalu;
+                                fat1=kalu*Fat;
+                                carbo1=kalu*Carbohydrate;
+                                sendene(show_name,kalu,fat1,protein1,carbo1,cal);
+                            }
+                            @Override
+                            public void onError(ApiException e){
+                                System.err.println("onError: "+ e.getMessage());
+                                System.out.println("没传给琪超！");
+                            }
+                        });
 
             }
         });
@@ -158,6 +191,37 @@ public class PhotoShow extends AppCompatActivity {
 
     }
     //这里是oncreate结尾
+
+//    @Override
+//    public void onFocusChange(View v,boolean hasFocus){
+//        if (hasFocus) {
+//            showListPopulWindow(); //调用显示PopuWindow 函数
+//        }
+//    }
+    private void showListPopulWindow() {
+        final String[] list = {
+                "菠萝咕老肉","炒白菜","炒菠菜","炒冬瓜","炒海带","炒河粉","炒花菜","炒豇豆","炒芹菜", "炒青菜",
+                "炒乌冬面", "炒西兰花","炒玉米","蛋包饭","蛋饺","东坡肉","番茄炒蛋","贡丸汤","汉堡","红烧大排",
+                "黄焖鸡米饭","馄饨", "酒酿丸子","咖喱猪排饭","烤鸭","烤鱼","凉拌黄瓜","卤鸡腿","卤肉饭","麻辣豆腐",
+                "毛血旺","梅菜扣肉","米饭","披萨","青椒腊肉", "三杯鸡饭","上海炒面","烧茄子","生煎","酸菜牛肉面",
+                "酸菜鱼","酸汤肥牛","汤包","汤圆","糖醋里脊","糖醋排骨","铁板牛排意面", "土豆丝","西红柿鸡蛋面","鸭血粉丝汤",
+                "扬州炒饭","意面","油爆虾","鱼香肉丝","炸鸡块","炸酱面","炸小鸡腿","蒸鸡蛋","煮鸡蛋"
+        };
+        final ListPopupWindow listPopupWindow;
+        listPopupWindow = new ListPopupWindow(this);
+        listPopupWindow.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
+        listPopupWindow.setAnchorView(show1name);//以哪个控件为基准，在该处以mEditText为基准
+        listPopupWindow.setModal(true);
+
+        listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置项点击监听
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                show1name.setText(list[i]);//把选择的选项内容展示在EditText上
+                listPopupWindow.dismiss();//如果已经选择了，隐藏起来
+            }
+        });
+        listPopupWindow.show();//把ListPopWindow展示出来
+    }
 
     private Bitmap loadBitmapFromView(View v) {
         int w = v.getWidth();
@@ -231,9 +295,6 @@ public void toSave(){
         Intent friendInfoIntent = new Intent("updateRecords");
         LocalBroadcastManager.getInstance(this).sendBroadcast(friendInfoIntent);
     }
-
-
-
 
 //    public void shareFriends(Uri uri, String name) {
 public void shareFriends() {

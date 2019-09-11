@@ -215,7 +215,6 @@ public class PhotoPassm extends AppCompatActivity {
     }
 
     private void checkStoragePermission() {
-        System.out.println("打印！！！！！！");
         int result = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_DENIED) {
             String[] permissions = {/*Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -299,7 +298,7 @@ public class PhotoPassm extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, mUriPath);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         //注意：此处应设置return-data为false，如果设置为true，是直接返回bitmap格式的数据，耗费内存。设置为false，然后，设置裁剪完之后保存的路径，即：intent.putExtra(MediaStore.EXTRA_OUTPUT, uriPath);
-//        intent.putExtra("return-data", true);
+     // intent.putExtra("return-data", true);
         intent.putExtra("return-data", false);
 //        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(intent, CODE_RESULT_REQUEST);
@@ -320,6 +319,7 @@ public class PhotoPassm extends AppCompatActivity {
                 }
                 else{
                     notes.setText("识别中。。。");
+                    System.out.println(b.getWidth()+"okkkkk"+b.getHeight());
                     passPhoto2(b,1);
                     System.out.println("方盘");
                 }
@@ -353,6 +353,7 @@ public class PhotoPassm extends AppCompatActivity {
                         //JSONArray tbox =response.getBoxes();
                         JSONArray tpre=response.getPredictions();
                         JSONObject opre;
+                        System.out.println(tpre);
                         Integer listSize=tpre.size();
                         for(int i=0;i<listSize;i++){// 遍历 jsonarray 数组，把每一个对象转成 json 对象
                                 opre = tpre.getJSONObject(i);
@@ -373,20 +374,21 @@ public class PhotoPassm extends AppCompatActivity {
                             intent.putExtra("w"+j,w);
                             intent.putExtra("h"+j,h);
                         }
-                        JSONArray nutri=response.getNutri();
-                        for(int i=0;i<4;i++){
-                            opre=nutri.getJSONObject(i);
-                            Integer calory=opre.getInteger("calory");
-                            Double protein=opre.getDouble("protein");
-                            Double fat=opre.getDouble("fat");
-                            Double carbohydrate=opre.getDouble("carbohydrate");
-                            int j=i+1;
-                            intent.putExtra("calory"+j,calory);
-                            intent.putExtra("protein"+j,protein);
-                            intent.putExtra("fat"+j,fat);
-                            intent.putExtra("carbohydrate"+j,carbohydrate);
-                            System.out.println(calory+","+protein);
-                        }
+
+//                        JSONArray nutri=response.getNutri();
+//                        for(int i=0;i<4;i++){
+//                            opre=nutri.getJSONObject(i);
+//                            Integer calory=opre.getInteger("calory");
+//                            Double protein=opre.getDouble("protein");
+//                            Double fat=opre.getDouble("fat");
+//                            Double carbohydrate=opre.getDouble("carbohydrate");
+//                            int j=i+1;
+//                            intent.putExtra("calory"+j,calory);
+//                            intent.putExtra("protein"+j,protein);
+//                            intent.putExtra("fat"+j,fat);
+//                            intent.putExtra("carbohydrate"+j,carbohydrate);
+//                            System.out.println(calory+","+protein);
+//                        }
                         intent.putExtra("type",integer);
                         intent.putExtra("pic",picb);
                         if(integer==2){notes.setText("圆盘食物");}
