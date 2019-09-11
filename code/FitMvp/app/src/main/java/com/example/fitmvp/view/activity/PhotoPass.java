@@ -338,10 +338,10 @@ public class PhotoPass extends AppCompatActivity {
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
         SpUtils spUtils = new SpUtils();
         String tel= (String)spUtils.get("phone","");
-        if(tel.equals("")){
-            LogUtils.e("error","not login");
-            ToastUtil.setToast("未登录，请登录后重试");
-        }
+//        if(tel.equals("")){
+//            LogUtils.e("error","not login");
+//            ToastUtil.setToast("未登录，请登录后重试");
+//        }
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean<PredictionBean>>())
                 .subscribe(new CommonObserver<PhotoType1Bean<PredictionBean>>() {

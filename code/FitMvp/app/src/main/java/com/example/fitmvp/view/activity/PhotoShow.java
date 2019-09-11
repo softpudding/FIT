@@ -242,10 +242,10 @@ public class PhotoShow extends AppCompatActivity{
 //        String tel= BaseApplication.getUserEntry().username;
         SpUtils spUtils = new SpUtils();
         String tel = (String)spUtils.get("phone","");
-        if(tel.equals("")){
-            LogUtils.e("error","not login");
-            ToastUtil.setToast("未登录，请登录后重试");
-        }
+//        if(tel.equals("")){
+//            LogUtils.e("error","not login");
+//            ToastUtil.setToast("未登录，请登录后重试");
+//        }
         kalu=kalu*100;
         jsonObject.put("tel",tel);
         jsonObject.put("food",show_name);

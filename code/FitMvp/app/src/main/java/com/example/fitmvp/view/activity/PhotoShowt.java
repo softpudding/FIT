@@ -271,10 +271,10 @@ public void sendrealInfo(){
 //    String tel= BaseApplication.getUserEntry().username;
     SpUtils spUtils = new SpUtils();
     String tel = (String)spUtils.get("phone","");
-    if(tel.equals("")){
-        LogUtils.e("error","not login");
-        ToastUtil.setToast("未登录，请登录后重试");
-    }
+//    if(tel.equals("")){
+//        LogUtils.e("error","not login");
+//        ToastUtil.setToast("未登录，请登录后重试");
+//    }
     // jsonObject1.put("tel",tel);jsonObject2.put("tel",tel);jsonObject3.put("tel",tel);jsonObject4.put("tel",tel);
     // jsonObject1.put("food",f1);jsonObject2.put("food",f2);jsonObject3.put("food",f3);jsonObject4.put("food",f4);
     // jsonObject1.put("weight",100);jsonObject2.put("weight",100);jsonObject3.put("weight",100);jsonObject4.put("weight",100);

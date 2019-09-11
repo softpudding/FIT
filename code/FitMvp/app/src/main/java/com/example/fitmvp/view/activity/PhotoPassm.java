@@ -337,10 +337,10 @@ public class PhotoPassm extends AppCompatActivity {
 //        String tel= BaseApplication.getUserEntry().username;
         SpUtils spUtils = new SpUtils();
         String tel = (String)spUtils.get("phone","");
-        if(tel.equals("")){
-            LogUtils.e("error","not login");
-            ToastUtil.setToast("未登录，请登录后重试");
-        }
+//        if(tel.equals("")){
+//            LogUtils.e("error","not login");
+//            ToastUtil.setToast("未登录，请登录后重试");
+//        }
         Http.getHttpService(2).multifood(tel,obj_type,pic,integer)
                 .compose(new ThreadTransformer<PhotoTypetBean>())
                 .subscribe(new CommonObserver<PhotoTypetBean>() {
