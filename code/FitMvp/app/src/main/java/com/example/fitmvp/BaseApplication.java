@@ -15,6 +15,8 @@ import android.widget.ListView;
 import com.activeandroid.ActiveAndroid;
 import com.example.fitmvp.database.UserEntry;
 import com.example.fitmvp.utils.LogUtils;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.Message;
+import cn.jpush.im.android.api.model.UserInfo;
 
 public class BaseApplication extends Application {
     public static final String CONV_TITLE = "conv_title";
@@ -66,11 +69,24 @@ public class BaseApplication extends Application {
     }
 
     public static UserEntry getUserEntry() {
-        return UserEntry.getUser(JMessageClient.getMyInfo().getUserName(), JMessageClient.getMyInfo().getAppKey());
+        SpUtils spUtils = new SpUtils();
+        String username = (String)spUtils.get("phone","");
+        //
+        if(!username.equals("")){
+            // getUser(Username, AppKey)
+            return UserEntry.getUser(username, "ff4a6be471a248b2325698d3");
+
+        }
+        // username == null, 不应该到这一步
+        else{
+            LogUtils.e("error","not login");
+            ToastUtil.setToast("未登录，请登录后重试");
+            return null;
+        }
     }
 
     public static String getAppKey(){
-        return JMessageClient.getMyInfo().getAppKey();
+        return "ff4a6be471a248b2325698d3";
     }
 
     // 全局监控

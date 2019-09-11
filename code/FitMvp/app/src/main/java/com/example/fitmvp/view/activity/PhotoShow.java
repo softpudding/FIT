@@ -39,7 +39,10 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 import com.example.fitmvp.view.fragment.ShareView;
 
 
@@ -236,7 +239,13 @@ public class PhotoShow extends AppCompatActivity{
         wait_show.setVisibility(View.VISIBLE);
         JSONArray hallo=new JSONArray();
         JSONObject jsonObject=new JSONObject();
-        String tel= BaseApplication.getUserEntry().username;
+//        String tel= BaseApplication.getUserEntry().username;
+        SpUtils spUtils = new SpUtils();
+        String tel = (String)spUtils.get("phone","");
+//        if(tel.equals("")){
+//            LogUtils.e("error","not login");
+//            ToastUtil.setToast("未登录，请登录后重试");
+//        }
         kalu=kalu*100;
         jsonObject.put("tel",tel);
         jsonObject.put("food",show_name);

@@ -44,7 +44,10 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.PictureUtil;
+import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -265,7 +268,22 @@ public void sendrealInfo(){
     JSONObject jsonObject2=new JSONObject();
     JSONObject jsonObject3=new JSONObject();
     JSONObject jsonObject4=new JSONObject();
-    String tel= BaseApplication.getUserEntry().username;
+//    String tel= BaseApplication.getUserEntry().username;
+    SpUtils spUtils = new SpUtils();
+    String tel = (String)spUtils.get("phone","");
+//    if(tel.equals("")){
+//        LogUtils.e("error","not login");
+//        ToastUtil.setToast("未登录，请登录后重试");
+//    }
+    // jsonObject1.put("tel",tel);jsonObject2.put("tel",tel);jsonObject3.put("tel",tel);jsonObject4.put("tel",tel);
+    // jsonObject1.put("food",f1);jsonObject2.put("food",f2);jsonObject3.put("food",f3);jsonObject4.put("food",f4);
+    // jsonObject1.put("weight",100);jsonObject2.put("weight",100);jsonObject3.put("weight",100);jsonObject4.put("weight",100);
+    // jsonObject1.put("fat",fat1);jsonObject2.put("fat",fat2);jsonObject3.put("fat",fat3);jsonObject4.put("fat",fat4);
+    // jsonObject1.put("protein",prote1);jsonObject2.put("protein",prote2);jsonObject3.put("protein",prote3);jsonObject4.put("protein",prote4);
+    // jsonObject1.put("carbohydrate",carbo1);jsonObject2.put("carbohydrate",carbo2);jsonObject3.put("carbohydrate",carbo3);jsonObject4.put("carbohydrate",carbo4);
+    // jsonObject1.put("cal",cal1);jsonObject2.put("cal",cal2);jsonObject3.put("cal",cal3);jsonObject4.put("cal",cal4);
+    // hallo.add(jsonObject1);hallo.add(jsonObject2);hallo.add(jsonObject3);hallo.add(jsonObject4);
+    // String tel= BaseApplication.getUserEntry().username;
     jsonObject2.put("tel",tel);
     jsonObject3.put("tel",tel);
     jsonObject4.put("tel",tel);

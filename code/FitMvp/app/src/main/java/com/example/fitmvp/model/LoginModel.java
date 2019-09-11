@@ -101,6 +101,17 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
             UserEntry newUser = new UserEntry(phone,appKey);
             newUser.save();
         }
+//        else{
+//            LogUtils.e("find user",phone);
+//        }
+//        UserEntry userEntry1 = BaseApplication.getUserEntry();
+//        if(userEntry1 == null){
+//            LogUtils.e("user entry is null","   ");
+//
+//        }
+//        else{
+//            LogUtils.e("user entry is not null", userEntry1.username);
+//        }
         infoHint.loginSuccess();
     }
 

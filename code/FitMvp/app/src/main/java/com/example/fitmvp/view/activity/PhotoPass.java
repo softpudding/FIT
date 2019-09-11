@@ -37,8 +37,10 @@ import com.example.fitmvp.exception.ApiException;
 import com.example.fitmvp.network.Http;
 import com.example.fitmvp.observer.CommonObserver;
 import com.example.fitmvp.transformer.ThreadTransformer;
+import com.example.fitmvp.utils.LogUtils;
 import com.example.fitmvp.utils.PictureUtil;
 import com.example.fitmvp.utils.SpUtils;
+import com.example.fitmvp.utils.ToastUtil;
 
 import org.w3c.dom.Text;
 
@@ -334,7 +336,12 @@ public class PhotoPass extends AppCompatActivity {
         Integer obj_type=1;
         String pic= PictureUtil.bitmapToBase64(bitmap);
         final byte[] picb=PictureUtil.Bitmap2Bytes(bitmap);
-        String tel= BaseApplication.getUserEntry().username;
+        SpUtils spUtils = new SpUtils();
+        String tel= (String)spUtils.get("phone","");
+//        if(tel.equals("")){
+//            LogUtils.e("error","not login");
+//            ToastUtil.setToast("未登录，请登录后重试");
+//        }
         Http.getHttpService(2).photoSend(tel,obj_type,pic)
                 .compose(new ThreadTransformer<PhotoType1Bean<PredictionBean>>())
                 .subscribe(new CommonObserver<PhotoType1Bean<PredictionBean>>() {

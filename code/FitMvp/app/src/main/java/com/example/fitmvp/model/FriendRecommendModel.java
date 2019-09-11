@@ -16,12 +16,12 @@ import cn.jpush.im.android.api.event.ContactNotifyEvent;
 import cn.jpush.im.android.api.model.UserInfo;
 
 public class FriendRecommendModel extends BaseModel implements FriendRecommendContract.Model {
-    private UserEntry user = BaseApplication.getUserEntry();
     /*
      * 根据事件种类修改或新增对应的验证消息记录
      * 更新数据库，更新未读消息数
      */
     public void addRecommend(String fromUsername, final String reason, final ContactNotifyEvent.Type type){
+        UserEntry user = BaseApplication.getUserEntry();
         // 先从数据库中找记录
         FriendRecommendEntry recommendEntry = FriendRecommendEntry.getEntry(user,fromUsername,user.appKey);
         // 如果有，更新消息记录
@@ -44,7 +44,7 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
                         FriendRecommendEntry newEntry = new FriendRecommendEntry(friend.getUserID(),
                                 friend.getUserName(), friend.getNotename(), friend.getNickname(),
                                 friend.getAppKey(), null, friend.getDisplayName(),
-                                reason, otherState ,user);
+                                reason, otherState ,BaseApplication.getUserEntry());
                         newEntry.save();
                         LogUtils.e("find_user",friend.getUserName());
                         SpUtils spUtils = new SpUtils();
@@ -66,7 +66,7 @@ public class FriendRecommendModel extends BaseModel implements FriendRecommendCo
      * 同意或拒绝好友请求后更新数据库中的记录
      */
     public void updateRecommend(String username,String state){
-
+        UserEntry user = BaseApplication.getUserEntry();
         FriendRecommendEntry recommendEntry = FriendRecommendEntry.getEntry(user,username,user.appKey);
         if(recommendEntry!=null){
             LogUtils.d("find_recommend","got it");
